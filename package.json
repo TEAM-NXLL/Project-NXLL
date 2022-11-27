@@ -1,0 +1,21 @@
+{
+  "name": "actto",
+  "version": "1.0.0",
+  "description": "Project-NXLL",
+  "main": "index.js",
+  "scripts": {
+    "dev": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hyerimhan/actto.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hyerimhan/actto/issues"
+  },
+  "homepage": "https://github.com/hyerimhan/actto#readme"
+}
