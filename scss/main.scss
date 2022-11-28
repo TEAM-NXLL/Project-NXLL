@@ -26,6 +26,56 @@ header {
           &:first-child {
             display: flex;
             gap: 10px;
+
+            a {
+              position: relative;
+
+              .balloon {
+                position: absolute;
+                top: 95%;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 70px;
+                line-height: 2;
+                border-radius: 3px;
+                text-align: center;
+                background-color: #000;
+                color: #fff;
+                font-size: 12px;
+                animation: balloon 1.6s linear infinite;
+
+                @keyframes balloon {
+                  0% {
+                    top: 95%;
+                  }
+                  10% {
+                    top: 110%;
+                  }
+                  20% {
+                    top: 95%;
+                  }
+                  30% {
+                    top: 110%;
+                  }
+                  40% {
+                    top: 95%;
+                  }
+                }
+
+                span {
+                  position: absolute;
+                  bottom: 100%;
+                  left: 50%;
+                  transform: translateX(-50%);
+                  width: 0px;
+                  height: 0px;
+                  border-bottom: 5px solid #000;
+                  border-left: 5px solid transparent;
+                  border-right: 5px solid transparent;
+                }
+              }
+
+            }
           }
 
           &::after {
