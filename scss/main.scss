@@ -11,6 +11,7 @@ header {
     border-bottom: 1px solid var(--border-color);
     line-height: 40px;
     font-size: 13px;
+    z-index: 10;
 
     .inner {
       display: flex;
