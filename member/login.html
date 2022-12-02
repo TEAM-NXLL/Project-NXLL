@@ -11,9 +11,9 @@
 
   <script src="https://kit.fontawesome.com/cd76b4d4dc.js" crossorigin="anonymous"></script>
 
-  <link rel="stylesheet" href="./scss/common.scss">
-  <link rel="stylesheet" href="./scss/main.scss">
-  <script defer src="./js/main.js"></script>
+  <link rel="stylesheet" href="../scss/common.scss">
+  <link rel="stylesheet" href="../scss/main.scss">
+  <script defer src="../js/main.js"></script>
   <title>엑토몰 디자인 키보드는 엑토</title>
 </head>
 <body>
@@ -26,23 +26,23 @@
         <div class="CS"><a href="#">CS센터 24시간 AS접수</a></div>
         <ul class="top-nav">
           <li>
-            <a class="login" href="./member/login.html">로그인</a>
+            <a href="./login.html">로그인</a>
             &middot;
-            <a class="join" href="./member/join.html">회원가입
+            <a href="./join.html">회원가입
               <p class="balloon"><span></span>+ 5,000</p>
             </a>
           </li>
           <li>
-            <a class="shipping" href="#"><i class="fa-solid fa-truck-moving"></i>배송조회</a>
+            <a href="#"><i class="fa-solid fa-truck-moving"></i>배송조회</a>
           </li>
           <li>
-            <a class="community" href="#">커뮤니티</a>
+            <a href="#">커뮤니티</a>
           </li>
           <li>
-            <a class="myShopping" href="#"><i class="fa-regular fa-circle-user"></i>마이쇼핑</a>
+            <a href="#"><i class="fa-regular fa-circle-user"></i>마이쇼핑</a>
           </li>
           <li>
-            <a class="company" href="#">회사소개</a>
+            <a href="#">회사소개</a>
           </li>
         </ul>
       </div>
@@ -51,7 +51,7 @@
     <!-- logo-area -->
     <div class="logo-area">
       <div class="inner">
-        <a href="/" class="logo-area__logo"><img src="./images/logo.png" alt="메인 로고"></a>
+        <a href="/" class="logo-area__logo"><img src="../images/logo.png" alt="메인 로고"></a>
         <div class="logo-area__search">
           <input id="keyword" type="text" title="키워드 검색"/>
           <label for="keyword"><i class="fa-solid fa-magnifying-glass"></i></label>
@@ -256,10 +256,28 @@
           </li>
         </ul>
       </div>
-    </nav><!-- nav-area -->
+    </nav>
   </header><!-- HEADER -->
 
   <!-- MAIN -->
-  <main></main><!-- MAIN -->
+  <main>
+    <ul class="logIn-area">
+      <h1>LOGIN</h1>
+      <li class="logIn-area__input">
+        <input type="text" placeholder="아이디">
+        <input type="password" placeholder="비밀번호">
+      </li>
+      <li class="logIn-area__saveId">
+        <input type="checkbox" id="saveId">
+        <label for="saveId">아이디저장</label>
+      </li>
+      <button class="logInBtn" type="submit">로그인</button>
+      <li class="logIn-area__find">
+        <a href="#">아이디 찾기</a>
+        <a href="#">비밀번호 찾기</a>
+        <a href="./join.html">가입하기</a>
+      </li>
+    </ul>
+  </main><!-- MAIN -->
 </body>
 </html>
