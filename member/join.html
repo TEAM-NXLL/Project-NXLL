@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
+  <!-- <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico"> -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
 
@@ -16,6 +17,7 @@
   <script defer src="../js/main.js"></script>
   <title>엑토몰 디자인 키보드는 엑토</title>
 </head>
+
 <body>
   <!-- HEADER -->
   <header>
@@ -53,7 +55,7 @@
       <div class="inner">
         <a href="/" class="logo-area__logo"><img src="../images/logo.png" alt="메인 로고"></a>
         <div class="logo-area__search">
-          <input id="keyword" type="text" title="키워드 검색"/>
+          <input id="keyword" type="text" title="키워드 검색" />
           <label for="keyword"><i class="fa-solid fa-magnifying-glass"></i></label>
         </div>
       </div>
@@ -161,10 +163,10 @@
                 </li>
                 <li>
                   <a href="#">게이밍 아이템</a>
-                </li>                
+                </li>
                 <li>
                   <a href="#">NEW 레트로 키보드</a>
-                </li>                
+                </li>
               </div>
             </ul>
           </li>
@@ -198,10 +200,10 @@
                 </li>
                 <li>
                   <a href="#">음향케이블 기타</a>
-                </li>                
+                </li>
                 <li>
                   <a href="#">게이밍 아이템</a>
-                </li>                
+                </li>
               </div>
             </ul>
           </li>
@@ -235,7 +237,7 @@
                 </li>
                 <li>
                   <a href="#">문서 클립 거치대</a>
-                </li>                
+                </li>
               </div>
             </ul>
           </li>
@@ -265,24 +267,25 @@
       <h1>JOIN - US</h1>
       <p>아래 정보를 꼼꼼히 입력하세요.</p>
       <li class="base">
-        <h2>BASE <span>기본 정보를 입력하세요.</span> <span><img class="require" src="../images/icons/required.png" alt=""> 필수입력사항</span></h2>
+        <h2>BASE <span>기본 정보를 입력하세요.</span> <span><img class="require" src="../images/icons/required.png" alt="">
+            필수입력사항</span></h2>
         <table>
           <colgroup>
             <col style="width:150px" />
-            <col style="width:auto"/>
+            <col style="width:auto" />
           </colgroup>
           <tbody>
             <tr>
               <th scope="row">아이디<img class="require" src="../images/icons/required.png" alt=""></th>
               <td>
-                <input type="text">
+                <input type="text" class="id-input">
                 (영문소문자/숫자, 4~16자)
               </td>
             </tr>
             <tr>
               <th>비밀번호<img class="require" src="../images/icons/required.png" alt=""></th>
               <td>
-                <input type="text">
+                <input type="text" class="pw-input">
                 (영문 대소문자/숫자/특수문자 중 3가지 이상 조합, 8자~16자)
               </td>
             </tr>
@@ -295,14 +298,15 @@
             <tr>
               <th>이름<img class="require" src="../images/icons/required.png" alt=""></th>
               <td>
-                <input type="text">
+                <input type="text" class="user-name">
               </td>
             </tr>
             <tr class="address-tr address">
               <th>주소</th>
               <td>
-                <input type="text" readonly><button class="hover-navy"><i class="fa-solid fa-location-dot"></i>우편번호</button>
-                <br/>
+                <input type="text" readonly><button class="hover-navy"><i
+                    class="fa-solid fa-location-dot"></i>우편번호</button>
+                <br />
                 <input type="text" readonly> 기본 주소
                 <input type="text"> 나머지 주소 (선택입력가능)
               </td>
@@ -339,4 +343,5 @@
     </ul>
   </main><!-- MAIN -->
 </body>
+
 </html>
