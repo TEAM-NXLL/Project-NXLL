@@ -1,7 +1,7 @@
-export {store}
+export { store }
 
 const store = {
-  url: 'https://asia-northeast3-heropy-api.cloudfunctions.net/api/',
+  url: 'https://asia-northeast3-heropy-api.cloudfunctions.net/api',
 
   headers: {
     'content-type': 'application/json',
