@@ -1,10 +1,14 @@
 import { store } from "./store.js"
+import dotenv from 'dotenv'
 
 // 회원가입 데이터
 export async function getData(email, password, id, profile = null) {
     const res = await fetch(store.url + '/auth/signup', {
         method: 'POST',
-        headers: store.headers,
+        headers: {
+            ...store.headers,
+            "apikey": process.env.API_KEY
+        },
         body: JSON.stringify({
             "email": email,
             "password": password,
@@ -25,7 +29,10 @@ export async function getData(email, password, id, profile = null) {
 export async function getLogin(email, password) {
     const res = await fetch(store.url + '/auth/login', {
         method: 'POST',
-        headers: store.headers,
+        headers: {
+            ...store.headers,
+            "apikey": process.env.API_KEY
+        },
         body: JSON.stringify({
             "email": email,
             "password": password,
@@ -45,8 +52,10 @@ export async function getLogOut(accessToken) {
         method: 'POST',
         headers: {
             ...store.headers,
+            "apikey": process.env.API_KEY,
             "Authorization": `Bearer ${accessToken}`,
-    }})
+        }
+    })
 
     const json = await res.json()
     return json
