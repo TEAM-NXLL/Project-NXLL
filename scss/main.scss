@@ -20,6 +20,22 @@ header {
       .top-nav {
         display: flex;
 
+        .signUpsignIn {
+          p {
+            font-weight: normal;
+
+            strong {
+              font-weight: bold;
+            }
+          }
+
+          .logOutBtn {
+            font-weight: normal;
+            font-size: 11px;
+            color: #777;
+          }
+        }
+
         li {
           position: relative;
           margin-right: 30px;
@@ -30,6 +46,7 @@ header {
 
             > a {
               position: relative;
+              cursor: pointer;
 
               > .balloon {
                 position: absolute;

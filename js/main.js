@@ -1,9 +1,19 @@
 import { doc } from "prettier";
-import { getData } from "./getdata.js";
+import { getData, getLogin, getLogOut } from "./getdata.js";
+import { completeLogin } from "./test.js";
 
+// 변수 모음
 const joinBtn = document.querySelector('#join-btn')
 const root = document.querySelector('main')
+const loginBtn = document.querySelector('#login-btn')
+const topNav = document.querySelector('.top-nav')
+
+// 이벤트 리스너
 joinBtn.addEventListener('click', joinRender)
+loginBtn.addEventListener('click', () => {
+  root.innerHTML = logInForm()
+  sendLogin()
+})
 
 function joinRender() {
     root.innerHTML = joinForm();
@@ -72,8 +82,9 @@ const sendSignUp = () => {
         const nameValue = document.querySelector('.name-input').value
 
         const res = await getData(idValue, pwValue, nameValue, null)
-        console.log(idValue, '밸류 값')
         console.log(res, "res")
+        console.log(res.accessToken,'엑세스토큰')
+        document.cookie = `accessToken=${res.accessToken}; max-age=60`
         if (res.user.email) {
             return root.innerHTML = logInForm()
         } else {
@@ -83,17 +94,14 @@ const sendSignUp = () => {
     })
 }
 
-
-
-
 function logInForm() {
     return `
     <form id="login-form">
       <ul class="logIn-area">
         <h1>LOGIN</h1>
         <li class="logIn-area__input">
-          <input type="text" placeholder="아이디">
-          <input type="password" placeholder="비밀번호">
+          <input type="text" class="signin-id-input" placeholder="아이디">
+          <input type="password" class="signin-pw-input" placeholder="비밀번호">
         </li>
         <li class="logIn-area__saveId">
           <input type="checkbox" id="saveId">
@@ -108,4 +116,26 @@ function logInForm() {
       </ul>
     </form>
     `
+}
+
+const sendLogin = () => {
+  const loginForm = document.querySelector('#login-form')
+  loginForm.addEventListener('submit', async (e) => {
+    e.preventDefault()
+    const idValue = document.querySelector('.signin-id-input').value
+    const pwValue = document.querySelector('.signin-pw-input').value
+    
+    const res = await getLogin(idValue, pwValue)
+    if (res.user.email) {
+      console.log(res)
+      completeLogin(res.user.displayName)
+      
+      const accessToken = res.accessToken
+      localStorage.setItem("accessToken", accessToken)
+      return root.innerHTML = ''
+    } else {
+        alert('로그인 정보를 확인해 주세요.')
+    }
+    e.stopPropagation();
+  })
 }
