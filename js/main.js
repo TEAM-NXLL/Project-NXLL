@@ -1,6 +1,7 @@
 import { doc } from "prettier";
 import { getData, getLogin, getLogOut } from "./getdata.js";
 import { completeLogin } from "./test.js";
+import { deliveryEl, returnEl, deliveryDes, returnDes, mouseenter, mouseleave } from './footer.js'
 
 // 변수 모음
 const joinBtn = document.querySelector('#join-btn')
@@ -169,3 +170,7 @@ const swiper2 = new Swiper('.keyboard-banner > .swiper', {
     prevEl: '.swiper-button-prev',
   },
 })
+
+// footer 함수
+mouseenter()
+mouseleave()
