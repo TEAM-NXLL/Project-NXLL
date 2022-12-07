@@ -139,3 +139,33 @@ const sendLogin = () => {
     e.stopPropagation();
   })
 }
+
+// 스와이퍼
+const swiper1 = new Swiper('main > .swiper', {
+  effect: 'fade',
+  loop: true,
+  autoplay: true,
+  speed: 1000,
+
+  pagination: {
+    el: '.swiper-pagination',
+    clickable: true,
+  },
+
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
+  },
+})
+
+const swiper2 = new Swiper('.keyboard-banner > .swiper', {
+  effect: 'fade',
+  loop: true,
+  autoplay: true,
+  speed: 1000,
+
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
+  },
+})
