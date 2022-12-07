@@ -182,16 +182,15 @@ header {
         gap: 50px;
 
         > li {
-          position: relative;
+          // position: relative;
 
           > a {
             display: block;
             position: relative;
-
           }
-          
+
           &::after {
-            position: absolute;
+            position: relative;
             display: block;
             content: "";
             width: 0;
@@ -202,7 +201,7 @@ header {
             transform: translateX(-50%);
             transition: width 0.3s;
           }
-
+          
           &:hover::after {
             width: 100%;
           }
@@ -242,7 +241,7 @@ header {
           }
 
           .nav-area__nav__panel {
-            position: fixed;
+            position: absolute;
             width: 100%;
             left: 0;
             display: none;
