@@ -1,0 +1,108 @@
+:root {
+  --font-style: "Nanum Gothic", sans-serif;
+  --border-color: #f5f5f5;
+  --table-border-color: #f0f0f0;
+  --table-th-background: #fafafa;
+  --text-color: #333;
+  --sub-text-color: #999;
+}
+
+body {
+  font-family: var(--font-style);
+  color: var(--text-color);
+}
+
+a {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+button,
+input {
+  border: none;
+  background-color: inherit;
+  outline: none;
+  cursor: pointer;
+}
+
+button.hover-navy {
+  border: 2px solid #213b85;
+  line-height: 36px;
+  color: #213b85;
+  padding: 0 20px;
+  transition: 0.3s;
+}
+button.hover-navy i {
+  margin-right: 5px;
+}
+
+button.hover-navy:hover {
+  background-color: #213b85;
+  color: #fff;
+}
+
+select {
+  border: none;
+  outline: none;
+  border: 1px solid #eaeaea;
+  height: 42px;
+  padding: 0 20px;
+  width: 100px;
+}
+
+img {
+  width: 100%;
+}
+
+img.require {
+  width: 10px;
+  position: absolute;
+}
+
+.inner {
+  width: 1210px;
+  margin: 0 auto;
+}
+
+table {
+  width: 100%;
+  font-size: 12px;
+  color: #353535;
+}
+table tr.number-tr input[type=text] {
+  width: 100px;
+}
+table tr.address-tr input[type=text] {
+  width: 370px;
+}
+table tr.address td input {
+  margin-bottom: 5px;
+}
+table tr.address td input:first-child {
+  width: 100px;
+}
+table tr.address td input:last-child {
+  margin-bottom: 0;
+}
+table tr.address td button {
+  margin-left: 5px;
+}
+table th,
+table td {
+  border: 1px solid var(--table-border-color);
+}
+table th {
+  position: relative;
+  background-color: var(--table-th-background);
+  padding-left: 18px;
+}
+table td {
+  padding: 10px;
+}
+table td input {
+  border: 1px solid #eaeaea;
+  line-height: 40px;
+  padding: 0 20px;
+  box-sizing: border-box;
+}/*# sourceMappingURL=common2.css.map */
