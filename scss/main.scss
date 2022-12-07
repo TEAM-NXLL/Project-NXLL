@@ -247,6 +247,7 @@ header {
             display: none;
             background-color: #fff;
             box-shadow: 0px 10px 10px rgba(0,0,0,0.05);
+            z-index: 10;
 
             .inner {
               padding: 40px 0;
@@ -322,6 +323,61 @@ header {
 
 // MAIN
 main {
+
+  > div:hover {
+    h1 {
+
+      &::after {
+        width: 30px;
+      }
+    }
+  }
+  // index.html
+  .swiper {
+    
+    .swiper-pagination {
+      transition: 0.5s;
+      opacity: 0;
+
+      span {
+
+        &.swiper-pagination-bullet-active {
+          width: 20px;
+          background: #000;
+          border-radius: 5px;
+        }
+      }
+    }
+
+    .swiper-button-prev, .swiper-button-next {
+      transition: 0.5s;
+      opacity: 0;
+
+      &::after {
+        font-size: 30px;
+        color: #000;
+      }
+    }
+
+    .swiper-button-prev {
+      left: 10%;
+    }
+
+    .swiper-button-next {
+      right: 10%;
+    }
+
+    &:hover {
+
+      .swiper-pagination {
+        opacity: 1;
+      }
+
+      .swiper-button-prev, .swiper-button-next {
+        opacity: 1;
+      }
+    }
+  }
 
   // join.html
   .table-area {
