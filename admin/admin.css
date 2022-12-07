@@ -1,0 +1,276 @@
+header {
+  font-weight: bold;
+}
+header .top-banner {
+  position: fixed;
+  width: 100%;
+  background-color: #fff;
+  top: 0;
+  border-bottom: 1px solid var(--border-color);
+  line-height: 40px;
+  font-size: 13px;
+  z-index: 10;
+}
+header .top-banner .inner {
+  display: flex;
+  justify-content: space-between;
+}
+header .top-banner .inner .top-nav {
+  display: flex;
+}
+header .top-banner .inner .top-nav li {
+  position: relative;
+  margin-right: 30px;
+}
+header .top-banner .inner .top-nav li:first-child {
+  display: flex;
+  gap: 10px;
+}
+header .top-banner .inner .top-nav li:first-child > a {
+  position: relative;
+}
+header .top-banner .inner .top-nav li:first-child > a span {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0px;
+  height: 0px;
+  border-bottom: 5px solid #000;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+}
+header .top-banner .inner .top-nav li::after {
+  display: block;
+  content: "";
+  position: absolute;
+  width: 1px;
+  height: 15px;
+  background-color: var(--border-color);
+  top: 50%;
+  right: -15px;
+  transform: translate(50%, -50%);
+}
+header .logo-area {
+  display: flex;
+  margin-top: 41px;
+  border-bottom: 1px solid var(--border-color);
+}
+header .logo-area .inner {
+  position: relative;
+  height: 100px;
+}
+header .logo-area .inner .logo-area__logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+header .logo-area .inner .logo-area__search {
+  position: absolute;
+  background-color: #f5f5f5;
+  border-radius: 50px;
+  line-height: 40px;
+  padding: 0 20px;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+}
+header .nav-area {
+  border-bottom: 1px solid var(--border-color);
+  height: 50px;
+  line-height: 50px;
+  font-size: 15px;
+  background-color: #fff;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+header .nav-area .inner {
+  display: flex;
+  justify-content: center;
+}
+header .nav-area .inner .nav-area__nav {
+  display: flex;
+  gap: 50px;
+}
+header .nav-area .inner .nav-area__nav > li {
+  position: relative;
+}
+header .nav-area .inner .nav-area__nav > li > a {
+  display: block;
+  position: relative;
+}
+header .nav-area .inner .nav-area__nav > li::after {
+  position: absolute;
+  display: block;
+  content: "";
+  width: 0;
+  height: 3px;
+  background: #666;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: width 0.3s;
+}
+header .nav-area .inner .nav-area__nav > li:hover::after {
+  width: 100%;
+}
+header .nav-area .inner .nav-area__nav > li:hover .nav-area__nav__panel {
+  display: block;
+}
+
+.all-products {
+  background-color: orange;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.all-products .inner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.all-products .products-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.all-products .product-item {
+  border: 1px solid #000;
+  font-weight: 700;
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.all-products .product-item .thumbnail {
+  display: flex;
+  width: 20%;
+  justify-content: center;
+  align-items: center;
+}
+.all-products .product-item .text-wrapper {
+  width: 80%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.all-products .product-item .text-wrapper .descript {
+  width: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.all-transacs {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: blue;
+}
+.all-transacs .inner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.all-transacs .all-transac-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.all-transacs .properties {
+  border: 1px solid #000;
+  font-weight: 700;
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+}
+.all-transacs .properties .thumbnail {
+  display: flex;
+  width: 20%;
+  justify-content: center;
+  align-items: center;
+}
+.all-transacs .properties .text-wrapper {
+  width: 80%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.transacs-status {
+  background-color: green;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.transacs-status .inner {
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+}
+.transacs-status .inner .user-info-wrapper {
+  font-size: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  margin-bottom: 50px;
+}
+.transacs-status .inner .user-info-wrapper .profile-img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background-color: #f5f5f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+}
+.transacs-status .inner .user-info-wrapper .user-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+}
+.transacs-status .inner .user-info-wrapper .user-info .name {
+  margin-bottom: 30px;
+}
+.transacs-status .inner .user-info-wrapper .user-info .email {
+  margin-bottom: 30px;
+}
+.transacs-status .all-transac-info {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.transacs-status .each-properties {
+  border: 1px solid #000;
+  font-weight: 700;
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+}
+.transacs-status .each-properties .thumbnail {
+  display: flex;
+  width: 20%;
+  justify-content: center;
+  align-items: center;
+}
+.transacs-status .each-properties .text-wrapper {
+  width: 80%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}/*# sourceMappingURL=admin.css.map */
