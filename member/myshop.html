@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,10 +13,10 @@
 
   <link rel="stylesheet" href="../scss/common.scss">
   <link rel="stylesheet" href="../scss/main.scss">
+  <link rel="stylesheet" href="../scss/myshop.scss">
   <script defer src="../js/main.js"></script>
   <title>엑토몰 디자인 키보드는 엑토</title>
 </head>
-
 <body>
   <!-- HEADER -->
   <header>
@@ -41,7 +40,7 @@
             <a href="#">커뮤니티</a>
           </li>
           <li>
-            <a href="./myshop.html"><i class="fa-regular fa-circle-user"></i>마이쇼핑</a>
+            <a href="#"><i class="fa-regular fa-circle-user"></i>마이쇼핑</a>
           </li>
           <li>
             <a href="#">회사소개</a>
@@ -263,24 +262,85 @@
 
   <!-- MAIN -->
   <main>
-    <ul class="logIn-area">
-      <h1>LOGIN</h1>
-      <li class="logIn-area__input">
-        <input type="text" placeholder="아이디">
-        <input type="password" placeholder="비밀번호">
-      </li>
-      <li class="logIn-area__saveId">
-        <input type="checkbox" id="saveId">
-        <label for="saveId">아이디저장</label>
-      </li>
-      <button class="logInBtn" type="submit">로그인</button>
-      <li class="logIn-area__find">
-        <a href="#">아이디 찾기</a>
-        <a href="#">비밀번호 찾기</a>
-        <a href="./join.html">가입하기</a>
-      </li>
-    </ul>
+
+    <div class="title-box">
+      <p class="title-box__text">MY-SHOP</p>
+      <p class="title-box__subtext">나의 쇼핑내역을 한눈에 확인하세요.</p>
+    </div>
+
+  
+      <!-- INFOMATION -->
+      <div class="information">
+        <div class="inner">
+          <div class="information-item">
+            <div class="thumbnail">
+              <img src="https://acttomall.com/_sp/_image/user.png" alt="">
+              <div class="description">
+                <p>저희 쇼핑몰을 이용해주셔서 대단히 감사합니다.<br/>
+                  <strong class="txtEm">회원 가입</strong>을 하시면 각종 다양한 혜택을 받으실 수 있습니다.
+                </p>
+              </div>
+            </div>
+            <div class="btn-group">
+              <p class="message">로그인이 필요해요</p>
+              <a href="#" class="btn__login">
+                <i class="fas fa-sm ver-0 fa-power-off"></i>
+                &nbsp;로그인
+              </a>
+              <a href="#" class="btn__join">
+                <i class="fas fa-sm ver-0 fa-plus"></i>
+                &nbsp;회원가입
+              </a>
+            </div>
+          </div>
+        </div>
+      </div><!-- INFORMATION -->
+
+      <!-- ORDER-LIST -->
+      <div class="order-list">
+        <div class="inner">
+          <div class="order-list__item">
+            <p class="icon order">
+              <!-- <img src="https://acttomall.com/_sp/_image/svg/order.svg" alt="주문 내역 아이콘"> -->
+            </p>
+            <p>주문 내역</p>
+            <em>0건</em>
+          </div>
+          <div class="order-list__item">
+            <p class="icon mileage">
+              <!-- <img src="https://acttomall.com/_sp/_image/svg/mileage.svg" alt="적립금 아이콘"> -->
+            </p>
+            <p>적립금</p>
+            <em>0원</em>
+          </div>
+        </div>
+      </div>
+      <!-- ORDER-LIST -->
+
+      <!-- QUICK-MENU -->
+      <div class="quick-menu">
+        <div class="inner">
+          <div class="title-box">
+            <span class="title-box__text">MY QUICK MENU</span>
+            <span class="title-box__subtext">나의 주문처리 현황</span>
+          </div>
+          <div class="quick-menu__item">
+            <div class="quick-menu__subject">ORDER</div>
+            <img src="https://acttomall.com/_sp/_image/svg/order.svg" alt="주문 내역 아이콘">
+            <p class="quick-menu__title">주문내역 조회</p>
+            <p>고객님께서 주문하신 상품의 주문내역을 확인하실 수 있습니다.</p>
+            <a href="#">조회</a>
+          </div>
+          <div class="quick-menu__item">
+            <div class="quick-menu__subject">PROFILE</div>
+            <img src="https://acttomall.com/_sp/_image/svg/user.svg" alt="주문 내역 아이콘">
+            <p class="quick-menu__title">회원 정보</p>
+            <p>회원이신 고객님의 개인정보를 관리하는 공간입니다.</p>
+            <a href="#">조회</a>
+          </div>
+        </div>
+      </div><!-- QUICK-MENU-->
+
   </main><!-- MAIN -->
 </body>
-
 </html>

@@ -1,0 +1,127 @@
+// myshop
+.title-box {
+ padding: 50px 0 80px 0; 
+ text-align: center;
+ &__text {
+  font-size: 27px;
+  font-weight: 700;
+ }
+ &__subtext {
+  font-size: 11px;
+  color: #999;
+ }
+}
+
+.information {
+  .inner {
+    padding: 10px;
+    background: url('https://acttomall.com/_sp/_image/icon/bg_diagonal_line.gif');
+    border: 1px solid #f5f5f5;
+  }
+  .information-item {
+    display: flex;
+    justify-content: space-between;
+    // table-layout: fixed;
+    align-items: center;
+    padding: 20px;
+    width: 100%;
+    background-color: #fff;
+    border: 1px solid #f5f5f5;
+    box-sizing: border-box;
+  }
+  .thumbnail {
+    display: flex;
+    // flex-direction: row;
+    // width: 90px;
+    text-align: center;
+    vertical-align: middle;
+    img {
+      width: 90px;
+      padding-right: 20px;
+    }
+  }
+  .description {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 0 0 20px;
+    width: auto;
+    line-height: 1.5em;
+    border-left: 1px solid #f0f0f0;
+    vertical-align: middle;
+    text-align: right;
+    p {
+      text-align: left;
+      line-height: 1.4;
+      font-size: 12px;
+    }
+  }
+  .btn-group {
+    display: flex;
+    align-items: center;
+    p {
+      height: 28px;
+      line-height: 25px;
+      font-size: 12px;
+    }
+    a {
+      display: flex;
+      align-items: center;
+      position: relative;
+      margin-left: 23px;
+      padding: 0 20px;
+      height: 40px;
+      background-color: #fff;
+      border: 2px solid #213B85;
+      font-size: 13px;
+      color: #213B85;
+      &::before {
+        content: '';
+        position: absolute;
+        width: 1px;
+        height: 40%;
+        top: 30%;
+        left: -13px;
+        background-color: rgba(0,0,0,.1);
+      }
+      i {
+        position: relative;
+        font-weight: bolder;
+        top: 0.125em;
+      }
+    }
+  }
+}
+
+.order-list {
+  &__item {
+    position: relative;
+    display: inline-block;
+    width: 15%;
+    padding: 30px 0;
+    background-color: #fff;
+    box-shadow: 0 3px 3px 0 rgba(0 0 0 / 2%);
+    border-radius: 10px;
+    border: 1px solid #f0f0f0;
+    background: transparent url('https://acttomall.com/_sp/_image/svg/bg_diagonal.svg');
+    background-position: 0% -65%;
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    .icon {
+      height: 60px;
+      background-size: 27px 27px;
+      background-repeat: no-repeat;
+      background-position: center center;
+      &.order {
+        background-image: url('https://acttomall.com/_sp/_image/svg/order.svg');
+      }
+      &.mileage {
+        background-image: url('https://acttomall.com/_sp/_image/svg/mileage.svg');
+      }
+    }
+  }
+}
+
+.quick-menu {
+
+}
