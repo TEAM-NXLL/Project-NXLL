@@ -1,6 +1,7 @@
 import { doc } from "prettier";
 import { getData, getLogin, getLogOut } from "./getdata.js";
 import { completeLogin } from "./test.js";
+import { deliveryEl, returnEl, deliveryDes, returnDes, mouseenter, mouseleave } from './footer.js'
 
 // 변수 모음
 const joinBtn = document.querySelector('#join-btn')
@@ -139,3 +140,7 @@ const sendLogin = () => {
     e.stopPropagation();
   })
 }
+
+// footer 함수
+mouseenter()
+mouseleave()
