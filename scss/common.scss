@@ -198,6 +198,20 @@ p {
     &:nth-child(2n) {
       margin-right: 0;
     }
+
+    .imgBox {
+      height: 790px;
+    }
+
+    &:hover {
+      .imgBox {
+        > img {
+          &.imgHover {
+            opacity: 1;
+          }
+        }
+      }
+    }
   }
 }
 
@@ -209,9 +223,23 @@ p {
     width: calc(33.3333% - 13.4px);
     margin-right: 20px;
     margin-bottom: 60px;
-
+    
     &:nth-child(3n) {
       margin-right: 0;
+    }
+
+    .imgBox {
+      height: 520px;
+    }
+    
+    &:hover {
+      .imgBox {
+        > img {
+          &.imgHover {
+            opacity: 1;
+          }
+        }
+      }
     }
   }
 }
@@ -249,9 +277,11 @@ p {
 
 .imgBox {
   position: relative;
+  overflow: hidden;
 
   .icon {
     position: absolute;
+    z-index: 1;
 
     &.best {
       left: 0;
@@ -270,7 +300,19 @@ p {
       right: 0;
       width: 26px;
       height: 26px;
-      z-index: 1;
+    }
+  }
+
+  > img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: 0.3s;
+
+
+    &.imgHover {
+      opacity: 0;
     }
   }
 }
