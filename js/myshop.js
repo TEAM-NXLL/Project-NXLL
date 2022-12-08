@@ -1,4 +1,5 @@
 const myShoppingEl = document.querySelector('.myShopping')
+console.log(myShoppingEl)
 const root = document.querySelector('main')
 
 myShoppingEl.addEventListener('click', () => {
@@ -74,7 +75,7 @@ function myShoppingForm() {
             <span class="quick-menu__title"><strong>주문내역 조회</strong>
               고객님께서 주문하신 상품의 주문내역을 확인하실 수 있습니다.
             </span>
-            <span class="quick-menu__linked"><a href="#">조회</a></span>
+            <span class="quick-menu__linked"><a class="myOrder" targer="_blank">조회</a></span>
           </div>
           <div class="quick-menu__item">
             <span class="icon mileage"><i></i></span>
