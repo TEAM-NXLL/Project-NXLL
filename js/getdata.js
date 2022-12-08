@@ -56,7 +56,6 @@ export async function getLogOut(accessToken) {
             "Authorization": `Bearer ${accessToken}`,
         }
     })
-
     const json = await res.json()
     return json
 }
