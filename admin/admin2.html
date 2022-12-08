@@ -85,26 +85,12 @@
 
   <!-- MAIN -->
   <main>
-    <section class="admin-add">
+    <section class="admin-add-title">
       <h2>제품 추가</h2>
     </section>
+
     <section class="add">
-      <form action="" class="add-form">
-
-        <!-- 이미지 업로드 -->
-        <div class="thumbnail-area">
-          <form method="post" enctype="multipart/form-data">
-            <div class="thumbnail-image">
-
-            </div>
-            <div class="thumbnail-btn">
-              <label class="thumbnail-label" for="thumbnail-upload">
-                상품 썸네일 등록
-              </label>
-            </div>
-            <input type="file" id="thumbnail-upload" name="thumbnail-upload" accept="image/*" onchange="loadFile(this)">
-          </form>
-        </div>
+      <form action="submit" class="add-form">
 
         <!-- 제품명... -->
         <div class="name-area">
@@ -113,23 +99,52 @@
         </div>
         <div class="price-area">
           <label for="add-product-price">가격</label>
-          <input type="text" name="add-product-price" id="add-product-price" min="0" step="100" /> <span>원</span>
+          <input type="number" name="add-product-price" id="add-product-price" min="0" step="100" /> <span>원</span>
         </div>
 
-        <!-- 카테고리 선택 -->
+        <!-- 카테고리 선택 한개만 가능라디오버튼으로..? -->
+        <!-- <div class="tag-area">
+          <label>상품 태그</label>
+          <input type="radio" id="tag1" class="tag" name="tag" value="태그1" checked />
+          <label for="tag1" class="taglabel">태그1</label>
+          <input type="radio" id="tag2" class="tag" name="tag" value="태그2" />
+          <label for="tag2" class="taglabel">태그2</label>
+          <input type="radio" id="tag3" class="tag" name="tag" value="태그3" />
+          <label for="tag3" class="taglabel">태그3</label>
+          <input type="radio" id="tag4" class="tag" name="tag" value="태그4" />
+          <label for="tag4" class="taglabel">태그4</label>
+        </div> -->
+
+        <!-- 카테고리 선택 여러개 가능 -->
         <div class="tag-area">
           <label>상품 태그</label>
-          <input type="radio" id="tag1" class="tag" name="tag" value="1" checked />
-          <label for="tag1">태그1</label>
-          <input type="radio" id="tag2" class="tag" name="tag" value="2" />
-          <label for="tag2">태그2</label>
-          <input type="radio" id="tag3" class="tag" name="tag" value="3" />
-          <label for="tag3">태그3</label>
+          <input type="checkbox" id="tag1" class="tag" name="tag" value="태그1" checked />
+          <label for="tag1" class="taglabel">태그1</label>
+          <input type="checkbox" id="tag2" class="tag" name="tag" value="태그2" />
+          <label for="tag2" class="taglabel">태그2</label>
+          <input type="checkbox" id="tag3" class="tag" name="tag" value="태그3" />
+          <label for="tag3" class="taglabel">태그3</label>
+          <input type="checkbox" id="tag4" class="tag" name="tag" value="태그4" />
+          <label for="tag4" class="taglabel">태그4</label>
+          <input type="checkbox" id="tag5" class="tag" name="tag" value="태그5" />
+          <label for="tag5" class="taglabel">태그5</label>
         </div>
 
         <div class="description-area">
           <label for="description">상품 상세 설명</label>
           <input type="text" class="add-product-description" />
+        </div>
+
+        <!-- 썸네일 base64 -->
+        <div class="thumbnail-area">
+          <label for="add-thumbnail"> 상품 썸네일 등록(base64 주소) </label>
+          <input type="text" class="add-thumbnail" name="add-thumbnail" />
+        </div>
+
+        <!-- 상세사진 base64 -->
+        <div class="thumbnail-area">
+          <label for="add-thumbnail"> 상품 썸네일 등록(base64 주소) </label>
+          <input type="text" class="add-thumbnail" name="add-thumbnail" />
         </div>
 
         <div class="add-button-area">
@@ -151,6 +166,10 @@
 } -->
   </main>
   <!-- MAIN -->
+
+  <footer>
+
+  </footer>
 </body>
 
 </html>

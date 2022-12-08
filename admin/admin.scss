@@ -443,8 +443,8 @@ main {
 
 
 // ADMIN PAGE - ADD ITEMS
-.admin-add {
-  // height: 100px;
+
+.admin-add-title {
   padding: 50px 0px;
 
   h2 {
@@ -458,14 +458,15 @@ main {
 .add {
   position: relative;
   font-weight: 600;
-  background-color: #4483dc;
+  // background-color: #4483dc;
   border: 3px solid black;
   // width: 90%;
-  width: 800px;
-  height: 700px;
-  padding: 20px;
+  width: 700px;
+  height: 900px;
+  padding: 50px 40px;
   margin: 0 auto;
 
+  .thumbnail-area,
   .name-area,
   .price-area,
   .tag-area,
@@ -474,71 +475,43 @@ main {
     width: 600px;
   }
 
-  // 제품명
+  .tag-area {
+    // background-color: #e3e3e3;
+
+    input[type="checkbox"] {
+      width: 35px;
+    }
+
+    .taglabel {
+      display: inline-block;
+      margin: 10px 0;
+    }
+  }
+
+  // 상품명, 가격 input 칸
   .add-product-name,
-  #add-product-price,
+  #add-product-price {
+    font-size: 20px;
+    background-color: #f5f5f5;
+    width: 400px;
+    height: 40px;
+    cursor: auto;
+  }
+
+  // 이미지, 설명 input 칸
+  .add-thumbnail,
   .add-product-description {
     background-color: #f5f5f5;
-    width: 300px;
-    height: 30px;
+    width: 400px;
+    height: 80px;
+    cursor: auto;
   }
 
-  // 이미지 업로드
-  .thumbnail-area {
-    background-color: red;
-    height: 350px;
-
-    .thumbnail-image {
-      height: 200px;
-    }
-
-    .thumbnail-btn {
-      background-color: black;
-      display: flex;
-      justify-content: center;
-      height: 50px;
-    }
-
-    .thumbnail-label {
-      display: block;
-      background-color: rgb(5, 5, 96);
-      color: white;
-      width: 120px;
-      height: 40px;
-      text-align: center;
-      line-height: 40px;
-      border-radius: 10px;
-      cursor: pointer;
-    }
-
-    #thumbnail-upload {
-      text-align: center;
-      align-items: center;
-      background-color: blue;
-      // visibility: hidden;
-    }
-  }
-
-
-  // 카테고리
-  input[type='radio'] {
-    width: 0;
-    height: 0;
-
-    +label {
-      padding: 3px;
-      font-weight: 600;
-      color: black;
-      // transition: 0.2s;
-      border: 2px solid black;
-      border-radius: 10px;
-      cursor: pointer;
-
-      &:hover {
-        // background-color: rgba(245, 222, 179, 0.619);
-        background-color: white;
-      }
-    }
+  label:not(.taglabel) {
+    font-size: 20px;
+    display: block;
+    width: 200px;
+    margin: 10px 0;
   }
 
   .add-button-area {
@@ -550,6 +523,7 @@ main {
       display: block;
       background-color: rgb(5, 5, 96);
       color: white;
+      margin-top: 80px;
       font-size: 20px;
       font-weight: 500;
       width: 120px;
@@ -560,4 +534,8 @@ main {
       cursor: pointer;
     }
   }
+}
+
+footer {
+  height: 100px;
 }

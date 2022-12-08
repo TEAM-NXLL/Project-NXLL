@@ -384,10 +384,10 @@ main .logIn-area .logInBtn {
   font-size: 15px;
 }
 
-.admin-add {
+.admin-add-title {
   padding: 50px 0px;
 }
-.admin-add h2 {
+.admin-add-title h2 {
   display: flex;
   font-size: 30px;
   font-weight: 600;
@@ -397,13 +397,13 @@ main .logIn-area .logInBtn {
 .add {
   position: relative;
   font-weight: 600;
-  background-color: #4483dc;
   border: 3px solid black;
-  width: 800px;
-  height: 700px;
-  padding: 20px;
+  width: 700px;
+  height: 900px;
+  padding: 50px 40px;
   margin: 0 auto;
 }
+.add .thumbnail-area,
 .add .name-area,
 .add .price-area,
 .add .tag-area,
@@ -411,56 +411,33 @@ main .logIn-area .logInBtn {
   padding: 10px;
   width: 600px;
 }
+.add .tag-area input[type=checkbox] {
+  width: 35px;
+}
+.add .tag-area .taglabel {
+  display: inline-block;
+  margin: 10px 0;
+}
 .add .add-product-name,
-.add #add-product-price,
+.add #add-product-price {
+  font-size: 20px;
+  background-color: #f5f5f5;
+  width: 400px;
+  height: 40px;
+  cursor: auto;
+}
+.add .add-thumbnail,
 .add .add-product-description {
   background-color: #f5f5f5;
-  width: 300px;
-  height: 30px;
+  width: 400px;
+  height: 80px;
+  cursor: auto;
 }
-.add .thumbnail-area {
-  background-color: red;
-  height: 350px;
-}
-.add .thumbnail-area .thumbnail-image {
-  height: 200px;
-}
-.add .thumbnail-area .thumbnail-btn {
-  background-color: black;
-  display: flex;
-  justify-content: center;
-  height: 50px;
-}
-.add .thumbnail-area .thumbnail-label {
+.add label:not(.taglabel) {
+  font-size: 20px;
   display: block;
-  background-color: rgb(5, 5, 96);
-  color: white;
-  width: 120px;
-  height: 40px;
-  text-align: center;
-  line-height: 40px;
-  border-radius: 10px;
-  cursor: pointer;
-}
-.add .thumbnail-area #thumbnail-upload {
-  text-align: center;
-  align-items: center;
-  background-color: blue;
-}
-.add input[type=radio] {
-  width: 0;
-  height: 0;
-}
-.add input[type=radio] + label {
-  padding: 3px;
-  font-weight: 600;
-  color: black;
-  border: 2px solid black;
-  border-radius: 10px;
-  cursor: pointer;
-}
-.add input[type=radio] + label:hover {
-  background-color: white;
+  width: 200px;
+  margin: 10px 0;
 }
 .add .add-button-area {
   width: 100%;
@@ -471,6 +448,7 @@ main .logIn-area .logInBtn {
   display: block;
   background-color: rgb(5, 5, 96);
   color: white;
+  margin-top: 80px;
   font-size: 20px;
   font-weight: 500;
   width: 120px;
@@ -479,4 +457,8 @@ main .logIn-area .logInBtn {
   line-height: 40px;
   border-radius: 10px;
   cursor: pointer;
+}
+
+footer {
+  height: 100px;
 }/*# sourceMappingURL=admin.css.map */
