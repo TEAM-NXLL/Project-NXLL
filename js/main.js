@@ -22,7 +22,7 @@ function joinRender() {
 }
 
 function joinForm() {
-    return `
+    return /* html */ `
     <form id="form-tag">
       <ul class="table-area">
           <h1>JOIN - US</h1>

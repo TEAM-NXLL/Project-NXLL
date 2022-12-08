@@ -73,7 +73,9 @@ img {
 
 img.require {
   width: 10px;
+  height: 10px;
   position: absolute;
+  background: url("../images/icons/required.png");
 }
 
 .inner {
