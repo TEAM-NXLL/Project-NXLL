@@ -102,7 +102,7 @@
           <input type="number" name="add-product-price" id="add-product-price" min="0" step="100" /> <span>원</span>
         </div>
 
-        <!-- 카테고리 선택 한개만 가능라디오버튼으로..? -->
+        <!-- 카테고리 선택 한개만 가능 라디오버튼으로..? -->
         <!-- <div class="tag-area">
           <label>상품 태그</label>
           <input type="radio" id="tag1" class="tag" name="tag" value="태그1" checked />
@@ -153,17 +153,6 @@
 
       </form>
     </section>
-
-    <!-- 찾아보기를 눌러 파일을 선택한 시점..아마 file 태그의 onchange 이벤트가 될듯 한데..그때 해당 form의 action 속성을 자바스크립트를 이용하여 파일 업로드쪽 처리하는 곳으로 바꾼뒤에 submit 해줍니다..그렇게 한 뒤엔 action을 다시 원래대로 복구해주면 되죠.. 개념은 그렇게 가면 되는데..업로드가 성공이 되면 썸네일을 보여주는 부분땜에 그냥은 안되고.. ajax를 통해서 접근해야 할껍니다.. 핵심은 업로드 url쪽으로 form의 action 속성을 자바스크립트를 이용해 바꾸어주었다가 다시 원래대로 복구하는거에요.. -->
-    <!-- 
-  interface RequestBody {
-  title: string // 제품 이름 (필수!)
-  price: number // 제품 가격 (필수!)
-  description: string // 제품 상세 설명 (필수!)
-  tags?: string[] // 제품 태그
-  thumbnailBase64?: string // 제품 썸네일(대표) 사진(base64) - jpg, jpeg, webp, png, gif, svg
-  photoBase64?: string // 제품 상세 사진(base64) - jpg, jpeg, webp, png, gif, svg
-} -->
   </main>
   <!-- MAIN -->
 
