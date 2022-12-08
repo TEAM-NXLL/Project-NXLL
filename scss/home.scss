@@ -1,0 +1,78 @@
+// index.html
+main {
+  > section:hover {
+    h1 {
+      &::after {
+        width: 30px;
+      }
+    }
+  }
+  
+  .swiper {
+    .swiper-pagination {
+      transition: 0.5s;
+      opacity: 0;
+  
+      span {
+        transition: 0.3s;
+  
+        &.swiper-pagination-bullet-active {
+          width: 20px;
+          background: #000;
+          border-radius: 5px;
+        }
+      }
+    }
+  
+    .swiper-button-prev, .swiper-button-next {
+      transition: 0.5s;
+      opacity: 0;
+  
+      &::after {
+        font-size: 30px;
+        color: #000;
+      }
+    }
+  
+    .swiper-button-prev {
+      left: 10%;
+    }
+  
+    .swiper-button-next {
+      right: 10%;
+    }
+  
+    &:hover {
+      .swiper-pagination {
+        opacity: 1;
+      }
+  
+      .swiper-button-prev, .swiper-button-next {
+        opacity: 1;
+      }
+    }
+  }
+  
+  // 키보드 배너 영역, 마우스 배너 영역, 데스크셋업 배너 영역
+  .keyboard-banner, .mouse-banner, .deskSetup {
+    margin-bottom: 150px;
+  
+    h2 {
+      padding: 30px 0;
+    }
+  
+    p {
+      line-height: 1.5;
+      margin-bottom: 20px;
+      font-weight: bold;
+    }
+  }
+  
+  .review {
+    .inner {
+      > li {
+        border: 1px solid #e5e5e5;
+      }
+    }
+  }
+}
