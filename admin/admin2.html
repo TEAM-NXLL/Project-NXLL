@@ -12,8 +12,8 @@
 
   <script src="https://kit.fontawesome.com/cd76b4d4dc.js" crossorigin="anonymous"></script>
 
-  <link rel="stylesheet" href="./common2.css" />
-  <link rel="stylesheet" href="./admin.css" />
+  <link rel="stylesheet" href="../scss/common.scss" />
+  <link rel="stylesheet" href="./admin2.scss" />
   <script type="module" defer src="./admin2.js"></script>
   <title>엑토몰 디자인 키보드는 엑토</title>
 </head>
@@ -90,7 +90,8 @@
     </section>
 
     <section class="add">
-      <form action="submit" class="add-form">
+      <!-- <form action="submit" class="add-form"> -->
+      <form class="add-form">
 
         <!-- 제품명... -->
         <div class="name-area">
@@ -99,24 +100,26 @@
         </div>
         <div class="price-area">
           <label for="add-product-price">가격</label>
-          <input type="number" name="add-product-price" id="add-product-price" min="0" step="100" /> <span>원</span>
+          <input type="number" name="add-product-price" id="add-product-price" min="0" step="10" /> <span>원</span>
         </div>
 
-        <!-- 카테고리 선택 한개만 가능 라디오버튼으로..? -->
-        <!-- <div class="tag-area">
+        <!-- 카테고리 선택 한개만 가능한 라디오버튼 -->
+        <div class="tag-area">
           <label>상품 태그</label>
-          <input type="radio" id="tag1" class="tag" name="tag" value="태그1" checked />
-          <label for="tag1" class="taglabel">태그1</label>
-          <input type="radio" id="tag2" class="tag" name="tag" value="태그2" />
-          <label for="tag2" class="taglabel">태그2</label>
-          <input type="radio" id="tag3" class="tag" name="tag" value="태그3" />
-          <label for="tag3" class="taglabel">태그3</label>
-          <input type="radio" id="tag4" class="tag" name="tag" value="태그4" />
-          <label for="tag4" class="taglabel">태그4</label>
-        </div> -->
+          <input type="radio" id="tag1" class="tag" name="tag" value="스마트" checked />
+          <label for="tag1" class="taglabel">스마트</label>
+          <input type="radio" id="tag2" class="tag" name="tag" value="노트북" />
+          <label for="tag2" class="taglabel">노트북</label>
+          <input type="radio" id="tag3" class="tag" name="tag" value="PC" />
+          <label for="tag3" class="taglabel">PC</label>
+          <input type="radio" id="tag4" class="tag" name="tag" value="음향" />
+          <label for="tag4" class="taglabel">음향</label>
+          <input type="radio" id="tag5" class="tag" name="tag" value="문구소형가전" />
+          <label for="tag5" class="taglabel">문구/소형가전</label>
+        </div>
 
         <!-- 카테고리 선택 여러개 가능 -->
-        <div class="tag-area">
+        <!-- <div class="tag-area">
           <label>상품 태그</label>
           <input type="checkbox" id="tag1" class="tag" name="tag" value="태그1" checked />
           <label for="tag1" class="taglabel">태그1</label>
@@ -128,23 +131,23 @@
           <label for="tag4" class="taglabel">태그4</label>
           <input type="checkbox" id="tag5" class="tag" name="tag" value="태그5" />
           <label for="tag5" class="taglabel">태그5</label>
-        </div>
+        </div> -->
 
         <div class="description-area">
           <label for="description">상품 상세 설명</label>
-          <input type="text" class="add-product-description" />
+          <textarea class="add-product-description" maxlength=100 placeholder="상세 설명은 100자 이내로 작성해 주세요."></textarea>
         </div>
 
         <!-- 썸네일 base64 -->
         <div class="thumbnail-area">
           <label for="add-thumbnail"> 상품 썸네일 등록(base64 주소) </label>
-          <input type="text" class="add-thumbnail" name="add-thumbnail" />
+          <textarea class="add-thumbnail" name="add-thumbnail" placeholder="제품 썸네일 사진은 1MB 이하여야 합니다."></textarea>
         </div>
 
         <!-- 상세사진 base64 -->
-        <div class="thumbnail-area">
-          <label for="add-thumbnail"> 상품 썸네일 등록(base64 주소) </label>
-          <input type="text" class="add-thumbnail" name="add-thumbnail" />
+        <div class="detail-area">
+          <label for="add-detail"> 상품 상세사진 등록(base64 주소) </label>
+          <textarea class="add-detail" name="add-detail" placeholder="제품 상세 사진은 4MB 이하여야 합니다."></textarea>
         </div>
 
         <div class="add-button-area">
