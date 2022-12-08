@@ -149,7 +149,8 @@ h1 {
   font-size: 32px;
   font-weight: bold;
   text-align: center;
-  padding: 20px 0 40px;
+  padding: 20px 0;
+  margin-bottom: 50px;
   position: relative;
   
   &::after {
@@ -189,7 +190,7 @@ p {
   li {
     width: calc(33.3333% - 13.4px);
     margin-right: 20px;
-    margin-bottom: 50px;
+    margin-bottom: 60px;
 
     &:nth-child(3n) {
       margin-right: 0;
@@ -200,8 +201,47 @@ p {
 .block2 {
   display: flex;
   flex-wrap: wrap;
-  width: 50%;
-  gap: 20px;
+
+  li {
+    width: calc(50% - 10px);
+    margin-right: 20px;
+    margin-bottom: 60px;
+
+    &:nth-child(2n) {
+      margin-right: 0;
+    }
+  }
+}
+
+.block5 {
+  display: flex;
+  flex-wrap: wrap;
+
+  li {
+    width: calc(20% - 10px);
+    margin-right: 20px;
+    margin-bottom: 60px;
+
+    &:nth-child(5n) {
+      margin-right: 0;
+    }
+  }
+}
+
+.block10 {
+  display: flex;
+  flex-wrap: wrap;
+
+  li {
+    width: 150px;
+    height: 150px;
+    margin-right: 20px;
+    margin-bottom: 60px;
+
+    &:nth-child(5n) {
+      margin-right: 0;
+    }
+  }
 }
 
 .imgBox {
@@ -218,6 +258,15 @@ p {
     &.saleTree {
       top: 0;
       right: 0;
+    }
+
+    &.insta {
+      background: url("../images/icons/icons.png") no-repeat center;
+      background-position: -28px -661px;
+      top: 0;
+      right: 0;
+      width: 26px;
+      height: 26px;
     }
   }
 }
@@ -236,6 +285,10 @@ p {
     background-color: #f8ecca;
   }
 
+  .pastelBeige {
+    background-color: #FFFDF0;
+  }
+
   .mint {
     background-color: #B8DFDC;
   }
@@ -246,14 +299,28 @@ p {
 
   .white {
     background-color: #fff;
+    border: 1px solid #f0f0f0;
+    box-sizing: border-box;
+  }
+
+  .navy {
+    background-color: #1F1F38;
+  }
+
+  .blueNavy {
+    background-color: #000082;
   }
 
   .black {
-    background-color: #1F1F38;
+    background-color: #000;
   }
 
   .green {
     background-color: #13755c;
+  }
+
+  .gray {
+    background-color: #8C8C8C;
   }
 }
 
@@ -285,5 +352,11 @@ p {
     display: inline-block;
     color: #ff6600;
     margin-top: 15px;
+  }
+
+  .newIcon {
+    width: 40px;
+    display: block;
+    margin-top: 10px;
   }
 }

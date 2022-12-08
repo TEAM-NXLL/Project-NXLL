@@ -196,7 +196,7 @@ header {
             width: 0;
             height: 3px;
             background: #666;
-            bottom: 0;
+            bottom: 3px;
             left: 50%;
             transform: translateX(-50%);
             transition: width 0.3s;
@@ -325,9 +325,8 @@ header {
 main {
 
   // index.html
-  > div:hover {
+  > section:hover {
     h1 {
-
       &::after {
         width: 30px;
       }
@@ -335,12 +334,12 @@ main {
   }
 
   .swiper {
-    
     .swiper-pagination {
       transition: 0.5s;
       opacity: 0;
 
       span {
+        transition: 0.3s;
 
         &.swiper-pagination-bullet-active {
           width: 20px;
@@ -369,7 +368,6 @@ main {
     }
 
     &:hover {
-
       .swiper-pagination {
         opacity: 1;
       }
@@ -380,8 +378,9 @@ main {
     }
   }
 
-  .keyboard-banner {
-    margin-bottom: 100px;
+  // 키보드 배너 영역, 마우스 배너 영역, 데스크셋업 배너 영역
+  .keyboard-banner, .mouse-banner, .deskSetup {
+    margin-bottom: 150px;
 
     h2 {
       padding: 30px 0;
@@ -390,6 +389,15 @@ main {
     p {
       line-height: 1.5;
       margin-bottom: 20px;
+      font-weight: bold;
+    }
+  }
+
+  .review {
+    .inner {
+      > li {
+        border: 1px solid #e5e5e5;
+      }
     }
   }
 
@@ -586,17 +594,17 @@ main {
 
 // FOOTER
 footer {
-  .inner {
-    &.service {
-      height: 250px;
+  .service {
+    border-top: 1px solid #eaeaea;
+    
+    .inner {
       padding: 50px 0;
       display: flex;
       .cs-center {
-        width: 400px;
+        width: 33.3333%;
         display: flex;
         flex-direction: column;
         border-right: 1px solid #f0f0f0;
-        padding: 0 30px;
         .cs-title {
           font-size: 18px;
           font-weight: 700;
@@ -639,12 +647,14 @@ footer {
           font-weight: 700;
         }
         .bank-service {
-          padding-top: 15px;
+          margin-top: 15px;
           height: 25px;
           display: flex;
           width: 300px;
+          border: 1px solid rgb(33, 59, 133);
           .service-btn {
-            border: 1px solid rgb(33, 59, 133);
+            font-size: 11px;
+            border-right: 1px solid rgb(33, 59, 133);
             &:first-child {
               flex-grow: 2;
               background-color: rgb(33, 59, 133);
@@ -661,6 +671,7 @@ footer {
             &:last-child {
               flex-grow: 1;
               transition: .3s;
+              border-right: 0;
               &:hover {
                 color: #fff;
                 background-color: #31363d;
@@ -793,32 +804,128 @@ footer {
         }
       }
     }
-    &.sns-banner {
-      height: 100px;
-      padding: 50px;
+  }
+  .company {
+    background-color: #f9f9f9;
+    width: 100%;
+    font-size: 15px;
+    .inner {
+      padding: 50px 0;
+      .logo {
+        background-image: url('../images/logo.png');
+        background-repeat: no-repeat;
+        background-size: contain;
+        height: 30px;
+        margin-bottom: 25px;
+        position: relative;
+        left: -20px;
+      }
+      .company-des1 {
+        display: flex;
+        padding-bottom: 20px;
+        li {
+          margin-right: 15px;
+          padding-bottom: 10px;
+          cursor: pointer;
+          &::after {
+            position: relative;
+            display: block;
+            content: "";
+            width: 0;
+            height: 3px;
+            background: #666;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: width 0.3s;
+          }
+          &:hover::after {
+            width: 100%;
+          }
+          &:nth-child(2) {
+            border-bottom: 1px solid;
+          }
+          &:nth-child(4) {
+            font-weight: 700;
+          }
+        }
+      }
+      .company-des2 {
+        font-size: 12px;
+        display: flex;
+        gap: 15px;
+        padding: 5px 0;
+        color: #666;
+        li {
+          padding-right: 15px;
+          border-right: 1px solid;
+          &:first-child {
+            font-weight: 700;
+          }
+          &:last-child {
+            border: none;
+          }
+        }
+      }
+      .company-des3 {
+        font-size: 12px;
+        display: flex;
+        gap: 15px;
+        color: #666;
+        padding: 5px 0;
+        li {
+          padding-right: 15px;
+          border-right: 1px solid;
+          &:last-child {
+            border: none;
+          }
+        }
+      }
+      .company-des4 {
+        font-size: 12px;
+        display: flex;
+        gap: 15px;
+        color: #666;
+        padding: 5px 0;
+        li {
+          padding-right: 15px;
+          border-right: 1px solid;
+          &:last-child {
+            border: none;
+          }
+          &:nth-child(2) {
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+
+  .sns-banner {
+    .inner {
+      padding: 50px 0;
       position: relative;
       .sns-item {
-        padding: 10px 50px;
         display: flex;
         gap: 20px;
         i {
-          font-size: 23px;
+          font-size: 18px;
           cursor: pointer;
         }
       }
       .copy-right {
-        font-size: 14px;
-        padding: 10px 50px;
-        line-height: 1.2;
-        div {
-          &:first-child {
-            span {
-              font-weight: 700;
-            }
-          }
-          &:last-child {
-            span {
-              font-weight: 700;
+        font-size: 11px;
+        margin-top: 30px;
+        line-height: 1.6;
+        color: #999;
+        p {
+          text-align: left;
+          span {
+            font-weight: bold;
+            color: #333;
+
+            &:first-child {
+              font-weight: normal;
             }
           }
         }
@@ -828,97 +935,6 @@ footer {
         position: absolute;
         bottom: 50px;
         right: 0;
-      }
-    }
-  }
-  .company {
-    background-color: #f9f9f9;
-    width: 100%;
-    height: 200px;
-    padding: 50px;
-    font-size: 15px;
-    .logo {
-      background-image: url('../images/logo.png');
-      background-repeat: no-repeat;
-      background-size: contain;
-      height: 30px;
-      margin-bottom: 25px;
-      position: relative;
-      left: -20px;
-    }
-    .company-des1 {
-      display: flex;
-      padding-bottom: 20px;
-      li {
-        margin-right: 15px;
-        padding-bottom: 10px;
-        cursor: pointer;
-        &::after {
-          position: relative;
-          display: block;
-          content: "";
-          width: 0;
-          height: 3px;
-          background: #666;
-          bottom: -10px;
-          left: 50%;
-          transform: translateX(-50%);
-          transition: width 0.3s;
-        }
-        &:hover::after {
-          width: 100%;
-        }
-        &:nth-child(2) {
-          border-bottom: 1px solid;
-        }
-        &:nth-child(4) {
-          font-weight: 700;
-        }
-      }
-    }
-    .company-des2 {
-      font-size: 14px;
-      display: flex;
-      gap: 15px;
-      padding: 5px 0;
-      li {
-        padding-right: 15px;
-        border-right: 1px solid;
-        &:first-child {
-          font-weight: 700;
-        }
-        &:last-child {
-          border: none;
-        }
-      }
-    }
-    .company-des3 {
-      font-size: 14px;
-      display: flex;
-      gap: 15px;
-      padding: 5px 0;
-      li {
-        padding-right: 15px;
-        border-right: 1px solid;
-        &:last-child {
-          border: none;
-        }
-      }
-    }
-    .company-des4 {
-      font-size: 14px;
-      display: flex;
-      gap: 15px;
-      padding: 5px 0;
-      li {
-        padding-right: 15px;
-        border-right: 1px solid;
-        &:last-child {
-          border: none;
-        }
-        &:nth-child(2) {
-          cursor: pointer;
-        }
       }
     }
   }
