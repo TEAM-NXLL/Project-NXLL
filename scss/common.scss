@@ -44,6 +44,20 @@ button.hover-navy:hover {
   color: #fff;
 }
 
+.blackBtn {
+  background-color: #000;
+  border-radius: 50px;
+  color: #fff;
+  display: inline-block;
+  line-height: 42px;
+  font-size: 15px;
+  padding: 0 20px;
+  margin: 0 auto;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 select {
   border: none;
   outline: none;
@@ -248,7 +262,7 @@ p {
   font-size: 15px;
   border-bottom: 1px solid var(--border-color);
   padding-bottom: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 
   span {
     color: #3399ff;

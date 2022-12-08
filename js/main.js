@@ -141,7 +141,7 @@ const sendLogin = () => {
   })
 }
 
-// 스와이퍼
+// 메인 스와이퍼
 const swiper1 = new Swiper('main > .swiper', {
   effect: 'fade',
   loop: true,
@@ -159,6 +159,7 @@ const swiper1 = new Swiper('main > .swiper', {
   },
 })
 
+// 키보드 스와이퍼
 const swiper2 = new Swiper('.keyboard-banner > .swiper', {
   effect: 'fade',
   loop: true,
