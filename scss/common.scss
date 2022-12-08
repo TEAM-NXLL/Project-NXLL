@@ -129,3 +129,137 @@ table {
     }
   }
 }
+
+h1 {
+  width: 100%;
+  font-size: 32px;
+  font-weight: bold;
+  text-align: center;
+  padding: 20px 0 40px;
+  position: relative;
+  
+  &::after {
+    position: absolute;
+    display: block;
+    content: "";
+    width: 0;
+    height: 5px;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    transition: 0.3s;
+  }
+}
+
+h2 {
+  width: 100%;
+  font-size: 42px;
+  font-weight: bold;
+  text-align: center;
+}
+
+p {
+  text-align: center;
+}
+
+.mt70 {
+  margin-top: 70px;
+}
+
+// 한 줄 당 박스 갯수
+.block3 {
+  display: flex;
+  flex-wrap: wrap;
+
+  li {
+    width: calc(33.3333% - 13.4px);
+    margin-right: 20px;
+    margin-bottom: 50px;
+
+    &:nth-child(3n) {
+      margin-right: 0;
+    }
+  }
+}
+
+.block2 {
+  display: flex;
+  flex-wrap: wrap;
+  width: 50%;
+  gap: 20px;
+}
+
+.imgBox {
+  position: relative;
+
+  .icon {
+    position: absolute;
+  }
+}
+
+.colorBox {
+  margin: 20px 0 10px;
+  
+  span {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+  }
+
+  .beige {
+    background-color: #f8ecca;
+  }
+
+  .mint {
+    background-color: #B8DFDC;
+  }
+
+  .pink {
+    background-color: #FBBDC0;
+  }
+
+  .white {
+    background-color: #fff;
+  }
+
+  .black {
+    background-color: #1F1F38;
+  }
+
+  .green {
+    background-color: #13755c;
+  }
+}
+
+.textBox {
+  line-height: 1.5;
+  font-size: 15px;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+
+  span {
+    color: #3399ff;
+  }
+}
+
+.priceBox {
+  font-weight: bold;
+  font-size: 18px;
+  
+  .discount {
+    font-size: 16px;
+    font-weight: normal;
+    margin-right: 15px;
+    color: #999;
+    text-decoration: line-through;
+  }
+
+  .salePercent {
+    display: inline-block;
+    color: #ff6600;
+    margin-top: 15px;
+  }
+}

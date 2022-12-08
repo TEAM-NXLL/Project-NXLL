@@ -3,6 +3,7 @@ import { getData, getLogin, getLogOut } from "./getdata.js";
 import { completeLogin } from "./test.js";
 import { router } from "./route.js";
 import { joinForm, logInForm } from "./body.js";
+import { deliveryEl, returnEl, deliveryDes, returnDes, mouseenter, mouseleave } from './footer.js'
 
 const root = document.querySelector('main')
 
@@ -110,4 +111,39 @@ function logOut() {
 
 window.addEventListener('hashchange', router)
 router();
+
+// 스와이퍼
+const swiper1 = new Swiper('main > .swiper', {
+  effect: 'fade',
+  loop: true,
+  autoplay: true,
+  speed: 1000,
+
+  pagination: {
+    el: '.swiper-pagination',
+    clickable: true,
+  },
+
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
+  },
+})
+
+const swiper2 = new Swiper('.keyboard-banner > .swiper', {
+  effect: 'fade',
+  loop: true,
+  autoplay: true,
+  speed: 1000,
+
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
+  },
+})
+
+// footer 함수
+mouseenter()
+mouseleave()
+
 export { loginRender, joinRender, logOut }
