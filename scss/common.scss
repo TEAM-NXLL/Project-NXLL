@@ -195,6 +195,16 @@ p {
 
   .icon {
     position: absolute;
+
+    &.best {
+      left: 0;
+      top: 0;
+    }
+
+    &.saleTree {
+      top: 0;
+      right: 0;
+    }
   }
 }
 
