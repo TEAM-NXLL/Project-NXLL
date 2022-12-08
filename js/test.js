@@ -1,12 +1,11 @@
-import { getLogOut } from './getdata.js'
-import { logOut } from './main.js'
-
+import { logOut } from "./main"
 /* 로그인 완료시 나오는  */
 
-export function completeLogin(displayName) {
+export function completeLogin() {
   const li = document.querySelector('.signUpsignIn')
+  const userName = localStorage.getItem('userName')
   li.innerHTML = /*HTML*/ `
-    <p><strong>${displayName}</strong>님, 환영합니다.</p>
+    <p><strong>${userName}</strong>님, 환영합니다.</p>
     <a class="logOutBtn">로그아웃</a>
     `
   logOut()

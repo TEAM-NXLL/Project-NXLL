@@ -1,5 +1,4 @@
 
-
 function joinForm() {
   return `
       <form id="form-tag">
