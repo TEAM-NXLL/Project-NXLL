@@ -185,21 +185,6 @@ p {
 }
 
 // 한 줄 당 박스 갯수
-.block3 {
-  display: flex;
-  flex-wrap: wrap;
-
-  li {
-    width: calc(33.3333% - 13.4px);
-    margin-right: 20px;
-    margin-bottom: 60px;
-
-    &:nth-child(3n) {
-      margin-right: 0;
-    }
-  }
-}
-
 .block2 {
   display: flex;
   flex-wrap: wrap;
@@ -215,12 +200,27 @@ p {
   }
 }
 
+.block3 {
+  display: flex;
+  flex-wrap: wrap;
+
+  li {
+    width: calc(33.3333% - 13.4px);
+    margin-right: 20px;
+    margin-bottom: 60px;
+
+    &:nth-child(3n) {
+      margin-right: 0;
+    }
+  }
+}
+
 .block5 {
   display: flex;
   flex-wrap: wrap;
 
   li {
-    width: calc(20% - 10px);
+    width: calc(20% - 16px);
     margin-right: 20px;
     margin-bottom: 60px;
 
@@ -240,7 +240,7 @@ p {
     margin-right: 20px;
     margin-bottom: 60px;
 
-    &:nth-child(5n) {
+    &:nth-child(10n) {
       margin-right: 0;
     }
   }
@@ -269,6 +269,7 @@ p {
       right: 0;
       width: 26px;
       height: 26px;
+      z-index: 1;
     }
   }
 }
