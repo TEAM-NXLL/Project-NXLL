@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,6 +18,7 @@
   <script defer src="../js/main.js"></script>
   <title>엑토몰 디자인 키보드는 엑토</title>
 </head>
+
 <body>
   <!-- HEADER -->
   <header>
@@ -263,84 +265,206 @@
   <!-- MAIN -->
   <main>
 
-    <div class="title-box">
+    <div class="title-box" scope="sub">
       <p class="title-box__text">MY-SHOP</p>
       <p class="title-box__subtext">나의 쇼핑내역을 한눈에 확인하세요.</p>
     </div>
 
-  
-      <!-- INFOMATION -->
-      <div class="information">
-        <div class="inner">
-          <div class="information-item">
-            <div class="thumbnail">
-              <img src="https://acttomall.com/_sp/_image/user.png" alt="">
-              <div class="description">
-                <p>저희 쇼핑몰을 이용해주셔서 대단히 감사합니다.<br/>
-                  <strong class="txtEm">회원 가입</strong>을 하시면 각종 다양한 혜택을 받으실 수 있습니다.
-                </p>
-              </div>
-            </div>
-            <div class="btn-group">
-              <p class="message">로그인이 필요해요</p>
-              <a href="#" class="btn__login">
-                <i class="fas fa-sm ver-0 fa-power-off"></i>
-                &nbsp;로그인
-              </a>
-              <a href="#" class="btn__join">
-                <i class="fas fa-sm ver-0 fa-plus"></i>
-                &nbsp;회원가입
-              </a>
-            </div>
-          </div>
-        </div>
-      </div><!-- INFORMATION -->
 
-      <!-- ORDER-LIST -->
-      <div class="order-list">
-        <div class="inner">
-          <div class="order-list__item">
-            <p class="icon order">
-              <!-- <img src="https://acttomall.com/_sp/_image/svg/order.svg" alt="주문 내역 아이콘"> -->
-            </p>
-            <p>주문 내역</p>
-            <em>0건</em>
+    <!-- INFOMATION -->
+    <div class="information">
+      <div class="inner">
+        <div class="information-item">
+          <div class="thumbnail">
+            <img src="https://acttomall.com/_sp/_image/user.png" alt="">
+            <div class="description">
+              <p>저희 쇼핑몰을 이용해주셔서 대단히 감사합니다.<br />
+                <strong class="txtEm">회원 가입</strong>을 하시면 각종 다양한 혜택을 받으실 수 있습니다.
+              </p>
+            </div>
           </div>
-          <div class="order-list__item">
-            <p class="icon mileage">
-              <!-- <img src="https://acttomall.com/_sp/_image/svg/mileage.svg" alt="적립금 아이콘"> -->
-            </p>
-            <p>적립금</p>
-            <em>0원</em>
+          <div class="btn-group">
+            <p class="message">로그인이 필요해요</p>
+            <a href="./login.html" class="btn__login">
+              <i class="fas fa-sm ver-0 fa-power-off"></i>
+              &nbsp;로그인
+            </a>
+            <a href="./join.html" class="btn__join">
+              <i class="fas fa-sm ver-0 fa-plus"></i>
+              &nbsp;회원가입
+            </a>
           </div>
         </div>
       </div>
-      <!-- ORDER-LIST -->
+    </div><!-- INFORMATION -->
 
-      <!-- QUICK-MENU -->
-      <div class="quick-menu">
-        <div class="inner">
-          <div class="title-box">
-            <span class="title-box__text">MY QUICK MENU</span>
-            <span class="title-box__subtext">나의 주문처리 현황</span>
+    <!-- ORDER-LIST -->
+    <div class="order-list">
+      <div class="inner">
+        <a href="#" class="order-list__item">
+          <p class="icon order"></p>
+          <p>주문 내역</p>
+          <p class="price">0건</p>
+          <i class="line--hover"></i>
+        </a>
+        <a href="#" class="order-list__item">
+          <p class="icon mileage"></p>
+          <p>적립금</p>
+          <p class="price">0원</p>
+          <i class="line--hover"></i>
+        </a>
+      </div>
+    </div>
+    <!-- ORDER-LIST -->
+
+    <!-- QUICK-MENU -->
+    <div class="quick-menu">
+      <div class="inner">
+        <div class="title-box" scope="totals">
+          <span class="title-box__text">MY QUICK MENU</span>
+          <span class="title-box__subtext">나의 주문처리 현황</span>
+        </div>
+      </div>
+      <div class="inner">
+
+        <div class="quick-menu__box">
+          <div class="quick-menu__item">
+            <span class="icon order"><i></i></span>
+            <span class="quick-menu__subject">ORDER</span>
+            <span class="quick-menu__title"><strong>주문내역 조회</strong>
+              고객님께서 주문하신 상품의 주문내역을 확인하실 수 있습니다.
+            </span>
+            <span class="quick-menu__linked"><a href="#">조회</a></span>
           </div>
           <div class="quick-menu__item">
-            <div class="quick-menu__subject">ORDER</div>
-            <img src="https://acttomall.com/_sp/_image/svg/order.svg" alt="주문 내역 아이콘">
-            <p class="quick-menu__title">주문내역 조회</p>
-            <p>고객님께서 주문하신 상품의 주문내역을 확인하실 수 있습니다.</p>
-            <a href="#">조회</a>
-          </div>
-          <div class="quick-menu__item">
-            <div class="quick-menu__subject">PROFILE</div>
-            <img src="https://acttomall.com/_sp/_image/svg/user.svg" alt="주문 내역 아이콘">
-            <p class="quick-menu__title">회원 정보</p>
-            <p>회원이신 고객님의 개인정보를 관리하는 공간입니다.</p>
-            <a href="#">조회</a>
+            <span class="icon mileage"><i></i></span>
+            <span class="quick-menu__subject">PROFILE</span>
+            <span class="quick-menu__title"><strong>회원 정보</strong>
+              회원이신 고객님의 개인정보를 관리하는 공간입니다.
+            </span>
+            <span class="quick-menu__linked"><a href="#">조회</a></span>
           </div>
         </div>
-      </div><!-- QUICK-MENU-->
+
+        <div class="order-state">
+          <div class="order-state__box">
+            <a class="order-state__item">
+              <p class="count">0</p>
+              <p class="state">취소</p>
+              <i class="line--hover"></i>
+            </a>
+            <a class="order-state__item">
+              <p class="count">0</p>
+              <p class="state">완료</p>
+              <i class="line--hover"></i>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- QUICK-MENU-->
+
 
   </main><!-- MAIN -->
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="inner service">
+      <div class="cs-center">
+        <span class="cs-title">CS CENTER</span>
+        <span class="cs-call">080-123-4567</span>
+        <span class="cs-time">월요일 - 금요일 10:00 - 16:00 <br> 점심시간 12:00 - 13:00</span>
+        <span class="cs-delivery">당일 선발송 다음날 도착 !</span>
+        <button type="button" class="cs-as">가장 빠른 온라인 AS 접수</button>
+      </div>
+      <div class="bank-info">
+        <span class="bank-title">BANK INFO</span>
+        <div class="bank-service">
+          <button class="service-btn">
+            <i class="fa-brands fa-cc-visa"></i>
+            무이자할부</button>
+          <button class="service-btn">
+            <i class="fa-solid fa-bars"></i>
+            미확인 입금</button>
+          <button class="service-btn">뱅킹</button>
+        </div>
+        <div class="bank-des">
+          <div class="bank-des-detail1">
+            <span class="bank-name">국민은행</span>
+            <span class="bank-account">012345-01-678900</span>
+          </div>
+          <div class="bank-des-detail2">
+            <span class="bank-owner">예금주</span>
+            <span class="bank-owner-name">(주)엑토</span>
+          </div>
+        </div>
+      </div>
+      <div class="delivery-return">
+        <span class="delivery-title">DELIVERY / RETURN</span>
+        <div class="delivery-menu">
+          <span class="delivery active">배송 / 택배</span>
+          <span class="return">교환 / 반품</span>
+        </div>
+        <div class="delivery-des">
+          <span class="delivery-des-detail">택배 : CJ 대한통운 : 1588-1255 <br> 월 - 금 08:00 - 18:00 토 - 13:00 / 공휴일 휴무</span>
+          <button>
+            <i class="fa-solid fa-truck"></i>
+            CJ 대한통운 택배 조회</button>
+        </div>
+        <div class="return-des">
+          <span class="return-des-detail">서울특별시 강남구 역삼동 826-21</span>
+          <div class="return-btns">
+            <button>
+              <i class="fa-solid fa-pen"></i>
+              상품문의</button>
+            <button>
+              <i class="fa-regular fa-circle-check"></i>
+              자주 묻는 질문들</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="company">
+      <div class="inner">
+        <div class="logo"></div>
+        <ul class="company-des1">
+          <li>회사소개</li>
+          <li>이용안내</li>
+          <li>이용약관</li>
+          <li>개인정보처리방침</li>
+          <li>CS 센터</li>
+        </ul>
+        <ul class="company-des2">
+          <li>(주)엑토</li>
+          <li>엑토몰</li>
+          <li>대표이사: NXLL</li>
+          <li>사업자등록번호: 606-12-34567</li>
+          <li>nxll@actto.com</li>
+        </ul>
+        <ul class="company-des3">
+          <li>서울특별시 강남구 역삼동 826-21 미왕빌딩</li>
+          <li>고객센터: 080-123-4567</li>
+          <li>팩스: 02-123-4567</li>
+        </ul>
+        <ul class="company-des4">
+          <li>통신판매업신고: 2022 서울강남구 00001호</li>
+          <li>서비스 가입 사실 확인</li>
+          <li>개인정보보호책임자: NXLL</li>
+        </ul>
+      </div>
+    </div>
+    <div class="inner sns-banner">
+      <div class="sns-item">
+        <i class="fa-brands fa-facebook-f"></i>
+        <i class="fa-brands fa-instagram"></i>
+      </div>
+      <div class="copy-right">
+        <div>상품/판매자/쇼핑 정보, 콘텐츠, UI 등에 대한 무단 복제, 전송, 배포, 스프래핑 등의 행위는 저작권법, <span>콘텐츠산업 진흥법</span>으로 금지됩니다. </div>
+        <div>COPYRIGHT(C) 2019 <span>엑토몰</span> LTD. ALL RIGHTS RESEVED. </div>
+      </div>
+      <img src="/images/kg-inicis.png" alt="결제 인증 마크">
+    </div>
+  </footer>
 </body>
+
 </html>
