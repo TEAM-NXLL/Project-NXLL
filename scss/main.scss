@@ -247,6 +247,7 @@ header {
             display: none;
             background-color: #fff;
             box-shadow: 0px 10px 10px rgba(0,0,0,0.05);
+            z-index: 10;
 
             .inner {
               padding: 40px 0;
@@ -322,6 +323,61 @@ header {
 
 // MAIN
 main {
+
+  > div:hover {
+    h1 {
+
+      &::after {
+        width: 30px;
+      }
+    }
+  }
+  // index.html
+  .swiper {
+    
+    .swiper-pagination {
+      transition: 0.5s;
+      opacity: 0;
+
+      span {
+
+        &.swiper-pagination-bullet-active {
+          width: 20px;
+          background: #000;
+          border-radius: 5px;
+        }
+      }
+    }
+
+    .swiper-button-prev, .swiper-button-next {
+      transition: 0.5s;
+      opacity: 0;
+
+      &::after {
+        font-size: 30px;
+        color: #000;
+      }
+    }
+
+    .swiper-button-prev {
+      left: 10%;
+    }
+
+    .swiper-button-next {
+      right: 10%;
+    }
+
+    &:hover {
+
+      .swiper-pagination {
+        opacity: 1;
+      }
+
+      .swiper-button-prev, .swiper-button-next {
+        opacity: 1;
+      }
+    }
+  }
 
   // join.html
   .table-area {
@@ -510,6 +566,346 @@ main {
       width: 100%;
       font-weight: bold;
       font-size: 15px;
+    }
+  }
+}
+
+// FOOTER
+footer {
+  .inner {
+    &.service {
+      height: 250px;
+      padding: 50px 0;
+      display: flex;
+      .cs-center {
+        width: 400px;
+        display: flex;
+        flex-direction: column;
+        border-right: 1px solid #f0f0f0;
+        padding: 0 30px;
+        .cs-title {
+          font-size: 18px;
+          font-weight: 700;
+          padding-bottom: 15px;
+        }
+        .cs-call {
+          font-size: 28px;
+          font-weight: 700;
+        }
+        .cs-time {
+          padding: 10px 0;
+          color: #666;
+          line-height: 1.4;
+          font-size: 12px;
+        }
+        .cs-delivery {
+          padding-bottom: 15px;
+          font-size: 18px;
+          font-weight: 700;
+        }
+        .cs-as {
+          width: 155px;
+          height: 36px;
+          border: 1px solid;
+          font-size: 12.5px;
+          box-sizing: content-box;
+          transition: .3s;
+          &:hover {
+            background-color: #31363d;
+            color: #fff;
+          }
+        }
+      }
+      .bank-info {
+        width: 400px;
+        padding: 0 30px;
+        border-right: 1px solid #f0f0f0;
+        .bank-title {
+          font-size: 18px;
+          font-weight: 700;
+        }
+        .bank-service {
+          padding-top: 15px;
+          height: 25px;
+          display: flex;
+          width: 300px;
+          .service-btn {
+            border: 1px solid rgb(33, 59, 133);
+            &:first-child {
+              flex-grow: 2;
+              background-color: rgb(33, 59, 133);
+              color: #fff;
+            }
+            &:nth-child(2) {
+              flex-grow: 2;
+              transition: .3s;
+              &:hover {
+                color: #fff;
+                background-color: #31363d;
+              }
+            }
+            &:last-child {
+              flex-grow: 1;
+              transition: .3s;
+              &:hover {
+                color: #fff;
+                background-color: #31363d;
+              }
+            }
+          }
+        }
+        .bank-des {
+          padding-top: 20px;
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          .bank-des-detail1 {
+            font-size: 12px;
+            color: rgb(102, 102, 102);
+            .bank-name {
+              padding-right: 5px;
+            }
+            .bank-account {
+              font-weight: 700;
+            }
+          }
+          .bank-des-detail2 {
+            font-size: 12px;
+            color: rgb(102, 102, 102);
+            .bank-owner {
+              padding-right: 5px;
+            }
+            .bank-owner-name {
+              font-weight: 700;        
+            }
+          }
+        }
+      }
+      .delivery-return {
+        width: 400px;
+        padding: 0 30px;
+        .delivery-title {
+          font-size: 18px;
+          font-weight: 700;
+        }
+        .delivery-menu {
+          padding: 15px 0 10px 0;
+          cursor: pointer;
+          border-bottom: 1px solid #d5d5d5;
+          display: flex;
+          gap: 10px;
+          .delivery {
+            &::after {
+              position: relative;
+              display: block;
+              content: "";
+              width: 0;
+              height: 3px;
+              background: #666;
+              bottom: -10px;
+              left: 50%;
+              transform: translateX(-50%);
+              transition: width 0.3s;
+            }
+            &:hover::after {
+              width: 100%
+            }
+            &.active {
+              font-weight: 600;
+            }
+          }
+          .return {
+            &::after {
+              position: relative;
+              display: block;
+              content: "";
+              width: 0;
+              height: 3px;
+              background: #666;
+              bottom: -10px;
+              left: 50%;
+              transform: translateX(-50%);
+              transition: width 0.3s;
+            }
+            &:hover::after {
+              width: 100%
+            }
+            &.active {
+              font-weight: 600;
+            }
+          }
+        }
+        .delivery-des {
+          display: flex;
+          flex-direction: column;
+          gap: 15px;
+          font-size: 12px;
+          padding: 10px 0;
+          line-height: 1.4;
+          button {
+            width: 150px;
+            height: 30px;
+            border: 1px solid;
+            font-size: 12px;
+            box-sizing: content-box;
+            transition: .3s;
+            &:hover {
+              color: #fff;
+              background-color: #31363d;
+            }
+          }
+        }
+        .return-des {
+          // display: flex;
+          display: none;
+          flex-direction: column;
+          gap: 15px;
+          font-size: 12px;
+          padding: 10px 0;
+          .return-btns {
+            button {
+              height: 30px;
+              padding: 0 5px;
+              border: 1px solid;
+              font-size: 12px;
+              box-sizing: content-box;
+              transition: .3s;
+              &:hover {
+                color: #fff;
+                background-color: #31363d;
+              }
+            }
+          }
+        }
+      }
+    }
+    &.sns-banner {
+      height: 100px;
+      padding: 50px;
+      position: relative;
+      .sns-item {
+        padding: 10px 50px;
+        display: flex;
+        gap: 20px;
+        i {
+          font-size: 23px;
+          cursor: pointer;
+        }
+      }
+      .copy-right {
+        font-size: 14px;
+        padding: 10px 50px;
+        line-height: 1.2;
+        div {
+          &:first-child {
+            span {
+              font-weight: 700;
+            }
+          }
+          &:last-child {
+            span {
+              font-weight: 700;
+            }
+          }
+        }
+      }
+      img {
+        width: 400px;
+        position: absolute;
+        bottom: 50px;
+        right: 0;
+      }
+    }
+  }
+  .company {
+    background-color: #f9f9f9;
+    width: 100%;
+    height: 200px;
+    padding: 50px;
+    font-size: 15px;
+    .logo {
+      background-image: url('../images/logo.png');
+      background-repeat: no-repeat;
+      background-size: contain;
+      height: 30px;
+      margin-bottom: 25px;
+      position: relative;
+      left: -20px;
+    }
+    .company-des1 {
+      display: flex;
+      padding-bottom: 20px;
+      li {
+        margin-right: 15px;
+        padding-bottom: 10px;
+        cursor: pointer;
+        &::after {
+          position: relative;
+          display: block;
+          content: "";
+          width: 0;
+          height: 3px;
+          background: #666;
+          bottom: -10px;
+          left: 50%;
+          transform: translateX(-50%);
+          transition: width 0.3s;
+        }
+        &:hover::after {
+          width: 100%;
+        }
+        &:nth-child(2) {
+          border-bottom: 1px solid;
+        }
+        &:nth-child(4) {
+          font-weight: 700;
+        }
+      }
+    }
+    .company-des2 {
+      font-size: 14px;
+      display: flex;
+      gap: 15px;
+      padding: 5px 0;
+      li {
+        padding-right: 15px;
+        border-right: 1px solid;
+        &:first-child {
+          font-weight: 700;
+        }
+        &:last-child {
+          border: none;
+        }
+      }
+    }
+    .company-des3 {
+      font-size: 14px;
+      display: flex;
+      gap: 15px;
+      padding: 5px 0;
+      li {
+        padding-right: 15px;
+        border-right: 1px solid;
+        &:last-child {
+          border: none;
+        }
+      }
+    }
+    .company-des4 {
+      font-size: 14px;
+      display: flex;
+      gap: 15px;
+      padding: 5px 0;
+      li {
+        padding-right: 15px;
+        border-right: 1px solid;
+        &:last-child {
+          border: none;
+        }
+        &:nth-child(2) {
+          cursor: pointer;
+        }
+      }
     }
   }
 }
