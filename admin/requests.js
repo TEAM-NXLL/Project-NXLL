@@ -1,3 +1,4 @@
+import { store } from '../js/store.js';
 const API_KEY = process.env;
 
 // products';
