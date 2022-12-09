@@ -1,1 +1,5 @@
-console.log('Hello');
+import { renderAllProduct } from './renderAllProducts';
+
+(async () => {
+  await renderAllProduct();
+})();

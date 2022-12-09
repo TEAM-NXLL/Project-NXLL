@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="./common.scss" />
     <link rel="stylesheet" href="./admin.scss" />
     <script type="module" defer src="./admin.js"></script>
-    <title>엑토몰 디자인 키보드는 엑토</title>
+    <title>administrator</title>
   </head>
 
   <body>
@@ -71,22 +71,17 @@
         <div class="inner">
           <ul class="nav-area__nav">
             <li>
-              <a href="#">모든 제품 조회</a>
+              <a href="#all-products">모든 제품 조회</a>
             </li>
             <li>
               <a href="#">제품 추가</a>
             </li>
+
             <li>
-              <a href="#">제품 수정</a>
+              <a href="#all-transacs">전체 거래 내역</a>
             </li>
             <li>
-              <a href="#">제품 삭제</a>
-            </li>
-            <li>
-              <a href="#">전체 거래 내역</a>
-            </li>
-            <li>
-              <a href="#">개별 거래 내역</a>
+              <a href="#transacs-status">개별 거래 내역</a>
             </li>
           </ul>
         </div>
@@ -97,10 +92,10 @@
 
     <!-- MAIN -->
     <!-- Lookup All Products -->
-    <main class="all-products">
+    <main id="all-products" class="all-products">
       <div class="inner">
         <div class="products-container">
-          <div class="product-item">
+          <div class="product-item item-head">
             <div class="thumbnail">썸네일 이미지</div>
             <div class="text-wrapper">
               <div class="id">제품번호</div>
@@ -116,7 +111,7 @@
       </div>
     </main>
     <!-- Lookup All Transactdions -->
-    <main class="all-transacs">
+    <main id="all-transacs" class="all-transacs">
       <div class="inner">
         <div class="all-transac-container">
           <div class="properties">
@@ -142,10 +137,10 @@
       </div>
     </main>
     <!-- Transaction Status -->
-    <main class="transacs-status">
+    <main id="transacs-status" class="transacs-status">
       <div class="inner">
         <div class="user-info-wrapper">
-          <div class="profile-img">프로필 사진</div>
+          <!-- <div class="profile-img">프로필 사진</div> -->
           <div class="user-info">
             <div class="name">이름</div>
             <div class="email">이메일</div>
