@@ -39,7 +39,7 @@ function sendSignUp() {
     const idValue = document.querySelector('.id-input').value
     const pwValue = document.querySelector('.pw-input').value
     const nameValue = document.querySelector('.name-input').value
-    
+
     const res = await getData(idValue, pwValue, nameValue, null)
     document.cookie = `accessToken=${res.accessToken}; max-age=60`
     if (res.user.email) {
@@ -50,7 +50,7 @@ function sendSignUp() {
     e.stopPropagation();
   })
 }
-  
+
 // 로그인 요청 핸들러 (localStorage 이름, 토큰값 추가)
 function sendLogin() {
   const loginForm = document.querySelector('#login-form')
@@ -66,12 +66,12 @@ function sendLogin() {
       localStorage.setItem("accessToken", accessToken)
       localStorage.setItem("userName", userName)
       completeLogin()
-    location.href = '/'
-  } else {
-    alert('로그인 정보를 확인해 주세요.')
-  }
-  e.stopPropagation();
-})
+      location.href = '/'
+    } else {
+      alert('로그인 정보를 확인해 주세요.')
+    }
+    e.stopPropagation();
+  })
 }
 
 // 로그아웃 핸들러
@@ -83,7 +83,7 @@ function logOut() {
     const res = await getLogOut(accessToken)
     if (res) {
       localStorage.removeItem('accessToken'),
-      localStorage.removeItem('userName')
+        localStorage.removeItem('userName')
     }
     location.href = '/'
   })
@@ -106,12 +106,12 @@ const swiper1 = new Swiper('main > .swiper', {
   loop: true,
   autoplay: true,
   speed: 1000,
-  
+
   pagination: {
     el: '.swiper-pagination',
     clickable: true,
   },
-  
+
   navigation: {
     nextEl: '.swiper-button-next',
     prevEl: '.swiper-button-prev',
@@ -124,7 +124,7 @@ const swiper2 = new Swiper('.keyboard-banner > .swiper', {
   loop: true,
   autoplay: true,
   speed: 1000,
-  
+
   navigation: {
     nextEl: '.swiper-button-next',
     prevEl: '.swiper-button-prev',
