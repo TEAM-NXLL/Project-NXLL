@@ -1,0 +1,84 @@
+// join.html
+main {
+  .table-area {
+    width: 800px;
+    margin: 0 auto;
+    padding: 100px 0;
+  
+    h1 {
+      font-size: 27px;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+  
+    p {
+      color: var(--sub-text-color);
+      text-align: center;
+      font-size: 11px;
+    }
+  
+    h2 {
+  
+      img.require {
+        left: -15px;
+      }
+    }
+  
+    .base {
+      margin-top: 70px;
+  
+      h2 {
+        font-weight: bold;
+        color: #000;
+        display: flex;
+        font-size: 17px;
+        align-items: center;
+        border-bottom: 3px solid #000;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+        position: relative;
+        width: 100%;
+  
+        span {
+          position: relative;
+  
+          &:first-child {
+            color: var(--sub-text-color);
+            font-size: 12px;
+            font-weight: normal;
+            margin-left: 50px;
+  
+            &::after {
+              display: block;
+              content: "";
+              width: 2px;
+              height: 10px;
+              background: #000;
+              position: absolute;
+              left: -25px;
+              top: 50%;
+              transform: translateY(-50%);
+            } 
+          }
+  
+          &:last-child {
+            position: absolute;
+            right: 0;
+            font-weight: normal;
+            font-size: 16px;
+          }
+        }
+      }
+    }
+  
+    .joinBtn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 40px auto 0;
+      padding: 0 30px;
+      line-height: 50px;
+    }
+  }
+}
