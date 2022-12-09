@@ -2,6 +2,8 @@
 @import url("./home.scss");
 @import url("./join.scss");
 @import url("./login.scss");
+@import url("./myshop.scss");
+@import url("./myorder.scss");
 
 // HEADER
 header {
@@ -20,7 +22,7 @@ header {
 
     .inner {
       display: flex;
-      justify-content:space-between;
+      justify-content: space-between;
 
       .top-nav {
         display: flex;
@@ -49,11 +51,11 @@ header {
             display: flex;
             gap: 10px;
 
-            > a {
+            >a {
               position: relative;
               cursor: pointer;
 
-              > .balloon {
+              >.balloon {
                 position: absolute;
                 top: 95%;
                 left: 50%;
@@ -72,15 +74,19 @@ header {
                   0% {
                     top: 95%;
                   }
+
                   10% {
                     top: 110%;
                   }
+
                   20% {
                     top: 95%;
                   }
+
                   30% {
                     top: 110%;
                   }
+
                   40% {
                     top: 95%;
                   }
@@ -186,10 +192,10 @@ header {
         display: flex;
         gap: 50px;
 
-        > li {
+        >li {
           // position: relative;
 
-          > a {
+          >a {
             display: block;
             position: relative;
           }
@@ -207,7 +213,7 @@ header {
             transition: width 0.3s;
             z-index: 10;
           }
-          
+
           &:hover::after {
             width: 100%;
           }
@@ -222,7 +228,7 @@ header {
           &:last-child {
             position: relative;
             margin-left: 50px;
-            
+
             a {
               font-size: 11px;
               vertical-align: middle;
@@ -252,7 +258,7 @@ header {
             left: 0;
             display: none;
             background-color: #fff;
-            box-shadow: 0px 10px 10px rgba(0,0,0,0.05);
+            box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.05);
             z-index: 10;
 
             .inner {
@@ -301,7 +307,7 @@ header {
           }
 
           &:first-child {
-            
+
             button {
               position: relative;
 
@@ -331,35 +337,41 @@ header {
 footer {
   .service {
     border-top: 1px solid #eaeaea;
-    
+
     .inner {
       padding: 50px 0;
       display: flex;
+
       .cs-center {
         width: 33.3333%;
         display: flex;
         flex-direction: column;
         border-right: 1px solid #f0f0f0;
+
         .cs-title {
           font-size: 18px;
           font-weight: 700;
           padding-bottom: 15px;
         }
+
         .cs-call {
           font-size: 28px;
           font-weight: 700;
         }
+
         .cs-time {
           padding: 10px 0;
           color: #666;
           line-height: 1.4;
           font-size: 12px;
         }
+
         .cs-delivery {
           padding-bottom: 15px;
           font-size: 18px;
           font-weight: 700;
         }
+
         .cs-as {
           width: 155px;
           height: 36px;
@@ -367,46 +379,56 @@ footer {
           font-size: 12.5px;
           box-sizing: content-box;
           transition: .3s;
+
           &:hover {
             background-color: #31363d;
             color: #fff;
           }
         }
       }
+
       .bank-info {
         width: 400px;
         padding: 0 30px;
         border-right: 1px solid #f0f0f0;
+
         .bank-title {
           font-size: 18px;
           font-weight: 700;
         }
+
         .bank-service {
           margin-top: 15px;
           height: 25px;
           display: flex;
           width: 300px;
           border: 1px solid rgb(33, 59, 133);
+
           .service-btn {
             font-size: 11px;
             border-right: 1px solid rgb(33, 59, 133);
+
             &:first-child {
               flex-grow: 2;
               background-color: rgb(33, 59, 133);
               color: #fff;
             }
+
             &:nth-child(2) {
               flex-grow: 2;
               transition: .3s;
+
               &:hover {
                 color: #fff;
                 background-color: #31363d;
               }
             }
+
             &:last-child {
               flex-grow: 1;
               transition: .3s;
               border-right: 0;
+
               &:hover {
                 color: #fff;
                 background-color: #31363d;
@@ -414,46 +436,57 @@ footer {
             }
           }
         }
+
         .bank-des {
           padding-top: 20px;
           display: flex;
           flex-direction: column;
           gap: 10px;
+
           .bank-des-detail1 {
             font-size: 12px;
             color: rgb(102, 102, 102);
+
             .bank-name {
               padding-right: 5px;
             }
+
             .bank-account {
               font-weight: 700;
             }
           }
+
           .bank-des-detail2 {
             font-size: 12px;
             color: rgb(102, 102, 102);
+
             .bank-owner {
               padding-right: 5px;
             }
+
             .bank-owner-name {
-              font-weight: 700;        
+              font-weight: 700;
             }
           }
         }
       }
+
       .delivery-return {
         width: 400px;
         padding: 0 30px;
+
         .delivery-title {
           font-size: 18px;
           font-weight: 700;
         }
+
         .delivery-menu {
           padding: 15px 0 10px 0;
           cursor: pointer;
           border-bottom: 1px solid #d5d5d5;
           display: flex;
           gap: 10px;
+
           .delivery {
             &::after {
               position: relative;
@@ -467,13 +500,16 @@ footer {
               transform: translateX(-50%);
               transition: width 0.3s;
             }
+
             &:hover::after {
               width: 100%
             }
+
             &.active {
               font-weight: 600;
             }
           }
+
           .return {
             &::after {
               position: relative;
@@ -487,14 +523,17 @@ footer {
               transform: translateX(-50%);
               transition: width 0.3s;
             }
+
             &:hover::after {
               width: 100%
             }
+
             &.active {
               font-weight: 600;
             }
           }
         }
+
         .delivery-des {
           display: flex;
           flex-direction: column;
@@ -502,6 +541,7 @@ footer {
           font-size: 12px;
           padding: 10px 0;
           line-height: 1.4;
+
           button {
             width: 150px;
             height: 30px;
@@ -509,12 +549,14 @@ footer {
             font-size: 12px;
             box-sizing: content-box;
             transition: .3s;
+
             &:hover {
               color: #fff;
               background-color: #31363d;
             }
           }
         }
+
         .return-des {
           // display: flex;
           display: none;
@@ -522,6 +564,7 @@ footer {
           gap: 15px;
           font-size: 12px;
           padding: 10px 0;
+
           .return-btns {
             button {
               height: 30px;
@@ -530,6 +573,7 @@ footer {
               font-size: 12px;
               box-sizing: content-box;
               transition: .3s;
+
               &:hover {
                 color: #fff;
                 background-color: #31363d;
@@ -540,10 +584,12 @@ footer {
       }
     }
   }
+
   .company {
     background-color: #f9f9f9;
     width: 100%;
     font-size: 15px;
+
     .inner {
       padding: 50px 0;
       position: relative;
@@ -556,13 +602,16 @@ footer {
         position: relative;
         left: -20px;
       }
+
       .company-des1 {
         display: flex;
         padding-bottom: 20px;
+
         li {
           margin-right: 15px;
           padding-bottom: 10px;
           cursor: pointer;
+
           &::after {
             position: relative;
             display: block;
@@ -575,60 +624,74 @@ footer {
             transform: translateX(-50%);
             transition: width 0.3s;
           }
+
           &:hover::after {
             width: 100%;
           }
+
           &:nth-child(2) {
             border-bottom: 1px solid;
           }
+
           &:nth-child(4) {
             font-weight: 700;
           }
         }
       }
+
       .company-des2 {
         font-size: 12px;
         display: flex;
         gap: 15px;
         padding: 5px 0;
         color: #666;
+
         li {
           padding-right: 15px;
           border-right: 1px solid;
+
           &:first-child {
             font-weight: 700;
           }
+
           &:last-child {
             border: none;
           }
         }
       }
+
       .company-des3 {
         font-size: 12px;
         display: flex;
         gap: 15px;
         color: #666;
         padding: 5px 0;
+
         li {
           padding-right: 15px;
           border-right: 1px solid;
+
           &:last-child {
             border: none;
           }
         }
       }
+
       .company-des4 {
         font-size: 12px;
         display: flex;
         gap: 15px;
         color: #666;
         padding: 5px 0;
+
         li {
           padding-right: 15px;
           border-right: 1px solid;
+
           &:last-child {
             border: none;
           }
+
           &:nth-child(2) {
             cursor: pointer;
           }
@@ -647,21 +710,26 @@ footer {
     .inner {
       padding: 50px 0;
       position: relative;
+
       .sns-item {
         display: flex;
         gap: 20px;
+
         i {
           font-size: 18px;
           cursor: pointer;
         }
       }
+
       .copy-right {
         font-size: 11px;
         margin-top: 30px;
         line-height: 1.6;
         color: #999;
+
         p {
           text-align: left;
+
           span {
             font-weight: bold;
             color: #333;
@@ -672,6 +740,7 @@ footer {
           }
         }
       }
+
       img {
         width: 400px;
         position: absolute;

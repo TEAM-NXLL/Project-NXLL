@@ -14,6 +14,8 @@
 
   <link rel="stylesheet" href="../scss/common.scss">
   <link rel="stylesheet" href="../scss/main.scss">
+  <link rel="stylesheet" href="../scss/myshop.scss">
+  <link rel="stylesheet" href="../scss/myorder.scss">
   <script defer src="../js/main.js"></script>
   <title>엑토몰 디자인 키보드는 엑토</title>
 </head>
@@ -21,6 +23,7 @@
 <body>
   <!-- HEADER -->
   <header>
+
     <!-- top-banner -->
     <div class="top-banner">
       <div class="inner">
@@ -40,7 +43,7 @@
             <a href="#">커뮤니티</a>
           </li>
           <li>
-            <a class="myShopping" target="_blank"><i class="fa-regular fa-circle-user"></i>마이쇼핑</a>
+            <a href="./myshop.html"><i class="fa-regular fa-circle-user"></i>마이쇼핑</a>
           </li>
           <li>
             <a href="#">회사소개</a>
@@ -264,104 +267,135 @@
   <main>
 
     <div class="title-box" scope="sub">
-      <p class="title-box__text">MY-SHOP</p>
-      <p class="title-box__subtext">나의 쇼핑내역을 한눈에 확인하세요.</p>
+      <p class="title-box__text">MY-ORDER</p>
+      <p class="title-box__subtext">고객님의 주문내역 입니다.</p>
     </div>
 
+    <div class="tab-menu myorder">
+      <div class="inner">
+        <ul>
+          <li class="selected"><a href="#">주문 내역 조회 <span>(2)</span></a></li>
+          <li><a href="#">취소신청 내역 <span>(1)</span></a></li>
+          <li><a href="#">과거주문(확정) 내역 <span>(2)</span></a></li>
+        </ul>
+      </div>
+    </div>
 
-    <!-- INFOMATION -->
-    <div class="information">
+    <!-- INFOMATION MYORDER -->
+    <div class="information myorder">
       <div class="inner">
         <div class="information-item">
           <div class="thumbnail">
-            <img src="https://acttomall.com/_sp/_image/user.png" alt="">
+            <img src="https://acttomall.com/_sp/_image/svg/order.svg" alt="">
             <div class="description">
-              <p>저희 쇼핑몰을 이용해주셔서 대단히 감사합니다.<br />
-                <strong class="txtEm">회원 가입</strong>을 하시면 각종 다양한 혜택을 받으실 수 있습니다.
-              </p>
+              <div class="title-box" scope="totals">
+                <span class="title-box__text">주문조회 안내</span>
+              </div>
+              <div class="description__help">
+                <p>주문번호를 클릭하시면 해당 주문에 대한 상세내역을 확인하실 수 있습니다.</p>
+                <p>취소 신청은 주문신청 확정 전까지 가능합니다.</p>
+              </div>
             </div>
           </div>
-          <div class="btn-group">
-            <p class="message">로그인이 필요해요</p>
-            <a href="./login.html" class="btn__login">
-              <i class="fas fa-sm ver-0 fa-power-off"></i>
-              &nbsp;로그인
-            </a>
-            <a href="./join.html" class="btn__join">
-              <i class="fas fa-sm ver-0 fa-plus"></i>
-              &nbsp;회원가입
-            </a>
-          </div>
         </div>
       </div>
-    </div><!-- INFORMATION -->
+    </div><!-- INFORMATION MYORDER -->
 
-    <!-- ORDER-LIST -->
-    <div class="order-list">
+    <!-- MYORDER-LIST -->
+    <div class="myorder-list">
       <div class="inner">
-        <a href="#" class="order-list__item">
-          <p class="icon order"></p>
-          <p>주문 내역</p>
-          <p class="price">0건</p>
-          <i class="line--hover"></i>
-        </a>
-        <a href="#" class="order-list__item">
-          <p class="icon mileage"></p>
-          <p>적립금</p>
-          <p class="price">0원</p>
-          <i class="line--hover"></i>
-        </a>
+        <div class="title-box myorder" scope="order">
+          <span class="title-box__text">MY ORDER</span>
+          <span class="title-box__subtext">주문 상품 정보</span>
+        </div>
       </div>
-    </div>
-    <!-- ORDER-LIST -->
 
-    <!-- QUICK-MENU -->
-    <div class="quick-menu">
       <div class="inner">
-        <div class="title-box" scope="totals">
-          <span class="title-box__text">MY QUICK MENU</span>
-          <span class="title-box__subtext">나의 주문처리 현황</span>
-        </div>
+        <table>
+          <caption>주문 상품 정보</caption>
+          <colgroup>
+            <col style="width: 135px;">
+            <col style="width: 80px;">
+            <col style="width: auto;">
+            <col style="width: 61px;">
+            <col style="width: 111px;">
+            <col style="width: 111px;">
+            <col style="width: 111px;">
+          </colgroup>
+          <thead>
+            <tr>
+              <th scope="col">주문일자 <br /> [주문번호]</th>
+              <th scope="col">이미지</th>
+              <th scope="col">상품정보</th>
+              <th scope="col">수량</th>
+              <th scope="col">상품구매금액</th>
+              <th scope="col">주문처리상태</th>
+              <th scope="col">취소/확정</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="date">
+                <p>2022-12-08</p>
+                <a href="#" class="order-number">
+                  20221208-0000123
+                </a>
+                <a href="#" class="">주문취소</a>
+              </td>
+              <td class="thumb">
+                <a href="#">
+                  <img src="https://acttomall.com/web/product/medium/202211/ce2cf7367043104db47c1d1355065bcb.jpg"
+                    alt="상품 사진">
+                </a>
+              </td>
+              <td class="product">
+                <strong class="name">
+                  <a href="#">상품명 자리 스피드 타입 C to LAN 어댑터</a>
+                </strong>
+                <p class="option">[옵션: LAN-04그레이]</p>
+              </td>
+              <td class="quantity">1</td>
+              <td class="price">21,900원</td>
+              <td class="state">
+                <p>주문 신청중</p>
+              </td>
+              <td class="decision">
+                <p>-</p>
+              </td>
+            </tr>
+            <tr>
+              <td class="date">
+                <p>2022-12-08</p>
+                <a href="#" class="order-number">
+                  20221208-0000123
+                </a>
+                <a href="#" class="">주문취소</a>
+              </td>
+              <td class="thumb">
+                <a href="#">
+                  <img src="https://acttomall.com/web/product/medium/202211/ce2cf7367043104db47c1d1355065bcb.jpg"
+                    alt="상품 사진">
+                </a>
+              </td>
+              <td class="product">
+                <strong class="name">
+                  <a href="#">상품명 자리 스피드 타입 C to LAN 어댑터</a>
+                </strong>
+                <p class="option">[옵션: LAN-04그레이]</p>
+              </td>
+              <td class="quantity">1</td>
+              <td class="price">21,900원</td>
+              <td class="state">
+                <p>주문 신청중</p>
+              </td>
+              <td class="decision">
+                <p>-</p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-      <div class="inner">
-
-        <div class="quick-menu__box">
-          <div class="quick-menu__item">
-            <span class="icon order"><i></i></span>
-            <span class="quick-menu__subject">ORDER</span>
-            <span class="quick-menu__title"><strong>주문내역 조회</strong>
-              고객님께서 주문하신 상품의 주문내역을 확인하실 수 있습니다.
-            </span>
-            <span class="quick-menu__linked"><a href="./myorder.html">조회</a></span>
-          </div>
-          <div class="quick-menu__item">
-            <span class="icon mileage"><i></i></span>
-            <span class="quick-menu__subject">PROFILE</span>
-            <span class="quick-menu__title"><strong>회원 정보</strong>
-              회원이신 고객님의 개인정보를 관리하는 공간입니다.
-            </span>
-            <span class="quick-menu__linked"><a href="#">조회</a></span>
-          </div>
-        </div>
-
-        <div class="order-state">
-          <div class="order-state__box">
-            <a class="order-state__item">
-              <p class="count">0</p>
-              <p class="state">취소</p>
-              <i class="line--hover"></i>
-            </a>
-            <a class="order-state__item">
-              <p class="count">0</p>
-              <p class="state">완료</p>
-              <i class="line--hover"></i>
-            </a>
-          </div>
-        </div>
-
-      </div>
-    </div><!-- QUICK-MENU-->
-
+    </div><!-- MYORDER-LIST -->
 
   </main><!-- MAIN -->
 
