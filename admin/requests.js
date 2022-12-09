@@ -177,7 +177,7 @@ export async function delProduct(productId) {
     store.url + `/products/${productId}`,
     createRequest('DELETE'),
   );
-  console.log('제품 삭제!');
+  console.log(res.json);
   return res;
 }
 //제품 삭제 결과
