@@ -3,28 +3,28 @@ import { getData, getLogin, getLogOut } from "./getdata.js";
 // import { completeLogin } from "./test.js";
 import { router } from "./route.js";
 import { deliveryEl, returnEl, deliveryDes, returnDes, mouseenter, mouseleave } from './footer.js'
-import { joinForm, logInForm } from "./body.js";
+import { joinForm, logInForm, myOrderForm, myShoppingForm, mainForm, userInfoForm } from "./body.js";
 
 // 변수
 const root = document.querySelector('main')
 
-function loginNjoin() {
-  const joinBtn = document.querySelector('#join-btn')
-  const loginBtn = document.querySelector('#login-btn')
-  joinBtn.addEventListener('click', joinRender)
-  loginBtn.addEventListener('click', loginRender)
+// function loginNjoin() {
+//   loginRender()
+//   joinRender()
+// }
+
+function renderMain() {
+  root.innerHTML = mainForm()
 }
 
 // 로그인 페이지 해시 값 + 화면 변경
 function loginRender() {
-  location.hash = '#login'
   root.innerHTML = logInForm()
   sendLogin()
 }
 
 // 회원가입 페이지 해시 값 + 화면 변경
 function joinRender() {
-  location.hash = '#join'
   root.innerHTML = joinForm();
   sendSignUp();
 }
@@ -35,7 +35,6 @@ function sendSignUp() {
 
   formTag.addEventListener('submit', async (e) => {
     e.preventDefault()
-    console.log(e)
     const idValue = document.querySelector('.id-input').value
     const pwValue = document.querySelector('.pw-input').value
     const nameValue = document.querySelector('.name-input').value
@@ -100,6 +99,21 @@ function completeLogin() {
   logOut()
 }
 
+// myshop 렌더링
+function renderMyShop() {
+  root.innerHTML = myShoppingForm()
+}
+
+// myorder 렌더링
+function renderMyOrder() {
+  root.innerHTML = myOrderForm()
+}
+
+// myorder 렌더링
+function renderUserInfo() {
+  root.innerHTML = userInfoForm()
+}
+
 // 메인 스와이퍼
 const swiper1 = new Swiper('main > .swiper', {
   effect: 'fade',
@@ -141,7 +155,10 @@ router();
 
 // 로그인 로그아웃 확인
 (() => {
-  localStorage.length === 0 ? loginNjoin() : completeLogin();
+  // localStorage.length === 0 ? loginNjoin() : completeLogin();
+  if (localStorage.length > 0) {
+    completeLogin()
+  } else return
 })();
 
-export { loginRender, joinRender, logOut }
+export { loginRender, joinRender, logOut, renderMyShop, renderMyOrder, renderMain, renderUserInfo }

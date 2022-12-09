@@ -10,7 +10,7 @@ function createRequest(type, data) {
     // \ -X 'POST'
     // \ -H 'masterKey: true'
     method: type,
-    headers: { ...store.headers, "apikey": API_KEY }
+    headers: { ...store.headers, apikey: API_KEY },
   };
   if (res.headers.masterKey === false) {
     res.headers.masterKey = true;
@@ -18,7 +18,6 @@ function createRequest(type, data) {
   if (data) {
     res.body = JSON.stringify(data);
   }
-  console.log(res);
   return res;
 }
 

@@ -1,22 +1,33 @@
-import { loginRender, joinRender } from "./main"
+import { userInfoForm } from "./body"
+import { loginRender, joinRender, renderMyShop, renderMyOrder, renderMain, renderUserInfo } from "./main"
 
 export function router() {
 
   const routePath = location.hash
-
-  if (routePath.includes('#login')) {
+  if (routePath === '') {
+    renderMain()
+  }
+  else if (routePath === '#login') {
     if (localStorage.length === 0) {
       loginRender()
     } else {
       return
     }
   }
-  else if (routePath.includes('#join')) {
+  else if (routePath === '#join') {
     if (localStorage.length === 0) {
       joinRender()
     } else {
       return
     }
   }
+  else if (routePath === '#myshop') {
+    renderMyShop() 
+  }
+  else if (routePath === '#myorder') {
+    renderMyOrder() 
+  }
+  else if (routePath === '#userinfo') {
+    renderUserInfo() 
+  }
 }
-
