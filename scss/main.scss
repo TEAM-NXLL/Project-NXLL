@@ -546,6 +546,7 @@ footer {
     font-size: 15px;
     .inner {
       padding: 50px 0;
+      position: relative;
       .logo {
         background-image: url('../images/logo.png');
         background-repeat: no-repeat;
@@ -632,6 +633,12 @@ footer {
             cursor: pointer;
           }
         }
+      }
+      img {
+        position: absolute;
+        width: 134px;
+        right: 0;
+        bottom: 50px;
       }
     }
   }
