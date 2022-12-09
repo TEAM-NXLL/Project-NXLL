@@ -1,4 +1,4 @@
-import { store } from '../js/store.js';
+const API_KEY = process.env;
 
 // products';
 
@@ -9,7 +9,7 @@ function createRequest(type, data) {
     // \ -X 'POST'
     // \ -H 'masterKey: true'
     method: type,
-    headers: store.headers,
+    headers: { ...store.headers, apikey: API_KEY },
   };
   if (res.headers.masterKey === false) {
     res.headers.masterKey = true;
@@ -40,7 +40,6 @@ export async function createProduct(
       photo,
     }),
   );
-  console.log('제품 추가!');
   return res;
 }
 // 제품 추가 결과
