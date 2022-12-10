@@ -1,5 +1,5 @@
 // main
-function mainForm() {
+function mainForm() { 
   return /* html */ `
   <div class="swiper mainSwiper">
     <ul class="swiper-wrapper">
@@ -17,6 +17,7 @@ function mainForm() {
     <div class="swiper-button-prev"></div>
     <div class="swiper-button-next"></div>
   </div>
+  
     <!-- 키보드 상품목록 -->
     <section class="keyboard mt70">
       <h1>KEYBOARD</h1>
