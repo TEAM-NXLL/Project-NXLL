@@ -1,9 +1,8 @@
 import { doc } from "prettier";
-import { getData, getLogin, getLogOut } from "./getdata.js";
-// import { completeLogin } from "./test.js";
+import { getData, getLogin, getLogOut, stateLogin } from "./getdata.js";
 import { router } from "./route.js";
 import { deliveryEl, returnEl, deliveryDes, returnDes, mouseenter, mouseleave } from './footer.js'
-import { joinForm, logInForm, myOrderForm, myShoppingForm, mainForm, userInfoForm } from "./body.js";
+import { joinForm, logInForm, myOrderForm, myShoppingForm, mainForm, userInfoForm, userAccountForm } from "./body.js";
 
 // 변수
 const root = document.querySelector('main')
@@ -13,6 +12,7 @@ const root = document.querySelector('main')
 //   joinRender()
 // }
 
+// 메인 페이지
 function renderMain() {
   root.innerHTML = mainForm()
 }
@@ -109,9 +109,11 @@ function renderMyOrder() {
   root.innerHTML = myOrderForm()
 }
 
-// myorder 렌더링
-function renderUserInfo() {
-  root.innerHTML = userInfoForm()
+// userInfo 렌더링
+async function renderUserInfo() {
+  const res = await stateLogin(localStorage.accessToken)
+  root.innerHTML = userInfoForm(res.email, res.displayName)
+  root.innerHTML += userAccountForm()
 }
 
 // 메인 스와이퍼
