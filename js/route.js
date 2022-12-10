@@ -32,6 +32,5 @@ export function router() {
   }
   else if (routePath === '#detail') {
     renderDetail()
-    console.log('???')
   }
 }

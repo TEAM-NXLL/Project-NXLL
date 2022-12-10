@@ -1198,7 +1198,7 @@ function userInfoForm(userId, userName) {
 }
 
 // 회원 정보 관리 계좌
-function userAccountForm() {
+function userAccountForm(totalBalance) {
   return /* html */ `
   <form>
     <ul class="table-area">
@@ -1212,17 +1212,18 @@ function userAccountForm() {
         <tbody>
           <tr>
             <th scope="row">보유 계좌</th>
-            <td>
+            <td class="bank-charge">
               <select name="bank-name" id="bank-name">
                 <option value="default">은행 이름</option>
-                <option value="null">없음</option>
+                <option value="null" class="no-bank">없음</option>
               </select>
+              <span class="charge"></span>
             </td>
           </tr>
           <tr>
-            <th class="account-charge">계좌 잔액</th>
+            <th class="account-charge">전체 계좌 잔액</th>
             <td>
-              <span class="charge-num">00,000</span>
+              <span class="charge-num">${totalBalance}</span>
               <span class="won">원</span>
             </td>
           </tr>
@@ -1231,20 +1232,19 @@ function userAccountForm() {
             <td>
               <select name="add-account" id="add-account">
                 <option value="default">은행 이름</option>
-                <option value="004">KB국민은행</option>
-                <option value="088">신한은행</option>
-                <option value="020">우리은행</option>
-                <option value="081">하나은행</option>
-                <option value="089">케이뱅크</option>
-                <option value="090">카카오뱅크</option>
-                <option value="011">NH농협은행</option>
               </select>
             </td>
           </tr>
           <tr>
-            <th>계좌 번호</th>
+            <th>전화 번호</th>
             <td>
-              <input type="text" class="account-number-input"> - <input type="text" class="account-number-input"> - <input type="text" class="account-number-input">
+              <input type="text" class="phone-number-input"> - <input type="text" class="phone-number-input"> - <input type="text" class="phone-number-input">
+            </td>
+          </tr>
+          <tr>
+            <th>계좌 번호</th>
+            <td class='account-number-box'>
+              <input type="text" class="account-number-input"> - <input type="text" class="account-number-input"> - <input type="text" class="account-number-input"> - <input type="text" class="account-number-input">
             </td>
           </tr>
           </tbody>
