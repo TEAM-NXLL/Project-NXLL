@@ -5,6 +5,7 @@
 @import url("./myshop.scss");
 @import url("./myorder.scss");
 @import url("./userInfo.scss");
+@import url("./detail.scss");
 
 // HEADER
 header {
@@ -594,6 +595,7 @@ footer {
     .inner {
       padding: 50px 0;
       position: relative;
+
       .logo {
         background-image: url('../static/images/logo.png');
         background-repeat: no-repeat;
@@ -698,6 +700,7 @@ footer {
           }
         }
       }
+
       img {
         position: absolute;
         width: 134px;

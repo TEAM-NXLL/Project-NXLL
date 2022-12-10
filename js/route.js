@@ -1,5 +1,5 @@
 import { userInfoForm } from "./body"
-import { loginRender, joinRender, renderMyShop, renderMyOrder, renderMain, renderUserInfo } from "./main"
+import { loginRender, joinRender, renderMyShop, renderMyOrder, renderMain, renderUserInfo, renderDetail } from "./main"
 
 export function router() {
 
@@ -22,12 +22,15 @@ export function router() {
     }
   }
   else if (routePath === '#myshop') {
-    renderMyShop() 
+    renderMyShop()
   }
   else if (routePath === '#myorder') {
-    renderMyOrder() 
+    renderMyOrder()
   }
   else if (routePath === '#userinfo') {
     renderUserInfo()
+  }
+  else if (routePath === '#detail') {
+    renderDetail()
   }
 }
