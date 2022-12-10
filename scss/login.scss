@@ -58,7 +58,7 @@ main {
         &:checked::after {
           content: "";
           display: block;
-          background: url("../images/icons/check.png") no-repeat center;
+          background: url("../static/images/icons/check.png") no-repeat center;
           background-size: 10px;
           position: absolute;
           top: 0;

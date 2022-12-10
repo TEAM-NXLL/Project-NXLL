@@ -1,9 +1,9 @@
 import { doc } from "prettier";
-import { getData, getLogin, getLogOut } from "./getdata.js";
-// import { completeLogin } from "./test.js";
+import { getData, getLogin, getLogOut, stateLogin } from "./getdata.js";
 import { router } from "./route.js";
 import { deliveryEl, returnEl, deliveryDes, returnDes, mouseenter, mouseleave } from './footer.js'
-import { joinForm, logInForm, myOrderForm, myShoppingForm, mainForm, userInfoForm } from "./body.js";
+import { joinForm, logInForm, myOrderForm, myShoppingForm, mainForm, userInfoForm, userAccountForm } from "./body.js";
+import { editUserInfo } from "./userInfo.js";
 
 // 변수
 const root = document.querySelector('main')
@@ -13,8 +13,40 @@ const root = document.querySelector('main')
 //   joinRender()
 // }
 
+// 메인 페이지
 function renderMain() {
   root.innerHTML = mainForm()
+
+  // 메인 스와이퍼
+  new Swiper('.mainSwiper', {
+    effect: 'fade',
+    loop: true,
+    autoplay: true,
+    speed: 1000,
+
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+  })
+
+  // 키보드 스와이퍼
+  new Swiper('.keyboardSwiper', {
+    effect: 'fade',
+    loop: true,
+    autoplay: true,
+    speed: 1000,
+
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+  })
 }
 
 // 로그인 페이지 해시 값 + 화면 변경
@@ -59,7 +91,6 @@ function sendLogin() {
     const pwValue = document.querySelector('.signin-pw-input').value
     const res = await getLogin(idValue, pwValue)
     if (res.user.email) {
-      console.log(res)
       const userName = res.user.displayName
       const accessToken = res.accessToken
       localStorage.setItem("accessToken", accessToken)
@@ -82,7 +113,7 @@ function logOut() {
     const res = await getLogOut(accessToken)
     if (res) {
       localStorage.removeItem('accessToken'),
-        localStorage.removeItem('userName')
+      localStorage.removeItem('userName')
     }
     location.href = '/'
   })
@@ -109,41 +140,13 @@ function renderMyOrder() {
   root.innerHTML = myOrderForm()
 }
 
-// myorder 렌더링
-function renderUserInfo() {
-  root.innerHTML = userInfoForm()
+// userInfo 렌더링
+async function renderUserInfo() {
+  const res = await stateLogin(localStorage.accessToken)
+  root.innerHTML = userInfoForm(res.email, res.displayName)
+  root.innerHTML += userAccountForm()
+  editUserInfo()
 }
-
-// 메인 스와이퍼
-const swiper1 = new Swiper('main > .swiper', {
-  effect: 'fade',
-  loop: true,
-  autoplay: true,
-  speed: 1000,
-
-  pagination: {
-    el: '.swiper-pagination',
-    clickable: true,
-  },
-
-  navigation: {
-    nextEl: '.swiper-button-next',
-    prevEl: '.swiper-button-prev',
-  },
-})
-
-// 키보드 스와이퍼
-const swiper2 = new Swiper('.keyboard-banner > .swiper', {
-  effect: 'fade',
-  loop: true,
-  autoplay: true,
-  speed: 1000,
-
-  navigation: {
-    nextEl: '.swiper-button-next',
-    prevEl: '.swiper-button-prev',
-  },
-})
 
 // footer 함수
 mouseenter()

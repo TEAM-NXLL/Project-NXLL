@@ -65,16 +65,10 @@
             <a href="#">제품 추가</a>
           </li>
           <li>
-            <a href="#">제품 수정</a>
-          </li>
-          <li>
-            <a href="#">제품 삭제</a>
-          </li>
-          <li>
             <a href="#">전체 거래 내역</a>
           </li>
           <li>
-            <a href="#">거래 내역 상태</a>
+            <a href="#">개별 거래 내역</a>
           </li>
         </ul>
       </div>
@@ -90,18 +84,7 @@
     </section>
 
     <section class="add">
-      <!-- <form action="submit" class="add-form"> -->
       <form class="add-form">
-
-        <!-- 썸네일 업로드 -->
-        <div class="thumbnail-area">
-          <label for="add-thumbnail"> 상품 썸네일 등록 </label>
-          <img class="preview" />
-          <span>jpg, jpeg, webp, png, gif, svg 확장자만 등록 가능합니다.</span>
-          <span>파일 크기는 1MB 이하여야 합니다.</span>
-          <input type="file" accept="image/jpg, .jpeg, .webp, .png, .gif, .svg" class="add-thumbnail"
-            name="add-thumbnail" id="add-thumbnail" onchange="previewImg(this);">
-        </div>
 
         <!-- 상품명 -->
         <div class="name-area">
@@ -129,19 +112,19 @@
           <label for="tag5" class="taglabel">문구/소형가전</label>
         </div>
 
-        <!-- 카테고리 선택 여러개 가능 -->
-        <!-- <div class="tag-area">
-          <label>상품 태그</label>
-          <input type="checkbox" id="tag1" class="tag" name="tag" value="태그1" checked />
-          <label for="tag1" class="taglabel">태그1</label>
-          <input type="checkbox" id="tag2" class="tag" name="tag" value="태그2" />
-          <label for="tag2" class="taglabel">태그2</label>
-          <input type="checkbox" id="tag3" class="tag" name="tag" value="태그3" />
-          <label for="tag3" class="taglabel">태그3</label>
-          <input type="checkbox" id="tag4" class="tag" name="tag" value="태그4" />
-          <label for="tag4" class="taglabel">태그4</label>
-          <input type="checkbox" id="tag5" class="tag" name="tag" value="태그5" />
-          <label for="tag5" class="taglabel">태그5</label>
+        <!-- 태그 선택 여러개 가능 / 수정중 -->
+        <!-- <div class="check-area2">
+          <label>하위 태그</label>
+          <input type="checkbox" id="check1" class="check" name="check" value="마우스" checked />
+          <label for="check1" class="checklabel">마우스</label>
+          <input type="checkbox" id="check2" class="check" name="check" value="키보드" />
+          <label for="check2" class="checklabel">키보드</label>
+          <input type="checkbox" id="check3" class="check" name="check" value="태그3" />
+          <label for="check3" class="checklabel">헤드폰/이어폰</label>
+          <input type="checkbox" id="check4" class="check" name="check" value="태그4" />
+          <label for="check4" class="checklabel">거치대</label>
+          <input type="checkbox" id="check5" class="check" name="check" value="태그5" />
+          <label for="check5" class="checklabel">스피커/마이크</label>
         </div> -->
 
         <div class="description-area">
@@ -150,14 +133,27 @@
             required></textarea>
         </div>
 
-        <!-- 상세사진 업로드 -->
-        <div class="detail-area">
-          <label for="add-detail"> 상품 상세사진 등록 </label>
-          <span>jpg, jpeg, webp, png, gif, svg 확장자만 등록 가능합니다.</span>
-          <span>파일 크기는 4MB 이하여야 합니다.</span>
-          <!-- <textarea class="add-detail" name="add-detail" placeholder="제품 상세 사진은 4MB 이하여야 합니다."></textarea> -->
-          <input type="file" accept="image/jpg, .jpeg, .webp, .png, .gif, .svg" class="add-thumbnail"
-            name="add-thumbnail" id="add-thumbnail">
+        <!-- 파일 업로드 -->
+        <div class="file-upload-area">
+          <!-- 썸네일 업로드 -->
+          <div class="thumbnail-area">
+            <label for="add-thumbnail"> 상품 썸네일 등록 </label>
+            <img id="thumbnail-preview" />
+            <span>jpg, jpeg, webp, png, gif, svg 확장자만 등록 가능합니다.</span>
+            <span>파일 크기는 1MB 이하여야 합니다.</span>
+            <input type="file" accept="image/jpg, .jpeg, .webp, .png, .gif, .svg" class="add-thumbnail"
+              name="add-thumbnail" id="add-thumbnail">
+          </div>
+
+          <!-- 상세사진 업로드 -->
+          <div class="detail-area">
+            <label for="add-detail"> 상품 상세사진 등록 </label>
+            <img id="detail-preview" />
+            <span>jpg, jpeg, webp, png, gif, svg 확장자만 등록 가능합니다.</span>
+            <span>파일 크기는 4MB 이하여야 합니다.</span>
+            <input type="file" accept="image/jpg, .jpeg, .webp, .png, .gif, .svg" class="add-detail" name="add-detail"
+              id="add-detail">
+          </div>
         </div>
 
         <div class="add-button-area">
