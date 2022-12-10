@@ -2,8 +2,8 @@ import { doc } from "prettier";
 import { getData, getLogin, getLogOut, stateLogin } from "./getdata.js";
 import { router } from "./route.js";
 import { deliveryEl, returnEl, deliveryDes, returnDes, mouseenter, mouseleave } from './footer.js'
-import { joinForm, logInForm, myOrderForm, myShoppingForm, mainForm, userInfoForm, userAccountForm } from "./body.js";
-import { editUserInfo } from "./userInfo.js";
+import { joinForm, logInForm, myOrderForm, myShoppingForm, mainForm, userInfoForm, userAccountForm, detailForm } from "./body.js";
+import { editUserInfo, userOwnBank, addNewAccount, choiceBank } from "./userInfo.js";
 
 // 변수
 const root = document.querySelector('main')
@@ -16,6 +16,37 @@ const root = document.querySelector('main')
 // 메인 페이지
 function renderMain() {
   root.innerHTML = mainForm()
+
+  // 메인 스와이퍼
+  new Swiper('.mainSwiper', {
+    effect: 'fade',
+    loop: true,
+    autoplay: true,
+    speed: 1000,
+
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+  })
+
+  // 키보드 스와이퍼
+  new Swiper('.keyboardSwiper', {
+    effect: 'fade',
+    loop: true,
+    autoplay: true,
+    speed: 1000,
+
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+  })
 }
 
 // 로그인 페이지 해시 값 + 화면 변경
@@ -100,7 +131,7 @@ function completeLogin() {
 }
 
 // myshop 렌더링
-function renderMyShop() {
+async function renderMyShop() {
   root.innerHTML = myShoppingForm()
 }
 
@@ -113,40 +144,21 @@ function renderMyOrder() {
 async function renderUserInfo() {
   const res = await stateLogin(localStorage.accessToken)
   root.innerHTML = userInfoForm(res.email, res.displayName)
-  root.innerHTML += userAccountForm()
+  const {totalBalance, accounts} = await userOwnBank()
+  const total = totalBalance.toLocaleString()
+  root.innerHTML += userAccountForm(total)
+  bankChargeLookUp()
+  ownAccountList(accounts)
   editUserInfo()
+  addAbleAccountList()
+  addNewAccount()
+  choiceBank()
 }
 
-// 메인 스와이퍼
-const swiper1 = new Swiper('main > .swiper', {
-  effect: 'fade',
-  loop: true,
-  autoplay: true,
-  speed: 1000,
-
-  pagination: {
-    el: '.swiper-pagination',
-    clickable: true,
-  },
-
-  navigation: {
-    nextEl: '.swiper-button-next',
-    prevEl: '.swiper-button-prev',
-  },
-})
-
-// 키보드 스와이퍼
-const swiper2 = new Swiper('.keyboard-banner > .swiper', {
-  effect: 'fade',
-  loop: true,
-  autoplay: true,
-  speed: 1000,
-
-  navigation: {
-    nextEl: '.swiper-button-next',
-    prevEl: '.swiper-button-prev',
-  },
-})
+// detail 렌더링
+function renderDetail() {
+  root.innerHTML = detailForm()
+}
 
 // footer 함수
 mouseenter()
@@ -157,11 +169,12 @@ window.addEventListener('hashchange', router)
 router();
 
 // 로그인 로그아웃 확인
-(() => {
+(async () => {
   // localStorage.length === 0 ? loginNjoin() : completeLogin();
-  if (localStorage.length > 0) {
-    completeLogin()
+  if (localStorage.accessToken) {
+    const res = await stateLogin(localStorage.accessToken)
+    res.displayName ? completeLogin() : window.localStorage.clear()
   } else return
 })();
 
-export { loginRender, joinRender, logOut, renderMyShop, renderMyOrder, renderMain, renderUserInfo }
+export { loginRender, joinRender, logOut, renderMyShop, renderMyOrder, renderMain, renderUserInfo, renderDetail }

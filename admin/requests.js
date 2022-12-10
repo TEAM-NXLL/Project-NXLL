@@ -27,8 +27,8 @@ export async function createProduct(
   price,
   description,
   tags = '',
-  thumbnail = '', // 기본 썸네일
-  photo = '', // 기본 사진
+  thumbnailBase64 = '', // 기본 썸네일
+  photoBase64 = '', // 기본 사진
 ) {
   const res = await fetch(
     store.url + '/products',
@@ -37,8 +37,8 @@ export async function createProduct(
       price,
       description,
       tags,
-      thumbnail,
-      photo,
+      thumbnailBase64,
+      photoBase64,
     }),
   );
   return res;
@@ -135,8 +135,8 @@ export async function correctProduct(
   price,
   description,
   tags,
-  thumbnail,
-  photo,
+  thumbnailBase64,
+  photoBase64,
   isSoldOut,
 ) {
   const res = await fetch(
@@ -146,8 +146,8 @@ export async function correctProduct(
       price,
       description,
       tags,
-      thumbnail,
-      photo,
+      thumbnailBase64,
+      photoBase64,
       isSoldOut,
     }),
   );
@@ -176,7 +176,7 @@ export async function delProduct(productId) {
     store.url + `/products/${productId}`,
     createRequest('DELETE'),
   );
-  console.log('제품 삭제!');
+  console.log(res.json);
   return res;
 }
 //제품 삭제 결과
