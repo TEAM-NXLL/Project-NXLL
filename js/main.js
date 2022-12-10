@@ -2,7 +2,7 @@ import { doc } from "prettier";
 import { getData, getLogin, getLogOut, stateLogin } from "./getdata.js";
 import { router } from "./route.js";
 import { deliveryEl, returnEl, deliveryDes, returnDes, mouseenter, mouseleave } from './footer.js'
-import { joinForm, logInForm, myOrderForm, myShoppingForm, mainForm, userInfoForm, userAccountForm } from "./body.js";
+import { joinForm, logInForm, myOrderForm, myShoppingForm, mainForm, userInfoForm, userAccountForm, detailForm } from "./body.js";
 import { editUserInfo } from "./userInfo.js";
 
 // 변수
@@ -113,7 +113,7 @@ function logOut() {
     const res = await getLogOut(accessToken)
     if (res) {
       localStorage.removeItem('accessToken'),
-      localStorage.removeItem('userName')
+        localStorage.removeItem('userName')
     }
     location.href = '/'
   })
@@ -148,6 +148,11 @@ async function renderUserInfo() {
   editUserInfo()
 }
 
+// detail 렌더링
+function renderDetail() {
+  root.innerHTML = detailForm()
+}
+
 // footer 함수
 mouseenter()
 mouseleave()
@@ -165,4 +170,4 @@ router();
   } else return
 })();
 
-export { loginRender, joinRender, logOut, renderMyShop, renderMyOrder, renderMain, renderUserInfo }
+export { loginRender, joinRender, logOut, renderMyShop, renderMyOrder, renderMain, renderUserInfo, renderDetail }

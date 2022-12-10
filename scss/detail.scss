@@ -1,0 +1,220 @@
+.page-nav {
+  a {
+    display: inline-block;
+    margin-bottom: 30px;
+    line-height: 50px;
+    font-size: 11px;
+    font-weight: bold;
+    color: #999;
+
+    &::before {
+      content: '>';
+      display: inline-block;
+      margin-top: -3px;
+      padding: 0 20px;
+      font-size: 9px;
+      vertical-align: middle;
+    }
+
+    &:first-child::before {
+      display: none;
+    }
+
+    &:last-child {
+      color: #555;
+    }
+  }
+}
+
+.product-detail {
+  .inner {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__header {
+    .product-thumbnail {
+      width: 50%;
+    }
+
+    .product-order {
+      width: 43%;
+    }
+
+    .product-summary {
+
+      &__title {
+        span {
+          padding-bottom: 5px;
+          font-size: 11px;
+          font-weight: bold;
+          color: #999;
+        }
+
+        p {
+          margin-top: 15px;
+          font-size: 25px;
+          line-height: 1.4em;
+          text-align: left;
+          letter-spacing: -0.03em;
+        }
+
+        .price {
+          display: inline-block;
+          margin: 20px 0 40px;
+          font-size: 24px;
+          color: #000;
+        }
+      }
+
+      .info-title {
+        margin-bottom: 20px;
+        padding-left: 10px;
+        width: 100%;
+        border-top: 1px solid #eaeaea;
+        border-bottom: 1px solid #f0f0f0;
+        background-color: #fafafa;
+        font-size: 13px;
+        line-height: 50px;
+        text-align: left;
+        font-weight: bold;
+      }
+
+      &__info {
+        margin-bottom: 40px;
+        padding: 0 20px 20px 0;
+
+        p {
+          padding-left: 10px;
+          line-height: 24px;
+          font-size: 12px;
+          text-align: left;
+
+          em {
+            display: inline-block;
+            width: 20%;
+          }
+
+          span {
+            font-weight: bold;
+          }
+        }
+      }
+
+      .btn-group {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+
+        a {
+          position: relative;
+          display: block;
+          color: #eaeaea;
+          border: 2px solid #213B85;
+          border-bottom-color: #213B85;
+          box-shadow: 0 2px 2px rgba(0, 0, 0, 0.04);
+          text-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+          font-size: 16px;
+          line-height: 60px;
+          padding: 0 30px;
+          text-align: center;
+          font-weight: bold;
+          transition: 0.2s;
+
+          &:hover {
+            background: #213B85;
+            color: #fff;
+          }
+        }
+
+        .buy-btn {
+          background: linear-gradient(to bottom, #213B85 0%, #213B85 100%);
+
+          &:hover {
+            background: linear-gradient(to bottom, #053271 0%, #053271 100%);
+          }
+        }
+
+        .cart-btn {
+          color: #213B85;
+
+          i {
+            margin-right: 10px;
+            font-weight: bold;
+          }
+        }
+      }
+
+      .delivery-info {
+        padding: 20px 0;
+
+        p {
+          line-height: 20px;
+          font-size: 12px;
+          font-weight: bold;
+          text-align: left;
+
+          &::before {
+            content: '';
+            display: inline-block;
+            margin: 3px;
+            width: 14px;
+            height: 14px;
+            background: transparent url('https://acttomall.com/_sp/_image/svg/exclamation.svg');
+            vertical-align: middle;
+          }
+
+          &:first-child {
+            color: red;
+          }
+        }
+      }
+    }
+  }
+
+  &__body {
+    margin: 200px 0;
+
+    .tab-menu {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 100px;
+      text-align: center;
+      border-bottom: 1px solid rgb(239, 239, 239);
+
+      li {
+
+        a {
+          display: inline-block;
+          line-height: 60px;
+          font-weight: bold;
+
+          &::before {
+            content: '';
+            display: inline-block;
+            margin: 0 20px;
+            width: 1px;
+            height: 10px;
+            background: rgba(0, 0, 0, 0.1);
+          }
+
+        }
+
+        &:first-child a::before {
+          display: none;
+        }
+
+
+      }
+    }
+  }
+
+  &__img {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    text-align: center;
+  }
+}

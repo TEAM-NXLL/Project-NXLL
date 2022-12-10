@@ -1256,4 +1256,64 @@ function userAccountForm() {
   `
 }
 
-export { joinForm, logInForm, myShoppingForm, myOrderForm, mainForm, userInfoForm, userAccountForm }
+// 상품 상세페이지
+function detailForm() {
+  return /* html */`
+  <div class="page-nav">
+    <div class="inner">
+      <a href="/">HOME</a>
+      <a href="#">마우스(검색키워드)</a>
+    </div>
+  </div>
+
+  <div class="product-detail">
+      <div class="product-detail__header">
+        <div class="inner">
+          <div class="product-thumbnail">
+            <img src="images/christmasGiftMini1.jpg" alt="대표이미지">
+          </div>
+          <div class="product-order">
+            <div class="product-summary">
+              <div class="product-summary__title">
+                <span>[크리스마스 증정 이벤트] 손목 받침대+키스킨+컬러 키 캡 증정</span>
+                <p>[크리스마스 증정 이벤트]엑토 레트로 블루투스 미니 키보드 B303</p>
+                <span class="price">49,900원</span>
+              </div>
+              <div class="product-summary__info">
+                <p class="info-title">상품 정보</p>
+                <p><em>상품 설명</em> <span>[크리스마스 증정 이벤트] 손목 받침대+키스킨+컬러 키 캡 증정 </span></p>
+                <p><em>상품 포함 태그</em> <span style="color:#555;">가전, 노트북, 컴퓨터</span></p>
+                <p><em>배송비</em> <span style="color:red;">무료</span></p>
+                <p><em>판매 상태</em> <span>판매중</span></p>
+              </div>
+              <div class="btn-group">
+                <a href="#" class="buy-btn">바로 구매하기</a>
+                <a href="#" class="cart-btn"><i class="fas fa-sm ver-0 fa-plus"></i>장바구니</a>
+              </div>
+              <div class="delivery-info">
+                <p>제주도 및 도서산간 지역은 배송료 3,000원이 추가됩니다</p>
+                <p>위 옵션선택 박스를 선택하시면 아래에 상품이 추가됩니다.</p>
+                <p>주문수량 안내: 최소주문수량 1개 이상</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-detail__body">
+        <ul class="tab-menu detail">
+          <li><a href="#">상품구매</a></li>
+          <li><a href="#">상세정보</a></li>
+        </ul>
+        
+        <div class="inner">
+          <div class="product-detail__img">
+            <img src="/images/christmasGiftMini1.jpg" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+  `
+}
+
+export { joinForm, logInForm, myShoppingForm, myOrderForm, mainForm, userInfoForm, userAccountForm, detailForm }
