@@ -3,7 +3,7 @@ import { getData, getLogin, getLogOut, stateLogin } from "./getdata.js";
 import { router } from "./route.js";
 import { deliveryEl, returnEl, deliveryDes, returnDes, mouseenter, mouseleave } from './footer.js'
 import { joinForm, logInForm, myOrderForm, myShoppingForm, mainForm, userInfoForm, userAccountForm, detailForm } from "./body.js";
-import { editUserInfo, userOwnBank, addNewAccount, choiceBank } from "./userInfo.js";
+import { editUserInfo, userOwnBank, addNewAccount, choiceBank, bankChargeLookUp, ownAccountList, addAbleAccountList } from "./userInfo.js";
 
 // 변수
 const root = document.querySelector('main')

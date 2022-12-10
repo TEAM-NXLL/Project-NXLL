@@ -38,6 +38,7 @@ export async function addNewAccount () {
     accountNumbers.forEach(number => account += number.value)
     await addAccount(localStorage.accessToken, bankName.value, account, phone)
     e.stopPropagation()
+    alert("계좌가 추가되었습니다.")
   })
 }
 
