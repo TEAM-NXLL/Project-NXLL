@@ -16,6 +16,37 @@ const root = document.querySelector('main')
 // 메인 페이지
 function renderMain() {
   root.innerHTML = mainForm()
+
+  // 메인 스와이퍼
+  new Swiper('.mainSwiper', {
+    effect: 'fade',
+    loop: true,
+    autoplay: true,
+    speed: 1000,
+
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+  })
+
+  // 키보드 스와이퍼
+  new Swiper('.keyboardSwiper', {
+    effect: 'fade',
+    loop: true,
+    autoplay: true,
+    speed: 1000,
+
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+  })
 }
 
 // 로그인 페이지 해시 값 + 화면 변경
@@ -116,37 +147,6 @@ async function renderUserInfo() {
   root.innerHTML += userAccountForm()
   editUserInfo()
 }
-
-// 메인 스와이퍼
-const swiper1 = new Swiper('.mainSwiper', {
-  effect: 'fade',
-  loop: true,
-  autoplay: true,
-  speed: 1000,
-
-  pagination: {
-    el: '.swiper-pagination',
-    clickable: true,
-  },
-
-  navigation: {
-    nextEl: '.swiper-button-next',
-    prevEl: '.swiper-button-prev',
-  },
-})
-
-// 키보드 스와이퍼
-const swiper2 = new Swiper('.keyboardSwiper', {
-  effect: 'fade',
-  loop: true,
-  autoplay: true,
-  speed: 1000,
-
-  navigation: {
-    nextEl: '.swiper-button-next',
-    prevEl: '.swiper-button-prev',
-  },
-})
 
 // footer 함수
 mouseenter()

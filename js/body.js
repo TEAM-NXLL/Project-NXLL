@@ -272,7 +272,8 @@ function mainForm() {
 
       <h2>디자인 키보드는 엑토</h2>
       <p>편의성, 디자인, 기능을 모두 갖춘 <br /> 레트로 감성의 기계식 키보드가 곧 출시됩니다.</p>
-      </div>
+      <a href="#" class="blackBtn">제품 모두 보기</a>
+    </section>
 
       <!-- 마우스 상품목록 -->
       <section class="mouse mt70">
