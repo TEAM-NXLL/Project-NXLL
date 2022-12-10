@@ -71,7 +71,7 @@ export function addItem(event) {
   const title = event.target[0].value;
   const price = +event.target[1].value;
   const tags = document.querySelector('.tag:checked').value;
-  const description = event.target[7].value;
+  const description = ducument.querySelector('.add-product-description').value;
   const thumbnail = thumbnailEl.dataset.id;
   const photo = detailImgEl.dataset.id;
   if (title.length < 2 || price < 1 || description.length < 1) {
