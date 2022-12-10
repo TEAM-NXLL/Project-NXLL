@@ -75,9 +75,31 @@ export async function stateLogin(accessToken) {
 }
 
 // 사용자 정보 수정 데이터
-export async function editUser(accessToken) {
+export async function editUser(accessToken, displayName, oldPassword, newPassword) {
   const res = await fetch(store.url + '/auth/user', {
     method: 'PUT',
+    headers: {
+      ...store.headers,
+      "apikey": process.env.API_KEY,
+      "Authorization": `Bearer ${accessToken}`,
+    },
+    body: JSON.stringify({
+      "displayName": displayName,
+      "oldPassword": oldPassword,
+      "newPassword": newPassword
+    })
+  })
+  const json = await res.json()
+  if (json === "유효한 비밀번호가 아닙니다.") {
+    return alert("비밀번호를 다시 입력해 주세요.")
+  }
+  return json
+}
+
+// 계좌 조회 데이터
+export async function accountLookUp(accessToken) {
+  const res = await fetch(store.url + '/account/banks', {
+    method: 'GET',
     headers: {
       ...store.headers,
       "apikey": process.env.API_KEY,

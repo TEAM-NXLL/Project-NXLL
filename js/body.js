@@ -903,7 +903,7 @@ function logInForm() {
         <li class="logIn-area__find">
           <a href="#">아이디 찾기</a>
           <a href="#">비밀번호 찾기</a>
-          <a href="./join.html">가입하기</a>
+          <a href="#join">가입하기</a>
         </li>
       </ul>
     </form>
@@ -1188,7 +1188,7 @@ function userInfoForm(userId, userName) {
       <h1>MODIFY</h1>
       <p>아래 정보를 꼼꼼히 입력하세요.</p>
       <li class="base">
-        <h2>BASE <span>기본 정보를 입력하세요.</span></h2>
+        <h2>BASE <span>수정 정보를 입력하세요.</span></h2>
         <table>
           <colgroup>
             <col style="width:150px" />
@@ -1202,26 +1202,21 @@ function userInfoForm(userId, userName) {
             <tr>
               <th>이름</th>
               <td>
-                <input type="text" readOnly placeholder=${userName} />
+                <input type="text" class="user-name" value=${userName} />
               </td>
             </tr>
             <tr>
               <th>기존 비밀번호</th>
               <td>
-                <input type="password" class="pw-input">
+                <input type="password" class="old-pw-input" minlength="8" maxlength="16" />
                 (영문 대소문자/숫자/특수문자 중 3가지 이상 조합, 8자~16자)
               </td>
             </tr>
             <tr>
               <th>새로운 비밀번호</th>
               <td>
-                <input type="password" class="pw-input-2">
-              </td>
-            </tr>
-            <tr>
-              <th>프로필</th>
-              <td>
-                <input type="file">
+                <input type="password" class="new-pw-input" minlength="8" maxlength="16" />
+                (영문 대소문자/숫자/특수문자 중 3가지 이상 조합, 8자~16자)
               </td>
             </tr>
           </tbody>
@@ -1265,7 +1260,7 @@ function userAccountForm() {
           <tr>
             <th>계좌 추가</th>
             <td>
-              <select name="account" id="account">
+              <select name="add-account" id="add-account">
                 <option value="default">은행 이름</option>
                 <option value="004">KB국민은행</option>
                 <option value="088">신한은행</option>
