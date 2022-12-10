@@ -158,15 +158,10 @@ router();
 // 로그인 로그아웃 확인
 (async () => {
   // localStorage.length === 0 ? loginNjoin() : completeLogin();
-  const res = await stateLogin(localStorage.accessToken)
-  try {
+  if (localStorage.accessToken) {
+    const res = await stateLogin(localStorage.accessToken)
     res.displayName ? completeLogin() : window.localStorage.clear()
-  } catch {
-    console.log(error)
-  }
-  // if (res.displayName) {
-  //   completeLogin()
-  // } else return
+  } else return
 })();
 
 export { loginRender, joinRender, logOut, renderMyShop, renderMyOrder, renderMain, renderUserInfo }
