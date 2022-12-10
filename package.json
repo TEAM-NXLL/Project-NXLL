@@ -3,15 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-<<<<<<< HEAD
     "dev": "parcel index.html",
     "build": "parcel build index.html",
     "start": "parcel ./admin/admin2.html",
     "admin": "parcel ./admin/admin.html"
-=======
-    "dev": "parcel ./index.html",
-    "build": "parcel build ./index.html"
->>>>>>> 3c3ccb171799150865d4084e39745444b224231c
   },
   "repository": {
     "type": "git",
