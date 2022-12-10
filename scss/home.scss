@@ -1,13 +1,5 @@
 // index.html
 main {
-  > section:hover {
-    h1 {
-      &::after {
-        width: 30px;
-      }
-    }
-  }
-  
   .swiper {
     .swiper-pagination {
       transition: 0.5s;
@@ -49,6 +41,13 @@ main {
   
       .swiper-button-prev, .swiper-button-next {
         opacity: 1;
+      }
+    }
+  }
+  > section:hover {
+    h1 {
+      &::after {
+        width: 30px;
       }
     }
   }

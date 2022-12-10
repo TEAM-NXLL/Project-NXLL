@@ -1,6 +1,6 @@
 function mainForm() {
   return /* html */ `
-  <div class="swiper">
+  <div class="swiper mainSwiper">
     <ul class="swiper-wrapper">
       <li class="swiper-slide"><a href="#"><img src="../images/slide1-banner1.jpg" alt=""></a></li>
       <li class="swiper-slide"><a href="#"><img src="../images/slide1-banner2.jpg" alt=""></a></li>
@@ -259,7 +259,7 @@ function mainForm() {
 
     <!-- 키보드 배너영역 -->
     <section class="keyboard-banner mt70">
-      <div class="swiper">
+      <div class="swiper keyboardSwiper">
         <ul class="swiper-wrapper">
           <li class="swiper-slide"><a href="#"><img src="./images/slide2-banner1.jpg" alt=""></a></li>
           <li class="swiper-slide"><a href="#"><img src="./images/slide2-banner2.gif" alt=""></a></li>
@@ -840,7 +840,7 @@ function joinForm() {
           <h1>JOIN - US</h1>
           <p>아래 정보를 꼼꼼히 입력하세요.</p>
           <li class="base">
-          <h2>BASE <span>기본 정보를 입력하세요.</span> <span><img class="require" src="../images/icons/required.png" alt=""> 필수입력사항</span></h2>
+          <h2>BASE <span>기본 정보를 입력하세요.</span> <span class="compulsory"><img class="require" src="../images/icons/required.png" alt=""> 필수입력사항</span></h2>
           <table>
               <colgroup>
               <col style="width:150px" />
@@ -1042,7 +1042,7 @@ function myShoppingForm() {
 
 function myOrderForm() {
   return /* html */ `
-  <div class="title-box" scope="sub">
+    <div class="title-box" scope="sub">
       <p class="title-box__text">MY-ORDER</p>
       <p class="title-box__subtext">고객님의 주문내역 입니다.</p>
     </div>

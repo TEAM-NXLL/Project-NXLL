@@ -115,7 +115,7 @@ function renderUserInfo() {
 }
 
 // 메인 스와이퍼
-const swiper1 = new Swiper('main > .swiper', {
+const swiper1 = new Swiper('.mainSwiper', {
   effect: 'fade',
   loop: true,
   autoplay: true,
@@ -133,7 +133,7 @@ const swiper1 = new Swiper('main > .swiper', {
 })
 
 // 키보드 스와이퍼
-const swiper2 = new Swiper('.keyboard-banner > .swiper', {
+const swiper2 = new Swiper('.keyboardSwiper', {
   effect: 'fade',
   loop: true,
   autoplay: true,
