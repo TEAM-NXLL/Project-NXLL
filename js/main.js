@@ -100,7 +100,7 @@ function completeLogin() {
 }
 
 // myshop 렌더링
-function renderMyShop() {
+async function renderMyShop() {
   root.innerHTML = myShoppingForm()
 }
 
@@ -156,11 +156,17 @@ window.addEventListener('hashchange', router)
 router();
 
 // 로그인 로그아웃 확인
-(() => {
+(async () => {
   // localStorage.length === 0 ? loginNjoin() : completeLogin();
-  if (localStorage.length > 0) {
-    completeLogin()
-  } else return
+  const res = await stateLogin(localStorage.accessToken)
+  try {
+    res.displayName ? completeLogin() : window.localStorage.clear()
+  } catch {
+    console.log(error)
+  }
+  // if (res.displayName) {
+  //   completeLogin()
+  // } else return
 })();
 
 export { loginRender, joinRender, logOut, renderMyShop, renderMyOrder, renderMain, renderUserInfo }

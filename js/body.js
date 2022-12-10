@@ -912,10 +912,8 @@ function logInForm() {
 
 // 마이쇼핑 페이지
 function myShoppingForm() {
-  function renderInfo() {
-    const information = document.createElement('div')
-    information.classList.add('information')
-    information = /* html */`
+  const information = /* html */`
+    <div class="information">
       <div class="inner">
         <div class="information-item">
           <div class="thumbnail">
@@ -939,10 +937,8 @@ function myShoppingForm() {
           </div>
         </div>
       </div>
+    </div>
     `
-  }
-  // if(localStorage === 0) renderInfo()
-  
 
   return /* html */ `
   <div class="title-box" scope="sub">
@@ -950,35 +946,7 @@ function myShoppingForm() {
       <p class="title-box__subtext">나의 쇼핑내역을 한눈에 확인하세요.</p>
   </div>
 
-  <!-- -->
-
-
-    <!-- INFOMATION -->
-    <!-- <div class="information">
-      <div class="inner">
-        <div class="information-item">
-          <div class="thumbnail">
-            <img src="https://acttomall.com/_sp/_image/user.png" alt="">
-            <div class="description">
-              <p>저희 쇼핑몰을 이용해주셔서 대단히 감사합니다.<br />
-                <strong class="txtEm">회원 가입</strong>을 하시면 각종 다양한 혜택을 받으실 수 있습니다.
-              </p>
-            </div>
-          </div>
-          <div class="btn-group">
-            <p class="message">로그인이 필요해요</p>
-            <a href="#login" class="btn__login">
-              <i class="fas fa-sm ver-0 fa-power-off"></i>
-              &nbsp;로그인
-            </a>
-            <a href="#join" class="btn__join">
-              <i class="fas fa-sm ver-0 fa-plus"></i>
-              &nbsp;회원가입
-            </a>
-          </div>
-        </div>
-      </div>
-    </div> -->
+  ${localStorage.accessToken ? '' : information}
 
     <!-- ORDER-LIST -->
     <div class="order-list">
