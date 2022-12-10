@@ -12,6 +12,8 @@ const addFormEl = document.querySelector('.add-form')
 const thumbnailEl = document.querySelector('.add-thumbnail')
 const detailImgEl = document.querySelector('.add-detail')
 const priceInputEl = document.querySelector('#add-product-price')
+const detailResetEl = document.querySelector('.detail-reset')
+const thumbnailResetEl = document.querySelector('.thumbnail-reset')
 
 // 가격 입력 input칸에 통화단위 적용
 priceInputEl.addEventListener('input', event => {
@@ -26,6 +28,17 @@ thumbnailEl.addEventListener('change', event => {
 })
 detailImgEl.addEventListener('change', event => {
   checkFileSize(event.target, detailImgEl)
+})
+
+// 이미지파일 업로드 초기화버튼 클릭이벤트
+detailResetEl.addEventListener('click', () => {
+  document.querySelector('#detail-preview').src = "";
+  detailImgEl.value = "";
+
+})
+thumbnailResetEl.addEventListener('click', () => {
+  document.querySelector('#thumbnail-preview').src = "";
+  thumbnailEl.value = "";
 })
 
 // 이미지파일 업로드 시 미리보기
