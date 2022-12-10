@@ -3,6 +3,7 @@ import { getData, getLogin, getLogOut, stateLogin } from "./getdata.js";
 import { router } from "./route.js";
 import { deliveryEl, returnEl, deliveryDes, returnDes, mouseenter, mouseleave } from './footer.js'
 import { joinForm, logInForm, myOrderForm, myShoppingForm, mainForm, userInfoForm, userAccountForm } from "./body.js";
+import { editUserInfo } from "./userInfo.js";
 
 // 변수
 const root = document.querySelector('main')
@@ -59,7 +60,6 @@ function sendLogin() {
     const pwValue = document.querySelector('.signin-pw-input').value
     const res = await getLogin(idValue, pwValue)
     if (res.user.email) {
-      console.log(res)
       const userName = res.user.displayName
       const accessToken = res.accessToken
       localStorage.setItem("accessToken", accessToken)
@@ -82,7 +82,7 @@ function logOut() {
     const res = await getLogOut(accessToken)
     if (res) {
       localStorage.removeItem('accessToken'),
-        localStorage.removeItem('userName')
+      localStorage.removeItem('userName')
     }
     location.href = '/'
   })
@@ -114,6 +114,7 @@ async function renderUserInfo() {
   const res = await stateLogin(localStorage.accessToken)
   root.innerHTML = userInfoForm(res.email, res.displayName)
   root.innerHTML += userAccountForm()
+  editUserInfo()
 }
 
 // 메인 스와이퍼
