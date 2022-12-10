@@ -2,8 +2,8 @@ import { doc } from "prettier";
 import { getData, getLogin, getLogOut, stateLogin } from "./getdata.js";
 import { router } from "./route.js";
 import { deliveryEl, returnEl, deliveryDes, returnDes, mouseenter, mouseleave } from './footer.js'
-import { joinForm, logInForm, myOrderForm, myShoppingForm, mainForm, userInfoForm, userAccountForm, accountList } from "./body.js";
-import { editUserInfo, userOwnBank, addNewAccount } from "./userInfo.js";
+import { joinForm, logInForm, myOrderForm, myShoppingForm, mainForm, userInfoForm, userAccountForm, ownAccountList, addAbleAccountList } from "./body.js";
+import { editUserInfo, userOwnBank, addNewAccount, choiceBank } from "./userInfo.js";
 
 // 변수
 const root = document.querySelector('main')
@@ -147,9 +147,11 @@ async function renderUserInfo() {
   const {totalBalance, accounts} = await userOwnBank()
   const charge = totalBalance.toLocaleString()
   root.innerHTML += userAccountForm(charge)
-  accountList(accounts)
+  ownAccountList(accounts)
   editUserInfo()
+  addAbleAccountList()
   addNewAccount()
+  choiceBank()
 }
 
 // footer 함수

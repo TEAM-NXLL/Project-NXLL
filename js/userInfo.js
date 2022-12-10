@@ -24,6 +24,7 @@ export async function userOwnBank () {
   }
 }
 
+// 계좌 추가
 export async function addNewAccount () {
   const accountBtn = document.querySelector('.accountBtn')
   accountBtn.addEventListener('click', async (e) => {
@@ -37,5 +38,20 @@ export async function addNewAccount () {
     accountNumbers.forEach(number => account += number.value)
     await addAccount(localStorage.accessToken, bankName.value, account, phone)
     e.stopPropagation()
+  })
+}
+
+// 추가 계좌 은행 이름 눌었을 때 핸들러
+export async function choiceBank () {
+  const account = document.querySelector('#add-account')
+  const accountNumberEls = document.querySelectorAll('.account-number-input')
+  account.addEventListener('change', (e) => {
+    if (e.target.value !== "004" && e.target.value !== "011") {
+      accountNumberEls[3].readOnly = true
+      accountNumberEls[3].style.backgroundColor = '#fff'
+    } else {
+      accountNumberEls[3].readOnly = false
+      accountNumberEls[3].style.backgroundColor = '#D8D8D8'
+    }
   })
 }

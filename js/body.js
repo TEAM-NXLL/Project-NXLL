@@ -1,3 +1,6 @@
+import { accountLookUp } from './getdata.js'
+import { choiceBank } from './userInfo.js'
+
 // main
 function mainForm() {
   return /* html */ `
@@ -1263,13 +1266,6 @@ function userAccountForm(totalBalance) {
             <td>
               <select name="add-account" id="add-account">
                 <option value="default">은행 이름</option>
-                <option value="004">KB국민은행</option>
-                <option value="088">신한은행</option>
-                <option value="020">우리은행</option>
-                <option value="081">하나은행</option>
-                <option value="089">케이뱅크</option>
-                <option value="090">카카오뱅크</option>
-                <option value="011">NH농협은행</option>
               </select>
             </td>
           </tr>
@@ -1281,8 +1277,8 @@ function userAccountForm(totalBalance) {
           </tr>
           <tr>
             <th>계좌 번호</th>
-            <td>
-              <input type="text" class="account-number-input"> - <input type="text" class="account-number-input"> - <input type="text" class="account-number-input">
+            <td class='account-number-box'>
+              <input type="text" class="account-number-input"> - <input type="text" class="account-number-input"> - <input type="text" class="account-number-input"> - <input type="text" class="account-number-input">
             </td>
           </tr>
           </tbody>
@@ -1294,7 +1290,8 @@ function userAccountForm(totalBalance) {
   `
 }
 
-function accountList (accounts) {
+// 보유하고 있는 계좌 리스트
+function ownAccountList (accounts) {
   if (accounts.length > 0) {
     const bankNameEl = document.querySelector('#bank-name')
     const noBankEl = document.querySelector('.no-bank')
@@ -1308,4 +1305,19 @@ function accountList (accounts) {
   } else return
 }
 
-export { joinForm, logInForm, myShoppingForm, myOrderForm, mainForm, userInfoForm, userAccountForm, accountList }
+// 추가 가능한 계좌 리스트
+async function addAbleAccountList () {
+  const ableList = await accountLookUp(localStorage.accessToken)
+  const addAccountEl = document.querySelector('#add-account')
+  ableList.forEach(el => {
+    if (el.disabled === false) {
+      console.log(el)
+      const createBankEl = document.createElement('option')
+      createBankEl.value = el.code
+      createBankEl.textContent = el.name
+      addAccountEl.appendChild(createBankEl)
+    }
+  })
+}
+
+export { joinForm, logInForm, myShoppingForm, myOrderForm, mainForm, userInfoForm, userAccountForm, ownAccountList, addAbleAccountList }
