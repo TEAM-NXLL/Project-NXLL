@@ -82,10 +82,11 @@ main {
           display: flex;
           align-items: center;
         }
-        #account {
+        #add-account {
           width: 150px;
         }
-        .account-number-input {
+        .account-number-input,
+        .phone-number-input {
           width: 80px;
         }
       }

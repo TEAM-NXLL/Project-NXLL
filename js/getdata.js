@@ -96,7 +96,7 @@ export async function editUser(accessToken, displayName, oldPassword, newPasswor
   return json
 }
 
-// 계좌 조회 데이터
+// 선택 가능한 은행 목록 조회 데이터
 export async function accountLookUp(accessToken) {
   const res = await fetch(store.url + '/account/banks', {
     method: 'GET',
@@ -105,6 +105,40 @@ export async function accountLookUp(accessToken) {
       "apikey": process.env.API_KEY,
       "Authorization": `Bearer ${accessToken}`,
     }
+  })
+  const json = await res.json()
+  return json
+}
+
+// 계좌 목록 및 잔액 조회 데이터
+export async function accountCharge(accessToken) {
+  const res = await fetch(store.url + '/account', {
+    method: 'GET',
+    headers: {
+      ...store.headers,
+      "apikey": process.env.API_KEY,
+      "Authorization": `Bearer ${accessToken}`,
+    }
+  })
+  const json = await res.json()
+  return json
+}
+
+// 계좌 연결 데이터
+export async function addAccount(accessToken, bankCode, accountNumber, phoneNumber) {
+  const res = await fetch(store.url + '/account', {
+    method: 'POST',
+    headers: {
+      ...store.headers,
+      "apikey": process.env.API_KEY,
+      "Authorization": `Bearer ${accessToken}`,
+    },
+    body: JSON.stringify({
+      "bankCode": bankCode,
+      "accountNumber": accountNumber,
+      "phoneNumber": phoneNumber,
+      "signature": true
+    })
   })
   const json = await res.json()
   return json

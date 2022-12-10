@@ -45,7 +45,7 @@
     <!-- logo-area -->
     <div class="logo-area">
       <div class="inner">
-        <a href="/" class="logo-area__logo"><img src="../images/logo.png" alt="메인 로고" /></a>
+        <a href="/" class="logo-area__logo"><img src="../static/images/logo.png" alt="메인 로고" /></a>
         <div class="logo-area__search">
           <input id="keyword" type="text" title="키워드 검색" />
           <label for="keyword"><i class="fa-solid fa-magnifying-glass"></i></label>
@@ -65,16 +65,10 @@
             <a href="#">제품 추가</a>
           </li>
           <li>
-            <a href="#">제품 수정</a>
-          </li>
-          <li>
-            <a href="#">제품 삭제</a>
-          </li>
-          <li>
             <a href="#">전체 거래 내역</a>
           </li>
           <li>
-            <a href="#">거래 내역 상태</a>
+            <a href="#">개별 거래 내역</a>
           </li>
         </ul>
       </div>
@@ -90,23 +84,29 @@
     </section>
 
     <section class="add">
-      <!-- <form action="submit" class="add-form"> -->
       <form class="add-form">
 
-        <!-- 제품명... -->
+        <!-- 상품명 -->
         <div class="name-area">
           <label for="add-product-name">상품명</label>
-          <input type="text" class="add-product-name" name="add-product-name" />
+          <input type="text" class="add-product-name" name="add-product-name" required />
         </div>
         <div class="price-area">
           <label for="add-product-price">가격</label>
-          <input type="number" name="add-product-price" id="add-product-price" min="0" step="10" /> <span>원</span>
+          <input type="number" name="add-product-price" id="add-product-price" min="0" step="10" required />
+          <span>원</span>
         </div>
 
         <!-- 카테고리 선택 한개만 가능한 라디오버튼 -->
         <div class="tag-area">
           <label>상품 태그</label>
-          <input type="radio" id="tag1" class="tag" name="tag" value="스마트" checked />
+          <input type="radio" id="tag1" class="tag" name="tag" value="키보드" checked />
+          <label for="tag1" class="taglabel">키보드</label>
+          <input type="radio" id="tag2" class="tag" name="tag" value="마우스" />
+          <label for="tag2" class="taglabel">마우스</label>
+          <input type="radio" id="tag3" class="tag" name="tag" value="NEW ITEM" />
+          <label for="tag3" class="taglabel">NEW ITEM</label>
+          <!-- <input type="radio" id="tag1" class="tag" name="tag" value="스마트" checked />
           <label for="tag1" class="taglabel">스마트</label>
           <input type="radio" id="tag2" class="tag" name="tag" value="노트북" />
           <label for="tag2" class="taglabel">노트북</label>
@@ -115,39 +115,51 @@
           <input type="radio" id="tag4" class="tag" name="tag" value="음향" />
           <label for="tag4" class="taglabel">음향</label>
           <input type="radio" id="tag5" class="tag" name="tag" value="문구소형가전" />
-          <label for="tag5" class="taglabel">문구/소형가전</label>
+          <label for="tag5" class="taglabel">문구/소형가전</label> -->
         </div>
 
-        <!-- 카테고리 선택 여러개 가능 -->
-        <!-- <div class="tag-area">
-          <label>상품 태그</label>
-          <input type="checkbox" id="tag1" class="tag" name="tag" value="태그1" checked />
-          <label for="tag1" class="taglabel">태그1</label>
-          <input type="checkbox" id="tag2" class="tag" name="tag" value="태그2" />
-          <label for="tag2" class="taglabel">태그2</label>
-          <input type="checkbox" id="tag3" class="tag" name="tag" value="태그3" />
-          <label for="tag3" class="taglabel">태그3</label>
-          <input type="checkbox" id="tag4" class="tag" name="tag" value="태그4" />
-          <label for="tag4" class="taglabel">태그4</label>
-          <input type="checkbox" id="tag5" class="tag" name="tag" value="태그5" />
-          <label for="tag5" class="taglabel">태그5</label>
+        <!-- 태그 선택 여러개 가능 / 수정중 -->
+        <!-- <div class="check-area2">
+          <label>하위 태그</label>
+          <input type="checkbox" id="check1" class="check" name="check" value="마우스" checked />
+          <label for="check1" class="checklabel">마우스</label>
+          <input type="checkbox" id="check2" class="check" name="check" value="키보드" />
+          <label for="check2" class="checklabel">키보드</label>
+          <input type="checkbox" id="check3" class="check" name="check" value="태그3" />
+          <label for="check3" class="checklabel">헤드폰/이어폰</label>
+          <input type="checkbox" id="check4" class="check" name="check" value="태그4" />
+          <label for="check4" class="checklabel">거치대</label>
+          <input type="checkbox" id="check5" class="check" name="check" value="태그5" />
+          <label for="check5" class="checklabel">스피커/마이크</label>
         </div> -->
 
         <div class="description-area">
           <label for="description">상품 상세 설명</label>
-          <textarea class="add-product-description" maxlength=100 placeholder="상세 설명은 100자 이내로 작성해 주세요."></textarea>
+          <textarea class="add-product-description" maxlength=100 placeholder="상세 설명은 100자 이내로 작성해 주세요."
+            required></textarea>
         </div>
 
-        <!-- 썸네일 base64 -->
-        <div class="thumbnail-area">
-          <label for="add-thumbnail"> 상품 썸네일 등록(base64 주소) </label>
-          <textarea class="add-thumbnail" name="add-thumbnail" placeholder="제품 썸네일 사진은 1MB 이하여야 합니다."></textarea>
-        </div>
+        <!-- 파일 업로드 -->
+        <div class="file-upload-area">
+          <!-- 썸네일 업로드 -->
+          <div class="thumbnail-area">
+            <label for="add-thumbnail"> 상품 썸네일 등록 </label>
+            <img id="thumbnail-preview" />
+            <span>jpg, jpeg, webp, png, gif, svg 확장자만 등록 가능합니다.</span>
+            <span>파일 크기는 1MB 이하여야 합니다.</span>
+            <input type="file" accept="image/jpg, .jpeg, .webp, .png, .gif, .svg" class="add-thumbnail"
+              name="add-thumbnail" id="add-thumbnail">
+          </div>
 
-        <!-- 상세사진 base64 -->
-        <div class="detail-area">
-          <label for="add-detail"> 상품 상세사진 등록(base64 주소) </label>
-          <textarea class="add-detail" name="add-detail" placeholder="제품 상세 사진은 4MB 이하여야 합니다."></textarea>
+          <!-- 상세사진 업로드 -->
+          <div class="detail-area">
+            <label for="add-detail"> 상품 상세사진 등록 </label>
+            <img id="detail-preview" />
+            <span>jpg, jpeg, webp, png, gif, svg 확장자만 등록 가능합니다.</span>
+            <span>파일 크기는 4MB 이하여야 합니다.</span>
+            <input type="file" accept="image/jpg, .jpeg, .webp, .png, .gif, .svg" class="add-detail" name="add-detail"
+              id="add-detail">
+          </div>
         </div>
 
         <div class="add-button-area">
