@@ -1,3 +1,4 @@
+// main
 function mainForm() {
   return /* html */ `
   <div class="swiper mainSwiper">
@@ -22,7 +23,7 @@ function mainForm() {
       <ul class="inner block3">
         <li><a href="#">
             <div class="imgBox">
-              <span class="icon best"><img src="../images/icons/bestIcon.png" alt=""></span>
+              <span class="icon best"><img src="./images/icons/bestIcon.png" alt=""></span>
               <img src="../images/christmasGiftMini1.jpg" alt="">
             </div>
             <div class="colorBox">
@@ -833,6 +834,7 @@ function mainForm() {
     `
 }
 
+// 회원가입 페이지
 function joinForm() {
   return /* html */`
     <form id="form-tag">
@@ -883,6 +885,7 @@ function joinForm() {
   `
 }
 
+// 로그인 페이지
 function logInForm() {
   return /* html */`
     <form id="login-form">
@@ -900,13 +903,14 @@ function logInForm() {
         <li class="logIn-area__find">
           <a href="#">아이디 찾기</a>
           <a href="#">비밀번호 찾기</a>
-          <a href="./join.html">가입하기</a>
+          <a href="#join">가입하기</a>
         </li>
       </ul>
     </form>
   `
 }
 
+// 마이쇼핑 페이지
 function myShoppingForm() {
   function renderInfo() {
     const information = document.createElement('div')
@@ -1040,6 +1044,7 @@ function myShoppingForm() {
   `
 }
 
+// 구매 내역 페이지
 function myOrderForm() {
   return /* html */ `
     <div class="title-box" scope="sub">
@@ -1175,105 +1180,111 @@ function myOrderForm() {
   `
 }
 
-function userInfoForm() {
+// 회원 정보 관리 페이지
+function userInfoForm(userId, userName) {
   return /* html */`
-  <form id="form-tag">
-      <ul class="table-area">
-          <h1>MODIFY</h1>
-          <p>아래 정보를 꼼꼼히 입력하세요.</p>
-          <li class="base">
-          <h2>BASE <span>기본 정보를 입력하세요.</span></h2>
-          <table>
-              <colgroup>
-              <col style="width:150px" />
-              <col style="width:auto"/>
-          </colgroup>
-          <tbody>
-              <tr>
-              <th scope="row">아이디</th>
-              <td>test1@abc.com</td>
-              </tr>
-              <tr>
-                <th>이름</th>
-                <td>박영웅</td>
-              </tr>
-              <tr>
-                <th>비밀번호</th>
-                <td>
-                  <input type="password" class="pw-input">
-                  (영문 대소문자/숫자/특수문자 중 3가지 이상 조합, 8자~16자)
-                </td>
-              </tr>
-              <tr>
-                <th>비밀번호 확인</th>
-                <td>
-                  <input type="password" class="pw-input-2">
-                </td>
-              </tr>
-              <tr>
-                <th>프로필</th>
-                <td>
-                  <input type="file">
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </li>
-        <button id="editBtn" class="editBtn hover-navy" type="submit"><i class="fa-solid fa-check"></i>회원 정보 수정</button>
-      </ul>
-      <ul class="table-area">
-        <li class="account">
-        <h2>BANK INFO <span>계좌 정보를 확인하세요.</span></h2>
+  <form>
+    <ul class="table-area">
+      <h1>MODIFY</h1>
+      <p>아래 정보를 꼼꼼히 입력하세요.</p>
+      <li class="base">
+        <h2>BASE <span>수정 정보를 입력하세요.</span></h2>
         <table>
           <colgroup>
-          <col style="width:150px" />
-          <col style="width:auto"/>
+            <col style="width:150px" />
+            <col style="width:auto"/>
           </colgroup>
           <tbody>
             <tr>
-            <th scope="row">보유 계좌</th>
-            <td>
-                <select name="bank-name" id="bank-name">
-                  <option value="default">은행 이름</option>
-                  <option value="null">없음</option>
-                </select>
-            </td>
+            <th scope="row">아이디</th>
+            <td>${userId}</td>
             </tr>
             <tr>
-            <th class="account-charge">계좌 잔액</th>
-            <td>
-                <span class="charge-num">00,000</span>
-                <span class="won">원</span>
+              <th>이름</th>
+              <td>
+                <input type="text" class="user-name" value=${userName} />
               </td>
             </tr>
             <tr>
-              <th>계좌 추가</th>
+              <th>기존 비밀번호</th>
               <td>
-                <select name="account" id="account">
-                  <option value="default">은행 이름</option>
-                  <option value="004">KB국민은행</option>
-                  <option value="088">신한은행</option>
-                  <option value="020">우리은행</option>
-                  <option value="081">하나은행</option>
-                  <option value="089">케이뱅크</option>
-                  <option value="090">카카오뱅크</option>
-                  <option value="011">NH농협은행</option>
-                </select>
+                <input type="password" class="old-pw-input" minlength="8" maxlength="16" />
+                (영문 대소문자/숫자/특수문자 중 3가지 이상 조합, 8자~16자)
               </td>
             </tr>
             <tr>
-              <th>계좌 번호</th>
+              <th>새로운 비밀번호</th>
               <td>
-                <input type="text" class="account-number-input"> - <input type="text" class="account-number-input"> - <input type="text" class="account-number-input">
+                <input type="password" class="new-pw-input" minlength="8" maxlength="16" />
+                (영문 대소문자/숫자/특수문자 중 3가지 이상 조합, 8자~16자)
               </td>
             </tr>
           </tbody>
         </table>
       </li>
-      <button id="accountBtn" class="accountBtn hover-navy" type="submit"><i class="fa-solid fa-check"></i>계좌 정보 수정</button>
+      <button id="editBtn" class="editBtn hover-navy" type="submit"><i class="fa-solid fa-check"></i>회원 정보 수정</button>
     </ul>
-    </form>
+  </form>
   `
 }
 
-export { joinForm, logInForm, myShoppingForm, myOrderForm, mainForm, userInfoForm }
+// 회원 정보 관리 계좌
+function userAccountForm() {
+  return /* html */ `
+  <form>
+    <ul class="table-area">
+      <li class="account">
+      <h2>BANK INFO <span>계좌 정보를 확인하세요.</span></h2>
+      <table>
+        <colgroup>
+        <col style="width:150px" />
+        <col style="width:auto"/>
+        </colgroup>
+        <tbody>
+          <tr>
+            <th scope="row">보유 계좌</th>
+            <td>
+              <select name="bank-name" id="bank-name">
+                <option value="default">은행 이름</option>
+                <option value="null">없음</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <th class="account-charge">계좌 잔액</th>
+            <td>
+              <span class="charge-num">00,000</span>
+              <span class="won">원</span>
+            </td>
+          </tr>
+          <tr>
+            <th>계좌 추가</th>
+            <td>
+              <select name="add-account" id="add-account">
+                <option value="default">은행 이름</option>
+                <option value="004">KB국민은행</option>
+                <option value="088">신한은행</option>
+                <option value="020">우리은행</option>
+                <option value="081">하나은행</option>
+                <option value="089">케이뱅크</option>
+                <option value="090">카카오뱅크</option>
+                <option value="011">NH농협은행</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <th>계좌 번호</th>
+            <td>
+              <input type="text" class="account-number-input"> - <input type="text" class="account-number-input"> - <input type="text" class="account-number-input">
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </li>
+      <button id="accountBtn" class="accountBtn hover-navy" type="submit"><i class="fa-solid fa-check"></i>계좌 정보 수정</button>
+    </ul>
+  </form>
+  `
+}
+
+export { joinForm, logInForm, myShoppingForm, myOrderForm, mainForm, userInfoForm, userAccountForm }
