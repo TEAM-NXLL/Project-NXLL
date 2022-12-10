@@ -1,13 +1,5 @@
 // index.html
 main {
-  > section:hover {
-    h1 {
-      &::after {
-        width: 30px;
-      }
-    }
-  }
-  
   .swiper {
     .swiper-pagination {
       transition: 0.5s;
@@ -52,6 +44,13 @@ main {
       }
     }
   }
+  > section:hover {
+    h1 {
+      &::after {
+        width: 30px;
+      }
+    }
+  }
   
   // 키보드 배너 영역, 마우스 배너 영역, 데스크셋업 배너 영역
   .keyboard-banner, .mouse-banner, .deskSetup {
@@ -76,6 +75,7 @@ main {
         box-sizing: border-box;
 
         .imgBox {
+          background-color: #333;
           height: 237px;
           overflow: hidden;
           position: relative;
@@ -103,6 +103,7 @@ main {
   
               &.comment {
                 font-weight: bold;
+                margin-bottom: 0;
               }
   
               &.viewerId {
@@ -110,6 +111,7 @@ main {
                 font-size: 11px;
                 padding: 10px 0;
                 border-bottom: 1px solid var(--border-color);
+                margin-bottom: 0;
               }
             }
 
@@ -128,6 +130,7 @@ main {
 
                 p {
                   font-size: 11px;
+                  margin-bottom: 0;
 
                   &.productName {
                     font-weight: bold;

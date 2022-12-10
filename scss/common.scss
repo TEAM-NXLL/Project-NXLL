@@ -74,9 +74,6 @@ img {
 
 img.require {
   width: 10px;
-  height: 10px;
-  position: absolute;
-  background: url("../images/icons/required.png");
 }
 
 .inner {
@@ -294,7 +291,7 @@ p {
     }
 
     &.insta {
-      background: url("../images/icons/icons.png") no-repeat center;
+      background: url("../static/images/icons/icons.png") no-repeat center;
       background-position: -28px -661px;
       top: 0;
       right: 0;
@@ -304,6 +301,8 @@ p {
   }
 
   > img {
+    width: auto;
+    height: 100%;
     position: absolute;
     top: 50%;
     left: 50%;
