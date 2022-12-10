@@ -1,6 +1,3 @@
-import { accountLookUp } from './getdata.js'
-import { choiceBank } from './userInfo.js'
-
 // main
 function mainForm() {
   return /* html */ `
@@ -1215,11 +1212,12 @@ function userAccountForm(totalBalance) {
         <tbody>
           <tr>
             <th scope="row">보유 계좌</th>
-            <td>
+            <td class="bank-charge">
               <select name="bank-name" id="bank-name">
                 <option value="default">은행 이름</option>
                 <option value="null" class="no-bank">없음</option>
               </select>
+              <span class="charge"></span>
             </td>
           </tr>
           <tr>
