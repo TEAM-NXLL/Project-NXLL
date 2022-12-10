@@ -3,7 +3,7 @@ import { getData, getLogin, getLogOut, stateLogin } from "./getdata.js";
 import { router } from "./route.js";
 import { deliveryEl, returnEl, deliveryDes, returnDes, mouseenter, mouseleave } from './footer.js'
 import { joinForm, logInForm, myOrderForm, myShoppingForm, mainForm, userInfoForm, userAccountForm } from "./body.js";
-import { editUserInfo } from "./userInfo.js";
+import { editUserInfo, userOwnBank, addNewAccount } from "./userInfo.js";
 
 // 변수
 const root = document.querySelector('main')
@@ -144,8 +144,11 @@ function renderMyOrder() {
 async function renderUserInfo() {
   const res = await stateLogin(localStorage.accessToken)
   root.innerHTML = userInfoForm(res.email, res.displayName)
-  root.innerHTML += userAccountForm()
+  const {totalBalance, accounts} = await userOwnBank()
+  const charge = totalBalance.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+  root.innerHTML += userAccountForm(charge)
   editUserInfo()
+  addNewAccount()
 }
 
 // footer 함수
