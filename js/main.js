@@ -2,7 +2,7 @@ import { doc } from "prettier";
 import { getData, getLogin, getLogOut, stateLogin } from "./getdata.js";
 import { router } from "./route.js";
 import { deliveryEl, returnEl, deliveryDes, returnDes, mouseenter, mouseleave } from './footer.js'
-import { joinForm, logInForm, myOrderForm, myShoppingForm, mainForm, userInfoForm, userAccountForm, ownAccountList, addAbleAccountList } from "./body.js";
+import { joinForm, logInForm, myOrderForm, myShoppingForm, mainForm, userInfoForm, userAccountForm, detailForm } from "./body.js";
 import { editUserInfo, userOwnBank, addNewAccount, choiceBank } from "./userInfo.js";
 
 // 변수
@@ -131,7 +131,7 @@ function completeLogin() {
 }
 
 // myshop 렌더링
-function renderMyShop() {
+async function renderMyShop() {
   root.innerHTML = myShoppingForm()
 }
 
@@ -154,6 +154,11 @@ async function renderUserInfo() {
   choiceBank()
 }
 
+// detail 렌더링
+function renderDetail() {
+  root.innerHTML = detailForm()
+}
+
 // footer 함수
 mouseenter()
 mouseleave()
@@ -163,11 +168,12 @@ window.addEventListener('hashchange', router)
 router();
 
 // 로그인 로그아웃 확인
-(() => {
+(async () => {
   // localStorage.length === 0 ? loginNjoin() : completeLogin();
-  if (localStorage.length > 0) {
-    completeLogin()
+  if (localStorage.accessToken) {
+    const res = await stateLogin(localStorage.accessToken)
+    res.displayName ? completeLogin() : window.localStorage.clear()
   } else return
 })();
 
-export { loginRender, joinRender, logOut, renderMyShop, renderMyOrder, renderMain, renderUserInfo }
+export { loginRender, joinRender, logOut, renderMyShop, renderMyOrder, renderMain, renderUserInfo, renderDetail }

@@ -916,10 +916,8 @@ function logInForm() {
 
 // 마이쇼핑 페이지
 function myShoppingForm() {
-  function renderInfo() {
-    const information = document.createElement('div')
-    information.classList.add('information')
-    information = /* html */`
+  const information = /* html */`
+    <div class="information">
       <div class="inner">
         <div class="information-item">
           <div class="thumbnail">
@@ -943,10 +941,8 @@ function myShoppingForm() {
           </div>
         </div>
       </div>
+    </div>
     `
-  }
-  // if(localStorage === 0) renderInfo()
-  
 
   return /* html */ `
   <div class="title-box" scope="sub">
@@ -954,35 +950,7 @@ function myShoppingForm() {
       <p class="title-box__subtext">나의 쇼핑내역을 한눈에 확인하세요.</p>
   </div>
 
-  <!-- -->
-
-
-    <!-- INFOMATION -->
-    <!-- <div class="information">
-      <div class="inner">
-        <div class="information-item">
-          <div class="thumbnail">
-            <img src="https://acttomall.com/_sp/_image/user.png" alt="">
-            <div class="description">
-              <p>저희 쇼핑몰을 이용해주셔서 대단히 감사합니다.<br />
-                <strong class="txtEm">회원 가입</strong>을 하시면 각종 다양한 혜택을 받으실 수 있습니다.
-              </p>
-            </div>
-          </div>
-          <div class="btn-group">
-            <p class="message">로그인이 필요해요</p>
-            <a href="#login" class="btn__login">
-              <i class="fas fa-sm ver-0 fa-power-off"></i>
-              &nbsp;로그인
-            </a>
-            <a href="#join" class="btn__join">
-              <i class="fas fa-sm ver-0 fa-plus"></i>
-              &nbsp;회원가입
-            </a>
-          </div>
-        </div>
-      </div>
-    </div> -->
+  ${localStorage.accessToken ? '' : information}
 
     <!-- ORDER-LIST -->
     <div class="order-list">
@@ -1290,34 +1258,64 @@ function userAccountForm(totalBalance) {
   `
 }
 
-// 보유하고 있는 계좌 리스트
-function ownAccountList (accounts) {
-  if (accounts.length > 0) {
-    const bankNameEl = document.querySelector('#bank-name')
-    const noBankEl = document.querySelector('.no-bank')
-    noBankEl.remove()
-    accounts.forEach(account => {
-      const createBankList = document.createElement('option')
-      createBankList.value = account.bankCode
-      createBankList.textContent = account.bankName
-      bankNameEl.appendChild(createBankList)
-    })
-  } else return
+// 상품 상세페이지
+function detailForm() {
+  return /* html */`
+  <div class="page-nav">
+    <div class="inner">
+      <a href="/">HOME</a>
+      <a href="#">마우스(검색키워드)</a>
+    </div>
+  </div>
+
+  <div class="product-detail">
+      <div class="product-detail__header">
+        <div class="inner">
+          <div class="product-thumbnail">
+            <img src="images/christmasGiftMini1.jpg" alt="대표이미지">
+          </div>
+          <div class="product-order">
+            <div class="product-summary">
+              <div class="product-summary__title">
+                <span>[크리스마스 증정 이벤트] 손목 받침대+키스킨+컬러 키 캡 증정</span>
+                <p>[크리스마스 증정 이벤트]엑토 레트로 블루투스 미니 키보드 B303</p>
+                <span class="price">49,900원</span>
+              </div>
+              <div class="product-summary__info">
+                <p class="info-title">상품 정보</p>
+                <p><em>상품 설명</em> <span>[크리스마스 증정 이벤트] 손목 받침대+키스킨+컬러 키 캡 증정 </span></p>
+                <p><em>상품 포함 태그</em> <span style="color:#555;">가전, 노트북, 컴퓨터</span></p>
+                <p><em>배송비</em> <span style="color:red;">무료</span></p>
+                <p><em>판매 상태</em> <span>판매중</span></p>
+              </div>
+              <div class="btn-group">
+                <a href="#" class="buy-btn">바로 구매하기</a>
+                <a href="#" class="cart-btn"><i class="fas fa-sm ver-0 fa-plus"></i>장바구니</a>
+              </div>
+              <div class="delivery-info">
+                <p>제주도 및 도서산간 지역은 배송료 3,000원이 추가됩니다</p>
+                <p>위 옵션선택 박스를 선택하시면 아래에 상품이 추가됩니다.</p>
+                <p>주문수량 안내: 최소주문수량 1개 이상</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-detail__body">
+        <ul class="tab-menu detail">
+          <li><a href="#">상품구매</a></li>
+          <li><a href="#">상세정보</a></li>
+        </ul>
+        
+        <div class="inner">
+          <div class="product-detail__img">
+            <img src="/images/christmasGiftMini1.jpg" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+  `
 }
 
-// 추가 가능한 계좌 리스트
-async function addAbleAccountList () {
-  const ableList = await accountLookUp(localStorage.accessToken)
-  const addAccountEl = document.querySelector('#add-account')
-  ableList.forEach(el => {
-    if (el.disabled === false) {
-      console.log(el)
-      const createBankEl = document.createElement('option')
-      createBankEl.value = el.code
-      createBankEl.textContent = el.name
-      addAccountEl.appendChild(createBankEl)
-    }
-  })
-}
-
-export { joinForm, logInForm, myShoppingForm, myOrderForm, mainForm, userInfoForm, userAccountForm, ownAccountList, addAbleAccountList }
+export { joinForm, logInForm, myShoppingForm, myOrderForm, mainForm, userInfoForm, userAccountForm, detailForm }
