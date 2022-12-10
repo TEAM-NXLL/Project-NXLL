@@ -1246,12 +1246,12 @@ function userAccountForm(totalBalance) {
             <td>
               <select name="bank-name" id="bank-name">
                 <option value="default">은행 이름</option>
-                <option value="null">없음</option>
+                <option value="null" class="no-bank">없음</option>
               </select>
             </td>
           </tr>
           <tr>
-            <th class="account-charge">계좌 잔액</th>
+            <th class="account-charge">전체 계좌 잔액</th>
             <td>
               <span class="charge-num">${totalBalance}</span>
               <span class="won">원</span>
@@ -1293,4 +1293,18 @@ function userAccountForm(totalBalance) {
   `
 }
 
-export { joinForm, logInForm, myShoppingForm, myOrderForm, mainForm, userInfoForm, userAccountForm }
+function accountList (accounts) {
+  if (accounts.length > 0) {
+    const bankNameEl = document.querySelector('#bank-name')
+    const noBankEl = document.querySelector('.no-bank')
+    noBankEl.remove()
+    accounts.forEach(account => {
+      const createBankList = document.createElement('option')
+      createBankList.value = account.bankCode
+      createBankList.textContent = account.bankName
+      bankNameEl.appendChild(createBankList)
+    })
+  } else return
+}
+
+export { joinForm, logInForm, myShoppingForm, myOrderForm, mainForm, userInfoForm, userAccountForm, accountList }
