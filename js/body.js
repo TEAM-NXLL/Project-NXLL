@@ -1,3 +1,4 @@
+// main
 function mainForm() {
   return /* html */ `
   <div class="swiper">
@@ -22,7 +23,7 @@ function mainForm() {
       <ul class="inner block3">
         <li><a href="#">
             <div class="imgBox">
-              <span class="icon best"><img src="../images/icons/bestIcon.png" alt=""></span>
+              <span class="icon best"><img src="./images/icons/bestIcon.png" alt=""></span>
               <img src="../images/christmasGiftMini1.jpg" alt="">
             </div>
             <div class="colorBox">
@@ -275,93 +276,97 @@ function mainForm() {
 
       <!-- 마우스 상품목록 -->
       <section class="mouse mt70">
-        <h1>MOUSE</h1>
-        <ul class="inner block2">
-          <li><a href="#">
-              <div class="imgBox">
-                <img src="./images/mouse-wirelessMint.jpg" alt="">
-              </div>
-              <div class="colorBox">
-                <span class="beige"></span>
-                <span class="mint"></span>
-                <span class="pink"></span>
-                <span class="white"></span>
-                <span class="navy"></span>
-              </div>
-              <div class="textBox">
-                엑토 마인 무선 저소음 광마우스(+리시버) <span>AWM-03</span>
-              </div>
-              <div class="priceBox">
-                <span class="discount">26,900원</span>18,900원<br />
-                <span class="salePercent">30% SALE</span>
-                <span class="newIcon"><img src="./images/icons/newIcon.gif" alt=""></span>
-              </div>
-            </a></li>
-          <li><a href="#">
-              <div class="imgBox">
-                <span class="icon saleTree"><img src="./images/icons/saleTree.png" alt=""></span>
-                <img src="./images/mouse-bluetoothPink.jpg" alt="">
-              </div>
-              <div class="colorBox">
-                <span class="beige"></span>
-                <span class="mint"></span>
-                <span class="pink"></span>
-                <span class="white"></span>
-                <span class="navy"></span>
-              </div>
-              <div class="textBox">
-                엑토 LED 블루투스 저소음 광마우스 <span>ABM-03</span>
-              </div>
-              <div class="priceBox">
-                <span class="discount">30,900원</span>21,900원<br />
-                <span class="salePercent">29% SALE</span>
-                <span class="newIcon"><img src="./images/icons/newIcon.gif" alt=""></span>
-              </div>
-            </a></li>
-          <li><a href="#">
-              <div class="imgBox">
-                <span class="icon best"><img src="./images/icons/bestIcon.png" alt=""></span>
-                <img src="./images/mouse-wirelessYellow.jpg" alt="">
-              </div>
-              <div class="colorBox">
-                <span class="beige"></span>
-                <span class="mint"></span>
-                <span class="pink"></span>
-                <span class="white"></span>
-                <span class="navy"></span>
-              </div>
-              <div class="textBox">
-                엑토 테일 무선 저소음 광마우스(+리시버) <span>AWM-01</span>
-              </div>
-              <div class="priceBox">
-                <span class="discount">26,900원</span>18,900원<br />
-                <span class="salePercent">30% SALE</span>
-                <span class="newIcon"><img src="./images/icons/newIcon.gif" alt=""></span>
-              </div>
-            </a></li>
-          <li><a href="#">
-              <div class="imgBox">
-                <span class="icon saleTree"><img src="./images/icons/saleTree.png" alt=""></span>
-                <img src="./images/mouse-bluetoothWhite.jpg" alt="">
-              </div>
-              <div class="colorBox">
-                <span class="beige"></span>
-                <span class="mint"></span>
-                <span class="pink"></span>
-                <span class="white"></span>
-                <span class="navy"></span>
-              </div>
-              <div class="textBox">
-                엑토 엣지 블루투스 저소음 광마우스 <span>ABM-01</span>
-              </div>
-              <div class="priceBox">
-                <span class="discount">30,900원</span>21,900원<br />
-                <span class="salePercent">29% SALE</span>
-                <span class="newIcon"><img src="./images/icons/newIcon.gif" alt=""></span>
-              </div>
-            </a></li>
-        </ul>
-      </section><!-- 마우스 상품목록 -->
+      <h1>MOUSE</h1>
+      <ul class="inner block2">
+        <li><a href="#">
+            <div class="imgBox">
+              <img src="./images/mouse-wirelessMint.jpg" alt="">
+              <img class="imgHover" src="./images/mouse-wirelessMint-hover.jpg" alt="">
+            </div>
+            <div class="colorBox">
+              <span class="beige"></span>
+              <span class="mint"></span>
+              <span class="pink"></span>
+              <span class="white"></span>
+              <span class="navy"></span>
+            </div>
+            <div class="textBox">
+              엑토 마인 무선 저소음 광마우스(+리시버) <span>AWM-03</span>
+            </div>
+            <div class="priceBox">
+              <span class="discount">26,900원</span>18,900원<br />
+              <span class="salePercent">30% SALE</span>
+              <span class="newIcon"><img src="./images/icons/newIcon.gif" alt=""></span>
+            </div>
+          </a></li>
+        <li><a href="#">
+            <div class="imgBox">
+              <span class="icon saleTree"><img src="./images/icons/saleTree.png" alt=""></span>
+              <img src="./images/mouse-bluetoothPink.jpg" alt="">
+              <img class="imgHover" src="./images/mouse-bluetoothPink-hover.jpg" alt="">
+            </div>
+            <div class="colorBox">
+              <span class="beige"></span>
+              <span class="mint"></span>
+              <span class="pink"></span>
+              <span class="white"></span>
+              <span class="navy"></span>
+            </div>
+            <div class="textBox">
+              엑토 LED 블루투스 저소음 광마우스 <span>ABM-03</span>
+            </div>
+            <div class="priceBox">
+              <span class="discount">30,900원</span>21,900원<br />
+              <span class="salePercent">29% SALE</span>
+              <span class="newIcon"><img src="./images/icons/newIcon.gif" alt=""></span>
+            </div>
+          </a></li>
+        <li><a href="#">
+            <div class="imgBox">
+              <span class="icon best"><img src="./images/icons/bestIcon.png" alt=""></span>
+              <img src="./images/mouse-wirelessYellow.jpg" alt="">
+              <img class="imgHover" src="./images/mouse-wirelessYellow-hover.jpg" alt="">
+            </div>
+            <div class="colorBox">
+              <span class="beige"></span>
+              <span class="mint"></span>
+              <span class="pink"></span>
+              <span class="white"></span>
+              <span class="navy"></span>
+            </div>
+            <div class="textBox">
+              엑토 테일 무선 저소음 광마우스(+리시버) <span>AWM-01</span>
+            </div>
+            <div class="priceBox">
+              <span class="discount">26,900원</span>18,900원<br />
+              <span class="salePercent">30% SALE</span>
+              <span class="newIcon"><img src="./images/icons/newIcon.gif" alt=""></span>
+            </div>
+          </a></li>
+        <li><a href="#">
+            <div class="imgBox">
+              <span class="icon saleTree"><img src="./images/icons/saleTree.png" alt=""></span>
+              <img src="./images/mouse-bluetoothWhite.jpg" alt="">
+              <img class="imgHover" src="./images/mouse-bluetoothWhite-hover.jpg" alt="">
+            </div>
+            <div class="colorBox">
+              <span class="beige"></span>
+              <span class="mint"></span>
+              <span class="pink"></span>
+              <span class="white"></span>
+              <span class="navy"></span>
+            </div>
+            <div class="textBox">
+              엑토 엣지 블루투스 저소음 광마우스 <span>ABM-01</span>
+            </div>
+            <div class="priceBox">
+              <span class="discount">30,900원</span>21,900원<br />
+              <span class="salePercent">29% SALE</span>
+              <span class="newIcon"><img src="./images/icons/newIcon.gif" alt=""></span>
+            </div>
+          </a></li>
+      </ul>
+    </section><!-- 마우스 상품목록 -->
 
     <!-- 마우스 배너영역 -->
     <section class="mouse-banner mt70">
@@ -381,232 +386,244 @@ function mainForm() {
 
       <!-- 뉴아이템 상품목록 -->
       <section class="newItem mt70">
-        <h1>NEW ITEM</h1>
-        <ul class="inner block3">
-          <li><a href="#">
-              <div class="imgBox">
-                <img src="./images/mouse-wirelessMint.jpg" alt="">
-              </div>
-              <div class="colorBox">
-                <span class="beige"></span>
-                <span class="mint"></span>
-                <span class="pink"></span>
-                <span class="white"></span>
-                <span class="navy"></span>
-              </div>
-              <div class="textBox">
-                엑토 마인 무선 저소음 광마우스(+리시버) <span>AWM-03</span>
-              </div>
-              <div class="priceBox">
-                <span class="discount">26,900원</span>18,900원<br />
-                <span class="salePercent">30% SALE</span>
-                <span class="newIcon"><img src="./images/icons/newIcon.gif" alt=""></span>
-              </div>
-            </a></li>
-          <li><a href="#">
-              <div class="imgBox">
-                <span class="icon saleTree"><img src="./images/icons/saleTree.png" alt=""></span>
-                <img src="./images/mouse-bluetoothPink.jpg" alt="">
-              </div>
-              <div class="colorBox">
-                <span class="beige"></span>
-                <span class="mint"></span>
-                <span class="pink"></span>
-                <span class="white"></span>
-                <span class="navy"></span>
-              </div>
-              <div class="textBox">
-                엑토 LED 블루투스 저소음 광마우스 <span>ABM-03</span>
-              </div>
-              <div class="priceBox">
-                <span class="discount">30,900원</span>21,900원<br />
-                <span class="salePercent">29% SALE</span>
-                <span class="newIcon"><img src="./images/icons/newIcon.gif" alt=""></span>
-              </div>
-            </a></li>
-          <li><a href="#">
-              <div class="imgBox">
-                <span class="icon best"><img src="./images/icons/bestIcon.png" alt=""></span>
-                <img src="./images/mouse-wirelessYellow.jpg" alt="">
-              </div>
-              <div class="colorBox">
-                <span class="beige"></span>
-                <span class="mint"></span>
-                <span class="pink"></span>
-                <span class="white"></span>
-                <span class="navy"></span>
-              </div>
-              <div class="textBox">
-                엑토 테일 무선 저소음 광마우스(+리시버) <span>AWM-01</span>
-              </div>
-              <div class="priceBox">
-                <span class="discount">26,900원</span>18,900원<br />
-                <span class="salePercent">30% SALE</span>
-                <span class="newIcon"><img src="./images/icons/newIcon.gif" alt=""></span>
-              </div>
-            </a></li>
-          <li><a href="#">
-              <div class="imgBox">
-                <span class="icon saleTree"><img src="./images/icons/saleTree.png" alt=""></span>
-                <img src="./images/mouse-bluetoothWhite.jpg" alt="">
-              </div>
-              <div class="colorBox">
-                <span class="beige"></span>
-                <span class="mint"></span>
-                <span class="pink"></span>
-                <span class="white"></span>
-                <span class="navy"></span>
-              </div>
-              <div class="textBox">
-                엑토 엣지 블루투스 저소음 광마우스 <span>ABM-01</span>
-              </div>
-              <div class="priceBox">
-                <span class="discount">30,900원</span>21,900원<br />
-                <span class="salePercent">29% SALE</span>
-                <span class="newIcon"><img src="./images/icons/newIcon.gif" alt=""></span>
-              </div>
-            </a></li>
-          <li><a href="#">
-              <div class="imgBox">
-                <span class="icon saleTree"><img src="./images/icons/saleTree.png" alt=""></span>
-                <img src="./images/mouse-vertical.jpg" alt="">
-              </div>
-              <div class="colorBox">
-                <span class="pastelBeige"></span>
-                <span class="pink"></span>
-                <span class="navy"></span>
-              </div>
-              <div class="textBox">
-                커브드 블루투스&무선 버티컬 광마우스 <span>BTM-12</span>
-              </div>
-              <div class="priceBox">
-                <span class="discount">49,600원</span>35,900원<br />
-                <span class="salePercent">28% SALE</span>
-                <span class="newIcon"><img src="./images/icons/newIcon.gif" alt=""></span>
-              </div>
-            </a></li>
-          <li><a href="#">
-              <div class="imgBox">
-                <img src="./images/adapter-speedCtoLAN.jpg" alt="">
-              </div>
-              <div class="colorBox">
-                <span class="gray"></span>
-              </div>
-              <div class="textBox">
-                스피드 타입 C to LAN 어댑터 <span>LAN-04</span>
-              </div>
-              <div class="priceBox">
-                <span class="discount">31,500원</span>21,900원<br />
-                <span class="salePercent">30% SALE</span>
-                <span class="newIcon"><img src="./images/icons/newIcon.gif" alt=""></span>
-              </div>
-            </a></li>
-          <li><a href="#">
-              <div class="imgBox">
-                <span class="icon saleTree"><img src="./images/icons/saleTree.png" alt=""></span>
-                <img src="./images/deskpadNavy.jpg" alt="">
-              </div>
-              <div class="colorBox">
-                <span class="blueNavy"></span>
-                <span class="black"></span>
-              </div>
-              <div class="textBox">
-                버클 데스크 패드 <span>MP-58</span>
-              </div>
-              <div class="priceBox">
-                <span class="discount">14,500원</span>12,900원<br />
-                <span class="salePercent">11% SALE</span>
-                <span class="newIcon"><img src="./images/icons/newIcon.gif" alt=""></span>
-              </div>
-            </a></li>
-          <li><a href="#">
-              <div class="imgBox">
-                <img src="./images/masageGun.jpg" alt="">
-              </div>
-              <div class="colorBox">
-                <span class="black"></span>
-              </div>
-              <div class="textBox">
-                비트 마사지 건 <span>HMS-12</span>
-              </div>
-              <div class="priceBox">
-                <span class="discount">41,100원</span>27,900원<br />
-                <span class="salePercent">32% SALE</span>
-                <span class="newIcon"><img src="./images/icons/newIcon.gif" alt=""></span>
-              </div>
-            </a></li>
-          <li><a href="#">
-              <div class="imgBox">
-                <span class="icon saleTree"><img src="./images/icons/saleTree.png" alt=""></span>
-                <img src="./images/chicWhite.jpg" alt="">
-              </div>
-              <div class="colorBox">
-                <span class="pastelBeige"></span>
-                <span class="pink"></span>
-                <span class="green"></span>
-                <span class="navy"></span>
-              </div>
-              <div class="textBox">
-                시크 블루투스 무선 겸용 키보드(키스킨 포함) <span>BTK-12</span>
-              </div>
-              <div class="priceBox">
-                <span class="discount">30,900원</span>25,900원<br />
-                <span class="salePercent">16% SALE</span>
-                <span class="newIcon"><img src="./images/icons/newIcon.gif" alt=""></span>
-              </div>
-            </a></li>
-          <li><a href="#">
-              <div class="imgBox">
-                <span class="icon saleTree"><img src="./images/icons/saleTree.png" alt=""></span>
-                <img src="./images/cable-CtoC.jpg" alt="">
-              </div>
-              <div class="colorBox">
-                <span class="black"></span>
-              </div>
-              <div class="textBox">
-                디스플레이 타입 C to 타입 C 케이블 <span>TC-42</span>
-              </div>
-              <div class="priceBox">
-                <span class="discount">13,300원</span>11,900원<br />
-                <span class="salePercent">11% SALE</span>
-                <span class="newIcon"><img src="./images/icons/newIcon.gif" alt=""></span>
-              </div>
-            </a></li>
-          <li><a href="#">
-              <div class="imgBox">
-                <img src="./images/cable-C.jpg" alt="">
-              </div>
-              <div class="colorBox">
-                <span class="black"></span>
-              </div>
-              <div class="textBox">
-                슈퍼 타입 C 케이블 <span>TC-43</span>
-              </div>
-              <div class="priceBox">
-                <span class="discount">11,900원</span>6,900원<br />
-                <span class="salePercent">42% SALE</span>
-                <span class="newIcon"><img src="./images/icons/newIcon.gif" alt=""></span>
-              </div>
-            </a></li>
-          <li><a href="#">
-              <div class="imgBox">
-                <span class="icon saleTree"><img src="./images/icons/saleTree.png" alt=""></span>
-                <img src="./images/giant.jpg" alt="">
-              </div>
-              <div class="colorBox">
-                <span class="white"></span>
-              </div>
-              <div class="textBox">
-                자이언트 보풀제거기 <span>SLH-27</span>
-              </div>
-              <div class="priceBox">
-                <span class="discount">32,700원</span>19,900원<br />
-                <span class="salePercent">39% SALE</span>
-                <span class="newIcon"><img src="./images/icons/newIcon.gif" alt=""></span>
-              </div>
-            </a></li>
-        </ul>
-      </section><!-- 뉴아이템 상품목록 -->
+      <h1>NEW ITEM</h1>
+      <ul class="inner block3">
+        <li><a href="#">
+            <div class="imgBox">
+              <img src="./images/mouse-wirelessMint.jpg" alt="">
+              <img class="imgHover" src="./images/mouse-wirelessMint-hover.jpg" alt="">
+            </div>
+            <div class="colorBox">
+              <span class="beige"></span>
+              <span class="mint"></span>
+              <span class="pink"></span>
+              <span class="white"></span>
+              <span class="navy"></span>
+            </div>
+            <div class="textBox">
+              엑토 마인 무선 저소음 광마우스(+리시버) <span>AWM-03</span>
+            </div>
+            <div class="priceBox">
+              <span class="discount">26,900원</span>18,900원<br />
+              <span class="salePercent">30% SALE</span>
+              <span class="newIcon"><img src="./images/icons/newIcon.gif" alt=""></span>
+            </div>
+          </a></li>
+        <li><a href="#">
+            <div class="imgBox">
+              <span class="icon saleTree"><img src="./images/icons/saleTree.png" alt=""></span>
+              <img src="./images/mouse-bluetoothPink.jpg" alt="">
+              <img class="imgHover" src="./images/mouse-bluetoothPink-hover.jpg" alt="">
+            </div>
+            <div class="colorBox">
+              <span class="beige"></span>
+              <span class="mint"></span>
+              <span class="pink"></span>
+              <span class="white"></span>
+              <span class="navy"></span>
+            </div>
+            <div class="textBox">
+              엑토 LED 블루투스 저소음 광마우스 <span>ABM-03</span>
+            </div>
+            <div class="priceBox">
+              <span class="discount">30,900원</span>21,900원<br />
+              <span class="salePercent">29% SALE</span>
+              <span class="newIcon"><img src="./images/icons/newIcon.gif" alt=""></span>
+            </div>
+          </a></li>
+        <li><a href="#">
+            <div class="imgBox">
+              <span class="icon best"><img src="./images/icons/bestIcon.png" alt=""></span>
+              <img src="./images/mouse-wirelessYellow.jpg" alt="">
+              <img class="imgHover" src="./images/mouse-wirelessYellow-hover.jpg" alt="">
+            </div>
+            <div class="colorBox">
+              <span class="beige"></span>
+              <span class="mint"></span>
+              <span class="pink"></span>
+              <span class="white"></span>
+              <span class="navy"></span>
+            </div>
+            <div class="textBox">
+              엑토 테일 무선 저소음 광마우스(+리시버) <span>AWM-01</span>
+            </div>
+            <div class="priceBox">
+              <span class="discount">26,900원</span>18,900원<br />
+              <span class="salePercent">30% SALE</span>
+              <span class="newIcon"><img src="./images/icons/newIcon.gif" alt=""></span>
+            </div>
+          </a></li>
+        <li><a href="#">
+            <div class="imgBox">
+              <span class="icon saleTree"><img src="./images/icons/saleTree.png" alt=""></span>
+              <img src="./images/mouse-bluetoothWhite.jpg" alt="">
+              <img class="imgHover" src="./images/mouse-bluetoothWhite-hover.jpg" alt="">
+            </div>
+            <div class="colorBox">
+              <span class="beige"></span>
+              <span class="mint"></span>
+              <span class="pink"></span>
+              <span class="white"></span>
+              <span class="navy"></span>
+            </div>
+            <div class="textBox">
+              엑토 엣지 블루투스 저소음 광마우스 <span>ABM-01</span>
+            </div>
+            <div class="priceBox">
+              <span class="discount">30,900원</span>21,900원<br />
+              <span class="salePercent">29% SALE</span>
+              <span class="newIcon"><img src="./images/icons/newIcon.gif" alt=""></span>
+            </div>
+          </a></li>
+        <li><a href="#">
+            <div class="imgBox">
+              <span class="icon saleTree"><img src="./images/icons/saleTree.png" alt=""></span>
+              <img src="./images/mouse-vertical.jpg" alt="">
+              <img class="imgHover" src="./images/mouse-vertical-hover.jpg" alt="">
+            </div>
+            <div class="colorBox">
+              <span class="pastelBeige"></span>
+              <span class="pink"></span>
+              <span class="navy"></span>
+            </div>
+            <div class="textBox">
+              커브드 블루투스&무선 버티컬 광마우스 <span>BTM-12</span>
+            </div>
+            <div class="priceBox">
+              <span class="discount">49,600원</span>35,900원<br />
+              <span class="salePercent">28% SALE</span>
+              <span class="newIcon"><img src="./images/icons/newIcon.gif" alt=""></span>
+            </div>
+          </a></li>
+        <li><a href="#">
+            <div class="imgBox">
+              <img src="./images/adapter-speedCtoLAN.jpg" alt="">
+              <img class="imgHover" src="./images/adapter-speedCtoLAN-hover.jpg" alt="">
+            </div>
+            <div class="colorBox">
+              <span class="gray"></span>
+            </div>
+            <div class="textBox">
+              스피드 타입 C to LAN 어댑터 <span>LAN-04</span>
+            </div>
+            <div class="priceBox">
+              <span class="discount">31,500원</span>21,900원<br />
+              <span class="salePercent">30% SALE</span>
+              <span class="newIcon"><img src="./images/icons/newIcon.gif" alt=""></span>
+            </div>
+          </a></li>
+        <li><a href="#">
+            <div class="imgBox">
+              <span class="icon saleTree"><img src="./images/icons/saleTree.png" alt=""></span>
+              <img src="./images/deskpadNavy.jpg" alt="">
+              <img class="imgHover" src="./images/deskpadNavy-hover.jpg" alt="">
+            </div>
+            <div class="colorBox">
+              <span class="blueNavy"></span>
+              <span class="black"></span>
+            </div>
+            <div class="textBox">
+              버클 데스크 패드 <span>MP-58</span>
+            </div>
+            <div class="priceBox">
+              <span class="discount">14,500원</span>12,900원<br />
+              <span class="salePercent">11% SALE</span>
+              <span class="newIcon"><img src="./images/icons/newIcon.gif" alt=""></span>
+            </div>
+          </a></li>
+        <li><a href="#">
+            <div class="imgBox">
+              <img src="./images/masageGun.jpg" alt="">
+              <img class="imgHover" src="./images/masageGun-hover.jpg" alt="">
+            </div>
+            <div class="colorBox">
+              <span class="black"></span>
+            </div>
+            <div class="textBox">
+              비트 마사지 건 <span>HMS-12</span>
+            </div>
+            <div class="priceBox">
+              <span class="discount">41,100원</span>27,900원<br />
+              <span class="salePercent">32% SALE</span>
+              <span class="newIcon"><img src="./images/icons/newIcon.gif" alt=""></span>
+            </div>
+          </a></li>
+        <li><a href="#">
+            <div class="imgBox">
+              <span class="icon saleTree"><img src="./images/icons/saleTree.png" alt=""></span>
+              <img src="./images/chicWhite.jpg" alt="">
+              <img class="imgHover" src="./images/chicWhite-hover.jpg" alt="">
+            </div>
+            <div class="colorBox">
+              <span class="pastelBeige"></span>
+              <span class="pink"></span>
+              <span class="green"></span>
+              <span class="navy"></span>
+            </div>
+            <div class="textBox">
+              시크 블루투스 무선 겸용 키보드(키스킨 포함) <span>BTK-12</span>
+            </div>
+            <div class="priceBox">
+              <span class="discount">30,900원</span>25,900원<br />
+              <span class="salePercent">16% SALE</span>
+              <span class="newIcon"><img src="./images/icons/newIcon.gif" alt=""></span>
+            </div>
+          </a></li>
+        <li><a href="#">
+            <div class="imgBox">
+              <span class="icon saleTree"><img src="./images/icons/saleTree.png" alt=""></span>
+              <img src="./images/cable-CtoC.jpg" alt="">
+              <img class="imgHover" src="./images/cable-CtoC-hover.jpg" alt="">
+            </div>
+            <div class="colorBox">
+              <span class="black"></span>
+            </div>
+            <div class="textBox">
+              디스플레이 타입 C to 타입 C 케이블 <span>TC-42</span>
+            </div>
+            <div class="priceBox">
+              <span class="discount">13,300원</span>11,900원<br />
+              <span class="salePercent">11% SALE</span>
+              <span class="newIcon"><img src="./images/icons/newIcon.gif" alt=""></span>
+            </div>
+          </a></li>
+        <li><a href="#">
+            <div class="imgBox">
+              <img src="./images/cable-C.jpg" alt="">
+              <img class="imgHover" src="./images/cable-C-hover.jpg" alt="">
+            </div>
+            <div class="colorBox">
+              <span class="black"></span>
+            </div>
+            <div class="textBox">
+              슈퍼 타입 C 케이블 <span>TC-43</span>
+            </div>
+            <div class="priceBox">
+              <span class="discount">11,900원</span>6,900원<br />
+              <span class="salePercent">42% SALE</span>
+              <span class="newIcon"><img src="./images/icons/newIcon.gif" alt=""></span>
+            </div>
+          </a></li>
+        <li><a href="#">
+            <div class="imgBox">
+              <span class="icon saleTree"><img src="./images/icons/saleTree.png" alt=""></span>
+              <img src="./images/giant.jpg" alt="">
+              <img class="imgHover" src="./images/giant-hover.jpg" alt="">
+            </div>
+            <div class="colorBox">
+              <span class="white"></span>
+            </div>
+            <div class="textBox">
+              자이언트 보풀제거기 <span>SLH-27</span>
+            </div>
+            <div class="priceBox">
+              <span class="discount">32,700원</span>19,900원<br />
+              <span class="salePercent">39% SALE</span>
+              <span class="newIcon"><img src="./images/icons/newIcon.gif" alt=""></span>
+            </div>
+          </a></li>
+      </ul>
+    </section><!-- 뉴아이템 상품목록 -->
 
     <!-- 리뷰 영역 -->
     <section class="review">
@@ -617,48 +634,207 @@ function mainForm() {
               <span class="icon insta"></span>
               <img src="./images/review1.jpg" alt="">
             </div>
-            <div class="reviewBox">
-              <p class="comment"></p>
-              <p class="viewerId"></p>
-            </div>
-            <div class="productBox">
-              <img src="" alt="">
-              <p class="productName"></p>
-              <p class="productRating"></p>
+            <div class="txtBox">
+              <div class="reviewBox">
+                <p class="comment">이쁜 집에 다 있던 그 엑토키보드가 우리 집에도 짠! 우리 집도 그럼 이쁜 집? ㅋㅋㅋ</p>
+                <p class="viewerId">Reviewer ID</p>
+              </div>
+              <div class="productBox">
+                <img src="./images/retroMiniBeige.jpeg" alt="">
+                <div class="productInfo">
+                  <p class="productName">엑토 레트로 미니 블루투스 키보드</p>
+                  <p class="productRating">리뷰 <span class="reviewRate">542</span> 평점 <span class="gradeRate">4.9</span>
+                  </p>
+                </div>
+              </div>
             </div>
           </a></li>
-        <li>
-          <a href="#"></a>
-        </li>
-        <li>
-          <a href="#"></a>
-        </li>
-        <li>
-          <a href="#"></a>
-        </li>
-        <li>
-          <a href="#"></a>
-        </li>
-        <li>
-          <a href="#"></a>
-        </li>
-        <li>
-          <a href="#"></a>
-        </li>
-        <li>
-          <a href="#"></a>
-        </li>
-        <li>
-          <a href="#"></a>
-        </li>
-        <li>
-          <a href="#"></a>
-        </li>
+        <li><a href="#">
+            <div class="imgBox">
+              <span class="icon insta"></span>
+              <img src="./images/review2.jpg" alt="">
+            </div>
+            <div class="txtBox">
+              <div class="reviewBox">
+                <p class="comment">타닥타닥</p>
+                <p class="viewerId">Reviewer ID</p>
+              </div>
+              <div class="productBox">
+                <img src="./images/retroMiniBeige.jpeg" alt="">
+                <div class="productInfo">
+                  <p class="productName">엑토 레트로 미니 블루투스 키보드</p>
+                  <p class="productRating">리뷰 <span class="reviewRate">542</span> 평점 <span class="gradeRate">4.9</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </a></li>
+        <li><a href="#">
+            <div class="imgBox">
+              <span class="icon insta"></span>
+              <img src="./images/review3.jpg" alt="">
+            </div>
+            <div class="txtBox">
+              <div class="reviewBox">
+                <p class="comment">어디서 장작 타는 소리 안 들려요? 타닥타닥🪵🔥</p>
+                <p class="viewerId">Reviewer ID</p>
+              </div>
+              <div class="productBox">
+                <img src="./images/retroWhite.jpg" alt="">
+                <div class="productInfo">
+                  <p class="productName">엑토 레트로 블루투스 키보드</p>
+                  <p class="productRating">리뷰 <span class="reviewRate">90</span> 평점 <span class="gradeRate">4.9</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </a></li>
+        <li><a href="#">
+            <div class="imgBox">
+              <span class="icon insta"></span>
+              <img src="./images/review4.jpg" alt="">
+            </div>
+            <div class="txtBox">
+              <div class="reviewBox">
+                <p class="comment">너무 갖고 싶던 엑토 키보드와 마우스☻️</p>
+                <p class="viewerId">Reviewer ID</p>
+              </div>
+              <div class="productBox">
+                <img src="./images/retroWhite.jpg" alt="">
+                <div class="productInfo">
+                  <p class="productName">엑토 레트로 블루투스 키보드</p>
+                  <p class="productRating">리뷰 <span class="reviewRate">90</span> 평점 <span class="gradeRate">4.9</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </a></li>
+        <li><a href="#">
+            <div class="imgBox">
+              <span class="icon insta"></span>
+              <img src="./images/review5.jpg" alt="">
+            </div>
+            <div class="txtBox">
+              <div class="reviewBox">
+                <p class="comment">크리스마스 무드로 새롭게 단장한 우리집 홈카페존❤️</p>
+                <p class="viewerId">Reviewer ID</p>
+              </div>
+              <div class="productBox">
+                <img src="./images/retroMiniNavy.jpg" alt="">
+                <div class="productInfo">
+                  <p class="productName">엑토 레트로 블루투스 키보드</p>
+                  <p class="productRating">리뷰 <span class="reviewRate">148</span> 평점 <span class="gradeRate">4.9</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </a></li>
+        <li><a href="#">
+            <div class="imgBox">
+              <span class="icon insta"></span>
+              <img src="./images/review6.jpg" alt="">
+            </div>
+            <div class="txtBox">
+              <div class="reviewBox">
+                <p class="comment">예쁜 집에는 다 있다는 레트로 키보드가 저희집에도 왔어요😍</p>
+                <p class="viewerId">Reviewer ID</p>
+              </div>
+              <div class="productBox">
+                <img src="./images/retroMiniBeige.jpeg" alt="">
+                <div class="productInfo">
+                  <p class="productName">엑토 레트로 미니 블루투스 키보드</p>
+                  <p class="productRating">리뷰 <span class="reviewRate">542</span> 평점 <span class="gradeRate">4.9</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </a></li>
+        <li><a href="#">
+            <div class="imgBox">
+              <span class="icon insta"></span>
+              <img src="./images/review7.jpg" alt="">
+            </div>
+            <div class="txtBox">
+              <div class="reviewBox">
+                <p class="comment">폰이랑 아이패드 함께 세워둘수 있고</p>
+                <p class="viewerId">Reviewer ID</p>
+              </div>
+              <div class="productBox">
+                <img src="./images/retroSkyblue.jpg" alt="">
+                <div class="productInfo">
+                  <p class="productName">엑토 레트로 블루투스 키보드</p>
+                  <p class="productRating">리뷰 <span class="reviewRate">217</span> 평점 <span class="gradeRate">4.9</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </a></li>
+        <li><a href="#">
+            <div class="imgBox">
+              <span class="icon insta"></span>
+              <img src="./images/review8.jpg" alt="">
+            </div>
+            <div class="txtBox">
+              <div class="reviewBox">
+                <p class="comment">오늘도 열일하는 나의 데스크테리어🖥</p>
+                <p class="viewerId">Reviewer ID</p>
+              </div>
+              <div class="productBox">
+                <img src="./images/retroMiniBeige.jpeg" alt="">
+                <div class="productInfo">
+                  <p class="productName">엑토 레트로 블루투스 키보드</p>
+                  <p class="productRating">리뷰 <span class="reviewRate">542</span> 평점 <span class="gradeRate">4.9</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </a></li>
+        <li><a href="#">
+            <div class="imgBox">
+              <span class="icon insta"></span>
+              <img src="./images/review9.jpg" alt="">
+            </div>
+            <div class="txtBox">
+              <div class="reviewBox">
+                <p class="comment">사랑스러운 키보드와 함께하는 주말:)</p>
+                <p class="viewerId">Reviewer ID</p>
+              </div>
+              <div class="productBox">
+                <img src="./images/mouse-bluetoothPink.jpg" alt="">
+                <div class="productInfo">
+                  <p class="productName">엑토 LED 블루투스 저소음 광마우스 ABM-03</p>
+                  <p class="productRating">리뷰 <span class="reviewRate">14</span> 평점 <span class="gradeRate">5.0</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </a></li>
+        <li><a href="#">
+            <div class="imgBox">
+              <span class="icon insta"></span>
+              <img src="./images/review10.jpg" alt="">
+            </div>
+            <div class="txtBox">
+              <div class="reviewBox">
+                <p class="comment">받자마자 열손가락 올려놓고 타닥타닥 쳐봤던 키보드, 정겨운 소리에 추억도 방울방울이</p>
+                <p class="viewerId">Reviewer ID</p>
+              </div>
+              <div class="productBox">
+                <img src="./images/retroMiniBeige.jpeg" alt="">
+                <div class="productInfo">
+                  <p class="productName">엑토 레트로 미니 블루투스 키보드</p>
+                  <p class="productRating">리뷰 <span class="reviewRate">542</span> 평점 <span class="gradeRate">4.9</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </a></li>
       </ul>
-    </section><!-- 리뷰 영역 -->
+    </section>
     `
 }
 
+// 회원가입 페이지
 function joinForm() {
   return /* html */`
     <form id="form-tag">
@@ -709,6 +885,7 @@ function joinForm() {
   `
 }
 
+// 로그인 페이지
 function logInForm() {
   return /* html */`
     <form id="login-form">
@@ -733,6 +910,7 @@ function logInForm() {
   `
 }
 
+// 마이쇼핑 페이지
 function myShoppingForm() {
   function renderInfo() {
     const information = document.createElement('div')
@@ -866,6 +1044,7 @@ function myShoppingForm() {
   `
 }
 
+// 구매 내역 페이지
 function myOrderForm() {
   return /* html */ `
   <div class="title-box" scope="sub">
@@ -1001,105 +1180,116 @@ function myOrderForm() {
   `
 }
 
-function userInfoForm() {
+// 회원 정보 관리 페이지
+function userInfoForm(userId, userName) {
   return /* html */`
-  <form id="form-tag">
-      <ul class="table-area">
-          <h1>MODIFY</h1>
-          <p>아래 정보를 꼼꼼히 입력하세요.</p>
-          <li class="base">
-          <h2>BASE <span>기본 정보를 입력하세요.</span></h2>
-          <table>
-              <colgroup>
-              <col style="width:150px" />
-              <col style="width:auto"/>
-          </colgroup>
-          <tbody>
-              <tr>
-              <th scope="row">아이디</th>
-              <td>test1@abc.com</td>
-              </tr>
-              <tr>
-                <th>이름</th>
-                <td>박영웅</td>
-              </tr>
-              <tr>
-                <th>비밀번호</th>
-                <td>
-                  <input type="password" class="pw-input">
-                  (영문 대소문자/숫자/특수문자 중 3가지 이상 조합, 8자~16자)
-                </td>
-              </tr>
-              <tr>
-                <th>비밀번호 확인</th>
-                <td>
-                  <input type="password" class="pw-input-2">
-                </td>
-              </tr>
-              <tr>
-                <th>프로필</th>
-                <td>
-                  <input type="file">
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </li>
-        <button id="editBtn" class="editBtn hover-navy" type="submit"><i class="fa-solid fa-check"></i>회원 정보 수정</button>
-      </ul>
-      <ul class="table-area">
-        <li class="account">
-        <h2>BANK INFO <span>계좌 정보를 확인하세요.</span></h2>
+  <form>
+    <ul class="table-area">
+      <h1>MODIFY</h1>
+      <p>아래 정보를 꼼꼼히 입력하세요.</p>
+      <li class="base">
+        <h2>BASE <span>기본 정보를 입력하세요.</span></h2>
         <table>
           <colgroup>
-          <col style="width:150px" />
-          <col style="width:auto"/>
+            <col style="width:150px" />
+            <col style="width:auto"/>
           </colgroup>
           <tbody>
             <tr>
-            <th scope="row">보유 계좌</th>
-            <td>
-                <select name="bank-name" id="bank-name">
-                  <option value="default">은행 이름</option>
-                  <option value="null">없음</option>
-                </select>
-            </td>
+            <th scope="row">아이디</th>
+            <td>${userId}</td>
             </tr>
             <tr>
-            <th class="account-charge">계좌 잔액</th>
-            <td>
-                <span class="charge-num">00,000</span>
-                <span class="won">원</span>
+              <th>이름</th>
+              <td>
+                <input type="text" readOnly placeholder=${userName} />
               </td>
             </tr>
             <tr>
-              <th>계좌 추가</th>
+              <th>기존 비밀번호</th>
               <td>
-                <select name="account" id="account">
-                  <option value="default">은행 이름</option>
-                  <option value="004">KB국민은행</option>
-                  <option value="088">신한은행</option>
-                  <option value="020">우리은행</option>
-                  <option value="081">하나은행</option>
-                  <option value="089">케이뱅크</option>
-                  <option value="090">카카오뱅크</option>
-                  <option value="011">NH농협은행</option>
-                </select>
+                <input type="password" class="pw-input">
+                (영문 대소문자/숫자/특수문자 중 3가지 이상 조합, 8자~16자)
               </td>
             </tr>
             <tr>
-              <th>계좌 번호</th>
+              <th>새로운 비밀번호</th>
               <td>
-                <input type="text" class="account-number-input"> - <input type="text" class="account-number-input"> - <input type="text" class="account-number-input">
+                <input type="password" class="pw-input-2">
+              </td>
+            </tr>
+            <tr>
+              <th>프로필</th>
+              <td>
+                <input type="file">
               </td>
             </tr>
           </tbody>
         </table>
       </li>
-      <button id="accountBtn" class="accountBtn hover-navy" type="submit"><i class="fa-solid fa-check"></i>계좌 정보 수정</button>
+      <button id="editBtn" class="editBtn hover-navy" type="submit"><i class="fa-solid fa-check"></i>회원 정보 수정</button>
     </ul>
-    </form>
+  </form>
   `
 }
 
-export { joinForm, logInForm, myShoppingForm, myOrderForm, mainForm, userInfoForm }
+// 회원 정보 관리 계좌
+function userAccountForm() {
+  return /* html */ `
+  <form>
+    <ul class="table-area">
+      <li class="account">
+      <h2>BANK INFO <span>계좌 정보를 확인하세요.</span></h2>
+      <table>
+        <colgroup>
+        <col style="width:150px" />
+        <col style="width:auto"/>
+        </colgroup>
+        <tbody>
+          <tr>
+            <th scope="row">보유 계좌</th>
+            <td>
+              <select name="bank-name" id="bank-name">
+                <option value="default">은행 이름</option>
+                <option value="null">없음</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <th class="account-charge">계좌 잔액</th>
+            <td>
+              <span class="charge-num">00,000</span>
+              <span class="won">원</span>
+            </td>
+          </tr>
+          <tr>
+            <th>계좌 추가</th>
+            <td>
+              <select name="account" id="account">
+                <option value="default">은행 이름</option>
+                <option value="004">KB국민은행</option>
+                <option value="088">신한은행</option>
+                <option value="020">우리은행</option>
+                <option value="081">하나은행</option>
+                <option value="089">케이뱅크</option>
+                <option value="090">카카오뱅크</option>
+                <option value="011">NH농협은행</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <th>계좌 번호</th>
+            <td>
+              <input type="text" class="account-number-input"> - <input type="text" class="account-number-input"> - <input type="text" class="account-number-input">
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </li>
+      <button id="accountBtn" class="accountBtn hover-navy" type="submit"><i class="fa-solid fa-check"></i>계좌 정보 수정</button>
+    </ul>
+  </form>
+  `
+}
+
+export { joinForm, logInForm, myShoppingForm, myOrderForm, mainForm, userInfoForm, userAccountForm }

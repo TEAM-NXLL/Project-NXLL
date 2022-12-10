@@ -76,6 +76,7 @@ main {
         box-sizing: border-box;
 
         .imgBox {
+          background-color: #333;
           height: 237px;
           overflow: hidden;
           position: relative;
@@ -103,6 +104,7 @@ main {
   
               &.comment {
                 font-weight: bold;
+                margin-bottom: 0;
               }
   
               &.viewerId {
@@ -110,6 +112,7 @@ main {
                 font-size: 11px;
                 padding: 10px 0;
                 border-bottom: 1px solid var(--border-color);
+                margin-bottom: 0;
               }
             }
 
@@ -128,6 +131,7 @@ main {
 
                 p {
                   font-size: 11px;
+                  margin-bottom: 0;
 
                   &.productName {
                     font-weight: bold;

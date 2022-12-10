@@ -28,6 +28,6 @@ export function router() {
     renderMyOrder() 
   }
   else if (routePath === '#userinfo') {
-    renderUserInfo() 
+    renderUserInfo()
   }
 }
