@@ -1,3 +1,4 @@
+import { check } from 'prettier';
 import {
   createProduct,
   viewAllProduct,
@@ -10,16 +11,34 @@ import {
 const addFormEl = document.querySelector('.add-form')
 const thumbnailEl = document.querySelector('.add-thumbnail')
 const detailImgEl = document.querySelector('.add-detail')
+const priceInputEl = document.querySelector('#add-product-price')
+const detailResetEl = document.querySelector('.detail-reset')
+const thumbnailResetEl = document.querySelector('.thumbnail-reset')
 
+// 가격 입력 input칸에 통화단위 적용
+priceInputEl.addEventListener('input', event => {
+  let price = event.target.value
+  price = Number(price.replace(/[^0-9]/g, '')).toLocaleString('ko-KR');
+  priceInputEl.value = price
+})
 
 // 이미지파일 업로드 이벤트
 thumbnailEl.addEventListener('change', event => {
-  previewImg(event.target, thumbnailEl)
-  imgIncoding(event, thumbnailEl)
+  checkFileSize(event.target, thumbnailEl)
 })
 detailImgEl.addEventListener('change', event => {
-  previewImg(event.target, detailImgEl)
-  imgIncoding(event, detailImgEl)
+  checkFileSize(event.target, detailImgEl)
+})
+
+// 이미지파일 업로드 초기화버튼 클릭이벤트
+detailResetEl.addEventListener('click', () => {
+  document.querySelector('#detail-preview').src = "";
+  detailImgEl.value = "";
+
+})
+thumbnailResetEl.addEventListener('click', () => {
+  document.querySelector('#thumbnail-preview').src = "";
+  thumbnailEl.value = "";
 })
 
 // 이미지파일 업로드 시 미리보기
@@ -41,9 +60,24 @@ function previewImg(input, selector) {
   }
 }
 
+// 업로드 이미지 파일 크기 체크
+function checkFileSize(target, selector) {
+  const file = target.files[0].size;
+  const thumbnailSize = 1024 ** 2;
+  const detailImgSize = 1024 ** 2 * 4;
+  if (selector === thumbnailEl && file > thumbnailSize
+    || selector === detailImgEl && file > detailImgSize) {
+    alert("해당 파일은 제한된 용량을 초과하였습니다.")
+    return
+  } else {
+    previewImg(target, selector)
+    imgIncoding(target, selector)
+  }
+}
+
 // 업로드한 이미지 base64로 변환
-function imgIncoding(event, selector) {
-  const { files } = event.target
+function imgIncoding(target, selector) {
+  const { files } = target
   let base64 = ''
   for (let i = 0; i < files.length; i += 1) {
     const file = files[i]
@@ -69,9 +103,9 @@ addFormEl.addEventListener('submit', async (event) => {
 // 제품추가
 export function addItem(event) {
   const title = event.target[0].value;
-  const price = +event.target[1].value;
+  const price = +(event.target[1].value.replace(/[^0-9]/g, ''));
   const tags = document.querySelector('.tag:checked').value;
-  const description = ducument.querySelector('.add-product-description').value;
+  const description = document.querySelector('.add-product-description').value;
   const thumbnail = thumbnailEl.dataset.id;
   const photo = detailImgEl.dataset.id;
   if (title.length < 2 || price < 1 || description.length < 1) {
