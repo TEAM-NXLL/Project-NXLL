@@ -11,9 +11,13 @@ export function editUserInfo() {
     }
     const oldPwValue = document.querySelector('.old-pw-input').value
     const newPwValue = document.querySelector('.new-pw-input').value
-    await editUser(localStorage.accessToken, nameValue, oldPwValue, newPwValue)
-    alert('회원 정보가 수정되었습니다')
-    location.hash = '#myshop'
+    const res = await editUser(localStorage.accessToken, nameValue, oldPwValue, newPwValue)
+    if (res.displayName) {
+      alert('회원 정보가 수정되었습니다')
+      location.hash = '#myshop'
+    } else {
+      alert('정보를 다시 확인해 주세요')
+    }
   })
 }
 
@@ -37,10 +41,14 @@ export async function addNewAccount() {
     let account = ''
     phoneNumbers.forEach(number => phone += number.value)
     accountNumbers.forEach(number => account += number.value)
-    await addAccount(localStorage.accessToken, bankName.value, account, phone)
+    const res = await addAccount(localStorage.accessToken, bankName.value, account, phone)
+    if (res.id) {
+      alert("계좌가 추가되었습니다.")
+      location.hash = '#myshop'
+    } else {
+      alert("정보를 다시 확인해 주세요.")
+    }
     e.stopPropagation()
-    alert("계좌가 추가되었습니다.")
-    location.hash = '#myshop'
   })
 }
 

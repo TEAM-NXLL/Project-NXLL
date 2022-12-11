@@ -90,9 +90,6 @@ export async function editUser(accessToken, displayName, oldPassword, newPasswor
     })
   })
   const json = await res.json()
-  if (json === "유효한 비밀번호가 아닙니다.") {
-    return alert("비밀번호를 다시 입력해 주세요.")
-  }
   return json
 }
 
