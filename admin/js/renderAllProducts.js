@@ -24,6 +24,10 @@ export async function renderAllProduct() {
           <div class="tags">${tag}</div>
           <div class="is-sold-out">${isSold}</div>
           <div class="descript">${description}</div>
+          <div class="edit-delete-btn">
+            <button class="edit-btn">제품 수정</button>
+            <button class="del-btn">제품 삭제</button>
+          </div>
         </div>
     `;
 

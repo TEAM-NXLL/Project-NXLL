@@ -1,0 +1,39 @@
+// MAIN - 모든 거래 내역
+.all-transacs {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .all-transac-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .properties {
+    background-color: #f5f5f5;
+    font-weight: 700;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    .thumbnail {
+      display: flex;
+      width: 20%;
+      justify-content: center;
+      align-items: center;
+    }
+    .text-wrapper {
+      width: 80%;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+  }
+}

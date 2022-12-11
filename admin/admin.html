@@ -20,9 +20,9 @@
       crossorigin="anonymous"
     ></script>
 
-    <link rel="stylesheet" href="./common.scss" />
-    <link rel="stylesheet" href="./admin.scss" />
-    <script type="module" defer src="./admin.js"></script>
+    <link rel="stylesheet" href="./scss/admin_common.scss" />
+    <link rel="stylesheet" href="./scss/admin.scss" />
+    <script type="module" defer src="./js/admin.js"></script>
     <title>administrator</title>
   </head>
 
@@ -104,6 +104,7 @@
               <div class="tags">태그</div>
               <div class="is-sold-out">매진 여부</div>
               <div class="descript">기본 정보</div>
+              <div class="edit-delete">수정/삭제</div>
             </div>
             <!-- observer 생성해서 무한 스크롤하기-->
           </div>
@@ -136,6 +137,13 @@
         </div>
       </div>
     </main>
+    <div class="go-top">
+      <div class="inner">
+        <a href="#all-products" style="height: 20px; background-color: orange"
+          >위로가자</a
+        >
+      </div>
+    </div>
     <!-- Transaction Status -->
     <main id="transacs-status" class="transacs-status">
       <div class="inner">
@@ -175,6 +183,15 @@
         <!-- observer 생성해서 무한 스크롤하기-->
       </div>
     </main>
+
     <!-- MAIN -->
+    <!-- 임시 위로가기 버튼 -->
+    <div class="go-top">
+      <div class="inner">
+        <a href="#all-products" style="height: 20px; background-color: orange"
+          >위로가자</a
+        >
+      </div>
+    </div>
   </body>
 </html>
