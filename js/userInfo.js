@@ -48,7 +48,6 @@ export async function addNewAccount() {
     } else {
       alert("정보를 다시 확인해 주세요.")
     }
-    e.stopPropagation()
   })
 }
 

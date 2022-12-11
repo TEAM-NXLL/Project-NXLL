@@ -1239,13 +1239,13 @@ function userAccountForm(totalBalance) {
           <tr>
             <th>전화 번호</th>
             <td>
-              <input type="text" class="phone-number-input"> - <input type="text" class="phone-number-input"> - <input type="text" class="phone-number-input">
+              <input type="number" class="phone-number-input"> - <input type="number" class="phone-number-input"> - <input type="number" class="phone-number-input">
             </td>
           </tr>
           <tr>
             <th>계좌 번호</th>
             <td class='account-number-box'>
-              <input type="text" class="account-number-input"> - <input type="text" class="account-number-input"> - <input type="text" class="account-number-input"> - <input type="text" class="account-number-input">
+              <input type="number" class="account-number-input"> - <input type="number" class="account-number-input"> - <input type="number" class="account-number-input"> - <input type="number" class="account-number-input">
             </td>
           </tr>
           </tbody>
