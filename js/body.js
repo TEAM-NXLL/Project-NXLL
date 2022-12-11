@@ -271,7 +271,7 @@ function mainForm() {
         <div class="swiper-button-next"></div>
       </div>
 
-      <h2>디자인 키보드는 엑토</h2>
+      <h3>디자인 키보드는 엑토</h3>
       <p>편의성, 디자인, 기능을 모두 갖춘 <br /> 레트로 감성의 기계식 키보드가 곧 출시됩니다.</p>
       <a href="#" class="blackBtn">제품 모두 보기</a>
     </section>
@@ -373,7 +373,7 @@ function mainForm() {
     <!-- 마우스 배너영역 -->
     <section class="mouse-banner mt70">
       <img src="./images/mouseBanner.gif" alt="">
-      <h2>편안한 그립감의 마우스</h2>
+      <h3>편안한 그립감의 마우스</h3>
       <p>인체공학적 설계로 편안한 그립감과 엑토만의 <br /> 감각적인 디자인의 마우스를 만나보세요.</p>
       <a href="#" class="blackBtn">제품 모두 보기</a>
     </section><!-- 마우스 배너영역 -->
@@ -381,7 +381,7 @@ function mainForm() {
     <!-- 데스크셋업 배너 영역 -->
     <section class="deskSetup mt70">
       <img src="./images/deskSetup.jpg" alt="">
-      <h2>데스크셋업의 완성</h2>
+      <h3>데스크셋업의 완성</h3>
       <p>당신의 데스크를 더욱 업그레이드 시켜 줄 <br /> 다양한 기기들을 만나보세요.</p>
       <a href="#" class="blackBtn">제품 모두 보기</a>
     </section><!-- 데스크셋업 배너 영역 -->
@@ -841,7 +841,7 @@ function joinForm() {
   return /* html */`
     <form id="form-tag">
       <ul class="table-area">
-          <h1>JOIN - US</h1>
+          <h2>JOIN - US</h2>
           <p>아래 정보를 꼼꼼히 입력하세요.</p>
           <li class="base">
           <h2>BASE <span>기본 정보를 입력하세요.</span> <span class="compulsory"><img class="require" src="../images/icons/required.png" alt=""> 필수입력사항</span></h2>
@@ -892,7 +892,7 @@ function logInForm() {
   return /* html */`
     <form id="login-form">
       <ul class="logIn-area">
-        <h1>LOGIN</h1>
+        <h2>LOGIN</h2>
         <li class="logIn-area__input">
           <input type="text" class="signin-id-input" placeholder="아이디">
           <input type="password" class="signin-pw-input" placeholder="비밀번호">
@@ -944,7 +944,7 @@ function myShoppingForm() {
 
   return /* html */ `
   <div class="title-box" scope="sub">
-      <p class="title-box__text">MY-SHOP</p>
+      <h2 class="title-box__text">MY-SHOP</h2>
       <p class="title-box__subtext">나의 쇼핑내역을 한눈에 확인하세요.</p>
   </div>
 
@@ -1155,7 +1155,7 @@ function userInfoForm(userId, userName) {
   return /* html */`
   <form>
     <ul class="table-area">
-      <h1>MODIFY</h1>
+      <h2>MODIFY</h2>
       <p>아래 정보를 꼼꼼히 입력하세요.</p>
       <li class="base">
         <h2>BASE <span>수정 정보를 입력하세요.</span></h2>
