@@ -1218,6 +1218,7 @@ function userAccountForm(totalBalance) {
                 <option value="null" class="no-bank">없음</option>
               </select>
               <span class="charge"></span>
+              <button type="button" class="cancel-account hover-navy hidden">계좌 해지</button>
             </td>
           </tr>
           <tr>
@@ -1238,13 +1239,13 @@ function userAccountForm(totalBalance) {
           <tr>
             <th>전화 번호</th>
             <td>
-              <input type="text" class="phone-number-input"> - <input type="text" class="phone-number-input"> - <input type="text" class="phone-number-input">
+              <input type="number" class="phone-number-input"> - <input type="number" class="phone-number-input"> - <input type="number" class="phone-number-input">
             </td>
           </tr>
           <tr>
             <th>계좌 번호</th>
             <td class='account-number-box'>
-              <input type="text" class="account-number-input"> - <input type="text" class="account-number-input"> - <input type="text" class="account-number-input"> - <input type="text" class="account-number-input">
+              <input type="number" class="account-number-input"> - <input type="number" class="account-number-input"> - <input type="number" class="account-number-input"> - <input type="number" class="account-number-input">
             </td>
           </tr>
           </tbody>
