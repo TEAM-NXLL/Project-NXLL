@@ -1,30 +1,62 @@
 import { doc } from "prettier";
-import { getData, getLogin, getLogOut } from "./getdata.js";
-// import { completeLogin } from "./test.js";
+import { getData, getLogin, getLogOut, stateLogin } from "./getdata.js";
 import { router } from "./route.js";
 import { deliveryEl, returnEl, deliveryDes, returnDes, mouseenter, mouseleave } from './footer.js'
-import { joinForm, logInForm } from "./body.js";
+import { joinForm, logInForm, myOrderForm, myShoppingForm, mainForm, userInfoForm, userAccountForm, detailForm } from "./body.js";
+import { editUserInfo, userOwnBank, addNewAccount, choiceBank, bankChargeLookUp, ownAccountList, addAbleAccountList } from "./userInfo.js";
 
 // 변수
 const root = document.querySelector('main')
 
-function loginNjoin() {
-  const joinBtn = document.querySelector('#join-btn')
-  const loginBtn = document.querySelector('#login-btn')
-  joinBtn.addEventListener('click', joinRender)
-  loginBtn.addEventListener('click', loginRender)
+// function loginNjoin() {
+//   loginRender()
+//   joinRender()
+// }
+
+// 메인 페이지
+function renderMain() {
+  root.innerHTML = mainForm()
+
+  // 메인 스와이퍼
+  new Swiper('.mainSwiper', {
+    effect: 'fade',
+    loop: true,
+    autoplay: true,
+    speed: 1000,
+
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+  })
+
+  // 키보드 스와이퍼
+  new Swiper('.keyboardSwiper', {
+    effect: 'fade',
+    loop: true,
+    autoplay: true,
+    speed: 1000,
+
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+  })
 }
 
 // 로그인 페이지 해시 값 + 화면 변경
 function loginRender() {
-  location.hash = '#login'
   root.innerHTML = logInForm()
   sendLogin()
 }
 
 // 회원가입 페이지 해시 값 + 화면 변경
 function joinRender() {
-  location.hash = '#join'
   root.innerHTML = joinForm();
   sendSignUp();
 }
@@ -35,7 +67,6 @@ function sendSignUp() {
 
   formTag.addEventListener('submit', async (e) => {
     e.preventDefault()
-    console.log(e)
     const idValue = document.querySelector('.id-input').value
     const pwValue = document.querySelector('.pw-input').value
     const nameValue = document.querySelector('.name-input').value
@@ -60,7 +91,6 @@ function sendLogin() {
     const pwValue = document.querySelector('.signin-pw-input').value
     const res = await getLogin(idValue, pwValue)
     if (res.user.email) {
-      console.log(res)
       const userName = res.user.displayName
       const accessToken = res.accessToken
       localStorage.setItem("accessToken", accessToken)
@@ -83,7 +113,7 @@ function logOut() {
     const res = await getLogOut(accessToken)
     if (res) {
       localStorage.removeItem('accessToken'),
-        localStorage.removeItem('userName')
+      localStorage.removeItem('userName')
     }
     location.href = '/'
   })
@@ -100,36 +130,35 @@ function completeLogin() {
   logOut()
 }
 
-// 메인 스와이퍼
-const swiper1 = new Swiper('main > .swiper', {
-  effect: 'fade',
-  loop: true,
-  autoplay: true,
-  speed: 1000,
+// myshop 렌더링
+async function renderMyShop() {
+  root.innerHTML = myShoppingForm()
+}
 
-  pagination: {
-    el: '.swiper-pagination',
-    clickable: true,
-  },
+// myorder 렌더링
+function renderMyOrder() {
+  root.innerHTML = myOrderForm()
+}
 
-  navigation: {
-    nextEl: '.swiper-button-next',
-    prevEl: '.swiper-button-prev',
-  },
-})
+// userInfo 렌더링
+async function renderUserInfo() {
+  const res = await stateLogin(localStorage.accessToken)
+  root.innerHTML = userInfoForm(res.email, res.displayName)
+  const {totalBalance, accounts} = await userOwnBank()
+  const total = totalBalance.toLocaleString()
+  root.innerHTML += userAccountForm(total)
+  bankChargeLookUp()
+  ownAccountList(accounts)
+  editUserInfo()
+  addAbleAccountList()
+  addNewAccount()
+  choiceBank()
+}
 
-// 키보드 스와이퍼
-const swiper2 = new Swiper('.keyboard-banner > .swiper', {
-  effect: 'fade',
-  loop: true,
-  autoplay: true,
-  speed: 1000,
-
-  navigation: {
-    nextEl: '.swiper-button-next',
-    prevEl: '.swiper-button-prev',
-  },
-})
+// detail 렌더링
+function renderDetail() {
+  root.innerHTML = detailForm()
+}
 
 // footer 함수
 mouseenter()
@@ -140,8 +169,12 @@ window.addEventListener('hashchange', router)
 router();
 
 // 로그인 로그아웃 확인
-(() => {
-  localStorage.length === 0 ? loginNjoin() : completeLogin();
+(async () => {
+  // localStorage.length === 0 ? loginNjoin() : completeLogin();
+  if (localStorage.accessToken) {
+    const res = await stateLogin(localStorage.accessToken)
+    res.displayName ? completeLogin() : window.localStorage.clear()
+  } else return
 })();
 
-export { loginRender, joinRender, logOut }
+export { loginRender, joinRender, logOut, renderMyShop, renderMyOrder, renderMain, renderUserInfo, renderDetail }

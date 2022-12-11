@@ -13,6 +13,7 @@ function createRequest(type, data) {
   if (data) {
     res.body = JSON.stringify(data);
   }
+  console.log(res);
   return res;
 }
 
@@ -22,8 +23,8 @@ export async function createProduct(
   price,
   description,
   tags = '',
-  thumbnail = '', // 기본 썸네일
-  photo = '', // 기본 사진
+  thumbnailBase64 = '', // 기본 썸네일
+  photoBase64 = '', // 기본 사진
 ) {
   try {
     const res = await fetch(
@@ -143,8 +144,8 @@ export async function correctProduct(
   price,
   description,
   tags,
-  thumbnail,
-  photo,
+  thumbnailBase64,
+  photoBase64,
   isSoldOut,
 ) {
   try {

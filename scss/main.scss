@@ -4,6 +4,8 @@
 @import url("./login.scss");
 @import url("./myshop.scss");
 @import url("./myorder.scss");
+@import url("./userInfo.scss");
+@import url("./detail.scss");
 
 // HEADER
 header {
@@ -302,7 +304,7 @@ header {
           }
 
           &:first-child {
-            background: url(../images/icons/cartIcon.svg) no-repeat center;
+            background: url("../static/images/icons/cartIcon.svg") no-repeat center;
             background-size: 21px auto;
           }
 
@@ -593,8 +595,9 @@ footer {
     .inner {
       padding: 50px 0;
       position: relative;
+
       .logo {
-        background-image: url('../images/logo.png');
+        background-image: url('../static/images/logo.png');
         background-repeat: no-repeat;
         background-size: contain;
         height: 30px;
@@ -697,6 +700,7 @@ footer {
           }
         }
       }
+
       img {
         position: absolute;
         width: 134px;

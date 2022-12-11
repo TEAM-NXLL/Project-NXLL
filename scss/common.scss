@@ -1,7 +1,7 @@
 // COMMON
 
 :root {
-  --font-style: 'Nanum Gothic', sans-serif;
+  --font-style: 'Nanum Gothic', sans-serif; 
   --border-color: #f5f5f5;
   --table-border-color: #f0f0f0;
   --table-th-background: #fafafa;
@@ -21,8 +21,7 @@ a {
   cursor: pointer;
 }
 
-button,
-input {
+button, input {
   border: none;
   background-color: inherit;
   outline: none;
@@ -35,7 +34,7 @@ button.hover-navy {
   color: #213b85;
   padding: 0 20px;
   transition: 0.3s;
-
+  
   i {
     margin-right: 5px;
   }
@@ -75,9 +74,6 @@ img {
 
 img.require {
   width: 10px;
-  height: 10px;
-  position: absolute;
-  background: url('../../images/mouse-bluetoothWhite.jpg');
 }
 
 .inner {
@@ -91,19 +87,23 @@ table {
   color: #353535;
 
   tr.number-tr {
-    input[type='text'] {
+
+    input[type="text"] {
       width: 100px;
     }
   }
 
   tr.address-tr {
-    input[type='text'] {
+
+    input[type="text"] {
       width: 370px;
     }
   }
 
   tr.address {
+
     td {
+
       input {
         margin-bottom: 5px;
 
@@ -122,8 +122,7 @@ table {
     }
   }
 
-  th,
-  td {
+  th, td {
     border: 1px solid var(--table-border-color);
   }
 
@@ -153,11 +152,11 @@ h1 {
   padding: 20px 0;
   margin-bottom: 50px;
   position: relative;
-
+  
   &::after {
     position: absolute;
     display: block;
-    content: '';
+    content: "";
     width: 0;
     height: 5px;
     top: 0;
@@ -203,7 +202,7 @@ p {
 
     &:hover {
       .imgBox {
-        >img {
+        > img {
           &.imgHover {
             opacity: 1;
           }
@@ -221,7 +220,7 @@ p {
     width: calc(33.3333% - 13.4px);
     margin-right: 20px;
     margin-bottom: 60px;
-
+    
     &:nth-child(3n) {
       margin-right: 0;
     }
@@ -229,10 +228,10 @@ p {
     .imgBox {
       height: 520px;
     }
-
+    
     &:hover {
       .imgBox {
-        >img {
+        > img {
           &.imgHover {
             opacity: 1;
           }
@@ -292,7 +291,7 @@ p {
     }
 
     &.insta {
-      background: url('../../images/icons/icons.png') no-repeat center;
+      background: url("../static/images/icons/icons.png") no-repeat center;
       background-position: -28px -661px;
       top: 0;
       right: 0;
@@ -301,12 +300,15 @@ p {
     }
   }
 
-  >img {
+  > img {
+    width: auto;
+    height: 100%;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     transition: 0.3s;
+
 
     &.imgHover {
       opacity: 0;
@@ -316,7 +318,7 @@ p {
 
 .colorBox {
   margin: 20px 0 10px;
-
+  
   span {
     display: inline-block;
     width: 14px;
@@ -329,15 +331,15 @@ p {
   }
 
   .pastelBeige {
-    background-color: #fffdf0;
+    background-color: #FFFDF0;
   }
 
   .mint {
-    background-color: #b8dfdc;
+    background-color: #B8DFDC;
   }
 
   .pink {
-    background-color: #fbbdc0;
+    background-color: #FBBDC0;
   }
 
   .white {
@@ -347,7 +349,7 @@ p {
   }
 
   .navy {
-    background-color: #1f1f38;
+    background-color: #1F1F38;
   }
 
   .blueNavy {
@@ -363,7 +365,7 @@ p {
   }
 
   .gray {
-    background-color: #8c8c8c;
+    background-color: #8C8C8C;
   }
 }
 
@@ -382,7 +384,7 @@ p {
 .priceBox {
   font-weight: bold;
   font-size: 18px;
-
+  
   .discount {
     font-size: 16px;
     font-weight: normal;
