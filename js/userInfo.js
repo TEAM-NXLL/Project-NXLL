@@ -59,7 +59,6 @@ export async function choiceBank() {
     if (e.target.value !== "004" && e.target.value !== "011") {
       accountNumberEls[3].readOnly = true
       accountNumberEls[3].style.backgroundColor = '#D8D8D8'
-      accountNumberEls[3].style.backgroundColor = '#D8D8D8'
     } else {
       accountNumberEls[3].readOnly = false
       accountNumberEls[3].style.backgroundColor = '#fff'
