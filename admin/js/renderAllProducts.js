@@ -11,8 +11,8 @@ export async function renderAllProduct() {
     const tag = el.tag;
     const isSold = el.isSoldOut;
     const thumbnail = el.thumbnail;
-
     const product = document.createElement('div');
+
     product.classList.add('product-item');
 
     const innerHTMLContents = /*html*/ `

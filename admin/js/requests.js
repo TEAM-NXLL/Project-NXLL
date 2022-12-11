@@ -84,7 +84,7 @@ export async function viewAllProduct() {
 export async function viewAllTransactions() {
   try {
     const res = await fetch(
-      store.url + '/products/transactions/details',
+      store.url + '/products/transactions/all',
       createRequest('GET'),
     );
     const getResult = await res.json();
