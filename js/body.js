@@ -1213,7 +1213,6 @@ function userAccountForm(totalBalance) {
           <tr>
             <th scope="row">보유 계좌</th>
             <td class="bank-charge">
-            <td class="bank-charge">
               <select name="bank-name" id="bank-name">
                 <option value="default">은행 이름</option>
                 <option value="null" class="no-bank">없음</option>
