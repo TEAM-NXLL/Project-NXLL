@@ -77,7 +77,7 @@ img.require {
   width: 10px;
   height: 10px;
   position: absolute;
-  background: url("../images/icons/required.png");
+  background: url('../../images/mouse-bluetoothWhite.jpg');
 }
 
 .inner {
@@ -157,7 +157,7 @@ h1 {
   &::after {
     position: absolute;
     display: block;
-    content: "";
+    content: '';
     width: 0;
     height: 5px;
     top: 0;
@@ -292,7 +292,7 @@ p {
     }
 
     &.insta {
-      background: url("../images/icons/icons.png") no-repeat center;
+      background: url('../../images/icons/icons.png') no-repeat center;
       background-position: -28px -661px;
       top: 0;
       right: 0;
@@ -307,7 +307,6 @@ p {
     left: 50%;
     transform: translate(-50%, -50%);
     transition: 0.3s;
-
 
     &.imgHover {
       opacity: 0;
@@ -330,15 +329,15 @@ p {
   }
 
   .pastelBeige {
-    background-color: #FFFDF0;
+    background-color: #fffdf0;
   }
 
   .mint {
-    background-color: #B8DFDC;
+    background-color: #b8dfdc;
   }
 
   .pink {
-    background-color: #FBBDC0;
+    background-color: #fbbdc0;
   }
 
   .white {
@@ -348,7 +347,7 @@ p {
   }
 
   .navy {
-    background-color: #1F1F38;
+    background-color: #1f1f38;
   }
 
   .blueNavy {
@@ -364,7 +363,7 @@ p {
   }
 
   .gray {
-    background-color: #8C8C8C;
+    background-color: #8c8c8c;
   }
 }
 
