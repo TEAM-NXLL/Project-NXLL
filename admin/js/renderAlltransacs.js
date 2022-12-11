@@ -55,15 +55,40 @@ export async function renderAlltransacs() {
 
     transac.innerHTML = innerHTMLContents;
 
-    if (isCanceled == true) {
+    if (isCanceled === true) {
       transac.querySelector('.transac-status').innerHTML = /*html*/ `
         <div class = "isCancled">거래 취소</div>
       `;
-    } else if (done == true) {
+    } else if (done === true) {
       transac.querySelector('.transac-status').innerHTML = /*html*/ `
       <div class = "done">거래 완료</div>
     `;
+    } else if (done === false && isCanceled === false) {
+      transac.querySelector('.transac-status').innerHTML = /*html*/ `
+      <div class = "transacting">거래중</div>
+      <button class = "isCancled-btn">거래 취소</button>
+      <button class = "done-btn">거래 완료</button>
+      `;
     }
+
+    //여기 중복 되는 것 생성자 함수로 만들기
+    // 버튼 이벤트 리스너 추가
+    transac
+      .querySelector('.isCancled-btn')
+      .addEventListener('click', (event) => {
+        //모달 띄우기
+        //정말 거래를 취소하시겠습니까?
+        //거래가 취소되었습니다. <-> 사용자 API와 공유하깈
+        const product_id = event.path[3].querySelector('.transacId').innerTex;
+        transactionStatus(product_id, true, false);
+      });
+    transac.querySelector('.done-btn').addEventListener('click', (event) => {
+      //모달 띄우기
+      //정말 거래를 완료하시겠습니까?
+      //거래가 완료되었습니다.
+      const product_id = event.path[3].querySelector('.transacId').innerTex;
+      transactionStatus(product_id, false, true);
+    });
 
     const productCont = document.querySelector('all-transac-container');
     productCont.append(transac);

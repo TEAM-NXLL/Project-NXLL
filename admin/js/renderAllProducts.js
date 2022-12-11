@@ -1,4 +1,5 @@
 import { viewAllProduct } from './requests';
+import { renderProductTransacs } from './renderProductTransacs';
 
 export async function renderAllProduct() {
   const products = await viewAllProduct();
@@ -34,5 +35,17 @@ export async function renderAllProduct() {
     product.innerHTML = innerHTMLContents;
     const productCont = document.querySelector('.products-container');
     productCont.append(product);
+
+    // 각각의 항목에 이벤트 리스너 달기
+    product.addEventListener('click', (event) => {
+      //{각 개별 거래내역 렌더링}
+      renderProductTransacs(id, event);
+      const showProductCont = document.querySelector(
+        '.products-container .show',
+      );
+      if (!showProductCont) {
+        productTransac.classList.add('show');
+      }
+    });
   });
 }
