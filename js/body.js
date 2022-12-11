@@ -1218,6 +1218,7 @@ function userAccountForm(totalBalance) {
                 <option value="null" class="no-bank">없음</option>
               </select>
               <span class="charge"></span>
+              <button type="button" class="cancel-account hover-navy hidden">계좌 해지</button>
             </td>
           </tr>
           <tr>

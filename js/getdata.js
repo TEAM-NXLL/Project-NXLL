@@ -143,3 +143,21 @@ export async function addAccount(accessToken, bankCode, accountNumber, phoneNumb
   const json = await res.json()
   return json
 }
+
+// 계좌 해지 데이터
+export async function cancelAccount(accessToken, accountId) {
+  const res = await fetch(store.url + '/account', {
+    method: 'DELETE',
+    headers: {
+      ...store.headers,
+      "apikey": process.env.API_KEY,
+      "Authorization": `Bearer ${accessToken}`,
+    },
+    body: JSON.stringify({
+      "accountId": accountId,
+      "signature": true
+    })
+  })
+  const json = await res.json()
+  return json
+}
