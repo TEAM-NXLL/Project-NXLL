@@ -3,7 +3,7 @@ import { getData, getLogin, getLogOut, stateLogin } from "./getdata.js";
 import { router } from "./route.js";
 import { deliveryEl, returnEl, deliveryDes, returnDes, mouseenter, mouseleave } from './footer.js'
 import { joinForm, logInForm, myOrderForm, myShoppingForm, mainForm, userInfoForm, userAccountForm, detailForm } from "./body.js";
-import { editUserInfo, userOwnBank, addNewAccount, choiceBank, bankChargeLookUp, ownAccountList, addAbleAccountList } from "./userInfo.js";
+import { editUserInfo, userOwnBank, addNewAccount, choiceBank, bankChargeLookUp, ownAccountList, addAbleAccountList, cancelBank } from "./userInfo.js";
 
 // 변수
 const root = document.querySelector('main')
@@ -113,7 +113,7 @@ function logOut() {
     const res = await getLogOut(accessToken)
     if (res) {
       localStorage.removeItem('accessToken'),
-      localStorage.removeItem('userName')
+        localStorage.removeItem('userName')
     }
     location.href = '/'
   })
@@ -144,7 +144,7 @@ function renderMyOrder() {
 async function renderUserInfo() {
   const res = await stateLogin(localStorage.accessToken)
   root.innerHTML = userInfoForm(res.email, res.displayName)
-  const {totalBalance, accounts} = await userOwnBank()
+  const { totalBalance, accounts } = await userOwnBank()
   const total = totalBalance.toLocaleString()
   root.innerHTML += userAccountForm(total)
   bankChargeLookUp()
@@ -153,6 +153,7 @@ async function renderUserInfo() {
   addAbleAccountList()
   addNewAccount()
   choiceBank()
+  cancelBank()
 }
 
 // detail 렌더링

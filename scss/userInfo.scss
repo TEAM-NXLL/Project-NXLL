@@ -90,6 +90,11 @@ main {
           width: 80px;
         }
       }
+      .cancel-account {
+        &.hidden {
+          display: none;
+        }
+      }
     }
     .accountBtn {
       display: flex;

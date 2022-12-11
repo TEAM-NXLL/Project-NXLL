@@ -18,6 +18,7 @@ function createRequest(type, data) {
   if (data) {
     res.body = JSON.stringify(data);
   }
+  console.log(res)
   return res;
 }
 

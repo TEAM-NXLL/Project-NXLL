@@ -3,7 +3,7 @@ function mainForm() {
   return /* html */ `
   <div class="swiper mainSwiper">
     <ul class="swiper-wrapper">
-      <li class="swiper-slide"><a href="#"><img src="../images/slide1-banner1.jpg" alt=""></a></li>
+      <li class="swiper-slide"><a href="#detail"><img src="../images/slide1-banner1.jpg" alt=""></a></li>
       <li class="swiper-slide"><a href="#"><img src="../images/slide1-banner2.jpg" alt=""></a></li>
       <li class="swiper-slide"><a href="#"><img src="../images/slide1-banner3.jpg" alt=""></a></li>
       <li class="swiper-slide"><a href="#"><img src="../images/slide1-banner4.jpg" alt=""></a></li>
@@ -1219,6 +1219,7 @@ function userAccountForm(totalBalance) {
                 <option value="null" class="no-bank">없음</option>
               </select>
               <span class="charge"></span>
+              <button type="button" class="cancel-account hover-navy hidden">계좌 해지</button>
             </td>
           </tr>
           <tr>
@@ -1239,13 +1240,13 @@ function userAccountForm(totalBalance) {
           <tr>
             <th>전화 번호</th>
             <td>
-              <input type="text" class="phone-number-input"> - <input type="text" class="phone-number-input"> - <input type="text" class="phone-number-input">
+              <input type="number" class="phone-number-input"> - <input type="number" class="phone-number-input"> - <input type="number" class="phone-number-input">
             </td>
           </tr>
           <tr>
             <th>계좌 번호</th>
             <td class='account-number-box'>
-              <input type="text" class="account-number-input"> - <input type="text" class="account-number-input"> - <input type="text" class="account-number-input"> - <input type="text" class="account-number-input">
+              <input type="number" class="account-number-input"> - <input type="number" class="account-number-input"> - <input type="number" class="account-number-input"> - <input type="number" class="account-number-input">
             </td>
           </tr>
           </tbody>
@@ -1267,53 +1268,120 @@ function detailForm() {
     </div>
   </div>
 
+  <!-- PRODUCT-DETAIL -->
   <div class="product-detail">
-      <div class="product-detail__header">
-        <div class="inner">
-          <div class="product-thumbnail">
-            <img src="images/christmasGiftMini1.jpg" alt="대표이미지">
-          </div>
-          <div class="product-order">
-            <div class="product-summary">
-              <div class="product-summary__title">
-                <span>[크리스마스 증정 이벤트] 손목 받침대+키스킨+컬러 키 캡 증정</span>
-                <p>[크리스마스 증정 이벤트]엑토 레트로 블루투스 미니 키보드 B303</p>
-                <span class="price">49,900원</span>
-              </div>
-              <div class="product-summary__info">
-                <p class="info-title">상품 정보</p>
-                <p><em>상품 설명</em> <span>[크리스마스 증정 이벤트] 손목 받침대+키스킨+컬러 키 캡 증정 </span></p>
-                <p><em>상품 포함 태그</em> <span style="color:#555;">가전, 노트북, 컴퓨터</span></p>
-                <p><em>배송비</em> <span style="color:red;">무료</span></p>
-                <p><em>판매 상태</em> <span>판매중</span></p>
-              </div>
-              <div class="btn-group">
-                <a href="#" class="buy-btn">바로 구매하기</a>
-                <a href="#" class="cart-btn"><i class="fas fa-sm ver-0 fa-plus"></i>장바구니</a>
-              </div>
-              <div class="delivery-info">
-                <p>제주도 및 도서산간 지역은 배송료 3,000원이 추가됩니다</p>
-                <p>위 옵션선택 박스를 선택하시면 아래에 상품이 추가됩니다.</p>
-                <p>주문수량 안내: 최소주문수량 1개 이상</p>
-              </div>
+    <div class="product-detail__header">
+      <div class="inner">
+        <div class="product-thumbnail">
+          <img src="images/christmasGiftMini1.jpg" alt="대표이미지">
+        </div>
+        <div class="product-order">
+          <div class="product-summary">
+            <div class="product-summary__title">
+              <span>[크리스마스 증정 이벤트] 손목 받침대+키스킨+컬러 키 캡 증정</span>
+              <p>[크리스마스 증정 이벤트]엑토 레트로 블루투스 미니 키보드 B303</p>
+              <span class="price">49,900원</span>
+            </div>
+            <div class="product-summary__info">
+              <p class="info-title">상품 정보</p>
+              <p><em>상품 설명</em> <span>[크리스마스 증정 이벤트] 손목 받침대+키스킨+컬러 키 캡 증정 </span></p>
+              <p><em>상품 포함 태그</em> <span style="color:#555;">가전, 노트북, 컴퓨터</span></p>
+              <p><em>배송비</em> <span style="color:red;">무료</span></p>
+              <p><em>판매 상태</em> <span>판매중</span></p>
+            </div>
+            <div class="btn-group">
+              <a href="#" class="buy-btn">바로 구매하기</a>
+              <a href="#" class="cart-btn"><i class="fas fa-sm ver-0 fa-plus"></i>장바구니</a>
+            </div>
+            <div class="delivery-info">
+              <p>제주도 및 도서산간 지역은 배송료 3,000원이 추가됩니다</p>
+              <p>위 옵션선택 박스를 선택하시면 아래에 상품이 추가됩니다.</p>
+              <p>주문수량 안내: 최소주문수량 1개 이상</p>
             </div>
           </div>
         </div>
       </div>
+    </div>
 
-      <div class="product-detail__body">
-        <ul class="tab-menu detail">
-          <li><a href="#">상품구매</a></li>
-          <li><a href="#">상세정보</a></li>
-        </ul>
-        
-        <div class="inner">
-          <div class="product-detail__img">
-            <img src="/images/christmasGiftMini1.jpg" alt="">
-          </div>
+    <div class="product-detail__body">
+      <ul class="tab-menu detail">
+        <li><a href="#">상품구매</a></li>
+        <li><a href="#">상세정보</a></li>
+      </ul>
+
+      <div class="inner">
+        <div class="product-detail__img">
+          <img src="/images/christmasGiftMini1.jpg" alt="">
         </div>
       </div>
     </div>
+  </div><!-- PRODUCT-DETAIL -->
+
+  <!-- MODAL-PAYMENT -->
+  <div class="modal-payment">
+    <div class="modal-payment__header">
+      <h3>장바구니 담기</h3>
+      <span>물품을 미리 확인하세요</span>
+      <button>닫기 버튼</button>
+    </div>
+    <div class="modal-payment__body">
+      <div class="modal-payment__title">
+        <em>CART - LIST</em>
+        <span class="subtext">내 장바구니 목록입니다.</span>
+        <span class="total">총 <strong>3</strong>개의 물품</span>
+      </div>
+
+      <div class="modal-payment__list">
+        <div class="modal-payment__item">
+          <div class="thumb">
+            <img src="/images/christmasGift.jpg" alt="상품 대표이미지">
+          </div>
+          <div class="description">
+            <p class="name">
+              [크리스마스 증정 이벤트] 엑토 레트로 미니 블루투스 키보드 B303 엑토 레트로 미니 블루투스 키보드 B303
+            </p>
+            <p class="delivery-fee">배송비 무료</p>
+          </div>
+          <div class="price">
+            <p>49,900 원</p>
+          </div>
+        </div>
+        <div class="modal-payment__item">
+          <div class="thumb">
+            <img src="/images/christmasGiftMini1.jpg" alt="상품 대표이미지">
+          </div>
+          <div class="description">
+            <p class="name">
+              [크리스마스 증정 이벤트] 엑토 레트로 미니 블루투스 키보드 B303
+            </p>
+            <p class="delivery-fee">배송비 무료</p>
+          </div>
+          <div class="price">
+            <p>49,900 원</p>
+          </div>
+        </div>
+
+      </div>
+      <div class="pagination">
+      <button class="pagination--control"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
+      </button>
+      <div class="pagination--page">
+        <ul>
+          <li class="active">1</li>
+          <li>2</li>
+        </ul>
+      </div>
+      <button class="pagination--control">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg>
+      </button>
+    </div>
+    </div>    
+
+    <div class="modal-payment__footer">
+      <span>* 쇼핑을 계속하시려면 이 창을 닫아주시길 바랍니다.</span>
+      <a href="#" class="btn-buy"><i class="fas fa-check"></i>바로 구매하기</a>
+    </div>
+  </div><!-- MODAL-PAYMENT -->
   `
 }
 
