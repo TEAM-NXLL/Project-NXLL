@@ -6,6 +6,7 @@ import {
   correctProduct,
   transactionStatus,
 } from './requests.js';
+import { toast } from './toast.js';
 
 const addFormEl = document.querySelector('.add-form')
 const thumbnailEl = document.querySelector('.add-thumbnail')
@@ -33,7 +34,6 @@ detailImgEl.addEventListener('change', event => {
 detailResetEl.addEventListener('click', () => {
   document.querySelector('#detail-preview').src = "";
   detailImgEl.value = "";
-
 })
 thumbnailResetEl.addEventListener('click', () => {
   document.querySelector('#thumbnail-preview').src = "";
@@ -111,4 +111,26 @@ export function addItem(event) {
     return alert('내용이 모두 입력되었는지 확인해 주세요');
   }
   createProduct(title, price, description, tags, thumbnail, photo);
+  toast("상품 추가가 완료되었습니다.")
+  resetInput()
+}
+
+function resetInput() {
+  const reset = document.querySelectorAll('.reset');
+  const resetRadio = document.querySelectorAll('.tag');
+  //resetradio는 체크박스로 바꾸면 필요없어질 듯
+  for (let i = 0; i < resetRadio.length; i += 1) {
+    resetRadio[i].checked = false;
+  }
+  for (let i = 0; i < reset.length; i++) {
+    reset[i].value = '';
+  }
+  document.querySelector('#detail-preview').src = "";
+  document.querySelector('#thumbnail-preview').src = "";
+  // event.path 사용 실패
+  // const tags = document.querySelectorAll('.tag').length;
+  // for (let i = 0; i < (event.path.length + tags) - 2; i += 1) {
+  //   event.path[0][i].value = '';
+  //   // console.log(event.path[0][i])
+  // }
 }
