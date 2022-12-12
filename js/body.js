@@ -21,6 +21,7 @@ async function mainForm(data) {
       if (data[i].tags === '마우스') {
         console.log('나는 마우스')
       }
+      
       mainBody.push(`
         <li>
           <a href="#"> 
