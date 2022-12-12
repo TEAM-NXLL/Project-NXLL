@@ -4,6 +4,7 @@ import { router } from "./route.js";
 import { deliveryEl, returnEl, deliveryDes, returnDes, mouseenter, mouseleave } from './footer.js'
 import { joinForm, logInForm, myOrderForm, myShoppingForm, mainForm, userInfoForm, userAccountForm, detailForm } from "./body.js";
 import { editUserInfo, userOwnBank, addNewAccount, choiceBank, bankChargeLookUp, ownAccountList, addAbleAccountList, cancelBank } from "./userInfo.js";
+import { viewAllProduct } from '../admin/requests.js'
 
 // 변수
 const root = document.querySelector('main')
@@ -14,34 +15,35 @@ const root = document.querySelector('main')
 // }
 
 // 메인 페이지
-function renderMain() {
-  root.innerHTML = mainForm()
-
+async function renderMain() {
+  const data = await viewAllProduct();
+  root.innerHTML = mainForm(data)
+  
   // 메인 스와이퍼
   new Swiper('.mainSwiper', {
     effect: 'fade',
     loop: true,
     autoplay: true,
     speed: 1000,
-
+    
     pagination: {
       el: '.swiper-pagination',
       clickable: true,
     },
-
+    
     navigation: {
       nextEl: '.swiper-button-next',
       prevEl: '.swiper-button-prev',
     },
   })
-
-  // 키보드 스와이퍼
+  
+  // 키보드 배너 스와이퍼
   new Swiper('.keyboardSwiper', {
     effect: 'fade',
     loop: true,
     autoplay: true,
     speed: 1000,
-
+    
     navigation: {
       nextEl: '.swiper-button-next',
       prevEl: '.swiper-button-prev',

@@ -28,12 +28,10 @@ function mainForm(data) {
                   <span class="icon best"><img src="${data[i].thumbnail}" alt=""></span>
                   <img src="#" alt="">
                 </div>
-          `)
-      newList.push(`
                 <div class="colorBox">
-      `)
+          `)
 
-      let randomIndexArray = [2, 3]
+      let randomIndexArray = []
 
       for (let i = 0; i < randomNum; i++) {
 
@@ -42,10 +40,10 @@ function mainForm(data) {
           // 근데 없다? 그럼 찾는 문자열이 없다는 뜻 = -1 이 나온다
           // 결국 -1 === -1 true 니까
           // 아래 조건을 한번 실행한다.
-          if (randomIndexArray.indexOf(2) === -1) {
-              randomIndexArray.push(3)
+          if (randomIndexArray.indexOf(colorNum) === -1) {
+              randomIndexArray.push(colorNum)
               newList.push(`
-                  <span class='white'>${colorChart[colorNum]}</span>
+                  <span class='${colorChart[colorNum]}'></span>
               `)
           }
           // newList.push(`
@@ -56,11 +54,11 @@ function mainForm(data) {
       newList.push(`
           </div >
               <div class="textBox">
-                    ${data[i].title}<span>B300${i}</span>
+                    ${data[i].title} <span>B300${i}</span>
               </div>
               <div class="priceBox">
-                <span class="discount">${data[i].price}원</span> ${Number(data[i].price) * 0.79}원<br />
-                <span class="salePercent">21% SALE</span>
+                <span class="discount">${(data[i].price).toLocaleString()}원</span> ${(Number(data[i].price) * 1-discountValue*100).toLocaleString()}원<br />
+                <span class="salePercent">${discountValue*100}% SALE</span>
               </div>
               </a >
           </li >
