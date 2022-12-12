@@ -56,13 +56,8 @@ function mainForm(data) {
               <div class="priceBox">
                 <span class="discount">
                   ${(data[i].price).toLocaleString()}원</span> 
-<<<<<<< Updated upstream
                   ${(Math.floor(Number(data[i].price) * (100 - discountValue) / 100).toLocaleString())}원<br />
                 <span class="salePercent">${discountValue}% SALE</span>
-=======
-                  ${(Number(data[i].price) * 1 - discountValue * 100).toLocaleString()}원<br />
-                <span class="salePercent">${discountValue * 100}% SALE</span>
->>>>>>> Stashed changes
               </div>
               </a>
           </li>
@@ -70,10 +65,7 @@ function mainForm(data) {
     }
     return mainBody.join('');
   }
-<<<<<<< Updated upstream
 
-=======
->>>>>>> Stashed changes
   mainBody.push(`
     <div class="swiper mainSwiper">
       <ul class="swiper-wrapper">
