@@ -1,4 +1,4 @@
-import { viewAllTransactions } from './requests';
+import { viewAllTransactions } from './requests.js';
 
 // 전체 함수 생성자 함수로 만들어서 all 과 individual로 구분하기
 
