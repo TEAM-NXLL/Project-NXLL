@@ -1,7 +1,8 @@
-import { productId } from './route.js'
-
 // main
-function mainForm(data) {
+
+async function mainForm(data) {
+
+  console.log(data, '나 데이터')
   const mainBody = [];
   const colorChart = ["beige", "pastelBeige", "mint", "pink", "white", "navy", "blueNavy", "black", "green", "gray"]
   const swiperArrowBtn = `
@@ -24,14 +25,21 @@ function mainForm(data) {
       mainBody.push(`
         <li>
           <a href="#"> 
-          <div class="imgBox">
-            <img src="${data[i].thumbnail}" alt="">
-          </div>
+            <div class="imgBox">
+      `)  
+
+      // 썸네일을 넣을건데 썸네일의 종류가 키보드랑 마우스가 있다.
+      // 근데 이 둘을 나누는 기준은 data[i].tags 이다.
+      // 정답은?
+
+      mainBody.push(`
+              <img src="${data[i].thumbnail}" alt="">
+            </div>
           <div class="colorBox">
       `)
 
-      const randomNum = Math.ceil(Math.random() * 5)
-      let randomIndexArray = []
+        const randomNum = Math.ceil(Math.random() * 5)
+        let randomIndexArray = []
       for (let j = 0; j < randomNum; j++) {
 
         const colorNum = Math.floor(Math.random() * 10)
@@ -64,15 +72,16 @@ function mainForm(data) {
       `)
     }
     return mainBody.join('');
-  }
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   mainBody.push(`
     <div class="swiper mainSwiper">
       <ul class="swiper-wrapper">
   `)
 
-  for (let i = 1; i <= 7; i++) {
-
+  for(let i = 1; i <= 7; i++) {
     mainBody.push(`
       <li class="swiper-slide"><a href="#"><img src="../images/slide1-banner${i}.jpg" alt=""></a></li>
     `)
@@ -89,6 +98,11 @@ function mainForm(data) {
       <h1>KEYBOARD</h1>
       <ul class="inner block3">
   `)
+
+  // if(data[i].tags === '키보드'){
+  //   cnt += data[i].thumbnail
+  // }
+  // console.log(cnt)
 
   mainBody.push(productList())
 

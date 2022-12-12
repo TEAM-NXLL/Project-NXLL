@@ -4,7 +4,7 @@ import { router } from "./route.js";
 import { deliveryEl, returnEl, deliveryDes, returnDes, mouseenter, mouseleave } from './footer.js'
 import { joinForm, logInForm, myOrderForm, myShoppingForm, mainForm, userInfoForm, userAccountForm, detailForm, paymentForm } from "./body.js";
 import { editUserInfo, userOwnBank, addNewAccount, choiceBank, bankChargeLookUp, ownAccountList, addAbleAccountList, cancelBank } from "./userInfo.js";
-import { viewAllProduct } from '../admin/requests.js'
+import { viewAllProduct } from '../admin/js/requests.js'
 
 // 변수
 const root = document.querySelector('main')
