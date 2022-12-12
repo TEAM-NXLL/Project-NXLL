@@ -32,24 +32,24 @@ export async function renderAdminSummary() {
   new Status(
     '.new-order',
     /*html*/ `
-    <span class="new-order-text">신규주문</span>
-    <span class="new-order-num">${newOrder.length}</span>
+    <span class="new-order-text">신규 주문</span>
+    <span class="new-order-num hilight">${newOrder.length}</span>
     <span class="num-text">건</span>
   `,
   );
   new Status(
     '.purchase-confirmed',
     /*html*/ `
-    <span class="purchase-confirmed-text">구매확정</span>
-    <span class="purchase-confirmed-num">${purchaseConfirmed.length}</span>
+    <span class="purchase-confirmed-text">구매 확정</span>
+    <span class="purchase-confirmed-num hilight">${purchaseConfirmed.length}</span>
     <span class="num-text">건</span>
   `,
   );
   new Status(
     '.purchase-cancled',
     /*html*/ `
-    <span class="purchase-cancled-text">거래취소</span>
-    <span class="purchase-cancled-num">${purchaseCancled.length}</span>
+    <span class="purchase-cancled-text">거래 취소</span>
+    <span class="purchase-cancled-num hilight">${purchaseCancled.length}</span>
     <span class="num-text">건</span>
   `,
   );
@@ -67,16 +67,16 @@ export async function renderAdminSummary() {
   new Status(
     '.total-products-num',
     /*html*/ `
-    <span class="total-products-num-text">전체상품수</span>
-    <span class="total-products-num">${allProduct.length}</span>
+    <span class="total-products-num-text">전체 상품수</span>
+    <span class="total-products-num hilight">${allProduct.length}</span>
     <span class="num-text">건</span>
   `,
   );
   new Status(
     '.total-income',
     /*html*/ `
-    <span class="total-income-text">전체판매액</span>
-    <span class="total-income-num">${allIncome}</span>
+    <span class="total-income-text">전체 판매액</span>
+    <span class="total-income-num hilight">${allIncome}</span>
     <span class="num-text">건</span>
   `,
   );
@@ -84,7 +84,7 @@ export async function renderAdminSummary() {
     '.total-transac-num',
     /*html*/ `
     <span class="total-transac-num-text">전체 거래수</span>
-    <span class="total-transac-num">${allTransac.length}</span>
+    <span class="total-transac-num hilight">${allTransac.length}</span>
     <span class="num-text">건</span>
   `,
   );
