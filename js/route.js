@@ -1,6 +1,5 @@
-import { userInfoForm } from "./body"
-import { loginRender, joinRender, renderMyShop, renderMyOrder, renderMain, renderUserInfo, renderDetail } from "./main"
-import { getProductDetail } from "./getdata"
+import { loginRender, joinRender, renderMyShop, renderMyOrder, renderMain, renderUserInfo, renderDetail, renderPayment } from "./main"
+import { getProductDetail } from "./getdata.js"
 
 export async function router() {
 
@@ -39,5 +38,14 @@ export async function router() {
     } catch (error) {
       console.log(error)
     }
+  }
+  else if (routePath === '#payment') {
+    renderPayment()
+  }
+  else if (routePath === '#payment') {
+    renderPayment()
+  }
+  else if (routePath === '#payment') {
+    renderPayment()
   }
 }

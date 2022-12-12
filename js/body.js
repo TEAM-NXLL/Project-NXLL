@@ -1,5 +1,3 @@
-import { productId } from "./route"
-
 // main
 function mainForm(data) {
   const mainBody = [];
@@ -635,7 +633,6 @@ function detailForm(productInfo) {
       <a href="#">${productInfo.tags}</a>
     </div>
   </div>
-
   <!-- PRODUCT-DETAIL -->
   <div class="product-detail">
     <div class="product-detail__header">
@@ -670,13 +667,11 @@ function detailForm(productInfo) {
         </div>
       </div>
     </div>
-
     <div class="product-detail__body">
       <ul class="tab-menu detail">
         <li><a name="product-detail__header">상품구매</a></li>
         <li><a name="product-detail__body">상세정보</a></li>
       </ul>
-
       <div class="inner">
         <div class="product-detail__img">
           <img src="${productInfo.photo}" alt="">
@@ -684,7 +679,6 @@ function detailForm(productInfo) {
       </div>
     </div>
   </div><!-- PRODUCT-DETAIL -->
-
   <!-- MODAL-PAYMENT -->
   <div class="modal-payment">
     <div class="modal-payment__header">
@@ -698,7 +692,6 @@ function detailForm(productInfo) {
         <span class="subtext">내 장바구니 목록입니다.</span>
         <span class="total">총 <strong>3</strong>개의 물품</span>
       </div>
-
       <div class="modal-payment__list">
         <div class="modal-payment__item">
           <div class="thumb">
@@ -728,7 +721,6 @@ function detailForm(productInfo) {
             <p>49,900 원</p>
           </div>
         </div>
-
       </div>
       <div class="pagination">
       <button class="pagination--control"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
@@ -744,7 +736,6 @@ function detailForm(productInfo) {
       </button>
     </div>
     </div>    
-
     <div class="modal-payment__footer">
       <span>* 쇼핑을 계속하시려면 이 창을 닫아주시길 바랍니다.</span>
       <a href="#" class="btn-buy"><i class="fas fa-check"></i>바로 구매하기</a>
@@ -753,4 +744,158 @@ function detailForm(productInfo) {
   `
 }
 
-export { joinForm, logInForm, myShoppingForm, myOrderForm, mainForm, userInfoForm, userAccountForm, detailForm }
+function paymentForm() {
+  return /* html */ `
+   <div class="title-box" scope="sub">
+      <p class="title-box__text">ORDER - FORM</p>
+      <p class="title-box__subtext">나의 장바구니 내역</p>
+    </div>
+
+    <div class="order-form">
+      <div class="inner">
+        <ul>
+          <li><i class="fa-solid fa-shirt"></i>CART LIST</li>
+          <li class="selected"><i class="fa-regular fa-file-lines"></i>ORDER FORM</li>
+          <li><i class="fa-brands fa-cc-visa"></i>PAYMENT</li>
+          <li><i class="fa-regular fa-face-smile"></i>COMPLETE</li>
+        </ul>
+      </div>
+    </div>
+
+    <ul class="table-area">
+      <li class="product-info">
+        <h2>PRODUCT <span>주문 상품 정보</span></h2>
+        <table>
+          <colgroup>
+            <col style="width: 40px"/>
+            <col style="width: 80px"/>
+            <col style="width: auto"/>
+            <col style="width: 98px"/>
+            <col style="width: 75px"/>
+            <col style="width: 85px"/>
+            <col style="width: 98px"/>
+          </colgroup>
+          <thead>
+            <tr>
+              <th scope="col">
+                <input type="checkbox" />
+              </th>
+              <th scope="col">이미지</th>
+              <th scope="col">상품 정보</th>
+              <th scope="col">판매가</th>
+              <th scope="col">수량</th>
+              <th scope="col">배송비</th>
+              <th scope="col">합계</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <input type="checkbox" />
+              </td>
+              <td>
+                <a href="#">
+                  <img src="./images/mouse-bluetoothPink.jpg" alt="" />
+                </a>
+              </td>
+              <td>
+                <span>엑토 LED 블루투스 저소음 광마우스</span> <br />
+                <span>[옵션: ABIM-03 아이보리]</span>
+              </td>
+              <td>21,900원</td>
+              <td>1</td>
+              <td>[무료 배송]</td>
+              <td>21,900원</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td></td>
+              <td colspan="6">
+                <span>[기본배송]</span>
+                상품 구매 금액
+                <strong>21,900</strong>
+                + 배송비
+                <span>0 (무료)</span>
+                = 합계 :
+                <span>21,900원</span>
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+      </li>
+      <button class="product-delete-btn hover-navy">선택 상품 삭제하기</button>
+    </ul>
+
+    <ul class="table-area">
+      <li class="shipping-info">
+      <h2>SHIPPING <span>배송 정보</span></h2>
+      <table>
+        <colgroup>
+        <col style="width:150px" />
+        <col style="width:auto"/>
+        </colgroup>
+        <tbody>
+          <tr>
+            <th scope="row">받으시는 분</th>
+            <td>
+              <input type="text" />
+            </td>
+          </tr>
+          <tr>
+            <th>휴대전화</th>
+            <td>
+              <input type="number" class="phone-number-input" value="010"> - <input type="number" class="phone-number-input"> - <input type="number" class="phone-number-input">
+            </td>
+          </tr>
+          <tr>
+            <th>주소</th>
+            <td>
+              <input type="text" class="address1"/> 기본 주소<br />
+              <input type="text" class="address2" /> 나머지 주소(선택 입력 가능)
+            </td>
+          </tr>
+          <tr>
+            <th>배송 메시지</th>
+            <td>
+              <input type="text" class="shipping-message"/>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </li>
+    </ul>
+
+    <ul class="table-area">
+      <li class="payment-info">
+      <h2>PAYMENT <span>결제</span></h2>
+      <table>
+        <colgroup>
+        <col style="width:150px" />
+        <col style="width:auto"/>
+        </colgroup>
+        <tbody>
+          <tr>
+            <th scope="row" class="total-price">총 결제 금액</th>
+            <td>
+              <span>10,000 원</span>
+            </td>
+          </tr>
+          <tr>
+            <th>결제 계좌</th>
+            <td>
+              <select name="pay-account" id="pay-account">
+                <option value="default">계좌 없음</option>
+              </select>
+              <span>계좌 잔액</span>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </li>
+      <button class="payment-btn hover-navy">결제하기</button>
+    </ul>
+  `
+}
+
+export { joinForm, logInForm, myShoppingForm, myOrderForm, mainForm, userInfoForm, userAccountForm, detailForm, paymentForm }
