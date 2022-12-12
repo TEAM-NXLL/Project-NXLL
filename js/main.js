@@ -132,7 +132,10 @@ function completeLogin() {
 
 // myshop 렌더링
 async function renderMyShop() {
-  root.innerHTML = myShoppingForm()
+  const { totalBalance, accounts } = await userOwnBank()
+  // const total = totalBalance.toLocaleString()
+  const total = totalBalance ? totalBalance.toLocaleString() : ''
+  root.innerHTML = myShoppingForm(total)
 }
 
 // myorder 렌더링
