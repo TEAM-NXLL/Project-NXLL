@@ -153,7 +153,20 @@ export async function cancelAccount(accessToken, accountId) {
     body: JSON.stringify({
       "accountId": accountId,
       "signature": true
-    })
+    }),
+  })
+  const json = await res.json()
+  return json
+}
+
+// 단일 제품 상세 조회 데이터
+export async function getProductDetail(productId) {
+  const res = await fetch(store.url + '/products' + `/${productId}`, {
+    method: 'GET',
+    headers: {
+      ...store.headers,
+      "apikey": process.env.API_KEY
+    }
   })
   const json = await res.json()
   return json

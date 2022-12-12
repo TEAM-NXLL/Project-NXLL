@@ -1,6 +1,7 @@
 @import url('./allProducts.scss');
 @import url('./allTransac.scss');
 @import url('./transacStatus.scss');
+@import url('./adminSummary.scss');
 
 // HEADER
 header {
@@ -32,7 +33,7 @@ header {
             display: flex;
             gap: 10px;
 
-            > a {
+            >a {
               position: relative;
 
               span {
@@ -114,10 +115,10 @@ header {
         display: flex;
         gap: 50px;
 
-        > li {
+        >li {
           position: relative;
 
-          > a {
+          >a {
             display: block;
             position: relative;
           }

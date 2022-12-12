@@ -1,4 +1,4 @@
-import { viewAllTransactions } from './requests';
+import { viewAllTransactions } from './requests.js';
 
 export async function renderAlltransacs() {
   const transacs = await viewAllTransactions();
