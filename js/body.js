@@ -912,7 +912,7 @@ function logInForm() {
 }
 
 // 마이쇼핑 페이지
-function myShoppingForm() {
+function myShoppingForm(price) {
   const information = /* html */`
     <div class="information">
       <div class="inner">
@@ -940,6 +940,12 @@ function myShoppingForm() {
       </div>
     </div>
     `
+  const goToLogin = () => {
+    return localStorage.accessToken ? '#userinfo' : '#login'
+  }
+  const chargeLookUp = () => {
+    return localStorage.accessToken ? `${price}` : `0`
+  }
 
   return /* html */ `
   <div class="title-box" scope="sub">
@@ -960,8 +966,8 @@ function myShoppingForm() {
         </a>
         <a href="#" class="order-list__item">
           <p class="icon mileage"></p>
-          <p>적립금</p>
-          <p class="price">0원</p>
+          <p>계좌 잔액</p>
+          <p class="price">${chargeLookUp()}원</p>
           <i class="line--hover"></i>
         </a>
       </div>
@@ -991,7 +997,7 @@ function myShoppingForm() {
             <span class="quick-menu__title"><strong>회원 정보</strong>
               회원이신 고객님의 개인정보를 관리하는 공간입니다.
             </span>
-            <span class="quick-menu__linked"><a href="#userinfo">조회</a></span>
+            <span class="quick-menu__linked"><a href=${goToLogin()}>조회</a></span>
           </div>
         </div>
         <div class="order-state">
