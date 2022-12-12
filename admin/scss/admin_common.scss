@@ -21,8 +21,12 @@ a {
   cursor: pointer;
 }
 
+//관리자페이지 버튼에 font, font-weight추가
 button,
 input {
+  font-family: var(--font-style);
+  font-weight: 600;
+  color: var(--text-color);
   border: none;
   background-color: inherit;
   outline: none;
@@ -203,7 +207,7 @@ p {
 
     &:hover {
       .imgBox {
-        > img {
+        >img {
           &.imgHover {
             opacity: 1;
           }
@@ -232,7 +236,7 @@ p {
 
     &:hover {
       .imgBox {
-        > img {
+        >img {
           &.imgHover {
             opacity: 1;
           }
@@ -301,7 +305,7 @@ p {
     }
   }
 
-  > img {
+  >img {
     position: absolute;
     top: 50%;
     left: 50%;
