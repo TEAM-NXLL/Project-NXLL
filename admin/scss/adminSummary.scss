@@ -1,0 +1,10 @@
+.admin-summary {
+  display: flex;
+  .inner {
+    display: flex;
+    align-items: center;
+    gap: 300px;
+    font-size: 18px;
+    line-height: 30px;
+  }
+}
