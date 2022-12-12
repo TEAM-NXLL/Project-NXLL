@@ -1,5 +1,3 @@
-import { viewAllProduct } from "../admin/requests";
-
 // main
 
 async function mainForm(data) {
@@ -11,38 +9,18 @@ async function mainForm(data) {
     <div class="swiper-button-prev"></div>
     <div class="swiper-button-next"></div>
   `
-  
 
-  console.log(data.length)
-  const keyboard = await viewAllProduct()
-  console.log(keyboard, '나 키보드')
-  
-  for(let i=0; i<data.length; i++){
-    
-    if(data[i].tags === '키보드') {
-      console.log('키보드 나와라 오바')
-    } else if (data[i].tags === '마우스') {
-      console.log('마우스 나와라 오바')
-    } else if(data[i].tags === 'NEW ITEM') {
-      console.log('NEW ITEM 나와라 오바')
-    }  
-  }
-  
-  const newArr = Array.of(keyboard)
-  const p = newArr.filter(el => el['tags'] === "음향기기" )
-  console.log(p)
-  
-  // keyboard.forEach(el => productList(el))
-  // productList(keyboard)
-  
-
-  function productList(tags) {
-    
+  function productList() {
     const mainBody = []
+    for (let i = 0; i < data.length; i++) {
 
-    for(let i = 0; i < data.length; i++){
+      if (data[i].tags === '키보드') {
+        console.log('키보드')
+      }
 
-      // 데이터를 받아와서 data.tags 들 중에서 '키보드', '마우스' 인 요소들을 나눠서 함수를 실행한다.#
+      if (data[i].tags === '마우스') {
+        console.log('나는 마우스')
+      }
       mainBody.push(`
         <li>
           <a href="#"> 
@@ -58,25 +36,24 @@ async function mainForm(data) {
             </div>
           <div class="colorBox">
       `)
-        
+
         const randomNum = Math.ceil(Math.random() * 5)
         let randomIndexArray = []
-
       for (let j = 0; j < randomNum; j++) {
-  
-          const colorNum = Math.floor(Math.random() * 10)
-          
-          if (randomIndexArray.indexOf(colorNum)=== -1) {
-              randomIndexArray.push(colorNum)
-              mainBody.push(`
+
+        const colorNum = Math.floor(Math.random() * 10)
+
+        if (randomIndexArray.indexOf(colorNum) === -1) {
+          randomIndexArray.push(colorNum)
+          mainBody.push(`
                   <span class='${colorChart[colorNum]}'></span>
               `)
-          }
+        }
       }
 
       let discountValueArr = []
 
-      const discountValue = Math.floor( ( (Math.random() * 9) + 1 ) ) * 8
+      const discountValue = Math.floor(((Math.random() * 9) + 1)) * 8
 
       mainBody.push(`
           </div >
@@ -86,7 +63,7 @@ async function mainForm(data) {
               <div class="priceBox">
                 <span class="discount">
                   ${(data[i].price).toLocaleString()}원</span> 
-                  ${(Math.floor(Number(data[i].price)*(100-discountValue)/100).toLocaleString())}원<br />
+                  ${(Math.floor(Number(data[i].price) * (100 - discountValue) / 100).toLocaleString())}원<br />
                 <span class="salePercent">${discountValue}% SALE</span>
               </div>
               </a>
@@ -95,7 +72,7 @@ async function mainForm(data) {
     }
     return mainBody.join('');
   }
-  
+
   mainBody.push(`
     <div class="swiper mainSwiper">
       <ul class="swiper-wrapper">
@@ -149,9 +126,9 @@ async function mainForm(data) {
     <ul class="inner block2">
 `)
 
-// mainBody.push(productList())
+  mainBody.push(productList())
 
-mainBody.push(`
+  mainBody.push(`
     </ul>
   </section>
 
@@ -174,9 +151,9 @@ mainBody.push(`
     <ul class="inner block3">
 `)
 
-// mainBody.push(productList())
+  mainBody.push(productList())
 
-mainBody.push(`
+  mainBody.push(`
     </ul>
   </section><!-- 뉴아이템 상품목록 -->
 
@@ -186,11 +163,11 @@ mainBody.push(`
     <ul class="inner block5">
 `)
 
-for (let i = 1; i <= 10; i++) {
+  for (let i = 1; i <= 10; i++) {
 
 
-  mainBody.push(
-    `
+    mainBody.push(
+      `
       <li>
       <a href="#">
         <div class="imgBox">
@@ -213,15 +190,15 @@ for (let i = 1; i <= 10; i++) {
         </div>
       </a></li>
   `)
-}
+  }
 
-mainBody.push(`
+  mainBody.push(`
       </ul>
     </section>
   `
-)
-  
-return mainBody.join('')
+  )
+
+  return mainBody.join('')
 }
 
 // 회원가입 페이지
@@ -301,7 +278,7 @@ function logInForm() {
 }
 
 // 마이쇼핑 페이지
-function myShoppingForm() {
+function myShoppingForm(price) {
   const information = /* html */`
     <div class="information">
       <div class="inner">
@@ -329,6 +306,12 @@ function myShoppingForm() {
       </div>
     </div>
     `
+  const goToLogin = () => {
+    return localStorage.accessToken ? '#userinfo' : '#login'
+  }
+  const chargeLookUp = () => {
+    return localStorage.accessToken ? `${price}` : `0`
+  }
 
   return /* html */ `
   <div class="title-box" scope="sub">
@@ -349,8 +332,8 @@ function myShoppingForm() {
         </a>
         <a href="#" class="order-list__item">
           <p class="icon mileage"></p>
-          <p>적립금</p>
-          <p class="price">0원</p>
+          <p>계좌 잔액</p>
+          <p class="price">${chargeLookUp()}원</p>
           <i class="line--hover"></i>
         </a>
       </div>
@@ -380,7 +363,7 @@ function myShoppingForm() {
             <span class="quick-menu__title"><strong>회원 정보</strong>
               회원이신 고객님의 개인정보를 관리하는 공간입니다.
             </span>
-            <span class="quick-menu__linked"><a href="#userinfo">조회</a></span>
+            <span class="quick-menu__linked"><a href=${goToLogin()}>조회</a></span>
           </div>
         </div>
         <div class="order-state">
@@ -647,35 +630,42 @@ function userAccountForm(totalBalance) {
 }
 
 // 상품 상세페이지
-function detailForm() {
+function detailForm(productInfo) {
+  const main = document.querySelector('main')
+  main.addEventListener('click', (event) => {
+    const topBanner = document.querySelector('.top-banner').offsetHeight
+    const el = event.target['name']
+    const nameEl = document.querySelector(`.${el}`)
+    const scrollH = nameEl.getBoundingClientRect().top - topBanner
+    scrollTo({ left: 0, top: window.pageYOffset + scrollH, behavior: 'smooth' })
+  })
   return /* html */`
   <div class="page-nav">
     <div class="inner">
       <a href="/">HOME</a>
-      <a href="#">마우스(검색키워드)</a>
+      <a href="#">${productInfo.tags}</a>
     </div>
   </div>
-
   <!-- PRODUCT-DETAIL -->
   <div class="product-detail">
     <div class="product-detail__header">
       <div class="inner">
         <div class="product-thumbnail">
-          <img src="images/christmasGiftMini1.jpg" alt="대표이미지">
+          <img src="${productInfo.thumbnail}" alt="대표이미지">
         </div>
         <div class="product-order">
           <div class="product-summary">
             <div class="product-summary__title">
-              <span>[크리스마스 증정 이벤트] 손목 받침대+키스킨+컬러 키 캡 증정</span>
-              <p>[크리스마스 증정 이벤트]엑토 레트로 블루투스 미니 키보드 B303</p>
-              <span class="price">49,900원</span>
+              <span>${productInfo.description}</span>
+              <p>${productInfo.title}</p>
+              <span class="price">${productInfo.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원</span>
             </div>
             <div class="product-summary__info">
               <p class="info-title">상품 정보</p>
-              <p><em>상품 설명</em> <span>[크리스마스 증정 이벤트] 손목 받침대+키스킨+컬러 키 캡 증정 </span></p>
-              <p><em>상품 포함 태그</em> <span style="color:#555;">가전, 노트북, 컴퓨터</span></p>
+              <p><em>상품 설명</em> <span>${productInfo.description}</span></p>
+              <p><em>상품 포함 태그</em> <span style="color:#555;">${productInfo.tags}</span></p>
               <p><em>배송비</em> <span style="color:red;">무료</span></p>
-              <p><em>판매 상태</em> <span>판매중</span></p>
+              <p><em>판매 상태</em> <span>${productInfo.isSoldOut === true ? '판매중' : '품절'}</span></p>
             </div>
             <div class="btn-group">
               <a href="#" class="buy-btn">바로 구매하기</a>
@@ -690,21 +680,18 @@ function detailForm() {
         </div>
       </div>
     </div>
-
     <div class="product-detail__body">
       <ul class="tab-menu detail">
-        <li><a href="#">상품구매</a></li>
-        <li><a href="#">상세정보</a></li>
+        <li><a name="product-detail__header">상품구매</a></li>
+        <li><a name="product-detail__body">상세정보</a></li>
       </ul>
-
       <div class="inner">
         <div class="product-detail__img">
-          <img src="/images/christmasGiftMini1.jpg" alt="">
+          <img src="${productInfo.photo}" alt="">
         </div>
       </div>
     </div>
   </div><!-- PRODUCT-DETAIL -->
-
   <!-- MODAL-PAYMENT -->
   <div class="modal-payment">
     <div class="modal-payment__header">
@@ -718,7 +705,6 @@ function detailForm() {
         <span class="subtext">내 장바구니 목록입니다.</span>
         <span class="total">총 <strong>3</strong>개의 물품</span>
       </div>
-
       <div class="modal-payment__list">
         <div class="modal-payment__item">
           <div class="thumb">
@@ -748,7 +734,6 @@ function detailForm() {
             <p>49,900 원</p>
           </div>
         </div>
-
       </div>
       <div class="pagination">
       <button class="pagination--control"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
@@ -764,7 +749,6 @@ function detailForm() {
       </button>
     </div>
     </div>    
-
     <div class="modal-payment__footer">
       <span>* 쇼핑을 계속하시려면 이 창을 닫아주시길 바랍니다.</span>
       <a href="#" class="btn-buy"><i class="fas fa-check"></i>바로 구매하기</a>
@@ -773,4 +757,158 @@ function detailForm() {
   `
 }
 
-export { joinForm, logInForm, myShoppingForm, myOrderForm, mainForm, userInfoForm, userAccountForm, detailForm }
+function paymentForm() {
+  return /* html */ `
+   <div class="title-box" scope="sub">
+      <p class="title-box__text">ORDER - FORM</p>
+      <p class="title-box__subtext">나의 장바구니 내역</p>
+    </div>
+
+    <div class="order-form">
+      <div class="inner">
+        <ul>
+          <li><i class="fa-solid fa-shirt"></i>CART LIST</li>
+          <li class="selected"><i class="fa-regular fa-file-lines"></i>ORDER FORM</li>
+          <li><i class="fa-brands fa-cc-visa"></i>PAYMENT</li>
+          <li><i class="fa-regular fa-face-smile"></i>COMPLETE</li>
+        </ul>
+      </div>
+    </div>
+
+    <ul class="table-area">
+      <li class="product-info">
+        <h2>PRODUCT <span>주문 상품 정보</span></h2>
+        <table>
+          <colgroup>
+            <col style="width: 40px"/>
+            <col style="width: 80px"/>
+            <col style="width: auto"/>
+            <col style="width: 98px"/>
+            <col style="width: 75px"/>
+            <col style="width: 85px"/>
+            <col style="width: 98px"/>
+          </colgroup>
+          <thead>
+            <tr>
+              <th scope="col">
+                <input type="checkbox" />
+              </th>
+              <th scope="col">이미지</th>
+              <th scope="col">상품 정보</th>
+              <th scope="col">판매가</th>
+              <th scope="col">수량</th>
+              <th scope="col">배송비</th>
+              <th scope="col">합계</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <input type="checkbox" />
+              </td>
+              <td>
+                <a href="#">
+                  <img src="./images/mouse-bluetoothPink.jpg" alt="" />
+                </a>
+              </td>
+              <td>
+                <span>엑토 LED 블루투스 저소음 광마우스</span> <br />
+                <span>[옵션: ABIM-03 아이보리]</span>
+              </td>
+              <td>21,900원</td>
+              <td>1</td>
+              <td>[무료 배송]</td>
+              <td>21,900원</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td></td>
+              <td colspan="6">
+                <span>[기본배송]</span>
+                상품 구매 금액
+                <strong>21,900</strong>
+                + 배송비
+                <span>0 (무료)</span>
+                = 합계 :
+                <span>21,900원</span>
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+      </li>
+      <button class="product-delete-btn hover-navy">선택 상품 삭제하기</button>
+    </ul>
+
+    <ul class="table-area">
+      <li class="shipping-info">
+      <h2>SHIPPING <span>배송 정보</span></h2>
+      <table>
+        <colgroup>
+        <col style="width:150px" />
+        <col style="width:auto"/>
+        </colgroup>
+        <tbody>
+          <tr>
+            <th scope="row">받으시는 분</th>
+            <td>
+              <input type="text" />
+            </td>
+          </tr>
+          <tr>
+            <th>휴대전화</th>
+            <td>
+              <input type="number" class="phone-number-input" value="010"> - <input type="number" class="phone-number-input"> - <input type="number" class="phone-number-input">
+            </td>
+          </tr>
+          <tr>
+            <th>주소</th>
+            <td>
+              <input type="text" class="address1"/> 기본 주소<br />
+              <input type="text" class="address2" /> 나머지 주소(선택 입력 가능)
+            </td>
+          </tr>
+          <tr>
+            <th>배송 메시지</th>
+            <td>
+              <input type="text" class="shipping-message"/>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </li>
+    </ul>
+
+    <ul class="table-area">
+      <li class="payment-info">
+      <h2>PAYMENT <span>결제</span></h2>
+      <table>
+        <colgroup>
+        <col style="width:150px" />
+        <col style="width:auto"/>
+        </colgroup>
+        <tbody>
+          <tr>
+            <th scope="row" class="total-price">총 결제 금액</th>
+            <td>
+              <span>10,000 원</span>
+            </td>
+          </tr>
+          <tr>
+            <th>결제 계좌</th>
+            <td>
+              <select name="pay-account" id="pay-account">
+                <option value="default">계좌 없음</option>
+              </select>
+              <span>계좌 잔액</span>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </li>
+      <button class="payment-btn hover-navy">결제하기</button>
+    </ul>
+  `
+}
+
+export { joinForm, logInForm, myShoppingForm, myOrderForm, mainForm, userInfoForm, userAccountForm, detailForm, paymentForm }

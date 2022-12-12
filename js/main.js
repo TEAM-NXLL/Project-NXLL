@@ -2,7 +2,7 @@ import { doc } from "prettier";
 import { getData, getLogin, getLogOut, stateLogin } from "./getdata.js";
 import { router } from "./route.js";
 import { deliveryEl, returnEl, deliveryDes, returnDes, mouseenter, mouseleave } from './footer.js'
-import { joinForm, logInForm, myOrderForm, myShoppingForm, mainForm, userInfoForm, userAccountForm, detailForm } from "./body.js";
+import { joinForm, logInForm, myOrderForm, myShoppingForm, mainForm, userInfoForm, userAccountForm, detailForm, paymentForm } from "./body.js";
 import { editUserInfo, userOwnBank, addNewAccount, choiceBank, bankChargeLookUp, ownAccountList, addAbleAccountList, cancelBank } from "./userInfo.js";
 import { viewAllProduct } from '../admin/requests.js'
 
@@ -18,32 +18,32 @@ const root = document.querySelector('main')
 async function renderMain() {
   const data = await viewAllProduct();
   root.innerHTML = mainForm(data)
-  
+
   // 메인 스와이퍼
   new Swiper('.mainSwiper', {
     effect: 'fade',
     loop: true,
     autoplay: true,
     speed: 1000,
-    
+
     pagination: {
       el: '.swiper-pagination',
       clickable: true,
     },
-    
+
     navigation: {
       nextEl: '.swiper-button-next',
       prevEl: '.swiper-button-prev',
     },
   })
-  
+
   // 키보드 배너 스와이퍼
   new Swiper('.keyboardSwiper', {
     effect: 'fade',
     loop: true,
     autoplay: true,
     speed: 1000,
-    
+
     navigation: {
       nextEl: '.swiper-button-next',
       prevEl: '.swiper-button-prev',
@@ -134,7 +134,10 @@ function completeLogin() {
 
 // myshop 렌더링
 async function renderMyShop() {
-  root.innerHTML = myShoppingForm()
+  const { totalBalance, accounts } = await userOwnBank()
+  // const total = totalBalance.toLocaleString()
+  const total = totalBalance ? totalBalance.toLocaleString() : ''
+  root.innerHTML = myShoppingForm(total)
 }
 
 // myorder 렌더링
@@ -159,8 +162,14 @@ async function renderUserInfo() {
 }
 
 // detail 렌더링
-function renderDetail() {
-  root.innerHTML = detailForm()
+async function renderDetail(productInfo) {
+  root.innerHTML = detailForm(productInfo)
+  // detailScrollEvent();
+}
+
+// payment 렌더링
+function renderPayment() {
+  root.innerHTML = paymentForm()
 }
 
 // footer 함수
@@ -180,4 +189,4 @@ router();
   } else return
 })();
 
-export { loginRender, joinRender, logOut, renderMyShop, renderMyOrder, renderMain, renderUserInfo, renderDetail }
+export { loginRender, joinRender, logOut, renderMyShop, renderMyOrder, renderMain, renderUserInfo, renderDetail, renderPayment }
