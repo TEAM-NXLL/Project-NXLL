@@ -1,3 +1,5 @@
+import { productId } from './route.js'
+
 // main
 function mainForm(data) {
   const mainBody = [];

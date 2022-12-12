@@ -172,11 +172,6 @@ function renderPayment() {
   root.innerHTML = paymentForm()
 }
 
-// payment 렌더링
-function renderPayment() {
-  root.innerHTML = paymentForm()
-}
-
 // footer 함수
 mouseenter()
 mouseleave()
