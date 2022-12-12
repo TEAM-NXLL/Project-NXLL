@@ -90,9 +90,6 @@ export async function editUser(accessToken, displayName, oldPassword, newPasswor
     })
   })
   const json = await res.json()
-  if (json === "유효한 비밀번호가 아닙니다.") {
-    return alert("비밀번호를 다시 입력해 주세요.")
-  }
   return json
 }
 
@@ -137,6 +134,24 @@ export async function addAccount(accessToken, bankCode, accountNumber, phoneNumb
       "bankCode": bankCode,
       "accountNumber": accountNumber,
       "phoneNumber": phoneNumber,
+      "signature": true
+    })
+  })
+  const json = await res.json()
+  return json
+}
+
+// 계좌 해지 데이터
+export async function cancelAccount(accessToken, accountId) {
+  const res = await fetch(store.url + '/account', {
+    method: 'DELETE',
+    headers: {
+      ...store.headers,
+      "apikey": process.env.API_KEY,
+      "Authorization": `Bearer ${accessToken}`,
+    },
+    body: JSON.stringify({
+      "accountId": accountId,
       "signature": true
     })
   })
