@@ -7,23 +7,29 @@ function mainForm(data) {
     <div class="swiper-button-next"></div>
   `
   
-  console.log(data, '상품 데이터')
-  
   function productList() {
     const mainBody = []
     for(let i = 0; i < data.length; i++){
-      const randomNum = Math.ceil(Math.random() * 5)
-      mainBody.push(
-          `
-            <li>
-              <a href="#"> 
-                <div class="imgBox">
-                  <img src="${data[i].thumbnail}" alt="">
-                </div>
-                <div class="colorBox">
-          `)
-  
-      let randomIndexArray = []
+
+      if(data[i].tags === '키보드') {
+        console.log('키보드')
+      }
+      
+      if(data[i].tags === '마우스'){
+        console.log('나는 마우스')
+      }
+      
+      mainBody.push(`
+        <li>
+          <a href="#"> 
+          <div class="imgBox">
+            <img src="${data[i].thumbnail}" alt="">
+          </div>
+          <div class="colorBox">
+      `)
+        
+        const randomNum = Math.ceil(Math.random() * 5)
+        let randomIndexArray = []
       for (let j = 0; j < randomNum; j++) {
   
           const colorNum = Math.floor(Math.random() * 10)
@@ -38,9 +44,7 @@ function mainForm(data) {
 
       let discountValueArr = []
 
-
-      const discountValue = Math.random().toFixed(2);
-
+      const discountValue = Math.floor( ( (Math.random() * 9) + 1 ) ) * 8
 
       mainBody.push(`
           </div >
@@ -50,15 +54,16 @@ function mainForm(data) {
               <div class="priceBox">
                 <span class="discount">
                   ${(data[i].price).toLocaleString()}원</span> 
-                  ${(Number(data[i].price) * 1-discountValue*100).toLocaleString()}원<br />
-                <span class="salePercent">${discountValue*100}% SALE</span>
+                  ${(Math.floor(Number(data[i].price)*(100-discountValue)/100).toLocaleString())}원<br />
+                <span class="salePercent">${discountValue}% SALE</span>
               </div>
               </a>
           </li>
       `)
     }
     return mainBody.join('');
-  } 
+  }
+  
   mainBody.push(`
     <div class="swiper mainSwiper">
       <ul class="swiper-wrapper">
@@ -75,7 +80,6 @@ function mainForm(data) {
       </ul>
 
       <div class="swiper-pagination"></div>
-
       ${swiperArrowBtn}
     </div>  
 
