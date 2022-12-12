@@ -29,7 +29,7 @@ export async function renderAllProduct() {
             <button class="edit-btn">제품 수정</button>
             <button class="del-btn">제품 삭제</button>
           </div>
-          <button class="check-transac">내역 확인</button>
+          <!-- <button class="check-transac">내역 확인</button> -->
         </div>
     `;
 
@@ -39,15 +39,15 @@ export async function renderAllProduct() {
 
     // 각각의 항목에 이벤트 리스너 달기
     const checkTransacBtn = document.querySelector('.check-transac');
-    checkTransacBtn.addEventListener('click', (event) => {
-      //{각 개별 거래내역 렌더링}
-      renderProductTransacs(id, event);
-      const showProductCont = document.querySelector(
-        '.products-container .show',
-      );
-      if (!showProductCont) {
-        productCont.classList.add('show');
-      }
-    });
+    // checkTransacBtn.addEventListener('click', (event) => {
+    //   //{각 개별 거래내역 렌더링}
+    //   renderProductTransacs(id, event);
+    //   const showProductCont = document.querySelector(
+    //     '.products-container .show',
+    //   );
+    //   if (!showProductCont) {
+    //     productCont.classList.add('show');
+    //   }
+    // });
   });
 }
