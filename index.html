@@ -1,297 +1,274 @@
 <!DOCTYPE html>
 <html lang="ko">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap"
-      rel="stylesheet"
-    />
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <script
-      src="https://kit.fontawesome.com/cd76b4d4dc.js"
-      crossorigin="anonymous"
-    ></script>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet" />
 
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"
-    />
-    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+  <script src="https://kit.fontawesome.com/cd76b4d4dc.js" crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" href="./scss/main.scss" />
-    <script type="module" defer src="./js/main.js"></script>
-    <title>엑토몰 디자인 키보드는 엑토</title>
-  </head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
 
-  <body>
-    <!-- HEADER -->
-    <header>
-      <!-- top-banner -->
-      <div class="top-banner">
-        <div class="inner">
-          <div class="CS"><a href="#">CS센터 24시간 AS접수</a></div>
-          <ul class="top-nav">
-            <li class="signUpsignIn">
-              <a href="#login" class="login" id="login-btn">로그인</a>
+  <link rel="stylesheet" href="./scss/main.scss" />
+  <script type="module" defer src="./js/main.js"></script>
+  <title>엑토몰 디자인 키보드는 엑토</title>
+</head>
 
-              <a href="#join" class="join" id="join-btn"
-                >회원가입
-                <p class="balloon"><span></span>+ 5,000</p>
-              </a>
-            </li>
-            <li>
-              <a class="shipping" href="#"
-                ><i class="fa-solid fa-truck-moving"></i>배송조회</a
-              >
-            </li>
-            <li>
-              <a class="community" href="./admin/admin.html">커뮤니티</a>
-            </li>
-            <li>
-              <a href="#myshop" class="myShopping"
-                ><i class="fa-regular fa-circle-user"></i>마이쇼핑</a
-              >
-            </li>
-            <li>
-              <a class="company" href="#">회사소개</a>
-            </li>
-          </ul>
+<body>
+  <!-- HEADER -->
+  <header>
+    <!-- top-banner -->
+    <div class="top-banner">
+      <div class="inner">
+        <div class="CS"><a href="./admin/admin2.html">CS센터 24시간 AS접수</a></div>
+        <ul class="top-nav">
+          <li class="signUpsignIn">
+            <a href="#login" class="login" id="login-btn">로그인</a>
+
+            <a href="#join" class="join" id="join-btn">회원가입
+              <p class="balloon"><span></span>+ 5,000</p>
+            </a>
+          </li>
+          <li>
+            <a class="shipping" href="#"><i class="fa-solid fa-truck-moving"></i>배송조회</a>
+          </li>
+          <li>
+            <a class="community" href="./admin/admin.html">커뮤니티</a>
+          </li>
+          <li>
+            <a href="#myshop" class="myShopping"><i class="fa-regular fa-circle-user"></i>마이쇼핑</a>
+          </li>
+          <li>
+            <a class="company" href="#">회사소개</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!-- top-banner -->
+
+    <!-- logo-area -->
+    <div class="logo-area">
+      <div class="inner">
+        <a href="/" class="logo-area__logo"><img src="./static/images/logo.png" alt="메인 로고" /></a>
+        <div class="logo-area__search">
+          <input id="keyword" type="text" title="키워드 검색" />
+          <label for="keyword"><i class="fa-solid fa-magnifying-glass"></i></label>
         </div>
       </div>
-      <!-- top-banner -->
+    </div>
+    <!-- logo-area -->
 
-      <!-- logo-area -->
-      <div class="logo-area">
-        <div class="inner">
-          <a href="/" class="logo-area__logo"
-            ><img src="./static/images/logo.png" alt="메인 로고"
-          /></a>
-          <div class="logo-area__search">
-            <input id="keyword" type="text" title="키워드 검색" />
-            <label for="keyword"
-              ><i class="fa-solid fa-magnifying-glass"></i
-            ></label>
-          </div>
-        </div>
+    <!-- nav-area -->
+    <nav class="nav-area">
+      <div class="inner">
+        <ul class="nav-area__nav">
+          <li>
+            <a href="#">EVENT</a>
+          </li>
+          <li>
+            <a href="#">NEW</a>
+          </li>
+          <li>
+            <a href="#">창립 30주년 특가</a>
+          </li>
+          <li>
+            <a href="#">스마트</a>
+            <ul class="nav-area__nav__panel">
+              <div class="inner">
+                <li>
+                  <a href="#">미러링 아이템</a>
+                </li>
+                <li>
+                  <a href="#">가정용 충전기</a>
+                </li>
+                <li>
+                  <a href="#">차량용 충전기</a>
+                </li>
+                <li>
+                  <a href="#">차량용품</a>
+                </li>
+                <li>
+                  <a href="#">파워 뱅크</a>
+                </li>
+                <li>
+                  <a href="#">충전 케이블</a>
+                </li>
+                <li>
+                  <a href="#">블루투스 키보드</a>
+                </li>
+                <li>
+                  <a href="#">스마트 거치대</a>
+                </li>
+                <li>
+                  <a href="#">셀카봉 삼각대</a>
+                </li>
+                <li>
+                  <a href="#">변환 어댑터</a>
+                </li>
+                <li>
+                  <a href="#">기타 스마트기기</a>
+                </li>
+              </div>
+            </ul>
+          </li>
+          <li>
+            <a href="#">노트북</a>
+            <ul class="nav-area__nav__panel">
+              <div class="inner">
+                <li>
+                  <a href="#">노트북 스탠드</a>
+                </li>
+                <li>
+                  <a href="#">노트북 데스크</a>
+                </li>
+                <li>
+                  <a href="#">노트북 키패드</a>
+                </li>
+                <li>
+                  <a href="#">노트북 잠금장치</a>
+                </li>
+              </div>
+            </ul>
+          </li>
+          <li>
+            <a href="#">PC</a>
+            <ul class="nav-area__nav__panel">
+              <div class="inner">
+                <li>
+                  <a href="#">키보드</a>
+                </li>
+                <li>
+                  <a href="#">마우스</a>
+                </li>
+                <li>
+                  <a href="#">손목보호대</a>
+                </li>
+                <li>
+                  <a href="#">USB 허브</a>
+                </li>
+                <li>
+                  <a href="#">카드리더기</a>
+                </li>
+                <li>
+                  <a href="#">모니터 스탠드</a>
+                </li>
+                <li>
+                  <a href="#">케이블 정리</a>
+                </li>
+                <li>
+                  <a href="#">CD 보관함</a>
+                </li>
+                <li>
+                  <a href="#">게이밍 아이템</a>
+                </li>
+                <li>
+                  <a href="#">NEW 레트로 키보드</a>
+                </li>
+              </div>
+            </ul>
+          </li>
+          <li>
+            <a href="#">음향</a>
+            <ul class="nav-area__nav__panel">
+              <div class="inner">
+                <li>
+                  <a href="#">블루투스 이어폰</a>
+                </li>
+                <li>
+                  <a href="#">블루투스 헤드폰</a>
+                </li>
+                <li>
+                  <a href="#">블루투스 스피커</a>
+                </li>
+                <li>
+                  <a href="#">키즈 헤드폰</a>
+                </li>
+                <li>
+                  <a href="#">노래방 마이크</a>
+                </li>
+                <li>
+                  <a href="#">이어폰</a>
+                </li>
+                <li>
+                  <a href="#">헤드폰</a>
+                </li>
+                <li>
+                  <a href="#">스피커 / 마이크</a>
+                </li>
+                <li>
+                  <a href="#">음향케이블 기타</a>
+                </li>
+                <li>
+                  <a href="#">게이밍 아이템</a>
+                </li>
+              </div>
+            </ul>
+          </li>
+          <li>
+            <a href="#">문구 소형가전</a>
+            <ul class="nav-area__nav__panel">
+              <div class="inner">
+                <li>
+                  <a href="#">공기청정기</a>
+                </li>
+                <li>
+                  <a href="#">온풍기 / 가습기</a>
+                </li>
+                <li>
+                  <a href="#">살균 소형가전</a>
+                </li>
+                <li>
+                  <a href="#">마사지기</a>
+                </li>
+                <li>
+                  <a href="#">체중계 저울</a>
+                </li>
+                <li>
+                  <a href="#">청소기</a>
+                </li>
+                <li>
+                  <a href="#">기타 소형가전</a>
+                </li>
+                <li>
+                  <a href="#">독서대</a>
+                </li>
+                <li>
+                  <a href="#">문서 클립 거치대</a>
+                </li>
+              </div>
+            </ul>
+          </li>
+          <li>
+            <a href="#">대량구매</a>
+          </li>
+          <li>
+            <a href="#"><i class="fa-brands fa-youtube" style="color: red"></i>레트로키보드 영상</a>
+          </li>
+        </ul>
+
+        <ul class="nav-area__buttons">
+          <li>
+            <button><span>0</span></button>
+          </li>
+          <li>
+            <button><i class="fa-solid fa-bars"></i></button>
+          </li>
+        </ul>
       </div>
-      <!-- logo-area -->
+    </nav>
+    <!-- nav-area -->
+  </header>
+  <!-- HEADER -->
 
-      <!-- nav-area -->
-      <nav class="nav-area">
-        <div class="inner">
-          <ul class="nav-area__nav">
-            <li>
-              <a href="#">EVENT</a>
-            </li>
-            <li>
-              <a href="#">NEW</a>
-            </li>
-            <li>
-              <a href="#">창립 30주년 특가</a>
-            </li>
-            <li>
-              <a href="#">스마트</a>
-              <ul class="nav-area__nav__panel">
-                <div class="inner">
-                  <li>
-                    <a href="#">미러링 아이템</a>
-                  </li>
-                  <li>
-                    <a href="#">가정용 충전기</a>
-                  </li>
-                  <li>
-                    <a href="#">차량용 충전기</a>
-                  </li>
-                  <li>
-                    <a href="#">차량용품</a>
-                  </li>
-                  <li>
-                    <a href="#">파워 뱅크</a>
-                  </li>
-                  <li>
-                    <a href="#">충전 케이블</a>
-                  </li>
-                  <li>
-                    <a href="#">블루투스 키보드</a>
-                  </li>
-                  <li>
-                    <a href="#">스마트 거치대</a>
-                  </li>
-                  <li>
-                    <a href="#">셀카봉 삼각대</a>
-                  </li>
-                  <li>
-                    <a href="#">변환 어댑터</a>
-                  </li>
-                  <li>
-                    <a href="#">기타 스마트기기</a>
-                  </li>
-                </div>
-              </ul>
-            </li>
-            <li>
-              <a href="#">노트북</a>
-              <ul class="nav-area__nav__panel">
-                <div class="inner">
-                  <li>
-                    <a href="#">노트북 스탠드</a>
-                  </li>
-                  <li>
-                    <a href="#">노트북 데스크</a>
-                  </li>
-                  <li>
-                    <a href="#">노트북 키패드</a>
-                  </li>
-                  <li>
-                    <a href="#">노트북 잠금장치</a>
-                  </li>
-                </div>
-              </ul>
-            </li>
-            <li>
-              <a href="#">PC</a>
-              <ul class="nav-area__nav__panel">
-                <div class="inner">
-                  <li>
-                    <a href="#">키보드</a>
-                  </li>
-                  <li>
-                    <a href="#">마우스</a>
-                  </li>
-                  <li>
-                    <a href="#">손목보호대</a>
-                  </li>
-                  <li>
-                    <a href="#">USB 허브</a>
-                  </li>
-                  <li>
-                    <a href="#">카드리더기</a>
-                  </li>
-                  <li>
-                    <a href="#">모니터 스탠드</a>
-                  </li>
-                  <li>
-                    <a href="#">케이블 정리</a>
-                  </li>
-                  <li>
-                    <a href="#">CD 보관함</a>
-                  </li>
-                  <li>
-                    <a href="#">게이밍 아이템</a>
-                  </li>
-                  <li>
-                    <a href="#">NEW 레트로 키보드</a>
-                  </li>
-                </div>
-              </ul>
-            </li>
-            <li>
-              <a href="#">음향</a>
-              <ul class="nav-area__nav__panel">
-                <div class="inner">
-                  <li>
-                    <a href="#">블루투스 이어폰</a>
-                  </li>
-                  <li>
-                    <a href="#">블루투스 헤드폰</a>
-                  </li>
-                  <li>
-                    <a href="#">블루투스 스피커</a>
-                  </li>
-                  <li>
-                    <a href="#">키즈 헤드폰</a>
-                  </li>
-                  <li>
-                    <a href="#">노래방 마이크</a>
-                  </li>
-                  <li>
-                    <a href="#">이어폰</a>
-                  </li>
-                  <li>
-                    <a href="#">헤드폰</a>
-                  </li>
-                  <li>
-                    <a href="#">스피커 / 마이크</a>
-                  </li>
-                  <li>
-                    <a href="#">음향케이블 기타</a>
-                  </li>
-                  <li>
-                    <a href="#">게이밍 아이템</a>
-                  </li>
-                </div>
-              </ul>
-            </li>
-            <li>
-              <a href="#">문구 소형가전</a>
-              <ul class="nav-area__nav__panel">
-                <div class="inner">
-                  <li>
-                    <a href="#">공기청정기</a>
-                  </li>
-                  <li>
-                    <a href="#">온풍기 / 가습기</a>
-                  </li>
-                  <li>
-                    <a href="#">살균 소형가전</a>
-                  </li>
-                  <li>
-                    <a href="#">마사지기</a>
-                  </li>
-                  <li>
-                    <a href="#">체중계 저울</a>
-                  </li>
-                  <li>
-                    <a href="#">청소기</a>
-                  </li>
-                  <li>
-                    <a href="#">기타 소형가전</a>
-                  </li>
-                  <li>
-                    <a href="#">독서대</a>
-                  </li>
-                  <li>
-                    <a href="#">문서 클립 거치대</a>
-                  </li>
-                </div>
-              </ul>
-            </li>
-            <li>
-              <a href="#">대량구매</a>
-            </li>
-            <li>
-              <a href="#"
-                ><i class="fa-brands fa-youtube" style="color: red"></i
-                >레트로키보드 영상</a
-              >
-            </li>
-          </ul>
-
-          <ul class="nav-area__buttons">
-            <li>
-              <button><span>0</span></button>
-            </li>
-            <li>
-              <button><i class="fa-solid fa-bars"></i></button>
-            </li>
-          </ul>
-        </div>
-      </nav>
-      <!-- nav-area -->
-    </header>
-    <!-- HEADER -->
-
-    <!-- MAIN -->
-    <main>
-      <!-- <div class="swiper mainSwiper">
+  <!-- MAIN -->
+  <main>
+    <!-- <div class="swiper mainSwiper">
       <ul class="swiper-wrapper">
         <li class="swiper-slide"><a href="#"><img src="./static/images/slide1-banner1.jpg" alt=""></a></li>
         <li class="swiper-slide"><a href="#"><img src="./static/images/slide1-banner2.jpg" alt=""></a></li>
@@ -308,8 +285,8 @@
       <div class="swiper-button-next"></div>
     </div> -->
 
-      <!-- 키보드 상품목록 -->
-      <!-- <section class="keyboard mt70">
+    <!-- 키보드 상품목록 -->
+    <!-- <section class="keyboard mt70">
       <h1>KEYBOARD</h1>
       <ul class="inner block3">
         <li><a href="#">
@@ -550,8 +527,8 @@
       </ul>
     </section> -->
 
-      <!-- 키보드 배너영역 -->
-      <!-- <section class="keyboard-banner mt70">
+    <!-- 키보드 배너영역 -->
+    <!-- <section class="keyboard-banner mt70">
       <div class="swiper">
         <ul class="swiper-wrapper">
           <li class="swiper-slide"><a href="#"><img src="./images/slide2-banner1.jpg" alt=""></a></li>
@@ -568,8 +545,8 @@
       </div>
     </section> -->
 
-      <!-- 마우스 상품목록 -->
-      <!-- <section class="mouse mt70">
+    <!-- 마우스 상품목록 -->
+    <!-- <section class="mouse mt70">
       <h1>MOUSE</h1>
       <ul class="inner block2">
         <li><a href="#">
@@ -662,24 +639,24 @@
       </ul>
     </section> -->
 
-      <!-- 마우스 배너영역 -->
-      <!-- <section class="mouse-banner mt70">
+    <!-- 마우스 배너영역 -->
+    <!-- <section class="mouse-banner mt70">
       <img src="./images/mouseBanner.gif" alt="">
       <h2>편안한 그립감의 마우스</h2>
       <p>인체공학적 설계로 편안한 그립감과 엑토만의 <br /> 감각적인 디자인의 마우스를 만나보세요.</p>
       <a href="#" class="blackBtn">제품 모두 보기</a>
     </section> -->
 
-      <!-- 데스크셋업 배너 영역 -->
-      <!-- <section class="deskSetup mt70">
+    <!-- 데스크셋업 배너 영역 -->
+    <!-- <section class="deskSetup mt70">
       <img src="./images/deskSetup.jpg" alt="">
       <h2>데스크셋업의 완성</h2>
       <p>당신의 데스크를 더욱 업그레이드 시켜 줄 <br /> 다양한 기기들을 만나보세요.</p>
       <a href="#" class="blackBtn">제품 모두 보기</a>
     </section> -->
 
-      <!-- 뉴아이템 상품목록 -->
-      <!-- <section class="newItem mt70">
+    <!-- 뉴아이템 상품목록 -->
+    <!-- <section class="newItem mt70">
       <h1>NEW ITEM</h1>
       <ul class="inner block3">
         <li><a href="#">
@@ -919,8 +896,8 @@
       </ul>
     </section> -->
 
-      <!-- 리뷰 영역 -->
-      <!-- <section class="review">
+    <!-- 리뷰 영역 -->
+    <!-- <section class="review">
       <h1>REVIEW</h1>
       <ul class="inner block5">
         <li><a href="#">
@@ -1125,133 +1102,128 @@
           </a></li>
       </ul>
     </section> -->
-    </main>
-    <!-- MAIN -->
+  </main>
+  <!-- MAIN -->
 
-    <!-- FOOTER -->
-    <footer>
-      <div class="service">
-        <div class="inner">
-          <div class="cs-center">
-            <span class="cs-title">CS CENTER</span>
-            <span class="cs-call">080-123-4567</span>
-            <span class="cs-time"
-              >월요일 - 금요일 10:00 - 16:00 <br />
-              점심시간 12:00 - 13:00</span
-            >
-            <span class="cs-delivery">당일 선발송 다음날 도착 !</span>
-            <button type="button" class="cs-as">
-              가장 빠른 온라인 AS 접수
+  <!-- FOOTER -->
+  <footer>
+    <div class="service">
+      <div class="inner">
+        <div class="cs-center">
+          <span class="cs-title">CS CENTER</span>
+          <span class="cs-call">080-123-4567</span>
+          <span class="cs-time">월요일 - 금요일 10:00 - 16:00 <br />
+            점심시간 12:00 - 13:00</span>
+          <span class="cs-delivery">당일 선발송 다음날 도착 !</span>
+          <button type="button" class="cs-as">
+            가장 빠른 온라인 AS 접수
+          </button>
+        </div>
+        <div class="bank-info">
+          <span class="bank-title">BANK INFO</span>
+          <div class="bank-service">
+            <button class="service-btn">
+              <i class="fa-brands fa-cc-visa"></i>
+              무이자할부
+            </button>
+            <button class="service-btn">
+              <i class="fa-solid fa-bars"></i>
+              미확인 입금
+            </button>
+            <button class="service-btn">뱅킹</button>
+          </div>
+          <div class="bank-des">
+            <div class="bank-des-detail1">
+              <span class="bank-name">국민은행</span>
+              <span class="bank-account">012345-01-678900</span>
+            </div>
+            <div class="bank-des-detail2">
+              <span class="bank-owner">예금주</span>
+              <span class="bank-owner-name">(주)엑토</span>
+            </div>
+          </div>
+        </div>
+        <div class="delivery-return">
+          <span class="delivery-title">DELIVERY / RETURN</span>
+          <div class="delivery-menu">
+            <span class="delivery active">배송 / 택배</span>
+            <span class="return">교환 / 반품</span>
+          </div>
+          <div class="delivery-des">
+            <span class="delivery-des-detail">택배 : CJ 대한통운 : 1588-1255 <br />
+              월 - 금 08:00 - 18:00 토 - 13:00 / 공휴일 휴무</span>
+            <button>
+              <i class="fa-solid fa-truck"></i>
+              CJ 대한통운 택배 조회
             </button>
           </div>
-          <div class="bank-info">
-            <span class="bank-title">BANK INFO</span>
-            <div class="bank-service">
-              <button class="service-btn">
-                <i class="fa-brands fa-cc-visa"></i>
-                무이자할부
-              </button>
-              <button class="service-btn">
-                <i class="fa-solid fa-bars"></i>
-                미확인 입금
-              </button>
-              <button class="service-btn">뱅킹</button>
-            </div>
-            <div class="bank-des">
-              <div class="bank-des-detail1">
-                <span class="bank-name">국민은행</span>
-                <span class="bank-account">012345-01-678900</span>
-              </div>
-              <div class="bank-des-detail2">
-                <span class="bank-owner">예금주</span>
-                <span class="bank-owner-name">(주)엑토</span>
-              </div>
-            </div>
-          </div>
-          <div class="delivery-return">
-            <span class="delivery-title">DELIVERY / RETURN</span>
-            <div class="delivery-menu">
-              <span class="delivery active">배송 / 택배</span>
-              <span class="return">교환 / 반품</span>
-            </div>
-            <div class="delivery-des">
-              <span class="delivery-des-detail"
-                >택배 : CJ 대한통운 : 1588-1255 <br />
-                월 - 금 08:00 - 18:00 토 - 13:00 / 공휴일 휴무</span
-              >
+          <div class="return-des">
+            <span class="return-des-detail">서울특별시 강남구 역삼동 826-21</span>
+            <div class="return-btns">
               <button>
-                <i class="fa-solid fa-truck"></i>
-                CJ 대한통운 택배 조회
+                <i class="fa-solid fa-pen"></i>
+                상품문의
+              </button>
+              <button>
+                <i class="fa-regular fa-circle-check"></i>
+                자주 묻는 질문들
               </button>
             </div>
-            <div class="return-des">
-              <span class="return-des-detail"
-                >서울특별시 강남구 역삼동 826-21</span
-              >
-              <div class="return-btns">
-                <button>
-                  <i class="fa-solid fa-pen"></i>
-                  상품문의
-                </button>
-                <button>
-                  <i class="fa-regular fa-circle-check"></i>
-                  자주 묻는 질문들
-                </button>
-              </div>
-            </div>
           </div>
         </div>
       </div>
-      <div class="company">
-        <div class="inner">
-          <div class="logo"></div>
-          <ul class="company-des1">
-            <li>회사소개</li>
-            <li>이용안내</li>
-            <li>이용약관</li>
-            <li>개인정보처리방침</li>
-            <li>CS 센터</li>
-          </ul>
-          <ul class="company-des2">
-            <li>(주)엑토</li>
-            <li>엑토몰</li>
-            <li>대표이사: NXLL</li>
-            <li>사업자등록번호: 606-12-34567</li>
-            <li>nxll@actto.com</li>
-          </ul>
-          <ul class="company-des3">
-            <li>서울특별시 강남구 역삼동 826-21 미왕빌딩</li>
-            <li>고객센터: 080-123-4567</li>
-            <li>팩스: 02-123-4567</li>
-          </ul>
-          <ul class="company-des4">
-            <li>통신판매업신고: 2022 서울강남구 00001호</li>
-            <li>서비스 가입 사실 확인</li>
-            <li>개인정보보호책임자: NXLL</li>
-          </ul>
-          <img src="./static/images/footerPayIcon.png" alt="" />
-        </div>
+    </div>
+    <div class="company">
+      <div class="inner">
+        <div class="logo"></div>
+        <ul class="company-des1">
+          <li>회사소개</li>
+          <li>이용안내</li>
+          <li>이용약관</li>
+          <li>개인정보처리방침</li>
+          <li>CS 센터</li>
+        </ul>
+        <ul class="company-des2">
+          <li>(주)엑토</li>
+          <li>엑토몰</li>
+          <li>대표이사: NXLL</li>
+          <li>사업자등록번호: 606-12-34567</li>
+          <li>nxll@actto.com</li>
+        </ul>
+        <ul class="company-des3">
+          <li>서울특별시 강남구 역삼동 826-21 미왕빌딩</li>
+          <li>고객센터: 080-123-4567</li>
+          <li>팩스: 02-123-4567</li>
+        </ul>
+        <ul class="company-des4">
+          <li>통신판매업신고: 2022 서울강남구 00001호</li>
+          <li>서비스 가입 사실 확인</li>
+          <li>개인정보보호책임자: NXLL</li>
+        </ul>
+        <img src="./static/images/footerPayIcon.png" alt="" />
       </div>
-      <div class="sns-banner">
-        <div class="inner">
-          <div class="sns-item">
-            <i class="fa-brands fa-facebook-f"></i>
-            <i class="fa-brands fa-instagram"></i>
-          </div>
-          <div class="copy-right">
-            <p>
-              상품/판매자/쇼핑 정보, 콘텐츠, UI 등에 대한 무단 복제, 전송, 배포,
-              스프래핑 등의 행위는 저작권법, <span>콘텐츠산업 진흥법</span>으로
-              금지됩니다.
-            </p>
-            <p>
-              COPYRIGHT(C) 2019 <span>엑토몰</span> LTD. ALL RIGHTS RESEVED.
-            </p>
-          </div>
-          <img src="./static/images/kg-inicis.png" alt="결제 인증 마크" />
+    </div>
+    <div class="sns-banner">
+      <div class="inner">
+        <div class="sns-item">
+          <i class="fa-brands fa-facebook-f"></i>
+          <i class="fa-brands fa-instagram"></i>
         </div>
+        <div class="copy-right">
+          <p>
+            상품/판매자/쇼핑 정보, 콘텐츠, UI 등에 대한 무단 복제, 전송, 배포,
+            스프래핑 등의 행위는 저작권법, <span>콘텐츠산업 진흥법</span>으로
+            금지됩니다.
+          </p>
+          <p>
+            COPYRIGHT(C) 2019 <span>엑토몰</span> LTD. ALL RIGHTS RESEVED.
+          </p>
+        </div>
+        <img src="./static/images/kg-inicis.png" alt="결제 인증 마크" />
       </div>
-    </footer>
-    <!-- FOOTER -->
-  </body>
+    </div>
+  </footer>
+  <!-- FOOTER -->
+</body>
+
 </html>

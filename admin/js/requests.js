@@ -33,13 +33,14 @@ export async function createProduct(
         price,
         description,
         tags,
-        thumbnail,
-        photo,
+        thumbnailBase64,
+        photoBase64,
       }),
     );
+    console.log(res)
     return res;
-  } catch {
-    console.log('목록 생성 실패');
+  } catch (err) {
+    console.log(err);
   }
 }
 
@@ -155,8 +156,8 @@ export async function correctProduct(
         price,
         description,
         tags,
-        thumbnail,
-        photo,
+        thumbnailBase64,
+        photoBase64,
         isSoldOut,
       }),
     );
