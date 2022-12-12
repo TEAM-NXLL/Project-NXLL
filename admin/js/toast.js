@@ -1,4 +1,4 @@
-export function toast(message = 'sdfdsfdsfsdfsd') {
+export function toast(message) {
   const main = document.querySelector('.all-products')
   const toastBox = document.createElement('div');
   toastBox.classList.add('toast-box');
