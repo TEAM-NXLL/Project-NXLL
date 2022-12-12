@@ -11,5 +11,5 @@ export function toast(message = 'sdfdsfdsfsdfsd') {
 
   setTimeout(() => {
     toastBox.remove()
-  }, 500);
+  }, 600);
 }

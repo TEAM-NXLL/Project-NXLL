@@ -1,9 +1,14 @@
 import { store } from '../../js/store.js';
 const API_KEY = process.env;
 
+// products';
+
 // JSON Request 양식 만들기
 function createRequest(type, data) {
   const res = {
+    // //curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/products
+    // \ -X 'POST'
+    // \ -H 'masterKey: true'
     method: type,
     headers: { ...store.headers, apikey: API_KEY },
   };
@@ -13,6 +18,7 @@ function createRequest(type, data) {
   if (data) {
     res.body = JSON.stringify(data);
   }
+  console.log(res);
   return res;
 }
 
@@ -25,25 +31,19 @@ export async function createProduct(
   thumbnailBase64 = '', // 기본 썸네일
   photoBase64 = '', // 기본 사진
 ) {
-  try {
-    const res = await fetch(
-      store.url + '/products',
-      createRequest('POST', {
-        title,
-        price,
-        description,
-        tags,
-        thumbnailBase64,
-        photoBase64,
-      }),
-    );
-    console.log(res)
-    return res;
-  } catch (err) {
-    console.log(err);
-  }
+  const res = await fetch(
+    store.url + '/products',
+    createRequest('POST', {
+      title,
+      price,
+      description,
+      tags,
+      thumbnailBase64,
+      photoBase64,
+    }),
+  );
+  return res;
 }
-
 // 제품 추가 결과
 // {"id": "nbqtQvEivYwEXTDet7YM",
 // "title": "MacBook Pro 16",
@@ -61,15 +61,12 @@ export async function createProduct(
 
 // 모든 제품 조회
 export async function viewAllProduct() {
-  try {
-    const res = await fetch(store.url + '/products', createRequest('GET'));
-    const getResult = await res.json();
-    return getResult;
-  } catch {
-    console.log('모든 제품 조회 실패');
-  }
+  const res = await fetch(store.url + '/products', createRequest('GET'));
+  console.log('모든 제품 조회!');
+  const getResult = await res.json();
+  console.log(getResult);
+  return getResult;
 }
-
 // 모든 제품 조회 결과
 // Product { // 제품 정보
 //   id: string // 제품 ID
@@ -83,16 +80,14 @@ export async function viewAllProduct() {
 
 // 전체 거래 내역
 export async function viewAllTransactions() {
-  try {
-    const res = await fetch(
-      store.url + '/products/transactions/all',
-      createRequest('GET'),
-    );
-    const getResult = await res.json();
-    return getResult;
-  } catch {
-    console.log('전체 거래 내역 조회 실패');
-  }
+  const res = await fetch(
+    store.url + '/products/transactions/all',
+    createRequest('GET'),
+  );
+  console.log('전체 거래 내역 조회!');
+  const getResult = await res.json();
+  console.log(getResult);
+  return getResult;
 }
 // 전체 거래 내역 조회 결과
 // { // 거래 내역 정보
@@ -123,18 +118,15 @@ export async function viewAllTransactions() {
 
 // 거래 내역 완료/취소 및 해제
 export async function transactionStatus(detailId, isCanceled, done) {
-  try {
-    const res = await fetch(
-      store.url + `/products/transactions/${detailId}`,
-      createRequest('PUT', {
-        isCanceled,
-        done,
-      }),
-    );
-    return res;
-  } catch {
-    console.log('개별 거래 내역 관리 실패');
-  }
+  const res = await fetch(
+    store.url + `/products/transactions/${detailId}`,
+    createRequest('PUT', {
+      isCanceled,
+      done,
+    }),
+  );
+  console.log('거래 내역 상태 관리');
+  return res;
 }
 
 // 제품 수정
@@ -148,23 +140,20 @@ export async function correctProduct(
   photoBase64,
   isSoldOut,
 ) {
-  try {
-    const res = await fetch(
-      store.url + `/products/${productId}`,
-      createRequest('PUT', {
-        title,
-        price,
-        description,
-        tags,
-        thumbnailBase64,
-        photoBase64,
-        isSoldOut,
-      }),
-    );
-    return res;
-  } catch {
-    console.log('제품 수정 실패!');
-  }
+  const res = await fetch(
+    store.url + `/products/${productId}`,
+    createRequest('PUT', {
+      title,
+      price,
+      description,
+      tags,
+      thumbnailBase64,
+      photoBase64,
+      isSoldOut,
+    }),
+  );
+  console.log('제품 수정!');
+  return res;
 }
 // 제품 수정 결과
 // {
@@ -184,15 +173,12 @@ export async function correctProduct(
 
 //제품 삭제
 export async function delProduct(productId) {
-  try {
-    const res = await fetch(
-      store.url + `/products/${productId}`,
-      createRequest('DELETE'),
-    );
-    return res;
-  } catch {
-    console.log('제품 삭제!');
-  }
+  const res = await fetch(
+    store.url + `/products/${productId}`,
+    createRequest('DELETE'),
+  );
+  console.log(res.json);
+  return res;
 }
 //제품 삭제 결과
 // type ResponseValue = true

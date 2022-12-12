@@ -6,8 +6,9 @@ const productContainer = document.querySelector('.products-container');
 // 개별 수정/삭제버튼 클릭 이벤트
 productContainer.addEventListener('click', (event) => {
   if (event.target.classList.contains('del-btn')) {
-    deleteItem(event.target);
-    toast("상품이 삭제되었습니다.");
+    window.confirm("1개의 아이템을 삭제하시겠습니까?")
+      ? deleteItem(event.target)
+      : toast("아이템 삭제를 취소합니다.")
   } else if (event.target.classList.contains('edit-btn')) {
     editItem(event.target);
   }
@@ -26,6 +27,7 @@ export function deleteItem(target) {
     }
   })
   delProduct(itemId);
+  toast("상품이 삭제되었습니다.")
 }
 
 //제품 전체삭제 기능 추가하기
