@@ -18,7 +18,6 @@ function createRequest(type, data) {
   if (data) {
     res.body = JSON.stringify(data);
   }
-  console.log(res)
   return res;
 }
 
@@ -62,9 +61,7 @@ export async function createProduct(
 // 모든 제품 조회
 export async function viewAllProduct() {
   const res = await fetch(store.url + '/products', createRequest('GET'));
-  console.log('모든 제품 조회!');
   const getResult = await res.json();
-  console.log(getResult);
   return getResult;
 }
 // 모든 제품 조회 결과

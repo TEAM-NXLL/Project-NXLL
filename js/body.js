@@ -1,5 +1,10 @@
+import { viewAllProduct } from "../admin/requests";
+
 // main
-function mainForm(data) {
+
+async function mainForm(data) {
+
+  console.log(data, '나 데이터')
   const mainBody = [];
   const colorChart = ["beige", "pastelBeige", "mint", "pink", "white", "navy", "blueNavy", "black", "green", "gray"]
   const swiperArrowBtn = `
@@ -7,29 +12,56 @@ function mainForm(data) {
     <div class="swiper-button-next"></div>
   `
   
-  function productList() {
+
+  console.log(data.length)
+  const keyboard = await viewAllProduct()
+  console.log(keyboard, '나 키보드')
+  
+  for(let i=0; i<data.length; i++){
+    
+    if(data[i].tags === '키보드') {
+      console.log('키보드 나와라 오바')
+    } else if (data[i].tags === '마우스') {
+      console.log('마우스 나와라 오바')
+    } else if(data[i].tags === 'NEW ITEM') {
+      console.log('NEW ITEM 나와라 오바')
+    }  
+  }
+  
+  const newArr = Array.of(keyboard)
+  const p = newArr.filter(el => el['tags'] === "음향기기" )
+  console.log(p)
+  
+  // keyboard.forEach(el => productList(el))
+  // productList(keyboard)
+  
+
+  function productList(tags) {
+    
     const mainBody = []
+
     for(let i = 0; i < data.length; i++){
 
-      if(data[i].tags === '키보드') {
-        console.log('키보드')
-      }
-      
-      if(data[i].tags === '마우스'){
-        console.log('나는 마우스')
-      }
-      
+      // 데이터를 받아와서 data.tags 들 중에서 '키보드', '마우스' 인 요소들을 나눠서 함수를 실행한다.#
       mainBody.push(`
         <li>
           <a href="#"> 
-          <div class="imgBox">
-            <img src="${data[i].thumbnail}" alt="">
-          </div>
+            <div class="imgBox">
+      `)  
+
+      // 썸네일을 넣을건데 썸네일의 종류가 키보드랑 마우스가 있다.
+      // 근데 이 둘을 나누는 기준은 data[i].tags 이다.
+      // 정답은?
+
+      mainBody.push(`
+              <img src="${data[i].thumbnail}" alt="">
+            </div>
           <div class="colorBox">
       `)
         
         const randomNum = Math.ceil(Math.random() * 5)
         let randomIndexArray = []
+
       for (let j = 0; j < randomNum; j++) {
   
           const colorNum = Math.floor(Math.random() * 10)
@@ -70,7 +102,6 @@ function mainForm(data) {
   `)
 
   for(let i = 1; i <= 7; i++) {
-
     mainBody.push(`
       <li class="swiper-slide"><a href="#"><img src="../images/slide1-banner${i}.jpg" alt=""></a></li>
     `)
@@ -88,9 +119,14 @@ function mainForm(data) {
       <ul class="inner block3">
   `)
 
+  // if(data[i].tags === '키보드'){
+  //   cnt += data[i].thumbnail
+  // }
+  // console.log(cnt)
+
   mainBody.push(productList())
 
-mainBody.push(`
+  mainBody.push(`
   </ul>
   </section>
 
@@ -113,7 +149,7 @@ mainBody.push(`
     <ul class="inner block2">
 `)
 
-mainBody.push(productList())
+// mainBody.push(productList())
 
 mainBody.push(`
     </ul>
@@ -138,7 +174,7 @@ mainBody.push(`
     <ul class="inner block3">
 `)
 
-mainBody.push(productList())
+// mainBody.push(productList())
 
 mainBody.push(`
     </ul>
@@ -185,7 +221,7 @@ mainBody.push(`
   `
 )
   
-  return mainBody.join('')
+return mainBody.join('')
 }
 
 // 회원가입 페이지
