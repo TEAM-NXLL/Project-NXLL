@@ -18,32 +18,32 @@ const root = document.querySelector('main')
 async function renderMain() {
   const data = await viewAllProduct();
   root.innerHTML = mainForm(data)
-  
+
   // 메인 스와이퍼
   new Swiper('.mainSwiper', {
     effect: 'fade',
     loop: true,
     autoplay: true,
     speed: 1000,
-    
+
     pagination: {
       el: '.swiper-pagination',
       clickable: true,
     },
-    
+
     navigation: {
       nextEl: '.swiper-button-next',
       prevEl: '.swiper-button-prev',
     },
   })
-  
+
   // 키보드 배너 스와이퍼
   new Swiper('.keyboardSwiper', {
     effect: 'fade',
     loop: true,
     autoplay: true,
     speed: 1000,
-    
+
     navigation: {
       nextEl: '.swiper-button-next',
       prevEl: '.swiper-button-prev',
@@ -162,8 +162,9 @@ async function renderUserInfo() {
 }
 
 // detail 렌더링
-function renderDetail() {
-  root.innerHTML = detailForm()
+async function renderDetail(productInfo) {
+  root.innerHTML = detailForm(productInfo)
+  // detailScrollEvent();
 }
 
 // footer 함수

@@ -1,3 +1,5 @@
+import { productId } from "./route"
+
 // main
 function mainForm(data) {
   const mainBody = [];
@@ -6,19 +8,19 @@ function mainForm(data) {
     <div class="swiper-button-prev"></div>
     <div class="swiper-button-next"></div>
   `
-  
+
   function productList() {
     const mainBody = []
-    for(let i = 0; i < data.length; i++){
+    for (let i = 0; i < data.length; i++) {
 
-      if(data[i].tags === '키보드') {
+      if (data[i].tags === '키보드') {
         console.log('키보드')
       }
-      
-      if(data[i].tags === '마우스'){
+
+      if (data[i].tags === '마우스') {
         console.log('나는 마우스')
       }
-      
+
       mainBody.push(`
         <li>
           <a href="#"> 
@@ -27,24 +29,24 @@ function mainForm(data) {
           </div>
           <div class="colorBox">
       `)
-        
-        const randomNum = Math.ceil(Math.random() * 5)
-        let randomIndexArray = []
+
+      const randomNum = Math.ceil(Math.random() * 5)
+      let randomIndexArray = []
       for (let j = 0; j < randomNum; j++) {
-  
-          const colorNum = Math.floor(Math.random() * 10)
-          
-          if (randomIndexArray.indexOf(colorNum)=== -1) {
-              randomIndexArray.push(colorNum)
-              mainBody.push(`
+
+        const colorNum = Math.floor(Math.random() * 10)
+
+        if (randomIndexArray.indexOf(colorNum) === -1) {
+          randomIndexArray.push(colorNum)
+          mainBody.push(`
                   <span class='${colorChart[colorNum]}'></span>
               `)
-          }
+        }
       }
 
       let discountValueArr = []
 
-      const discountValue = Math.floor( ( (Math.random() * 9) + 1 ) ) * 8
+      const discountValue = Math.floor(((Math.random() * 9) + 1)) * 8
 
       mainBody.push(`
           </div >
@@ -54,8 +56,13 @@ function mainForm(data) {
               <div class="priceBox">
                 <span class="discount">
                   ${(data[i].price).toLocaleString()}원</span> 
-                  ${(Math.floor(Number(data[i].price)*(100-discountValue)/100).toLocaleString())}원<br />
+<<<<<<< Updated upstream
+                  ${(Math.floor(Number(data[i].price) * (100 - discountValue) / 100).toLocaleString())}원<br />
                 <span class="salePercent">${discountValue}% SALE</span>
+=======
+                  ${(Number(data[i].price) * 1 - discountValue * 100).toLocaleString()}원<br />
+                <span class="salePercent">${discountValue * 100}% SALE</span>
+>>>>>>> Stashed changes
               </div>
               </a>
           </li>
@@ -63,13 +70,16 @@ function mainForm(data) {
     }
     return mainBody.join('');
   }
-  
+<<<<<<< Updated upstream
+
+=======
+>>>>>>> Stashed changes
   mainBody.push(`
     <div class="swiper mainSwiper">
       <ul class="swiper-wrapper">
   `)
 
-  for(let i = 1; i <= 7; i++) {
+  for (let i = 1; i <= 7; i++) {
 
     mainBody.push(`
       <li class="swiper-slide"><a href="#"><img src="../images/slide1-banner${i}.jpg" alt=""></a></li>
@@ -90,7 +100,7 @@ function mainForm(data) {
 
   mainBody.push(productList())
 
-mainBody.push(`
+  mainBody.push(`
   </ul>
   </section>
 
@@ -113,9 +123,9 @@ mainBody.push(`
     <ul class="inner block2">
 `)
 
-mainBody.push(productList())
+  mainBody.push(productList())
 
-mainBody.push(`
+  mainBody.push(`
     </ul>
   </section>
 
@@ -138,9 +148,9 @@ mainBody.push(`
     <ul class="inner block3">
 `)
 
-mainBody.push(productList())
+  mainBody.push(productList())
 
-mainBody.push(`
+  mainBody.push(`
     </ul>
   </section><!-- 뉴아이템 상품목록 -->
 
@@ -150,11 +160,11 @@ mainBody.push(`
     <ul class="inner block5">
 `)
 
-for (let i = 1; i <= 10; i++) {
+  for (let i = 1; i <= 10; i++) {
 
 
-  mainBody.push(
-    `
+    mainBody.push(
+      `
       <li>
       <a href="#">
         <div class="imgBox">
@@ -177,14 +187,14 @@ for (let i = 1; i <= 10; i++) {
         </div>
       </a></li>
   `)
-}
+  }
 
-mainBody.push(`
+  mainBody.push(`
       </ul>
     </section>
   `
-)
-  
+  )
+
   return mainBody.join('')
 }
 
@@ -617,12 +627,20 @@ function userAccountForm(totalBalance) {
 }
 
 // 상품 상세페이지
-function detailForm() {
+function detailForm(productInfo) {
+  const main = document.querySelector('main')
+  main.addEventListener('click', (event) => {
+    const topBanner = document.querySelector('.top-banner').offsetHeight
+    const el = event.target['name']
+    const nameEl = document.querySelector(`.${el}`)
+    const scrollH = nameEl.getBoundingClientRect().top - topBanner
+    scrollTo({ left: 0, top: window.pageYOffset + scrollH, behavior: 'smooth' })
+  })
   return /* html */`
   <div class="page-nav">
     <div class="inner">
       <a href="/">HOME</a>
-      <a href="#">마우스(검색키워드)</a>
+      <a href="#">${productInfo.tags}</a>
     </div>
   </div>
 
@@ -631,21 +649,21 @@ function detailForm() {
     <div class="product-detail__header">
       <div class="inner">
         <div class="product-thumbnail">
-          <img src="images/christmasGiftMini1.jpg" alt="대표이미지">
+          <img src="${productInfo.thumbnail}" alt="대표이미지">
         </div>
         <div class="product-order">
           <div class="product-summary">
             <div class="product-summary__title">
-              <span>[크리스마스 증정 이벤트] 손목 받침대+키스킨+컬러 키 캡 증정</span>
-              <p>[크리스마스 증정 이벤트]엑토 레트로 블루투스 미니 키보드 B303</p>
-              <span class="price">49,900원</span>
+              <span>${productInfo.description}</span>
+              <p>${productInfo.title}</p>
+              <span class="price">${productInfo.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원</span>
             </div>
             <div class="product-summary__info">
               <p class="info-title">상품 정보</p>
-              <p><em>상품 설명</em> <span>[크리스마스 증정 이벤트] 손목 받침대+키스킨+컬러 키 캡 증정 </span></p>
-              <p><em>상품 포함 태그</em> <span style="color:#555;">가전, 노트북, 컴퓨터</span></p>
+              <p><em>상품 설명</em> <span>${productInfo.description}</span></p>
+              <p><em>상품 포함 태그</em> <span style="color:#555;">${productInfo.tags}</span></p>
               <p><em>배송비</em> <span style="color:red;">무료</span></p>
-              <p><em>판매 상태</em> <span>판매중</span></p>
+              <p><em>판매 상태</em> <span>${productInfo.isSoldOut === true ? '판매중' : '품절'}</span></p>
             </div>
             <div class="btn-group">
               <a href="#" class="buy-btn">바로 구매하기</a>
@@ -663,13 +681,13 @@ function detailForm() {
 
     <div class="product-detail__body">
       <ul class="tab-menu detail">
-        <li><a href="#">상품구매</a></li>
-        <li><a href="#">상세정보</a></li>
+        <li><a name="product-detail__header">상품구매</a></li>
+        <li><a name="product-detail__body">상세정보</a></li>
       </ul>
 
       <div class="inner">
         <div class="product-detail__img">
-          <img src="/images/christmasGiftMini1.jpg" alt="">
+          <img src="${productInfo.photo}" alt="">
         </div>
       </div>
     </div>

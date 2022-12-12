@@ -1,7 +1,8 @@
 import { userInfoForm } from "./body"
 import { loginRender, joinRender, renderMyShop, renderMyOrder, renderMain, renderUserInfo, renderDetail } from "./main"
+import { getProductDetail } from "./getdata"
 
-export function router() {
+export async function router() {
 
   const routePath = location.hash
   if (routePath === '') {
@@ -30,7 +31,13 @@ export function router() {
   else if (routePath === '#userinfo') {
     renderUserInfo()
   }
-  else if (routePath === '#detail') {
-    renderDetail()
+  else if (routePath.includes(`#detail`)) {
+    const productId = location.hash.split('/')[1]
+    try {
+      const productInfo = await getProductDetail(productId);
+      renderDetail(productInfo)
+    } catch (error) {
+      console.log(error)
+    }
   }
 }
