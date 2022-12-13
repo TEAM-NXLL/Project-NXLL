@@ -58,13 +58,7 @@ export function deleteItem(target) {
 // 수정버튼 클릭 이벤트 핸들러
 export function editItem(event) {
   console.log(event)
-  // 개별아이템에서 수정버튼 클릭 시 eventlistener 동작
-  // 해시로 이동 또는 모달?
-  // submit 하면 api보내고 모달창 닫기, 새로 렌더링?
-  // 해시면 이전으로 되돌아감
-  // correctProduct(productId, title, price, description, tags, thumbnail, photo, isSoldOut)
+  // 해시로 이동
+  // submit 시 이전 페이지로 되돌아감
+  // correctProduct(productId, title, price, description, tags, thumbnail, photo, isSoldOut) 연결하기
 }
-
-// 수정은 hash 사용하기...
-// 추가/수정/삭제 완료 메시지 0.5초 띄울 토스트 만들기
-// confirm도 토스트로?

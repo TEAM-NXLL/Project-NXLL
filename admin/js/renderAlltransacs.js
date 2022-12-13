@@ -9,10 +9,10 @@ export async function renderAlltransacs() {
 
     //product
     const product = el.product;
-    const id = product.id;
+    const id = product.productId;
     const title = product.title;
     const price = product.price;
-    const tag = product.tag;
+    const tags = product.tags;
     const thumbnail = product.thumbnail;
 
     //account
@@ -43,11 +43,11 @@ export async function renderAlltransacs() {
           <div class="id">${id}</div>
           <div class="title">${title}</div>
           <div class="price">${price}</div>
-          <div class="tags">${tag}</div>
+          <div class="tags">${tags}</div>
           <div class="bank-name">${bankName}</div>
           <div class="bank-code">${bankCode}</div>
           <div class="account-number">${accountNumber}</div>
-          <div class="deal-status">${deal}</div>
+          <div class="deal-status">${done}</div>
           <div class="transac-time">${timePaid}</div>
           <div class="transac-status"> </div>
         </div>
@@ -90,7 +90,7 @@ export async function renderAlltransacs() {
       transactionStatus(product_id, false, true);
     });
 
-    const productCont = document.querySelector('all-transac-container');
+    const productCont = document.querySelector('.all-transac-container');
     productCont.append(transac);
   });
 }
