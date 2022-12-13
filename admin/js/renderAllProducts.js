@@ -9,7 +9,7 @@ export async function renderAllProduct() {
     const title = el.title;
     const price = el.price;
     const description = el.description;
-    const tag = el.tag;
+    const tag = el.tags;
     const isSold = el.isSoldOut;
     const thumbnail = el.thumbnail;
     const product = document.createElement('div');

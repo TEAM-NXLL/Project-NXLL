@@ -62,7 +62,8 @@
             <a href="#all-products">모든 제품 조회</a>
           </li>
           <li>
-            <a href="#add-products">제품 추가</a>
+            <!-- <a href="#add-products">제품 추가</a> -->
+            <a href="/add">제품 추가</a>
           </li>
 
           <li>
@@ -140,33 +141,31 @@
           <input type="text" name="add-product-price" class="reset" id="add-product-price" min="0" required />
           <span>원</span>
         </div>
-        <!-- 카테고리 선택 한개만 가능한 라디오버튼 -->
+
+        <!-- 태그 선택 -->
         <div class="tag-area">
           <label>상품 태그</label>
-          <input type="radio" id="tag1" class="tag" name="tag" value="키보드" checked />
-          <label for="tag1" class="taglabel">키보드</label>
-          <input type="radio" id="tag2" class="tag" name="tag" value="마우스" />
-          <label for="tag2" class="taglabel">마우스</label>
-          <input type="radio" id="tag3" class="tag" name="tag" value="NEW ITEM" />
-          <label for="tag3" class="taglabel">NEW ITEM</label>
-          <input type="radio" id="tag4" class="tag" name="tag" value="음향기기" />
-          <label for="tag4" class="taglabel">음향기기</label>
-        </div>
-
-        <!-- 태그 선택 여러개 가능 / 수정중 -->
-        <!-- <div class="check-area2">
-          <label>하위 태그</label>
-          <input type="checkbox" id="check1" class="check" name="check" value="마우스" checked />
-          <label for="check1" class="checklabel">마우스</label>
+          <input type="checkbox" id="check1" class="check" name="check" value="마우스" />
+          <label for="check1" class="taglabel">마우스</label>
           <input type="checkbox" id="check2" class="check" name="check" value="키보드" />
-          <label for="check2" class="checklabel">키보드</label>
-          <input type="checkbox" id="check3" class="check" name="check" value="태그3" />
-          <label for="check3" class="checklabel">헤드폰/이어폰</label>
-          <input type="checkbox" id="check4" class="check" name="check" value="태그4" />
-          <label for="check4" class="checklabel">거치대</label>
-          <input type="checkbox" id="check5" class="check" name="check" value="태그5" />
-          <label for="check5" class="checklabel">스피커/마이크</label>
-        </div> -->
+          <label for="check2" class="taglabel">키보드</label>
+          <input type="checkbox" id="check3" class="check" name="check" value="음향기기" />
+          <label for="check3" class="taglabel">음향기기</label>
+          <input type="checkbox" id="check4" class="check" name="check" value="거치대" />
+          <label for="check4" class="taglabel">거치대</label>
+          <input type="checkbox" id="check5" class="check" name="check" value="스피커/마이크" />
+          <label for="check5" class="taglabel">스피커/마이크</label>
+          <input type="checkbox" id="check6" class="check" name="check" value="NEW ITEM" />
+          <label for="check6" class="taglabel">NEW ITEM</label>
+          <input type="checkbox" id="check7" class="check" name="check" value="노트북" />
+          <label for="check7" class="taglabel">노트북</label>
+          <input type="checkbox" id="check8" class="check" name="check" value="문구/소형가전" />
+          <label for="check8" class="taglabel">문구/소형가전</label>
+          <input type="checkbox" id="check9" class="check" name="check" value="충전기" />
+          <label for="check9" class="taglabel">충전기</label>
+          <input type="checkbox" id="check10" class="check" name="check" value="홀리데이 특가" />
+          <label for="check10" class="taglabel">홀리데이 특가</label>
+        </div>
 
         <!-- 상품 상세설명 -->
         <div class="description-area">
