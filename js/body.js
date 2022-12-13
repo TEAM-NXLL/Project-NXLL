@@ -730,37 +730,14 @@ function paymentForm() {
               <th scope="col">합계</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <td>
-                <input type="checkbox" />
-              </td>
-              <td>
-                <a href="#">
-                  <img src="./images/mouse-bluetoothPink.jpg" alt="" />
-                </a>
-              </td>
-              <td>
-                <span>엑토 LED 블루투스 저소음 광마우스</span> <br />
-                <span>[옵션: ABIM-03 아이보리]</span>
-              </td>
-              <td>21,900원</td>
-              <td>1</td>
-              <td>[무료 배송]</td>
-              <td>21,900원</td>
-            </tr>
+          <tbody class="products">
           </tbody>
           <tfoot>
             <tr>
               <td></td>
               <td colspan="6">
-                <span>[기본배송]</span>
-                상품 구매 금액
-                <strong>21,900</strong>
-                + 배송비
-                <span>0 (무료)</span>
-                = 합계 :
-                <span>21,900원</span>
+                상품 구매 금액 = 합계 :
+                <span class="total-price"></span>
               </td>
             </tr>
           </tfoot>

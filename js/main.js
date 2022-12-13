@@ -5,7 +5,7 @@ import { deliveryEl, returnEl, deliveryDes, returnDes, mouseenter, mouseleave } 
 import { joinForm, logInForm, myOrderForm, myShoppingForm, mainForm, userInfoForm, userAccountForm, detailForm, paymentForm } from "./body.js";
 import { editUserInfo, userOwnBank, addNewAccount, choiceBank, bankChargeLookUp, ownAccountList, addAbleAccountList, cancelBank } from "./userInfo.js";
 import { viewAllProduct } from '../admin/js/requests.js'
-import { payAccountList, payBankLoopUp, buyProducts } from "./payment.js";
+import { payAccountList, payBankLoopUp, buyProducts, lookProducts, cancelProduct } from "./payment.js";
 
 // 변수
 const root = document.querySelector('main')
@@ -244,12 +244,14 @@ async function renderDetail(productInfo) {
 
 // payment 렌더링
 async function renderPayment() {
+  localStorage.setItem('cart', JSON.stringify(["KQhimd6ngREcNHhB65yw", "bDsZ5y7DG9p39AlS05aj", "gQlFIxB40IY2JB4Ik9Fy"]))
   root.innerHTML = paymentForm()
-  // localStorage.setItem('cart', JSON.stringify(["KQhimd6ngREcNHhB65yw"]))
+  lookProducts()
   const { accounts } = await userOwnBank()
   payAccountList(accounts)
   payBankLoopUp()
   buyProducts()
+  cancelProduct()
 }
 
 // footer 함수
