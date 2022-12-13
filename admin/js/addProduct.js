@@ -103,7 +103,11 @@ addFormEl.addEventListener('submit', async (event) => {
 export function addItem(event) {
   const title = event.target[0].value;
   const price = +(event.target[1].value.replace(/[^0-9]/g, ''));
-  const tags = document.querySelector('.tag:checked').value;
+  const selectedTags = document.querySelectorAll('input[name="check"]:checked');
+  const tags = [];
+  selectedTags.forEach(tag => {
+    tags.push(tag.value)
+  });
   const description = document.querySelector('.add-product-description').value;
   const thumbnail = thumbnailEl.dataset.id;
   const photo = detailImgEl.dataset.id;
@@ -117,10 +121,9 @@ export function addItem(event) {
 
 function resetInput() {
   const reset = document.querySelectorAll('.reset');
-  const resetRadio = document.querySelectorAll('.tag');
-  //resetradio는 체크박스로 바꾸면 필요없어질 듯
-  for (let i = 0; i < resetRadio.length; i += 1) {
-    resetRadio[i].checked = false;
+  const resetCheckbox = document.querySelectorAll('.check');
+  for (let i = 0; i < resetCheckbox.length; i += 1) {
+    resetCheckbox[i].checked = false;
   }
   for (let i = 0; i < reset.length; i++) {
     reset[i].value = '';
