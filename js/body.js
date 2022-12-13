@@ -1,82 +1,13 @@
 // main
-
-async function mainForm(data) {
-
-  console.log(data, '나 데이터')
+function mainForm() {
   const mainBody = [];
-  const colorChart = ["beige", "pastelBeige", "mint", "pink", "white", "navy", "blueNavy", "black", "green", "gray"]
   const swiperArrowBtn = `
     <div class="swiper-button-prev"></div>
     <div class="swiper-button-next"></div>
   `
 
-  function productList() {
-    const mainBody = []
-    for (let i = 0; i < data.length; i++) {
-
-      if (data[i].tags === '키보드') {
-        console.log('키보드')
-      }
-
-      if (data[i].tags === '마우스') {
-        console.log('나는 마우스')
-      }
-
-      mainBody.push(`
-        <li>
-          <a href="#"> 
-            <div class="imgBox">
-      `)  
-
-      // 썸네일을 넣을건데 썸네일의 종류가 키보드랑 마우스가 있다.
-      // 근데 이 둘을 나누는 기준은 data[i].tags 이다.
-      // 정답은?
-
-      mainBody.push(`
-              <img src="${data[i].thumbnail}" alt="">
-            </div>
-          <div class="colorBox">
-      `)
-
-        const randomNum = Math.ceil(Math.random() * 5)
-        let randomIndexArray = []
-      for (let j = 0; j < randomNum; j++) {
-
-        const colorNum = Math.floor(Math.random() * 10)
-
-        if (randomIndexArray.indexOf(colorNum) === -1) {
-          randomIndexArray.push(colorNum)
-          mainBody.push(`
-                  <span class='${colorChart[colorNum]}'></span>
-              `)
-        }
-      }
-
-      let discountValueArr = []
-
-      const discountValue = Math.floor(((Math.random() * 9) + 1)) * 8
-
-      mainBody.push(`
-          </div >
-              <div class="textBox">
-                    ${data[i].title} <span>B300${i}</span>
-              </div>
-              <div class="priceBox">
-                <span class="discount">
-                  ${(data[i].price).toLocaleString()}원</span> 
-                  ${(Math.floor(Number(data[i].price) * (100 - discountValue) / 100).toLocaleString())}원<br />
-                <span class="salePercent">${discountValue}% SALE</span>
-              </div>
-              </a>
-          </li>
-      `)
-    }
-    return mainBody.join('');
-}
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
   mainBody.push(`
+    <!-- 메인 스와이퍼 -->
     <div class="swiper mainSwiper">
       <ul class="swiper-wrapper">
   `)
@@ -92,24 +23,19 @@ async function mainForm(data) {
 
       <div class="swiper-pagination"></div>
       ${swiperArrowBtn}
-    </div>  
+    </div><!-- 메인 스와이퍼 -->
 
+    <!-- 키보드 상품목록 -->
     <section class="keyboard mt70">
       <h1>KEYBOARD</h1>
       <ul class="inner block3">
   `)
 
-  // if(data[i].tags === '키보드'){
-  //   cnt += data[i].thumbnail
-  // }
-  // console.log(cnt)
-
-  mainBody.push(productList())
-
   mainBody.push(`
   </ul>
-  </section>
+  </section><!-- 키보드 상품목록 -->
 
+  <!-- 마우스 배너 -->
   <section class="keyboard-banner mt70">
     <div class="swiper keyboardSwiper">
       <ul class="swiper-wrapper">
@@ -122,41 +48,35 @@ async function mainForm(data) {
     <h3>디자인 키보드는 엑토</h3>
     <p>편의성, 디자인, 기능을 모두 갖춘 <br /> 레트로 감성의 기계식 키보드가 곧 출시됩니다.</p>
     <a href="#" class="blackBtn">제품 모두 보기</a>
-  </section>
+  </section><!-- 마우스 배너 -->
 
+  <!-- 마우스 상품목록 -->
   <section class="mouse mt70">
     <h1>MOUSE</h1>
     <ul class="inner block2">
-`)
-
-  mainBody.push(productList())
-
-  mainBody.push(`
     </ul>
-  </section>
+  </section><!-- 마우스 상품목록 -->
 
+  <!-- 마우스 배너 -->
   <section class="mouse-banner mt70">
     <img src="./images/mouseBanner.gif" alt="">
     <h3>편안한 그립감의 마우스</h3>
     <p>인체공학적 설계로 편안한 그립감과 엑토만의 <br /> 감각적인 디자인의 마우스를 만나보세요.</p>
     <a href="#" class="blackBtn">제품 모두 보기</a>
-  </section>
+  </section><!-- 마우스 배너 -->
 
+  <!-- 데스크셋업 배너 -->
   <section class="deskSetup mt70">
     <img src="./images/deskSetup.jpg" alt="">
     <h3>데스크셋업의 완성</h3>
     <p>당신의 데스크를 더욱 업그레이드 시켜 줄 <br /> 다양한 기기들을 만나보세요.</p>
     <a href="#" class="blackBtn">제품 모두 보기</a>
-  </section>
+  </section><!-- 데스크셋업 배너 -->
 
+  <!-- 뉴아이템 상품목록 -->
   <section class="newItem mt70">
     <h1>NEW ITEM</h1>
     <ul class="inner block3">
-`)
-
-  mainBody.push(productList())
-
-  mainBody.push(`
     </ul>
   </section><!-- 뉴아이템 상품목록 -->
 
@@ -167,7 +87,6 @@ async function mainForm(data) {
 `)
 
   for (let i = 1; i <= 10; i++) {
-
 
     mainBody.push(
       `
@@ -192,12 +111,12 @@ async function mainForm(data) {
           </div>
         </div>
       </a></li>
-  `)
+    `)
   }
 
   mainBody.push(`
       </ul>
-    </section>
+    </section><!-- 리뷰 영역 -->
   `
   )
 
