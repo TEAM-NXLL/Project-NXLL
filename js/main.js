@@ -42,7 +42,7 @@ async function renderMain() {
   })
 
   function productList(tags) {
-    
+
     const colorChart = ["beige", "pastelBeige", "mint", "pink", "white", "navy", "blueNavy", "black", "green", "gray"]
     const mainBody = []
 
@@ -52,7 +52,7 @@ async function renderMain() {
         <li>
           <a href="#details/${tags[i].id}"> 
             <div class="imgBox">
-      `)  
+      `)
 
       mainBody.push(`
               <img src="${tags[i].thumbnail}" alt="">
@@ -60,8 +60,8 @@ async function renderMain() {
           <div class="colorBox">
       `)
 
-        const randomNum = Math.ceil(Math.random() * 5)
-        let randomIndexArray = []
+      const randomNum = Math.ceil(Math.random() * 5)
+      let randomIndexArray = []
       for (let j = 0; j < randomNum; j++) {
 
         const colorNum = Math.floor(Math.random() * 10)
