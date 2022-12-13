@@ -49,8 +49,8 @@ async function renderMain() {
     for (let i = 0; i < tags.length; i++) {
 
       mainBody.push(`
-        <li data-tags="${tags[i].tags}">
-          <a href="#"> 
+        <li>
+          <a href="#details/${tags[i].id}"> 
             <div class="imgBox">
       `)  
 
@@ -82,16 +82,14 @@ async function renderMain() {
                     ${tags[i].title} <span>B300${i}</span>
               </div>
               <div class="priceBox">
-                <span class="discount">
-                  ${(tags[i].price).toLocaleString()}원</span> 
-                  ${(Math.floor(Number(tags[i].price) * (100 - discountValue) / 100).toLocaleString())}원<br />
+                <span class="discount">${(tags[i].price).toLocaleString()}원</span> 
+                ${(Math.floor(Number(tags[i].price) * (100 - discountValue) / 100).toLocaleString())}원<br />
                 <span class="salePercent">${discountValue}% SALE</span>
               </div>
               </a>
           </li>
       `)
     }
-
     return mainBody.join('');
   }
 

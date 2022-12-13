@@ -561,6 +561,9 @@ function detailForm(productInfo) {
     const scrollH = nameEl.getBoundingClientRect().top - topBanner
     scrollTo({ left: 0, top: window.pageYOffset + scrollH, behavior: 'smooth' })
   })
+
+  const discountValue = Math.floor(((Math.random() * 9) + 1)) * 8
+
   return /* html */`
   <div class="page-nav">
     <div class="inner">
@@ -580,7 +583,11 @@ function detailForm(productInfo) {
             <div class="product-summary__title">
               <span>${productInfo.description}</span>
               <p>${productInfo.title}</p>
-              <span class="price">${productInfo.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원</span>
+              <div class="priceBox">
+                <span class="discount">${productInfo.price.toLocaleString()}원</span>
+                <span class="price">${(Math.floor(Number(productInfo.price) * (100 - discountValue) / 100).toLocaleString())}원</span>
+                <span class="salePercent">${discountValue}% SALE</span>
+              </div>
             </div>
             <div class="product-summary__info">
               <p class="info-title">상품 정보</p>
