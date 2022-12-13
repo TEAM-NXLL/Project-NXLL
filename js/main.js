@@ -5,7 +5,6 @@ import { deliveryEl, returnEl, deliveryDes, returnDes, mouseenter, mouseleave } 
 import { joinForm, logInForm, myOrderForm, myShoppingForm, mainForm, userInfoForm, userAccountForm, detailForm, paymentForm } from "./body.js";
 import { editUserInfo, userOwnBank, addNewAccount, choiceBank, bankChargeLookUp, ownAccountList, addAbleAccountList, cancelBank } from "./userInfo.js";
 import { viewAllProduct } from '../admin/js/requests.js'
-import { payAccountList, payBankLoopUp, buyProducts, lookProducts, cancelProduct } from "./payment.js";
 
 // 변수
 const root = document.querySelector('main')
@@ -23,17 +22,17 @@ async function renderMain() {
   const keyboardList = document.querySelector('.keyboard > .inner')
   const mouseList = document.querySelector('.mouse > .inner')
   const newItemList = document.querySelector('.newItem > .inner')
-
+  
   const keyboard = []
   const mouse = []
   const newItem = []
-
+  
   data.forEach(e => {
+    console.log(e)
     if (e['tags'] === '키보드') {
       keyboard.push(e)
       keyboardList.innerHTML = productList(keyboard)
-    }
-    else if (e['tags'] === '마우스') {
+    } else if (e['tags'] === '마우스') {
       mouse.push(e)
       mouseList.innerHTML = productList(mouse)
     } else {
@@ -41,28 +40,29 @@ async function renderMain() {
       newItemList.innerHTML = productList(newItem)
     }
   })
-
-  function productList(tags) {
-
+  
+  function productList(tags) {    
     const colorChart = ["beige", "pastelBeige", "mint", "pink", "white", "navy", "blueNavy", "black", "green", "gray"]
     const mainBody = []
-
+    
     for (let i = 0; i < tags.length; i++) {
+      const priceBox = document.querySelector('.priceBox')
+      console.log(priceBox)
+      if(tags[i].thumbnail === null || tags[i].thumbnail === undefined) {
+        tags[i].thumbnail = './images/preparingProduct.jpg'
+      }
 
       mainBody.push(`
         <li>
           <a href="#details/${tags[i].id}"> 
             <div class="imgBox">
-      `)
-
-      mainBody.push(`
               <img src="${tags[i].thumbnail}" alt="">
             </div>
-          <div class="colorBox">
+            <div class="colorBox">
       `)
 
-      const randomNum = Math.ceil(Math.random() * 5)
-      let randomIndexArray = []
+        const randomNum = Math.ceil(Math.random() * 5)
+        let randomIndexArray = []
       for (let j = 0; j < randomNum; j++) {
 
         const colorNum = Math.floor(Math.random() * 10)
@@ -78,7 +78,7 @@ async function renderMain() {
       const discountValue = Math.floor(((Math.random() * 9) + 1)) * 8
 
       mainBody.push(`
-          </div >
+              </div >
               <div class="textBox">
                     ${tags[i].title} <span>B300${i}</span>
               </div>
@@ -87,8 +87,8 @@ async function renderMain() {
                 ${(Math.floor(Number(tags[i].price) * (100 - discountValue) / 100).toLocaleString())}원<br />
                 <span class="salePercent">${discountValue}% SALE</span>
               </div>
-              </a>
-          </li>
+            </a>
+        </li>
       `)
     }
     return mainBody.join('');
@@ -243,15 +243,8 @@ async function renderDetail(productInfo) {
 }
 
 // payment 렌더링
-async function renderPayment() {
-  localStorage.setItem('cart', JSON.stringify(["KQhimd6ngREcNHhB65yw", "bDsZ5y7DG9p39AlS05aj", "gQlFIxB40IY2JB4Ik9Fy"]))
+function renderPayment() {
   root.innerHTML = paymentForm()
-  lookProducts()
-  const { accounts } = await userOwnBank()
-  payAccountList(accounts)
-  payBankLoopUp()
-  buyProducts()
-  cancelProduct()
 }
 
 // footer 함수
