@@ -44,6 +44,20 @@
     font-size: 14px;
     height: 50px;
 
+    .delete-checked {
+      background-color: whitesmoke;
+      border: 1px solid black;
+      padding: 8px;
+      width: fit-content;
+      height: fit-content;
+      border-radius: 10px;
+
+      &:hover {
+        scale: 1.1;
+        box-shadow: 3px 3px 2px 1px rgba(0, 0, 255, .2);
+      }
+    }
+
     .thumbnail {
       background-image: none;
     }
@@ -57,7 +71,6 @@
     height: 150px;
     display: flex;
     justify-content: space-between;
-    cursor: pointer;
     transition: .5s ease;
 
     &.delete {
@@ -123,6 +136,11 @@
             border: 1px solid #b9c7ee;
             scale: 1.1;
           }
+        }
+
+        .delete-checkbox {
+          transform: scale(1.4);
+          margin-bottom: 12px;
         }
       }
     }

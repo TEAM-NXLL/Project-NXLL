@@ -84,9 +84,8 @@ export async function viewAllTransactions() {
     store.url + '/products/transactions/all',
     createRequest('GET'),
   );
-  console.log('전체 거래 내역 조회!');
   const getResult = await res.json();
-  console.log(getResult);
+  // console.log(getResult);
   return getResult;
 }
 // 전체 거래 내역 조회 결과
@@ -130,30 +129,24 @@ export async function transactionStatus(detailId, isCanceled, done) {
 }
 
 // 제품 수정
-export async function correctProduct(
-  productId,
-  title,
-  price,
-  description,
-  tags,
-  thumbnailBase64,
-  photoBase64,
-  isSoldOut,
-) {
-  const res = await fetch(
-    store.url + `/products/${productId}`,
-    createRequest('PUT', {
-      title,
-      price,
-      description,
-      tags,
-      thumbnailBase64,
-      photoBase64,
-      isSoldOut,
-    }),
-  );
-  console.log('제품 수정!');
-  return res;
+export async function correctProduct(productId, title, price, description, tags, thumbnailBase64, photoBase64, isSoldOut) {
+  try {
+    const res = await fetch(store.url + `/products/${productId}`,
+      createRequest('PUT', {
+        title,
+        price,
+        description,
+        tags,
+        thumbnailBase64,
+        photoBase64,
+        isSoldOut,
+      }),
+    );
+    console.log(res);
+    return res;
+  } catch (err) {
+    alert(err, "잠시 후 다시 시도해주세요.")
+  }
 }
 // 제품 수정 결과
 // {
@@ -173,12 +166,16 @@ export async function correctProduct(
 
 //제품 삭제
 export async function delProduct(productId) {
-  const res = await fetch(
-    store.url + `/products/${productId}`,
-    createRequest('DELETE'),
-  );
-  console.log(res.json);
-  return res;
+  try {
+    const res = await fetch(
+      store.url + `/products/${productId}`,
+      createRequest('DELETE'),
+    );
+    console.log(res);
+    return res;
+  } catch (err) {
+    alert(err, "잠시 후 다시 시도해주세요")
+  }
 }
 //제품 삭제 결과
 // type ResponseValue = true

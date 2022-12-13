@@ -2,6 +2,29 @@ import { delProduct } from "./requests.js";
 import { toast } from "./toast.js";
 
 const productContainer = document.querySelector('.products-container');
+const CheckedBtnEl = document.querySelector('.delete-checked');
+
+CheckedBtnEl.addEventListener('click', (event) => {
+  const checkedItems = document.querySelectorAll('.delete-checkbox:checked');
+  deleteCheckedItems(checkedItems)
+})
+
+// 선택항목 삭제 핸들러
+export async function deleteCheckedItems(checkedItems) {
+  const checkedArr = [];
+  if (window.confirm(`${checkedItems.length}개의 상품을 삭제하시겠습니까?`)) {
+    try {
+      checkedItems.forEach(item => {
+        checkedArr.push(deleteItem(item));
+      })
+      await Promise.all(checkedArr);
+    } catch (err) {
+      alert(err, "잠시 후 다시 시도해 주세요.");
+    }
+  } else {
+    toast("아이템 삭제를 취소합니다.");
+  }
+}
 
 // 개별 수정/삭제버튼 클릭 이벤트
 productContainer.addEventListener('click', (event) => {
@@ -30,17 +53,7 @@ export function deleteItem(target) {
   toast("상품이 삭제되었습니다.")
 }
 
-//제품 전체삭제 기능 추가하기
-// 조회메뉴 최상단 체크박스 + 선택 상품을 `삭제` + `상태변경`(sold out)  넣기
-// 조회 메뉴 옆에 개별 아이템 수정버튼...
-// 조회메뉴에서 각 아이템 옆 체크박스로 삭제할 아이템 선택
-//(최상단 체크박스를 클릭하면 해당 페이지의 모든 상품 선택)
-// 제품 여러 개 삭제 버튼 클릭 이벤트
-// deleteBtnEl.addEventListener('click', (event) => {
-//   if (window.confirm(`${event}(event객체에서 갯수받기) 개의 상품을 삭제하시겠습니까?`)) {
-//     deleteItems(event);
-//   }
-// });
+
 
 // 수정버튼 클릭 이벤트 핸들러
 export function editItem(event) {

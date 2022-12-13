@@ -27,6 +27,7 @@ export async function renderAllProduct() {
           <div class="is-sold-out">${isSold}</div>
           <div class="descript">${description}</div>
           <div class="edit-delete-btn">
+            <input type="checkbox" name="checkbox" class="delete-checkbox" data-id="${id}">
             <button class="edit-btn" data-id="${id}">제품 수정</button>
             <button class="del-btn" data-id="${id}">제품 삭제</button>
           </div>
