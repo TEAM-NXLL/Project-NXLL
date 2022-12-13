@@ -171,3 +171,21 @@ export async function getProductDetail(productId) {
   const json = await res.json()
   return json
 }
+
+// 결제 데이터
+export async function getBuy(accessToken, productId, accountId) {
+  const res = await fetch(store.url + '/products/buy', {
+    method: 'POST',
+    headers: {
+      ...store.headers,
+      "apikey": process.env.API_KEY,
+      "Authorization": `Bearer ${accessToken}`,
+    },
+    body: JSON.stringify({
+      "productId": productId,
+      "accountId": accountId
+    })
+  })
+  const json = await res.json()
+  return json
+}

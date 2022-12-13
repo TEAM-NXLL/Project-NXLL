@@ -42,10 +42,4 @@ export async function router() {
   else if (routePath === '#payment') {
     renderPayment()
   }
-  else if (routePath === '#payment') {
-    renderPayment()
-  }
-  else if (routePath === '#payment') {
-    renderPayment()
-  }
 }
