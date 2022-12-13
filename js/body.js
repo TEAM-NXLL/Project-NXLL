@@ -12,7 +12,7 @@ function mainForm() {
       <ul class="swiper-wrapper">
   `)
 
-  for(let i = 1; i <= 7; i++) {
+  for (let i = 1; i <= 7; i++) {
     mainBody.push(`
       <li class="swiper-slide"><a href="#"><img src="../images/slide1-banner${i}.jpg" alt=""></a></li>
     `)
@@ -827,9 +827,10 @@ function paymentForm() {
             <th>결제 계좌</th>
             <td>
               <select name="pay-account" id="pay-account">
-                <option value="default">계좌 없음</option>
+                <option value="default">은행 이름</option>
+                <option value="null" class="no-bank">계좌 없음</option>
               </select>
-              <span>계좌 잔액</span>
+              <span class="charge"></span>
             </td>
           </tr>
           </tbody>

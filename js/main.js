@@ -5,6 +5,7 @@ import { deliveryEl, returnEl, deliveryDes, returnDes, mouseenter, mouseleave } 
 import { joinForm, logInForm, myOrderForm, myShoppingForm, mainForm, userInfoForm, userAccountForm, detailForm, paymentForm } from "./body.js";
 import { editUserInfo, userOwnBank, addNewAccount, choiceBank, bankChargeLookUp, ownAccountList, addAbleAccountList, cancelBank } from "./userInfo.js";
 import { viewAllProduct } from '../admin/js/requests.js'
+import { payAccountList, payBankLoopUp, buyProducts } from "./payment.js";
 
 // 변수
 const root = document.querySelector('main')
@@ -42,7 +43,7 @@ async function renderMain() {
   })
 
   function productList(tags) {
-    
+
     const colorChart = ["beige", "pastelBeige", "mint", "pink", "white", "navy", "blueNavy", "black", "green", "gray"]
     const mainBody = []
 
@@ -52,7 +53,7 @@ async function renderMain() {
         <li>
           <a href="#details/${tags[i].id}"> 
             <div class="imgBox">
-      `)  
+      `)
 
       mainBody.push(`
               <img src="${tags[i].thumbnail}" alt="">
@@ -60,8 +61,8 @@ async function renderMain() {
           <div class="colorBox">
       `)
 
-        const randomNum = Math.ceil(Math.random() * 5)
-        let randomIndexArray = []
+      const randomNum = Math.ceil(Math.random() * 5)
+      let randomIndexArray = []
       for (let j = 0; j < randomNum; j++) {
 
         const colorNum = Math.floor(Math.random() * 10)
@@ -242,8 +243,13 @@ async function renderDetail(productInfo) {
 }
 
 // payment 렌더링
-function renderPayment() {
+async function renderPayment() {
   root.innerHTML = paymentForm()
+  // localStorage.setItem('cart', JSON.stringify(["KQhimd6ngREcNHhB65yw"]))
+  const { accounts } = await userOwnBank()
+  payAccountList(accounts)
+  payBankLoopUp()
+  buyProducts()
 }
 
 // footer 함수
