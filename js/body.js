@@ -53,7 +53,7 @@ function mainForm() {
   <!-- 마우스 상품목록 -->
   <section class="mouse mt70">
     <h1>MOUSE</h1>
-    <ul class="inner block2">
+    <ul class="inner block3">
     </ul>
   </section><!-- 마우스 상품목록 -->
 

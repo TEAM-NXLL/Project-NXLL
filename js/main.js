@@ -28,14 +28,20 @@ async function renderMain() {
   const mouse = []
   const newItem = []
 
+  // if(keyboard) {
+  //   keyboardList.innerHTML = '상품 준비중'
+  // }
+  
   data.forEach(e => {
-    if (e['tags'] === '키보드') {
+    console.log(e)
+    if (e['tags'].includes('키보드')) {
       keyboard.push(e)
       keyboardList.innerHTML = productList(keyboard)
-    } else if (e['tags'] === '마우스') {
+
+    } else if (e['tags'].includes('마우스')) {
       mouse.push(e)
       mouseList.innerHTML = productList(mouse)
-    } else {
+    } else if (e['tags'].includes('NEW ITEM')) {
       newItem.push(e)
       newItemList.innerHTML = productList(newItem);
     }
