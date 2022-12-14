@@ -562,6 +562,10 @@ function detailForm(productInfo) {
     scrollTo({ left: 0, top: window.pageYOffset + scrollH, behavior: 'smooth' })
   })
 
+  if(productInfo.thumbnail === null || productInfo.thumbnail === undefined) {
+    productInfo.thumbnail = './images/preparingProduct.jpg'
+  }
+
   const discountValue = Math.floor(((Math.random() * 9) + 1)) * 8
 
   return /* html */`
