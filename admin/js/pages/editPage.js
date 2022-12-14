@@ -3,7 +3,7 @@ import abstractView from "./abstractView.js";
 export default class extends abstractView {
   constructor() {
     super();
-    this.setTitle("판매 현황");
+    this.setTitle("제품 수정");
   }
   async getHtml() {
     return /*HTML*/`

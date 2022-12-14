@@ -1,26 +1,26 @@
 import dashboard from './pages/dashboard.js';
-import allProducts from './pages/allProductsPage.js';
-import addPage from './pages/addPage.js';
+// import allProducts from './pages/allProductsPage.js';
+// import addPage from './pages/addPage.js';
 import editPage from './pages/editPage.js';
 
 const navigateTo = url => {
   history.pushState(null, null, url);
   router();
 }
-
 export const router = async () => {
+
   const routes = [
     { path: "/", render: dashboard },
-    { path: "/add-products", render: addPage },
-    { path: "/all-products", render: allProducts },
-    { path: "/all-transacs", render: editPage },
-    { path: "/transacs-status", render: () => console.log("개별거래내역") },
+    // { path: "/add-products", render: addPage },
+    // { path: "/all-products", render: allProducts },
+    { path: "/edit-products", render: editPage },
   ];
 
   const pageMatches = routes.map(route => {
     return {
       route: route,
-      isMatch: route.path === location.pathname,
+      // isMatch: route.path === location.pathname,
+      isMatch: location.pathname.includes(route.path),
     };
   });
 
