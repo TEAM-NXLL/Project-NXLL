@@ -37,11 +37,12 @@ async function renderMain() {
     if (e['tags'].includes('키보드')) {
       keyboard.push(e)
       keyboardList.innerHTML = productList(keyboard)
-
-    } else if (e['tags'].includes('마우스')) {
+    }
+    if (e['tags'].includes('마우스')) {
       mouse.push(e)
       mouseList.innerHTML = productList(mouse)
-    } else if (e['tags'].includes('NEW ITEM')) {
+    }
+    if (e['tags'].includes('NEW ITEM')) {
       newItem.push(e)
       newItemList.innerHTML = productList(newItem);
     }
