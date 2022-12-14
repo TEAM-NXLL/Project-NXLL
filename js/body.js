@@ -507,7 +507,7 @@ function userAccountForm(totalBalance) {
           <tr>
             <th scope="row">보유 계좌</th>
             <td class="bank-charge">
-              <select name="bank-name" id="bank-name">
+              <select id="bank-name">
                 <option value="default">은행 이름</option>
                 <option value="null" class="no-bank">없음</option>
               </select>
@@ -525,7 +525,7 @@ function userAccountForm(totalBalance) {
           <tr>
             <th>계좌 추가</th>
             <td>
-              <select name="add-account" id="add-account">
+              <select id="add-account">
                 <option value="default">은행 이름</option>
               </select>
             </td>
@@ -562,7 +562,7 @@ function detailForm(productInfo) {
     scrollTo({ left: 0, top: window.pageYOffset + scrollH, behavior: 'smooth' })
   })
 
-  if(productInfo.thumbnail === null || productInfo.thumbnail === undefined) {
+  if (productInfo.thumbnail === null || productInfo.thumbnail === undefined) {
     productInfo.thumbnail = './images/preparingProduct.jpg'
   }
 
@@ -807,7 +807,7 @@ function paymentForm() {
           <tr>
             <th>결제 계좌</th>
             <td>
-              <select name="pay-account" id="pay-account">
+              <select id="pay-account">
                 <option value="default">은행 이름</option>
                 <option value="null" class="no-bank">계좌 없음</option>
               </select>
