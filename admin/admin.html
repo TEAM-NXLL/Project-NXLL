@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon.ico" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet" />
+
+  <script src="https://kit.fontawesome.com/cd76b4d4dc.js" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="./scss/admin_common.scss" />
+  <link rel="stylesheet" href="./scss/admin.scss" />
+  <script type="module" defer src="./js/admin.js"></script>
+  <title>administrator</title>
+</head>
+
+<body>
+  <!-- HEADER -->
+  <header>
+    <!-- top-banner -->
+    <div class="top-banner">
+      <div class="inner">
+        <div class="CS"><a href="#">CS센터 24시간 AS접수</a></div>
+        <ul class="top-nav">
+          <li>
+            <a class="login" id="login-btn">로그인</a>
+          </li>
+
+          <li>
+            <a class="community" href="#">커뮤니티</a>
+          </li>
+
+          <li>
+            <a class="company" href="#">회사소개</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!-- top-banner -->
+
+    <!-- logo-area -->
+    <div class="logo-area">
+      <div class="inner">
+        <a href="/" class="logo-area__logo"><img src="../static/images/logo.png" alt="메인 로고" /></a>
+        <div class="logo-area__search">
+          <input id="keyword" type="text" title="키워드 검색" />
+          <label for="keyword"><i class="fa-solid fa-magnifying-glass"></i></label>
+        </div>
+      </div>
+    </div>
+    <!-- logo-area -->
+
+    <!-- nav-area -->
+    <nav class="nav-area">
+      <div class="inner">
+        <ul class="nav-area__nav">
+          <li>
+            <a href="#all-products">모든 제품 조회</a>
+          </li>
+          <li>
+            <!-- <a href="#add-products">제품 추가</a> -->
+            <a href="/add">제품 추가</a>
+          </li>
+
+          <li>
+            <a href="#all-transacs">전체 거래 내역</a>
+          </li>
+          <li>
+            <a href="#transacs-status">개별 거래 내역</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <!-- nav-area -->
+  </header>
+  <!-- HEADER -->
+
+  <!-- MAIN -->
+  <main class="admin-summary">
+    <div class="inner">
+      <!-- ORDER STATUS -->
+      <div class="order-status">
+        <div class="order-status-text summary-bold">주문현황</div>
+        <div class="order-status-el">
+          <div class="new-order status-el"></div>
+          <div class="purchase-confirmed status-el"></div>
+          <div class="purchase-cancled status-el"></div>
+        </div>
+      </div>
+      <!-- Cancel -->
+      <div class="transac-status">
+        <div class="transac-status-text summary-bold">거래현황</div>
+        <div class="transac-status-el">
+          <div class="total-products-num status-el"></div>
+          <div class="total-income status-el"></div>
+          <div class="total-transac-num status-el"></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Lookup All Products -->
+  <main id="all-products" class="all-products">
+    <div class="inner">
+      <div class="products-container">
+        <div class="product-item item-head">
+          <div class="thumbnail">썸네일 이미지</div>
+          <div class="text-wrapper">
+            <div class="id">제품번호</div>
+            <div class="title">제품명</div>
+            <div class="price">가격</div>
+            <div class="tags">태그</div>
+            <div class="is-sold-out">매진 여부</div>
+            <div class="descript">기본 정보</div>
+            <button class="edit-delete delete-checked">선택항목 삭제</button>
+          </div>
+          <!-- observer 생성해서 무한 스크롤하기-->
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- 상품추가 페이지 -->
+  <main id="add-products">
+    <section class="admin-add-title">
+      <h2>제품 추가</h2>
+    </section>
+    <section class="add">
+      <form class="add-form">
+        <!-- 상품명 -->
+        <div class="name-area">
+          <label for="add-product-name">상품명</label>
+          <input type="text" class="add-product-name reset" name="add-product-name" required />
+        </div>
+        <div class="price-area">
+          <label for="add-product-price">가격</label>
+          <input type="text" name="add-product-price" class="reset" id="add-product-price" min="0" required />
+          <span>원</span>
+        </div>
+
+        <!-- 태그 선택 -->
+        <div class="tag-area">
+          <label>상품 태그</label>
+          <input type="checkbox" id="check1" class="check" name="check" value="마우스" />
+          <label for="check1" class="taglabel">마우스</label>
+          <input type="checkbox" id="check2" class="check" name="check" value="키보드" />
+          <label for="check2" class="taglabel">키보드</label>
+          <input type="checkbox" id="check3" class="check" name="check" value="음향기기" />
+          <label for="check3" class="taglabel">음향기기</label>
+          <input type="checkbox" id="check4" class="check" name="check" value="거치대" />
+          <label for="check4" class="taglabel">거치대</label>
+          <input type="checkbox" id="check5" class="check" name="check" value="스피커/마이크" />
+          <label for="check5" class="taglabel">스피커/마이크</label>
+          <input type="checkbox" id="check6" class="check" name="check" value="NEW ITEM" />
+          <label for="check6" class="taglabel">NEW ITEM</label>
+          <input type="checkbox" id="check7" class="check" name="check" value="노트북" />
+          <label for="check7" class="taglabel">노트북</label>
+          <input type="checkbox" id="check8" class="check" name="check" value="문구/소형가전" />
+          <label for="check8" class="taglabel">문구/소형가전</label>
+          <input type="checkbox" id="check9" class="check" name="check" value="충전기" />
+          <label for="check9" class="taglabel">충전기</label>
+          <input type="checkbox" id="check10" class="check" name="check" value="홀리데이 특가" />
+          <label for="check10" class="taglabel">홀리데이 특가</label>
+        </div>
+
+        <!-- 상품 상세설명 -->
+        <div class="description-area">
+          <label for="description">상품 상세 설명</label>
+          <textarea class="add-product-description reset" maxlength=100 placeholder="상세 설명은 100자 이내로 작성해 주세요."
+            required></textarea>
+        </div>
+        <!-- 파일 업로드 -->
+        <div class="file-upload-area">
+          <!-- 썸네일 업로드 -->
+          <div class="thumbnail-area">
+            <label for="add-thumbnail"> 상품 썸네일 등록 </label>
+            <img id="thumbnail-preview" class="reset" />
+            <span>jpg, jpeg, webp, png, gif, svg 확장자만 등록 가능합니다.</span>
+            <span>파일 크기는 1MB 이하여야 합니다.</span>
+            <input type="file" accept="image/jpg, .jpeg, .webp, .png, .gif, .svg" class="add-thumbnail reset"
+              name="add-thumbnail" id="add-thumbnail" />
+            <div class="reset-btn thumbnail-reset">선택 초기화</div>
+          </div>
+          <!-- 상세사진 업로드 -->
+          <div class="detail-area">
+            <label for="add-detail"> 상품 상세사진 등록 </label>
+            <img id="detail-preview" />
+            <span>jpg, jpeg, webp, png, gif, svg 확장자만 등록 가능합니다.</span>
+            <span>파일 크기는 4MB 이하여야 합니다.</span>
+            <input type="file" accept="image/jpg, .jpeg, .webp, .png, .gif, .svg" class="add-detail reset"
+              name="add-detail" id="add-detail" class="reset" />
+            <div class="reset-btn detail-reset">선택 초기화</div>
+          </div>
+        </div>
+        <!-- form submit 버튼 -->
+        <div class="add-button-area">
+          <button class="add-btn" type="submit">상품 등록</button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <!-- Lookup All Transactdions -->
+  <main id="all-transacs" class="all-transacs">
+    <div class="inner">
+      <div class="all-transac-container">
+        <div class="properties">
+          <div class="thumbnail">썸네일 이미지</div>
+          <div class="text-wrapper">
+            <div class="transacId">거래번호</div>
+            <div class="displayName">이름</div>
+            <div class="email">이메일</div>
+            <div class="id">제품번호</div>
+            <div class="title">제품명</div>
+            <div class="price">가격</div>
+            <div class="tags">태그</div>
+            <div class="bank-name">은행명</div>
+            <div class="bank-code">은행코드</div>
+            <div class="account-number">계좌번호</div>
+            <div class="transac-time">거래시간</div>
+            <div class="transac-status">거래상태</div>
+
+            <!-- 날짜 정보... 구매일/ 수정일-->
+          </div>
+        </div>
+        <!-- observer 생성해서 무한 스크롤하기-->
+      </div>
+    </div>
+  </main>
+  <div class="go-top">
+    <div class="inner">
+      <a href="#all-products" style="height: 20px; background-color: orange">위로가자</a>
+    </div>
+  </div>
+  <!-- Transaction Status -->
+  <main id="product-transacs" class="product-transacs">
+    <div class="inner">
+      <div class="product-transac-container">
+        <div class="properties">
+          <div class="text-wrapper">
+            <div class="transacId">거래번호</div>
+            <div class="displayName">이름</div>
+            <div class="email">이메일</div>
+            <div class="bank-name">은행명</div>
+            <div class="bank-code">은행코드</div>
+            <div class="account-number">계좌번호</div>
+            <div class="transac-time">거래시간</div>
+            <div class="transac-status">거래상태</div>
+            <div class="btns">
+              취소/확정
+              <!-- <button class="cancel-btn">거래 취소</button>
+                <button class="cancel-clear">취소 해제</button>
+                <button class="purchase-confirm">구매 확정</button>
+                <button class="purchase-clear">확정 취소</button> -->
+              <!-- 4개 중, 토글로 2개만 보이도록 만들어야함 -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- observer 생성해서 무한 스크롤하기-->
+    </div>
+  </main>
+
+  <!-- MAIN -->
+  <!-- 임시 위로가기 버튼 -->
+  <div class="go-top">
+    <div class="inner">
+      <a href="#all-products" style="height: 20px; background-color: orange">위로가자</a>
+    </div>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,24 @@
+.admin-summary {
+  display: flex;
+  .inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 300px;
+    font-size: 18px;
+    line-height: 30px;
+    .summary-bold {
+      font-weight: 600;
+      text-align: center;
+    }
+    .status-el {
+      width: 130px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .hilight {
+        color: rgb(22, 221, 155);
+      }
+    }
+  }
+}

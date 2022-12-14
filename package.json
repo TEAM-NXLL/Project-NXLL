@@ -2,10 +2,10 @@
   "name": "project-nxll",
   "version": "1.0.0",
   "description": "",
-  "main": "main.js",
   "scripts": {
     "dev": "parcel index.html",
-    "build": "parcel build index.html"
+    "build": "parcel build index.html",
+    "admin": "parcel ./admin/admin.html"
   },
   "repository": {
     "type": "git",

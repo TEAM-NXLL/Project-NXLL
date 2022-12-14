@@ -1,141 +1,283 @@
 import { doc } from "prettier";
-import { getData, getLogin, getLogOut } from "./getdata.js";
-import { completeLogin } from "./test.js";
+import { getData, getLogin, getLogOut, stateLogin } from "./getdata.js";
+import { router } from "./route.js";
+import { deliveryEl, returnEl, deliveryDes, returnDes, mouseenter, mouseleave } from './footer.js'
+import { joinForm, logInForm, myOrderForm, myShoppingForm, mainForm, userInfoForm, userAccountForm, detailForm, paymentForm } from "./body.js";
+import { editUserInfo, userOwnBank, addNewAccount, choiceBank, bankChargeLookUp, ownAccountList, addAbleAccountList, cancelBank } from "./userInfo.js";
+import { viewAllProduct } from '../admin/js/requests.js'
+import { payAccountList, payBankLoopUp, buyProducts, lookProducts, cancelProduct } from './payment.js';
 
-// 변수 모음
-const joinBtn = document.querySelector('#join-btn')
-const root = document.querySelector('main')
-const loginBtn = document.querySelector('#login-btn')
-const topNav = document.querySelector('.top-nav')
+// 변수
+const root = document.querySelector('main');
 
-// 이벤트 리스너
-joinBtn.addEventListener('click', joinRender)
-loginBtn.addEventListener('click', () => {
-  root.innerHTML = logInForm()
-  sendLogin()
-})
+// function loginNjoin() {
+//   loginRender()
+//   joinRender()
+// }
 
-function joinRender() {
-    root.innerHTML = joinForm();
-    sendSignUp();
-}
+// 메인 페이지
+async function renderMain() {
+  const data = await viewAllProduct();
+  root.innerHTML = mainForm();
 
-function joinForm() {
-    return `
-    <form id="form-tag">
-      <ul class="table-area">
-          <h1>JOIN - US</h1>
-          <p>아래 정보를 꼼꼼히 입력하세요.</p>
-          <li class="base">
-          <h2>BASE <span>기본 정보를 입력하세요.</span> <span><img class="require" src="../images/icons/required.png" alt=""> 필수입력사항</span></h2>
-          <table>
-              <colgroup>
-              <col style="width:150px" />
-              <col style="width:auto"/>
-          </colgroup>
-          <tbody>
-              <tr>
-              <th scope="row">아이디<img class="require" src="../images/icons/required.png" alt=""></th>
-              <td>
-                  <input type="text" class="id-input">
-                  (영문소문자/숫자, 4~16자)
-              </td>
-              </tr>
-              <tr>
-              <th>비밀번호<img class="require" src="../images/icons/required.png" alt=""></th>
-              <td>
-                  <input type="password" class="pw-input">
-                  (영문 대소문자/숫자/특수문자 중 3가지 이상 조합, 8자~16자)
-                </td>
-              </tr>
-              <tr>
-                <th>비밀번호 확인<img class="require" src="../images/icons/required.png" alt=""></th>
-                <td>
-                  <input type="password" class="pw-input-2">
-                </td>
-              </tr>
-              <tr>
-                <th>이름<img class="require" src="../images/icons/required.png" alt=""></th>
-                <td>
-                  <input type="text" class="name-input">
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </li>
+  const keyboardList = document.querySelector('.keyboard > .inner')
+  const mouseList = document.querySelector('.mouse > .inner')
+  const newItemList = document.querySelector('.newItem > .inner')
 
-        <button id="joinBtn" class="joinBtn hover-navy" type="submit"><i class="fa-solid fa-check"></i>회원가입</button>
-      </ul>
-    </form>
-    `
-}
+  const keyboard = []
+  const mouse = []
+  const newItem = []
 
-const sendSignUp = () => {
-    const formTag = document.querySelector('#form-tag')
-    // const joinBtn = document.querySelector('#joinBtn')
+  // if(keyboard) {
+  //   keyboardList.innerHTML = '상품 준비중'
+  // }
+  
+  data.forEach(e => {
+    console.log(e)
+    if (e['tags'].includes('키보드')) {
+      keyboard.push(e)
+      keyboardList.innerHTML = productList(keyboard)
+    }
+    if (e['tags'].includes('마우스')) {
+      mouse.push(e)
+      mouseList.innerHTML = productList(mouse)
+    }
+    if (e['tags'].includes('NEW ITEM')) {
+      newItem.push(e)
+      newItemList.innerHTML = productList(newItem);
+    }
+  })
 
-    formTag.addEventListener('submit', async (e) => {
-        e.preventDefault()
-        console.log(e)
-        const idValue = document.querySelector('.id-input').value
-        const pwValue = document.querySelector('.pw-input').value
-        const nameValue = document.querySelector('.name-input').value
+  function productList(tags) {
+    const colorChart = ["beige", "pastelBeige", "mint", "pink", "white", "navy", "blueNavy", "black", "green", "gray"]
+    const mainBody = []
 
-        const res = await getData(idValue, pwValue, nameValue, null)
-        console.log(res, "res")
-        console.log(res.accessToken,'엑세스토큰')
-        document.cookie = `accessToken=${res.accessToken}; max-age=60`
-        if (res.user.email) {
-            return root.innerHTML = logInForm()
-        } else {
-            alert('정보를 다시 입력해 주세요')
+    for (let i = 0; i < tags.length; i++) {
+      const priceBox = document.querySelector('.priceBox')
+      if(tags[i].thumbnail === null || tags[i].thumbnail === undefined) {
+        tags[i].thumbnail = './images/preparingProduct.jpg'
+      }
+      mainBody.push(`
+        <li>
+          <a href="#details/${tags[i].id}"> 
+            <div class="imgBox">
+              <img src="${tags[i].thumbnail}" alt="">
+            </div>
+            <div class="colorBox">
+      `)
+
+      const randomNum = Math.ceil(Math.random() * 5)
+      let randomIndexArray = []
+      for (let j = 0; j < randomNum; j++) {
+        const colorNum = Math.floor(Math.random() * 10);
+
+        if (randomIndexArray.indexOf(colorNum) === -1) {
+          randomIndexArray.push(colorNum);
+          mainBody.push(`
+                  <span class='${colorChart[colorNum]}'></span>
+              `);
         }
-        e.stopPropagation();
-    })
+      }
+
+      const discountValue = Math.floor(Math.random() * 9 + 1) * 8;
+
+      mainBody.push(`
+              </div >
+              <div class="textBox">
+                    ${tags[i].title} <span>B300${i}</span>
+              </div>
+              <div class="priceBox">
+                <span class="discount">${tags[
+          i
+        ].price.toLocaleString()}원</span> 
+                ${Math.floor(
+          (Number(tags[i].price) * (100 - discountValue)) / 100,
+        ).toLocaleString()}원<br />
+                <span class="salePercent">${discountValue}% SALE</span>
+              </div>
+            </a>
+        </li>
+      `)
+    }
+    return mainBody.join('');
+  }
+
+  // 메인 스와이퍼
+  new Swiper('.mainSwiper', {
+    effect: 'fade',
+    loop: true,
+    autoplay: true,
+    speed: 1000,
+
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+  });
+
+  // 키보드 배너 스와이퍼
+  new Swiper('.keyboardSwiper', {
+    effect: 'fade',
+    loop: true,
+    autoplay: true,
+    speed: 1000,
+
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+  });
 }
 
-function logInForm() {
-    return `
-    <form id="login-form">
-      <ul class="logIn-area">
-        <h1>LOGIN</h1>
-        <li class="logIn-area__input">
-          <input type="text" class="signin-id-input" placeholder="아이디">
-          <input type="password" class="signin-pw-input" placeholder="비밀번호">
-        </li>
-        <li class="logIn-area__saveId">
-          <input type="checkbox" id="saveId">
-          <label for="saveId">아이디저장</label>
-        </li>
-        <button class="logInBtn" type="submit">로그인</button>
-        <li class="logIn-area__find">
-          <a href="#">아이디 찾기</a>
-          <a href="#">비밀번호 찾기</a>
-          <a href="./join.html">가입하기</a>
-        </li>
-      </ul>
-    </form>
-    `
+// 로그인 페이지 해시 값 + 화면 변경
+function loginRender() {
+  root.innerHTML = logInForm();
+  sendLogin();
 }
 
-const sendLogin = () => {
-  const loginForm = document.querySelector('#login-form')
-  loginForm.addEventListener('submit', async (e) => {
-    e.preventDefault()
-    const idValue = document.querySelector('.signin-id-input').value
-    const pwValue = document.querySelector('.signin-pw-input').value
-    
-    const res = await getLogin(idValue, pwValue)
+// 회원가입 페이지 해시 값 + 화면 변경
+function joinRender() {
+  root.innerHTML = joinForm();
+  sendSignUp();
+}
+
+// 회원가입 처리 핸들러
+function sendSignUp() {
+  const formTag = document.querySelector('#form-tag');
+
+  formTag.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const idValue = document.querySelector('.id-input').value;
+    const pwValue = document.querySelector('.pw-input').value;
+    const nameValue = document.querySelector('.name-input').value;
+
+    const res = await getData(idValue, pwValue, nameValue, null);
+    document.cookie = `accessToken=${res.accessToken}; max-age=60`;
     if (res.user.email) {
-      console.log(res)
-      completeLogin(res.user.displayName)
-      
-      const accessToken = res.accessToken
-      localStorage.setItem("accessToken", accessToken)
-      return root.innerHTML = ''
+      return (root.innerHTML = logInForm());
     } else {
-        alert('로그인 정보를 확인해 주세요.')
+      alert('정보를 다시 입력해 주세요');
     }
     e.stopPropagation();
-  })
+  });
 }
+
+// 로그인 요청 핸들러 (localStorage 이름, 토큰값 추가)
+function sendLogin() {
+  const loginForm = document.querySelector('#login-form');
+  loginForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const idValue = document.querySelector('.signin-id-input').value;
+    const pwValue = document.querySelector('.signin-pw-input').value;
+    const res = await getLogin(idValue, pwValue);
+    if (res.user.email) {
+      const userName = res.user.displayName;
+      const accessToken = res.accessToken;
+      localStorage.setItem('accessToken', accessToken);
+      localStorage.setItem('userName', userName);
+      completeLogin();
+      location.href = '/';
+    } else {
+      alert('로그인 정보를 확인해 주세요.');
+    }
+    e.stopPropagation();
+  });
+}
+
+// 로그아웃 핸들러
+function logOut() {
+  const logOutBtn = document.querySelector('.logOutBtn');
+  logOutBtn.addEventListener('click', async () => {
+    const accessToken = localStorage.getItem('accessToken');
+    console.log(accessToken);
+    const res = await getLogOut(accessToken);
+    if (res) {
+      localStorage.removeItem('accessToken'),
+        localStorage.removeItem('userName');
+    }
+    location.href = '/';
+  });
+}
+
+// userName 있을 때 로그인 상태 유지 핸들러
+function completeLogin() {
+  const li = document.querySelector('.signUpsignIn');
+  const userName = localStorage.getItem('userName');
+  li.innerHTML = /*HTML*/ `
+    <p><strong>${userName}</strong>님, 환영합니다.</p>
+    <a class="logOutBtn">로그아웃</a>
+    `;
+  logOut();
+}
+
+// myshop 렌더링
+async function renderMyShop() {
+  const { totalBalance, accounts } = await userOwnBank();
+  // const total = totalBalance.toLocaleString()
+  const total = totalBalance ? totalBalance.toLocaleString() : '';
+  root.innerHTML = myShoppingForm(total);
+}
+
+// myorder 렌더링
+function renderMyOrder() {
+  root.innerHTML = myOrderForm();
+}
+
+// userInfo 렌더링
+async function renderUserInfo() {
+  const res = await stateLogin(localStorage.accessToken);
+  root.innerHTML = userInfoForm(res.email, res.displayName);
+  const { totalBalance, accounts } = await userOwnBank();
+  const total = totalBalance.toLocaleString();
+  root.innerHTML += userAccountForm(total);
+  bankChargeLookUp();
+  ownAccountList(accounts);
+  editUserInfo();
+  addAbleAccountList();
+  addNewAccount();
+  choiceBank();
+  cancelBank();
+}
+
+// detail 렌더링
+async function renderDetail(productInfo) {
+  root.innerHTML = detailForm(productInfo);
+  // detailScrollEvent();
+}
+
+// payment 렌더링
+async function renderPayment() {
+  localStorage.setItem('cart', JSON.stringify(['bDsZ5y7DG9p39AlS05aj']))
+  root.innerHTML = paymentForm()
+  lookProducts()
+  const { accounts } = await userOwnBank()
+  payAccountList(accounts)
+  payBankLoopUp()
+  buyProducts()
+  cancelProduct()
+}
+
+// footer 함수
+mouseenter()
+mouseleave()
+
+// router
+window.addEventListener('hashchange', router)
+router();
+
+// 로그인 로그아웃 확인
+(async () => {
+  // localStorage.length === 0 ? loginNjoin() : completeLogin();
+  if (localStorage.accessToken) {
+    const res = await stateLogin(localStorage.accessToken)
+    res.displayName ? completeLogin() : window.localStorage.clear()
+  } else return
+})();
+
+export { loginRender, joinRender, logOut, renderMyShop, renderMyOrder, renderMain, renderUserInfo, renderDetail, renderPayment }
+
