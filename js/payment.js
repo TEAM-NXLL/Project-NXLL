@@ -9,9 +9,6 @@ import { renderPayment } from './main.js';
 export function lookProducts() {
   const tbodyEl = document.querySelector('.products');
   const cart = JSON.parse(localStorage.cart);
-  const totalPriceEl = document.querySelector('.total-price');
-  let totalPrice = 0;
-  console.log(cart);
   if (cart.length > 0) {
     cart.forEach(async (e) => {
       const res = await getProductDetail(e);
@@ -34,14 +31,27 @@ export function lookProducts() {
          <td class="product-price">${res.price.toLocaleString()}원</td>
        </tr>
       `;
-      totalPrice += res.price;
-      totalPriceEl.textContent = totalPrice.toLocaleString() + `원`;
+      
     });
   } else return;
 }
 
+// 가격 렌더링 
+export function renderTotalPrice(){
+  const totalPriceEl = document.querySelector('.total-price');
+  const product = document.querySelectorAll('.products tr');
+  
+  let totalPrice = 0;
+  product.forEach(el => {
+    if  (el.querySelector('.product-checkbox').checked) {
+      totalPrice += +el.querySelector('td:nth-child(4)').textContent.slice(0,-1).replace(',',''); // 로케일 문자를 숫자로 변환
+    }
+  })
+  totalPriceEl.textContent = totalPrice.toLocaleString() + `원`;
+}
+
 // 제품 전체 선택 및 해제
-export function allChecked(){
+export function allCheckBox(){
   
   const allCheckBox = document.querySelector('tr input[type=checkbox]')
   allCheckBox.addEventListener('change', event => {
