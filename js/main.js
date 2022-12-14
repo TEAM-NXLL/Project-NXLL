@@ -28,9 +28,18 @@ async function renderMain() {
   const mouse = []
   const newItem = []
 
-  // if(keyboard) {
-  //   keyboardList.innerHTML = '상품 준비중'
-  // }
+  if(keyboard) {
+    keyboardList.innerHTML = `<img src="./images/commingSoon.png"/>`
+    keyboardList.style.cssText = 'padding-bottom: 170px;';
+  }
+  if(mouse) {
+    mouseList.innerHTML = `<img src="./images/commingSoon.png"/>`
+    mouseList.style.cssText = 'padding-bottom: 70px;';
+  }
+  if(newItem) {
+    newItemList.innerHTML = `<img src="./images/commingSoon.png"/>`
+    newItemList.style.cssText = 'padding-bottom: 70px;';
+  }
   
   data.forEach(e => {
     console.log(e)
