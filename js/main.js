@@ -31,7 +31,7 @@ async function renderMain() {
   // if(keyboard) {
   //   keyboardList.innerHTML = '상품 준비중'
   // }
-  
+
   data.forEach(e => {
     console.log(e)
     if (e['tags'].includes('키보드')) {
@@ -54,7 +54,7 @@ async function renderMain() {
 
     for (let i = 0; i < tags.length; i++) {
       const priceBox = document.querySelector('.priceBox')
-      if(tags[i].thumbnail === null || tags[i].thumbnail === undefined) {
+      if (tags[i].thumbnail === null || tags[i].thumbnail === undefined) {
         tags[i].thumbnail = './images/preparingProduct.jpg'
       }
       mainBody.push(`
@@ -280,4 +280,3 @@ router();
 })();
 
 export { loginRender, joinRender, logOut, renderMyShop, renderMyOrder, renderMain, renderUserInfo, renderDetail, renderPayment }
-
