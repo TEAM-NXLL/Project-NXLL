@@ -1,24 +1,24 @@
 // main
 function mainForm() {
   const mainBody = [];
-  const swiperArrowBtn = `
+  const swiperArrowBtn = /* HTML */ `
     <div class="swiper-button-prev"></div>
     <div class="swiper-button-next"></div>
   `
 
-  mainBody.push(`
+  mainBody.push( /* HTML */ `
     <!-- 메인 스와이퍼 -->
     <div class="swiper mainSwiper">
       <ul class="swiper-wrapper">
   `)
 
   for (let i = 1; i <= 7; i++) {
-    mainBody.push(`
+    mainBody.push( /* HTML */ `
       <li class="swiper-slide"><a href="#"><img src="../images/slide1-banner${i}.jpg" alt=""></a></li>
     `)
   }
 
-  mainBody.push(`
+  mainBody.push( /* HTML */ `
       </ul>
 
       <div class="swiper-pagination"></div>
@@ -31,7 +31,7 @@ function mainForm() {
       <ul class="inner block3">
   `)
 
-  mainBody.push(`
+  mainBody.push( /* HTML */ `
   </ul>
   </section><!-- 키보드 상품목록 -->
 
@@ -88,8 +88,7 @@ function mainForm() {
 
   for (let i = 1; i <= 10; i++) {
 
-    mainBody.push(
-      `
+    mainBody.push( /* HTML */ `
       <li>
       <a href="#">
         <div class="imgBox">
@@ -114,7 +113,7 @@ function mainForm() {
     `)
   }
 
-  mainBody.push(`
+  mainBody.push( /* HTML */ `
       </ul>
     </section><!-- 리뷰 영역 -->
   `
