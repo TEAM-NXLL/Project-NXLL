@@ -171,3 +171,69 @@ export async function getProductDetail(productId) {
   const json = await res.json()
   return json
 }
+
+// 결제 데이터
+export async function getBuy(accessToken, productId, accountId) {
+  const res = await fetch(store.url + '/products/buy', {
+    method: 'POST',
+    headers: {
+      ...store.headers,
+      "apikey": process.env.API_KEY,
+      "Authorization": `Bearer ${accessToken}`,
+    },
+    body: JSON.stringify({
+      "productId": productId,
+      "accountId": accountId
+    })
+  })
+  const json = await res.json()
+  return json
+}
+
+// 사용자 거래 내역 데이터
+export async function getTransactions(accessToken) {
+  const res = await fetch(store.url + '/products/transactions/details', {
+    method: 'GET',
+    headers: {
+      ...store.headers,
+      "apikey": process.env.API_KEY,
+      "Authorization": `Bearer ${accessToken}`,
+    }
+  })
+  const json = await res.json()
+  return json
+}
+
+// 사용자 거래 취소 데이터
+export async function cancelTransactions(accessToken, productId) {
+  const res = await fetch(store.url + '/products/cancel', {
+    method: 'POST',
+    headers: {
+      ...store.headers,
+      "apikey": process.env.API_KEY,
+      "Authorization": `Bearer ${accessToken}`,
+    },
+    body: JSON.stringify({
+      "detailId": productId
+    })
+  })
+  const json = await res.json()
+  return json
+}
+
+// 사용자 거래 확정 데이터
+export async function confirmation(accessToken, productId) {
+  const res = await fetch(store.url + '/products/ok', {
+    method: 'POST',
+    headers: {
+      ...store.headers,
+      "apikey": process.env.API_KEY,
+      "Authorization": `Bearer ${accessToken}`,
+    },
+    body: JSON.stringify({
+      "detailId": productId
+    })
+  })
+  const json = await res.json()
+  return json
+}

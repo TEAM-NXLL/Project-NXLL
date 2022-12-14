@@ -507,7 +507,7 @@ function userAccountForm(totalBalance) {
           <tr>
             <th scope="row">보유 계좌</th>
             <td class="bank-charge">
-              <select name="bank-name" id="bank-name">
+              <select id="bank-name">
                 <option value="default">은행 이름</option>
                 <option value="null" class="no-bank">없음</option>
               </select>
@@ -525,7 +525,7 @@ function userAccountForm(totalBalance) {
           <tr>
             <th>계좌 추가</th>
             <td>
-              <select name="add-account" id="add-account">
+              <select id="add-account">
                 <option value="default">은행 이름</option>
               </select>
             </td>
@@ -580,10 +580,13 @@ function detailForm(productInfo) {
         addCart()
       }
       const modalPayment = document.querySelector('.modal-payment')
-      // console.log(modalPayment)
       modalPayment.classList.add('active')
     }
   })
+
+  if (productInfo.thumbnail === null || productInfo.thumbnail === undefined) {
+    productInfo.thumbnail = './images/preparingProduct.jpg'
+  }
 
   const discountValue = Math.floor(((Math.random() * 9) + 1)) * 8
 
@@ -753,37 +756,14 @@ function paymentForm() {
               <th scope="col">합계</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <td>
-                <input type="checkbox" />
-              </td>
-              <td>
-                <a href="#">
-                  <img src="./images/mouse-bluetoothPink.jpg" alt="" />
-                </a>
-              </td>
-              <td>
-                <span>엑토 LED 블루투스 저소음 광마우스</span> <br />
-                <span>[옵션: ABIM-03 아이보리]</span>
-              </td>
-              <td>21,900원</td>
-              <td>1</td>
-              <td>[무료 배송]</td>
-              <td>21,900원</td>
-            </tr>
+          <tbody class="products">
           </tbody>
           <tfoot>
             <tr>
               <td></td>
               <td colspan="6">
-                <span>[기본배송]</span>
-                상품 구매 금액
-                <strong>21,900</strong>
-                + 배송비
-                <span>0 (무료)</span>
-                = 합계 :
-                <span>21,900원</span>
+                상품 구매 금액 = 합계 :
+                <span class="total-price"></span>
               </td>
             </tr>
           </tfoot>
@@ -849,10 +829,11 @@ function paymentForm() {
           <tr>
             <th>결제 계좌</th>
             <td>
-              <select name="pay-account" id="pay-account">
-                <option value="default">계좌 없음</option>
+              <select id="pay-account">
+                <option value="default">은행 이름</option>
+                <option value="null" class="no-bank">계좌 없음</option>
               </select>
-              <span>계좌 잔액</span>
+              <span class="charge"></span>
             </td>
           </tr>
           </tbody>
