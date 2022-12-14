@@ -53,7 +53,7 @@ function mainForm() {
   <!-- 마우스 상품목록 -->
   <section class="mouse mt70">
     <h1>MOUSE</h1>
-    <ul class="inner block2">
+    <ul class="inner block3">
     </ul>
   </section><!-- 마우스 상품목록 -->
 
@@ -507,7 +507,7 @@ function userAccountForm(totalBalance) {
           <tr>
             <th scope="row">보유 계좌</th>
             <td class="bank-charge">
-              <select name="bank-name" id="bank-name">
+              <select id="bank-name">
                 <option value="default">은행 이름</option>
                 <option value="null" class="no-bank">없음</option>
               </select>
@@ -525,7 +525,7 @@ function userAccountForm(totalBalance) {
           <tr>
             <th>계좌 추가</th>
             <td>
-              <select name="add-account" id="add-account">
+              <select id="add-account">
                 <option value="default">은행 이름</option>
               </select>
             </td>
@@ -554,13 +554,39 @@ function userAccountForm(totalBalance) {
 // 상품 상세페이지
 function detailForm(productInfo) {
   const main = document.querySelector('main')
-  main.addEventListener('click', (event) => {
-    const topBanner = document.querySelector('.top-banner').offsetHeight
-    const el = event.target['name']
-    const nameEl = document.querySelector(`.${el}`)
-    const scrollH = nameEl.getBoundingClientRect().top - topBanner
-    scrollTo({ left: 0, top: window.pageYOffset + scrollH, behavior: 'smooth' })
+
+  main.addEventListener('click', ({ target }) => {
+    const buyBtn = document.querySelector('.buy-btn')
+    const cartBtn = document.querySelector('.cart-btn')
+    let cartList = []
+    if (target.closest('.tab-menu')) {
+      const topBanner = document.querySelector('.top-banner')
+      const el = target['name']
+      const nameEl = document.querySelector(`.${el}`)
+      const scrollH = nameEl.getBoundingClientRect().top - topBanner.offsetHeight
+      scrollTo({ left: 0, top: window.pageYOffset + scrollH, behavior: 'smooth' })
+    }
+
+    // 카트에 상품 담기 (localstorage.cart에 상품id 추가)
+    function addCart() {
+      cartList.push(productInfo.id)
+      localStorage.setItem('cart', JSON.stringify(cartList))
+    }
+
+    if (target === cartBtn) {
+      if (!localStorage.cart) addCart()
+      else {
+        cartList = [...JSON.parse(localStorage.cart)]
+        addCart()
+      }
+      const modalPayment = document.querySelector('.modal-payment')
+      modalPayment.classList.add('active')
+    }
   })
+
+  if (productInfo.thumbnail === null || productInfo.thumbnail === undefined) {
+    productInfo.thumbnail = './images/preparingProduct.jpg'
+  }
 
   const discountValue = Math.floor(((Math.random() * 9) + 1)) * 8
 
@@ -597,8 +623,8 @@ function detailForm(productInfo) {
               <p><em>판매 상태</em> <span>${productInfo.isSoldOut === true ? '판매중' : '품절'}</span></p>
             </div>
             <div class="btn-group">
-              <a href="#" class="buy-btn">바로 구매하기</a>
-              <a href="#" class="cart-btn"><i class="fas fa-sm ver-0 fa-plus"></i>장바구니</a>
+              <a href="/#payment" class="buy-btn">바로 구매하기</a>
+              <a class="cart-btn"><i class="fas fa-sm ver-0 fa-plus"></i>장바구니</a>
             </div>
             <div class="delivery-info">
               <p>제주도 및 도서산간 지역은 배송료 3,000원이 추가됩니다</p>
@@ -803,7 +829,7 @@ function paymentForm() {
           <tr>
             <th>결제 계좌</th>
             <td>
-              <select name="pay-account" id="pay-account">
+              <select id="pay-account">
                 <option value="default">은행 이름</option>
                 <option value="null" class="no-bank">계좌 없음</option>
               </select>

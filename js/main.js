@@ -1,43 +1,11 @@
-import { doc } from 'prettier';
-import { getData, getLogin, getLogOut, stateLogin } from './getdata.js';
-import { router } from './route.js';
-import {
-  deliveryEl,
-  returnEl,
-  deliveryDes,
-  returnDes,
-  mouseenter,
-  mouseleave,
-} from './footer.js';
-import {
-  joinForm,
-  logInForm,
-  myOrderForm,
-  myShoppingForm,
-  mainForm,
-  userInfoForm,
-  userAccountForm,
-  detailForm,
-  paymentForm,
-} from './body.js';
-import {
-  editUserInfo,
-  userOwnBank,
-  addNewAccount,
-  choiceBank,
-  bankChargeLookUp,
-  ownAccountList,
-  addAbleAccountList,
-  cancelBank,
-} from './userInfo.js';
-import { viewAllProduct } from '../admin/js/requests.js';
-import {
-  payAccountList,
-  payBankLoopUp,
-  buyProducts,
-  lookProducts,
-  cancelProduct,
-} from './payment.js';
+import { doc } from "prettier";
+import { getData, getLogin, getLogOut, stateLogin } from "./getdata.js";
+import { router } from "./route.js";
+import { deliveryEl, returnEl, deliveryDes, returnDes, mouseenter, mouseleave } from './footer.js'
+import { joinForm, logInForm, myOrderForm, myShoppingForm, mainForm, userInfoForm, userAccountForm, detailForm, paymentForm } from "./body.js";
+import { editUserInfo, userOwnBank, addNewAccount, choiceBank, bankChargeLookUp, ownAccountList, addAbleAccountList, cancelBank } from "./userInfo.js";
+import { viewAllProduct } from '../admin/js/requests.js'
+import { payAccountList, payBankLoopUp, buyProducts, lookProducts, cancelProduct } from './payment.js';
 
 // 변수
 const root = document.querySelector('main');
@@ -52,57 +20,54 @@ async function renderMain() {
   const data = await viewAllProduct();
   root.innerHTML = mainForm();
 
-  const keyboardList = document.querySelector('.keyboard > .inner');
-  const mouseList = document.querySelector('.mouse > .inner');
-  const newItemList = document.querySelector('.newItem > .inner');
+  const keyboardList = document.querySelector('.keyboard > .inner')
+  const mouseList = document.querySelector('.mouse > .inner')
+  const newItemList = document.querySelector('.newItem > .inner')
 
-  const keyboard = [];
-  const mouse = [];
-  const newItem = [];
+  const keyboard = []
+  const mouse = []
+  const newItem = []
 
-  data.forEach((e) => {
-    if (e['tags'] === '키보드') {
-      keyboard.push(e);
-      keyboardList.innerHTML = productList(keyboard);
-    } else if (e['tags'] === '마우스') {
-      mouse.push(e);
-      mouseList.innerHTML = productList(mouse);
-    } else {
-      newItem.push(e);
+  // if(keyboard) {
+  //   keyboardList.innerHTML = '상품 준비중'
+  // }
+  
+  data.forEach(e => {
+    console.log(e)
+    if (e['tags'].includes('키보드')) {
+      keyboard.push(e)
+      keyboardList.innerHTML = productList(keyboard)
+    }
+    if (e['tags'].includes('마우스')) {
+      mouse.push(e)
+      mouseList.innerHTML = productList(mouse)
+    }
+    if (e['tags'].includes('NEW ITEM')) {
+      newItem.push(e)
       newItemList.innerHTML = productList(newItem);
     }
-  });
+  })
 
   function productList(tags) {
-    const colorChart = [
-      'beige',
-      'pastelBeige',
-      'mint',
-      'pink',
-      'white',
-      'navy',
-      'blueNavy',
-      'black',
-      'green',
-      'gray',
-    ];
-    const mainBody = [];
+    const colorChart = ["beige", "pastelBeige", "mint", "pink", "white", "navy", "blueNavy", "black", "green", "gray"]
+    const mainBody = []
 
     for (let i = 0; i < tags.length; i++) {
+      const priceBox = document.querySelector('.priceBox')
+      if(tags[i].thumbnail === null || tags[i].thumbnail === undefined) {
+        tags[i].thumbnail = './images/preparingProduct.jpg'
+      }
       mainBody.push(`
         <li>
           <a href="#details/${tags[i].id}"> 
             <div class="imgBox">
-      `);
-
-      mainBody.push(`
               <img src="${tags[i].thumbnail}" alt="">
             </div>
-          <div class="colorBox">
-      `);
+            <div class="colorBox">
+      `)
 
-      const randomNum = Math.ceil(Math.random() * 5);
-      let randomIndexArray = [];
+      const randomNum = Math.ceil(Math.random() * 5)
+      let randomIndexArray = []
       for (let j = 0; j < randomNum; j++) {
         const colorNum = Math.floor(Math.random() * 10);
 
@@ -117,22 +82,22 @@ async function renderMain() {
       const discountValue = Math.floor(Math.random() * 9 + 1) * 8;
 
       mainBody.push(`
-          </div >
+              </div >
               <div class="textBox">
                     ${tags[i].title} <span>B300${i}</span>
               </div>
               <div class="priceBox">
                 <span class="discount">${tags[
-                  i
-                ].price.toLocaleString()}원</span> 
+          i
+        ].price.toLocaleString()}원</span> 
                 ${Math.floor(
-                  (Number(tags[i].price) * (100 - discountValue)) / 100,
-                ).toLocaleString()}원<br />
+          (Number(tags[i].price) * (100 - discountValue)) / 100,
+        ).toLocaleString()}원<br />
                 <span class="salePercent">${discountValue}% SALE</span>
               </div>
-              </a>
-          </li>
-      `);
+            </a>
+        </li>
+      `)
     }
     return mainBody.join('');
   }
@@ -287,41 +252,32 @@ async function renderDetail(productInfo) {
 
 // payment 렌더링
 async function renderPayment() {
-  localStorage.setItem('cart', JSON.stringify(['bDsZ5y7DG9p39AlS05aj']));
-  root.innerHTML = paymentForm();
-  lookProducts();
-  const { accounts } = await userOwnBank();
-  payAccountList(accounts);
-  payBankLoopUp();
-  buyProducts();
-  cancelProduct();
+  localStorage.setItem('cart', JSON.stringify(['bDsZ5y7DG9p39AlS05aj']))
+  root.innerHTML = paymentForm()
+  lookProducts()
+  const { accounts } = await userOwnBank()
+  payAccountList(accounts)
+  payBankLoopUp()
+  buyProducts()
+  cancelProduct()
 }
 
 // footer 함수
-mouseenter();
-mouseleave();
+mouseenter()
+mouseleave()
 
 // router
-window.addEventListener('hashchange', router);
+window.addEventListener('hashchange', router)
 router();
 
 // 로그인 로그아웃 확인
 (async () => {
   // localStorage.length === 0 ? loginNjoin() : completeLogin();
   if (localStorage.accessToken) {
-    const res = await stateLogin(localStorage.accessToken);
-    res.displayName ? completeLogin() : window.localStorage.clear();
-  } else return;
+    const res = await stateLogin(localStorage.accessToken)
+    res.displayName ? completeLogin() : window.localStorage.clear()
+  } else return
 })();
 
-export {
-  loginRender,
-  joinRender,
-  logOut,
-  renderMyShop,
-  renderMyOrder,
-  renderMain,
-  renderUserInfo,
-  renderDetail,
-  renderPayment,
-};
+export { loginRender, joinRender, logOut, renderMyShop, renderMyOrder, renderMain, renderUserInfo, renderDetail, renderPayment }
+
