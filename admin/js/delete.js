@@ -33,9 +33,63 @@ productContainer.addEventListener('click', (event) => {
       ? deleteItem(event.target)
       : toast("아이템 삭제를 취소합니다.")
   } else if (event.target.classList.contains('edit-btn')) {
-    editItem(event.target);
+    // editItem(event);<-이거아님
+    // 데이터 아이디값 가지고 수정페이지로 이동하게
   }
 })
+
+
+
+// 수정버튼 클릭 이벤트 핸들러 (추가랑 내용 겹침... 나중에합쳐보기)
+export function editItem(event) {
+  console.log(event.path)
+  // infoBeforeEdit(target.dataset.id);
+  // submit 시 api호출
+  const productId = event.target.dataset.id;
+  const isSoldOut = document.querySelector('.filter:checked').value;
+  const title = document.querySelector('.edit-product-name').value;
+  const price = +(document.querySelector('#edit-product-price').value.replace(/[^0-9]/g, ''));
+  const selectedTags = document.querySelectorAll('input[name="edit-check"]:checked');
+  const tags = [];
+  selectedTags.forEach(tag => {
+    tags.push(tag.value)
+  });
+  const description = document.querySelector('.edit-product-description').value;
+  const thumbnail = document.querySelector('.edit-thumbnail').dataset.id;
+  const photo = document.querySelector('.edit-thumbnail').dataset.id;
+
+  // 수정이 종료되면 이전페이지로?
+}
+
+// 수정페이지에서 submit 이벤트
+const editFormEl = document.querySelector('.edit-form');
+
+editFormEl.addEventListener('submit', async (event) => {
+  console.log(event)
+  event.preventDefault();
+  // const productId = event.target.dataset.id;
+  const isSoldOut = document.querySelector('.filter:checked').value;
+  const title = document.querySelector('.edit-product-name').value;
+  const price = +(document.querySelector('#edit-product-price').value.replace(/[^0-9]/g, ''));
+  const selectedTags = document.querySelectorAll('input[name="edit-check"]:checked');
+  const tags = [];
+  selectedTags.forEach(tag => {
+    tags.push(tag.value)
+  });
+  const description = document.querySelector('.edit-product-description').value;
+  const thumbnail = document.querySelector('.edit-thumbnail').dataset.id;
+  const photo = document.querySelector('.edit-thumbnail').dataset.id;
+  console.log(title, price, description, tags, thumbnail, photo, isSoldOut)
+  //   // correctProduct(productId, title, price, description, tags, thumbnail, photo, isSoldOut);
+});
+
+
+
+
+// 수정페이지 input에 기존 데이터 채워넣기
+async function infoBeforeEdit(id) {
+  console.log(id);
+}
 
 // 제품 개별 삭제
 export function deleteItem(target) {
@@ -53,12 +107,3 @@ export function deleteItem(target) {
   toast("상품이 삭제되었습니다.")
 }
 
-
-
-// 수정버튼 클릭 이벤트 핸들러
-export function editItem(event) {
-  console.log(event)
-  // 해시로 이동
-  // submit 시 이전 페이지로 되돌아감
-  // correctProduct(productId, title, price, description, tags, thumbnail, photo, isSoldOut) 연결하기
-}

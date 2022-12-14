@@ -28,12 +28,12 @@ export async function renderAllProduct() {
           <div class="descript">${description}</div>
           <div class="edit-delete-btn">
             <input type="checkbox" name="checkbox" class="delete-checkbox" data-id="${id}">
-            <button class="edit-btn" data-id="${id}">제품 수정</button>
+            <a href="/edit-products/${id}" data-link><button class="edit-btn" data-id="${id}">제품 수정</button></a>
             <button class="del-btn" data-id="${id}">제품 삭제</button>
           </div>
           <!-- <button class="check-transac">내역 확인</button> -->
         </div>
-    `;
+    `; //edit은 수정예정
 
     product.innerHTML = innerHTMLContents;
     const productCont = document.querySelector('.products-container');
