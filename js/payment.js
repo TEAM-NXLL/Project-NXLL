@@ -1,8 +1,11 @@
 import { getBuy, getProductDetail } from './getdata.js';
 import { userOwnBank } from './userInfo.js';
 import { delProduct } from '../admin/js/requests.js';
+import { renderPayment } from './main.js';
 
 // 주문 상품 정보 조회
+
+
 export function lookProducts() {
   const tbodyEl = document.querySelector('.products');
   const cart = JSON.parse(localStorage.cart);
@@ -37,38 +40,49 @@ export function lookProducts() {
   } else return;
 }
 
+// 제품 전체 선택 및 해제
+export function allChecked(){
+  
+  const allCheckBox = document.querySelector('tr input[type=checkbox]')
+  allCheckBox.addEventListener('change', event => {
+    event.preventDefault()
+    const eachCheckBoxs = document.querySelectorAll('.product-checkbox')
+    if(allCheckBox.checked){
+      eachCheckBoxs.forEach(el => el.checked = true )
+    } else {
+      eachCheckBoxs.forEach(el => el.checked = false )
+    }
+  })
+}
+
+// 삭제하기 버튼 클릭
 export function cancelProduct() {
   const productDeleteBtn = document.querySelector('.product-delete-btn');
   const productCheckBox = document.querySelectorAll('.product-checkbox');
-  const totalPrice = document.querySelectorAll('.total-price');
 
   productDeleteBtn.addEventListener('click', async (event) => {
     event.preventDefault;
-    let totalPrice = 0;
     const totalPriceEl = document.querySelector('.total-price');
     productCheckBox.forEach((el) => {
       const isChecked = el.checked;
       try {
         if (isChecked) {
           const id = el.dataset.id;
-          // delProduct(id);
-          el.parentNode.parentNode.remove();
+          console.log(id)
+          delProduct(id);
           const cart = JSON.parse(localStorage.cart);
           const AfterCart = cart.filter((el) => el !== id);
           localStorage.cart = JSON.stringify(AfterCart);
-          const tbodyEl = document.querySelector('.products');
-        } else {
-          const price =
-            el.parentNode.parentNode.querySelector('td:nth-child(5)');
-          totalPrice += price;
         }
       } catch {
         console.log('삭제 오류');
       }
     });
-    totalPriceEl.textContent = totalPrice.toLocaleString() + `원`;
+  renderPayment()
   });
 }
+
+
 // productDeleteBtn.addEventListener('click', () => {
 //   // const index = cart.indexOf('bDsZ5y7DG9p39AlS05aj')
 //   // console.log(cart.splice(index, 1))
