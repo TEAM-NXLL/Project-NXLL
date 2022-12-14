@@ -554,12 +554,34 @@ function userAccountForm(totalBalance) {
 // 상품 상세페이지
 function detailForm(productInfo) {
   const main = document.querySelector('main')
-  main.addEventListener('click', (event) => {
-    const topBanner = document.querySelector('.top-banner').offsetHeight
-    const el = event.target['name']
-    const nameEl = document.querySelector(`.${el}`)
-    const scrollH = nameEl.getBoundingClientRect().top - topBanner
-    scrollTo({ left: 0, top: window.pageYOffset + scrollH, behavior: 'smooth' })
+
+  main.addEventListener('click', ({ target }) => {
+    const buyBtn = document.querySelector('.buy-btn')
+    const cartBtn = document.querySelector('.cart-btn')
+    let cartList = []
+    if (target.closest('.tab-menu')) {
+      const topBanner = document.querySelector('.top-banner')
+      const el = target['name']
+      const nameEl = document.querySelector(`.${el}`)
+      const scrollH = nameEl.getBoundingClientRect().top - topBanner.offsetHeight
+      scrollTo({ left: 0, top: window.pageYOffset + scrollH, behavior: 'smooth' })
+    }
+
+    // 카트에 상품 담기 (localstorage.cart에 상품id 추가)
+    function addCart() {
+      cartList.push(productInfo.id)
+      localStorage.setItem('cart', JSON.stringify(cartList))
+    }
+
+    if (target === cartBtn) {
+      if (!localStorage.cart) addCart()
+      else {
+        cartList = [...JSON.parse(localStorage.cart)]
+        addCart()
+      }
+      const modalPayment = document.querySelector('.modal-payment')
+      modalPayment.classList.add('active')
+    }
   })
 
   if (productInfo.thumbnail === null || productInfo.thumbnail === undefined) {
@@ -601,8 +623,8 @@ function detailForm(productInfo) {
               <p><em>판매 상태</em> <span>${productInfo.isSoldOut === true ? '판매중' : '품절'}</span></p>
             </div>
             <div class="btn-group">
-              <a href="#" class="buy-btn">바로 구매하기</a>
-              <a href="#" class="cart-btn"><i class="fas fa-sm ver-0 fa-plus"></i>장바구니</a>
+              <a href="/#payment" class="buy-btn">바로 구매하기</a>
+              <a class="cart-btn"><i class="fas fa-sm ver-0 fa-plus"></i>장바구니</a>
             </div>
             <div class="delivery-info">
               <p>제주도 및 도서산간 지역은 배송료 3,000원이 추가됩니다</p>

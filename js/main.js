@@ -22,11 +22,11 @@ async function renderMain() {
   const keyboardList = document.querySelector('.keyboard > .inner')
   const mouseList = document.querySelector('.mouse > .inner')
   const newItemList = document.querySelector('.newItem > .inner')
-  
+
   const keyboard = []
   const mouse = []
   const newItem = []
-  
+
   data.forEach(e => {
     console.log(e)
     if (e['tags'] === '키보드') {
@@ -40,15 +40,15 @@ async function renderMain() {
       newItemList.innerHTML = productList(newItem);
     }
   })
-  
-  function productList(tags) {    
+
+  function productList(tags) {
     const colorChart = ["beige", "pastelBeige", "mint", "pink", "white", "navy", "blueNavy", "black", "green", "gray"]
     const mainBody = []
-    
+
     for (let i = 0; i < tags.length; i++) {
       const priceBox = document.querySelector('.priceBox')
       console.log(priceBox)
-      if(tags[i].thumbnail === null || tags[i].thumbnail === undefined) {
+      if (tags[i].thumbnail === null || tags[i].thumbnail === undefined) {
         tags[i].thumbnail = './images/preparingProduct.jpg'
       }
       mainBody.push(`
@@ -60,8 +60,8 @@ async function renderMain() {
             <div class="colorBox">
       `)
 
-        const randomNum = Math.ceil(Math.random() * 5)
-        let randomIndexArray = []
+      const randomNum = Math.ceil(Math.random() * 5)
+      let randomIndexArray = []
       for (let j = 0; j < randomNum; j++) {
         const colorNum = Math.floor(Math.random() * 10);
 
@@ -82,11 +82,11 @@ async function renderMain() {
               </div>
               <div class="priceBox">
                 <span class="discount">${tags[
-                  i
-                ].price.toLocaleString()}원</span> 
+          i
+        ].price.toLocaleString()}원</span> 
                 ${Math.floor(
-                  (Number(tags[i].price) * (100 - discountValue)) / 100,
-                ).toLocaleString()}원<br />
+          (Number(tags[i].price) * (100 - discountValue)) / 100,
+        ).toLocaleString()}원<br />
                 <span class="salePercent">${discountValue}% SALE</span>
               </div>
             </a>
