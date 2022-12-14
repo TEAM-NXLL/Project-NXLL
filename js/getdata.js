@@ -237,3 +237,20 @@ export async function confirmation(accessToken, productId) {
   const json = await res.json()
   return json
 }
+
+// 제품 검색 데이터
+export async function postSearch(searchText, searchTags) {
+  const res = await fetch(store.url + '/products/search', {
+    method: 'POST',
+    headers: {
+      ...store.headers,
+      "apikey": process.env.API_KEY,
+    },
+    body: JSON.stringify({
+      "searchText": searchText,
+      "searchTags": [searchTags]
+    })
+  })
+  const json = await res.json()
+  return json
+}

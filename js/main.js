@@ -5,6 +5,7 @@ import { deliveryEl, returnEl, deliveryDes, returnDes, mouseenter, mouseleave } 
 import { joinForm, logInForm, myOrderForm, myShoppingForm, mainForm, userInfoForm, userAccountForm, detailForm, paymentForm } from "./body.js";
 import { editUserInfo, userOwnBank, addNewAccount, choiceBank, bankChargeLookUp, ownAccountList, addAbleAccountList, cancelBank } from "./userInfo.js";
 import { viewAllProduct } from '../admin/js/requests.js'
+import { payAccountList, payBankLoopUp, buyProducts, lookProducts, cancelProduct } from './payment.js';
 
 // 변수
 const root = document.querySelector('main');
@@ -28,7 +29,6 @@ async function renderMain() {
   const newItem = []
 
   data.forEach(e => {
-    console.log(e)
     if (e['tags'] === '키보드') {
       keyboard.push(e)
       keyboardList.innerHTML = productList(keyboard)
@@ -47,8 +47,7 @@ async function renderMain() {
 
     for (let i = 0; i < tags.length; i++) {
       const priceBox = document.querySelector('.priceBox')
-      console.log(priceBox)
-      if (tags[i].thumbnail === null || tags[i].thumbnail === undefined) {
+      if(tags[i].thumbnail === null || tags[i].thumbnail === undefined) {
         tags[i].thumbnail = './images/preparingProduct.jpg'
       }
       mainBody.push(`
