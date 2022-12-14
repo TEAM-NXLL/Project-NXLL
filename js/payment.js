@@ -1,14 +1,14 @@
 import { getBuy, getProductDetail } from './getdata.js';
 import { userOwnBank } from './userInfo.js';
 import { delProduct } from '../admin/js/requests.js';
+import { renderPayment } from './main.js';
 
 // 주문 상품 정보 조회
+
+
 export function lookProducts() {
   const tbodyEl = document.querySelector('.products');
   const cart = JSON.parse(localStorage.cart);
-  const totalPriceEl = document.querySelector('.total-price');
-  let totalPrice = 0;
-  console.log(cart);
   if (cart.length > 0) {
     cart.forEach(async (e) => {
       const res = await getProductDetail(e);
@@ -31,44 +31,68 @@ export function lookProducts() {
          <td class="product-price">${res.price.toLocaleString()}원</td>
        </tr>
       `;
-      totalPrice += res.price;
-      totalPriceEl.textContent = totalPrice.toLocaleString() + `원`;
+      
     });
   } else return;
 }
 
+// 가격 렌더링 
+export function renderTotalPrice(){
+  const totalPriceEl = document.querySelector('.total-price');
+  const product = document.querySelectorAll('.products tr');
+  
+  let totalPrice = 0;
+  product.forEach(el => {
+    if  (el.querySelector('.product-checkbox').checked) {
+      totalPrice += +el.querySelector('td:nth-child(4)').textContent.slice(0,-1).replace(',',''); // 로케일 문자를 숫자로 변환
+    }
+  })
+  totalPriceEl.textContent = totalPrice.toLocaleString() + `원`;
+}
+
+// 제품 전체 선택 및 해제
+export function allCheckBox(){
+  
+  const allCheckBox = document.querySelector('tr input[type=checkbox]')
+  allCheckBox.addEventListener('change', event => {
+    event.preventDefault()
+    const eachCheckBoxs = document.querySelectorAll('.product-checkbox')
+    if(allCheckBox.checked){
+      eachCheckBoxs.forEach(el => el.checked = true )
+    } else {
+      eachCheckBoxs.forEach(el => el.checked = false )
+    }
+  })
+}
+
+// 삭제하기 버튼 클릭
 export function cancelProduct() {
   const productDeleteBtn = document.querySelector('.product-delete-btn');
   const productCheckBox = document.querySelectorAll('.product-checkbox');
-  const totalPrice = document.querySelectorAll('.total-price');
 
   productDeleteBtn.addEventListener('click', async (event) => {
     event.preventDefault;
-    let totalPrice = 0;
     const totalPriceEl = document.querySelector('.total-price');
     productCheckBox.forEach((el) => {
       const isChecked = el.checked;
       try {
         if (isChecked) {
           const id = el.dataset.id;
-          // delProduct(id);
-          el.parentNode.parentNode.remove();
+          console.log(id)
+          delProduct(id);
           const cart = JSON.parse(localStorage.cart);
           const AfterCart = cart.filter((el) => el !== id);
           localStorage.cart = JSON.stringify(AfterCart);
-          const tbodyEl = document.querySelector('.products');
-        } else {
-          const price =
-            el.parentNode.parentNode.querySelector('td:nth-child(5)');
-          totalPrice += price;
         }
       } catch {
         console.log('삭제 오류');
       }
     });
-    totalPriceEl.textContent = totalPrice.toLocaleString() + `원`;
+  renderPayment()
   });
 }
+
+
 // productDeleteBtn.addEventListener('click', () => {
 //   // const index = cart.indexOf('bDsZ5y7DG9p39AlS05aj')
 //   // console.log(cart.splice(index, 1))
