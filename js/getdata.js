@@ -187,6 +187,7 @@ export async function getBuy(accessToken, productId, accountId) {
     })
   })
   const json = await res.json()
+  console.log(json)
   return json
 }
 
@@ -239,7 +240,7 @@ export async function confirmation(accessToken, productId) {
 }
 
 // 제품 검색 데이터
-export async function postSearch(searchText, searchTags) {
+export async function postSearch(searchText, searchTags,) {
   const res = await fetch(store.url + '/products/search', {
     method: 'POST',
     headers: {
@@ -247,8 +248,8 @@ export async function postSearch(searchText, searchTags) {
       "apikey": process.env.API_KEY,
     },
     body: JSON.stringify({
-      "searchText": searchText,
-      "searchTags": [searchTags]
+      searchText,
+      searchTags,
     })
   })
   const json = await res.json()
