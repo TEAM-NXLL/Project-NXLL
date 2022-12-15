@@ -4,7 +4,7 @@ const API_KEY = process.env;
 // products';
 
 // JSON Request 양식 만들기
-function createRequest(type, data) {
+export function createRequest(type, data) {
   const res = {
     // //curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/products
     // \ -X 'POST'
