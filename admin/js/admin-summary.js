@@ -1,5 +1,5 @@
-import { viewAllProduct } from './requests';
-import { viewAllTransactions } from './requests';
+import { viewAllProduct } from './requests.js';
+import { viewAllTransactions } from './requests.js';
 
 export async function renderAdminSummary() {
   const allProduct = await viewAllProduct();
