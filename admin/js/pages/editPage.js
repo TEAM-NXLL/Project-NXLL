@@ -1,8 +1,8 @@
 import abstractView from "./abstractView.js";
 
 export default class extends abstractView {
-  constructor() {
-    super();
+  constructor(params) {
+    super(params);
     this.setTitle("제품 수정");
   }
   async getHtml() {
