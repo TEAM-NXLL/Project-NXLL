@@ -66,7 +66,7 @@ function previewImg(input, selector) {
   if (input.files && selector === thumbnailEl) {
     reader.onload = event => {
       document.querySelector('#thumbnail-preview').src = event.target.result;
-    }; // src를 변수에 담으면 readonly로 error...이게 최선
+    };
     reader.readAsDataURL(input.files[0]);
   } else if (input.files && selector === detailImgEl) {
     reader.onload = event => {
@@ -100,7 +100,7 @@ function checkFileSize(target, selector) {
     || selector === detailImgEl && file > detailImgSize
     || selector === editThumbnailEl && file > thumbnailSize
     || selector === editDetailImgEl && file > detailImgSize) {
-    alert("해당 파일은 제한된 용량을 초과하였습니다.")
+    toast("해당 파일은 제한된 용량을 초과하였습니다.")
     return
   } else {
     previewImg(target, selector);
@@ -137,7 +137,7 @@ addFormEl.addEventListener('submit', async (event) => {
   addItem(event);
 });
 
-// 제품추가
+// 제품추가 이벤트 핸들러
 export function addItem(event) {
   const title = event.target[0].value;
   const price = +(event.target[1].value.replace(/[^0-9]/g, ''));
@@ -150,13 +150,18 @@ export function addItem(event) {
   const thumbnail = thumbnailEl.dataset.id;
   const photo = detailImgEl.dataset.id;
   if (title.length < 2 || price < 1 || description.length < 1) {
-    return alert('내용이 모두 입력되었는지 확인해 주세요');
+    return toast('내용이 모두 입력되었는지 확인해 주세요');
   }
-  createProduct(title, price, description, tags, thumbnail, photo);
-  toast("상품 추가가 완료되었습니다.")
-  resetInput()
+  try {
+    createProduct(title, price, description, tags, thumbnail, photo);
+    toast("상품 추가가 완료되었습니다.")
+    resetInput()
+  } catch (error) {
+    toast(`${error}, 잠시 후 다시 시도해주세요.`)
+  }
 }
 
+// 제품추가 후 input창 초기화
 function resetInput() {
   const reset = document.querySelectorAll('.reset');
   const resetCheckbox = document.querySelectorAll('.check');
