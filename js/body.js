@@ -870,9 +870,9 @@ function paymentForm() {
         </colgroup>
         <tbody>
           <tr>
-            <th scope="row" class="total-price">총 결제 금액</th>
+            <th scope="row" class="total-price-text">총 결제 금액</th>
             <td>
-              <span>10,000 원</span>
+              <span class="total-price"></span>
             </td>
           </tr>
           <tr>
