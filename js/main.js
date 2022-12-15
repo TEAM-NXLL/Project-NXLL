@@ -1,11 +1,11 @@
 import { doc } from "prettier";
-import { getData, getLogin, getLogOut, stateLogin, postSearch } from "./getdata.js";
+import { getData, getLogin, getLogOut, stateLogin, postSearch, getTransactions } from "./getdata.js";
 import { router } from "./route.js";
 import { deliveryEl, returnEl, deliveryDes, returnDes, mouseenter, mouseleave } from './footer.js'
 import { joinForm, logInForm, myOrderForm, myShoppingForm, mainForm, productList, userInfoForm, userAccountForm, detailForm, paymentForm } from "./body.js";
 import { editUserInfo, userOwnBank, addNewAccount, choiceBank, bankChargeLookUp, ownAccountList, addAbleAccountList, cancelBank } from "./userInfo.js";
 import { viewAllProduct } from '../admin/js/requests.js'
-import { payAccountList, payBankLoopUp, buyProducts, lookProducts, cancelProduct, allCheckBox} from "./payment.js";
+import { payAccountList, payBankLoopUp, buyProducts, lookProducts, cancelProduct, allCheckBox } from "./payment.js";
 
 // 변수
 const root = document.querySelector('main');
@@ -27,19 +27,19 @@ async function renderMain() {
   const mouseList = document.querySelector('.mouse > .inner')
   const newItemList = document.querySelector('.newItem > .inner')
 
-  if(keyboard) {
+  if (keyboard) {
     keyboardList.innerHTML = `<img src="./images/commingSoon.png"/>`
     keyboardList.style.cssText = 'padding-bottom: 170px;';
   }
-  if(mouse) {
+  if (mouse) {
     mouseList.innerHTML = `<img src="./images/commingSoon.png"/>`
     mouseList.style.cssText = 'padding-bottom: 70px;';
   }
-  if(newItem) {
+  if (newItem) {
     newItemList.innerHTML = `<img src="./images/commingSoon.png"/>`
     newItemList.style.cssText = 'padding-bottom: 70px;';
   }
-  
+
   data.forEach(e => {
     if (e['tags'].includes('키보드')) {
       keyboard.push(e)
@@ -90,28 +90,28 @@ async function renderMain() {
 // 제품 검색
 async function productSearch(e) {
   const keyword = document.querySelector('#keyword');
-  
-  if(e.key === 'Enter') {
+
+  if (e.key === 'Enter') {
     let rootInner = document.createElement('ul')
     rootInner.classList.add('inner')
     // const searchText = keyword.value;
     // const searchTags = ''
-    
-    if(keyword.value === '') {
+
+    if (keyword.value === '') {
       alert('검색어를 입력해 주세요.')
     } else {
       let searchText = keyword.value
       let searchTags
       const data = await postSearch(searchText, searchTags);
       console.log(data)
-      for(let i = 0; i < data.length; i++) {
+      for (let i = 0; i < data.length; i++) {
         searchTags = data[i].tags
       }
       console.log(searchTags)
       root.innerHTML = ''
       root.append(rootInner)
 
-      if(data.length === 0) {
+      if (data.length === 0) {
         rootInner.innerHTML = `
           <div class="imgBox" style="width:100%; height:300px; margin-top:100px">
             <img src="./images/emptySearch.gif""/>
@@ -124,7 +124,7 @@ async function productSearch(e) {
 
       keyword.value = ''
     }
-    
+
   }
 }
 
@@ -216,7 +216,8 @@ async function renderMyShop() {
   const { totalBalance, accounts } = await userOwnBank();
   // const total = totalBalance.toLocaleString()
   const total = totalBalance ? totalBalance.toLocaleString() : '';
-  root.innerHTML = myShoppingForm(total);
+  const transactions = await getTransactions(localStorage.accessToken)
+  root.innerHTML = myShoppingForm(transactions.length, total);
 }
 
 // myorder 렌더링

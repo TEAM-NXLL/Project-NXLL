@@ -128,7 +128,7 @@ function productList(tags) {
   const mainBody = []
 
   for (let i = 0; i < tags.length; i++) {
-    if(tags[i].thumbnail === null || tags[i].thumbnail === undefined) {
+    if (tags[i].thumbnail === null || tags[i].thumbnail === undefined) {
       tags[i].thumbnail = './images/preparingProduct.jpg'
     }
     mainBody.push(`
@@ -249,7 +249,7 @@ function logInForm() {
 }
 
 // 마이쇼핑 페이지
-function myShoppingForm(price) {
+function myShoppingForm(trans, price) {
   const information = /* html */`
     <div class="information">
       <div class="inner">
@@ -280,6 +280,9 @@ function myShoppingForm(price) {
   const goToLogin = () => {
     return localStorage.accessToken ? '#userinfo' : '#login'
   }
+  const transLookUp = () => {
+    return localStorage.accessToken ? `${trans}` : `0`
+  }
   const chargeLookUp = () => {
     return localStorage.accessToken ? `${price}` : `0`
   }
@@ -298,7 +301,7 @@ function myShoppingForm(price) {
         <a href="#myorder" class="order-list__item">
           <p class="icon order"></p>
           <p>주문 내역</p>
-          <p class="price">0건</p>
+          <p class="price">${transLookUp()}건</p>
           <i class="line--hover"></i>
         </a>
         <a href="#" class="order-list__item">
