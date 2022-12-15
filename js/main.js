@@ -6,6 +6,7 @@ import { joinForm, logInForm, myOrderForm, myShoppingForm, mainForm, productList
 import { editUserInfo, userOwnBank, addNewAccount, choiceBank, bankChargeLookUp, ownAccountList, addAbleAccountList, cancelBank } from "./userInfo.js";
 import { viewAllProduct } from '../admin/js/requests.js'
 import { payAccountList, payBankLoopUp, buyProducts, lookProducts, cancelProduct, allCheckBox } from "./payment.js";
+import { cancelOrder, confirOrder, transLookUp } from "./myorder.js";
 
 // 변수
 const root = document.querySelector('main');
@@ -223,6 +224,10 @@ async function renderMyShop() {
 // myorder 렌더링
 function renderMyOrder() {
   root.innerHTML = myOrderForm();
+  transLookUp().then(res => {
+    cancelOrder()
+    confirOrder()
+  })
 }
 
 // userInfo 렌더링
