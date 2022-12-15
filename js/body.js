@@ -281,7 +281,7 @@ function myShoppingForm(trans, price) {
     return localStorage.accessToken ? '#userinfo' : '#login'
   }
   const transLookUp = () => {
-    return localStorage.accessToken ? `${trans}` : `0`
+    return trans > 0 ? `${trans}` : `0`
   }
   const chargeLookUp = () => {
     return localStorage.accessToken ? `${price}` : `0`
@@ -360,7 +360,7 @@ function myShoppingForm(trans, price) {
 }
 
 // 구매 내역 페이지
-function myOrderForm() {
+function myOrderForm(orderList, cancelList, confirList) {
   return /* html */ `
     <div class="title-box" scope="sub">
       <p class="title-box__text">MY-ORDER</p>
@@ -370,9 +370,165 @@ function myOrderForm() {
     <div class="tab-menu myorder">
       <div class="inner">
         <ul>
-          <li class="selected"><a href="#myorder">주문 내역 조회 <span>(2)</span></a></li>
-          <li><a href="#">취소신청 내역 <span>(1)</span></a></li>
-          <li><a href="#">과거주문(확정) 내역 <span>(2)</span></a></li>
+          <li class="selected"><a href="#myorder">주문 내역 조회 <span>(${orderList})</span></a></li>
+          <li><a href="#myorder/cancel">취소신청 내역 <span>(${cancelList})</span></a></li>
+          <li><a href="#myorder/confir">과거주문(확정) 내역 <span>(${confirList})</span></a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- INFOMATION MYORDER -->
+    <div class="information myorder">
+      <div class="inner">
+        <div class="information-item">
+          <div class="thumbnail">
+            <img src="https://acttomall.com/_sp/_image/svg/order.svg" alt="">
+            <div class="description">
+              <div class="title-box" scope="totals">
+                <span class="title-box__text">주문조회 안내</span>
+              </div>
+              <div class="description__help">
+                <p>주문번호를 클릭하시면 해당 주문에 대한 상세내역을 확인하실 수 있습니다.</p>
+                <p>취소 신청은 주문신청 확정 전까지 가능합니다.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><!-- INFORMATION MYORDER -->
+
+    <!-- MYORDER-LIST -->
+    <div class="myorder-list">
+      <div class="inner">
+        <div class="title-box myorder" scope="order">
+          <span class="title-box__text">MY ORDER</span>
+          <span class="title-box__subtext">주문 상품 정보</span>
+        </div>
+      </div>
+
+      <div class="inner">
+        <table>
+          <caption>주문 상품 정보</caption>
+          <colgroup>
+            <col style="width: 135px;">
+            <col style="width: 80px;">
+            <col style="width: auto;">
+            <col style="width: 61px;">
+            <col style="width: 111px;">
+            <col style="width: 111px;">
+            <col style="width: 150px;">
+          </colgroup>
+          <thead>
+            <tr>
+              <th scope="col">주문일자 <br /> [주문번호]</th>
+              <th scope="col">이미지</th>
+              <th scope="col">상품정보</th>
+              <th scope="col">수량</th>
+              <th scope="col">상품구매금액</th>
+              <th scope="col">주문처리상태</th>
+              <th scope="col">취소/확정</th>
+            </tr>
+          </thead>
+          <tbody class="trans-product">
+          </tbody>
+        </table>
+      </div>
+    </div><!-- MYORDER-LIST -->
+  `
+}
+
+// 구매 취소 내역 페이지
+function myCancelOrderForm(orderList, cancelList, confirList) {
+  return /* html */ `
+    <div class="title-box" scope="sub">
+      <p class="title-box__text">MY-ORDER</p>
+      <p class="title-box__subtext">고객님의 주문내역 입니다.</p>
+    </div>
+
+    <div class="tab-menu myorder">
+      <div class="inner">
+        <ul>
+          <li><a href="#myorder">주문 내역 조회 <span>(${orderList})</span></a></li>
+          <li class="selected"><a href="#myorder/cancel">취소신청 내역 <span>(${cancelList})</span></a></li>
+          <li><a href="#myorder/confir">과거주문(확정) 내역 <span>(${confirList})</span></a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- INFOMATION MYORDER -->
+    <div class="information myorder">
+      <div class="inner">
+        <div class="information-item">
+          <div class="thumbnail">
+            <img src="https://acttomall.com/_sp/_image/svg/order.svg" alt="">
+            <div class="description">
+              <div class="title-box" scope="totals">
+                <span class="title-box__text">주문조회 안내</span>
+              </div>
+              <div class="description__help">
+                <p>주문번호를 클릭하시면 해당 주문에 대한 상세내역을 확인하실 수 있습니다.</p>
+                <p>취소 신청은 주문신청 확정 전까지 가능합니다.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><!-- INFORMATION MYORDER -->
+
+    <!-- MYORDER-LIST -->
+    <div class="myorder-list">
+      <div class="inner">
+        <div class="title-box myorder" scope="order">
+          <span class="title-box__text">MY ORDER</span>
+          <span class="title-box__subtext">주문 상품 정보</span>
+        </div>
+      </div>
+
+      <div class="inner">
+        <table>
+          <caption>주문 상품 정보</caption>
+          <colgroup>
+            <col style="width: 135px;">
+            <col style="width: 80px;">
+            <col style="width: auto;">
+            <col style="width: 61px;">
+            <col style="width: 111px;">
+            <col style="width: 111px;">
+            <col style="width: 150px;">
+          </colgroup>
+          <thead>
+            <tr>
+              <th scope="col">주문일자 <br /> [주문번호]</th>
+              <th scope="col">이미지</th>
+              <th scope="col">상품정보</th>
+              <th scope="col">수량</th>
+              <th scope="col">상품구매금액</th>
+              <th scope="col">주문처리상태</th>
+              <th scope="col">취소/확정</th>
+            </tr>
+          </thead>
+          <tbody class="trans-product">
+          </tbody>
+        </table>
+      </div>
+    </div><!-- MYORDER-LIST -->
+  `
+}
+
+// 구매 확정 내역 페이지
+function myConfirOrderForm(orderList, cancelList, confirList) {
+  return /* html */ `
+    <div class="title-box" scope="sub">
+      <p class="title-box__text">MY-ORDER</p>
+      <p class="title-box__subtext">고객님의 주문내역 입니다.</p>
+    </div>
+
+    <div class="tab-menu myorder">
+      <div class="inner">
+        <ul>
+          <li><a href="#myorder">주문 내역 조회 <span>(${orderList})</span></a></li>
+          <li><a href="#myorder/cancel">취소신청 내역 <span>(${cancelList})</span></a></li>
+          <li class="selected"><a href="#myorder/confir">과거주문(확정) 내역 <span>(${confirList})</span></a></li>
         </ul>
       </div>
     </div>
@@ -838,4 +994,4 @@ function paymentForm() {
   `
 }
 
-export { joinForm, logInForm, myShoppingForm, myOrderForm, mainForm, productList, userInfoForm, userAccountForm, detailForm, paymentForm }
+export { joinForm, logInForm, myShoppingForm, myOrderForm, mainForm, productList, userInfoForm, userAccountForm, detailForm, paymentForm, myCancelOrderForm, myConfirOrderForm }
