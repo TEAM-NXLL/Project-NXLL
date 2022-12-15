@@ -16,18 +16,19 @@ const root = document.querySelector('main');
 //   joinRender()
 // }
 
-const keyboard = []
-const mouse = []
-const newItem = []
 
 // 메인 페이지
 async function renderMain() {
   const data = await viewAllProduct();
   root.innerHTML = mainForm();
-
+  
   const keyboardList = document.querySelector('.keyboard > .inner')
   const mouseList = document.querySelector('.mouse > .inner')
   const newItemList = document.querySelector('.newItem > .inner')
+
+  const keyboard = []
+  const mouse = []
+  const newItem = []
 
   if (keyboard) {
     keyboardList.innerHTML = `<img src="./images/commingSoon.png"/>`
@@ -96,55 +97,46 @@ async function productSearch(e) {
   if (e.key === 'Enter') {
     let rootInner = document.createElement('ul')
     rootInner.classList.add('inner')
-    // const searchText = keyword.value;
-    // const searchTags = ''
 
     if (keyword.value === '') {
       alert('검색어를 입력해 주세요.')
     } else {
-
-      let searchText = (keyword.value).trim()
+      let searchText = keyword.value.trim()
       let searchTags = []
 
       const data = await postSearch(searchText, searchTags);
-      // console.log(data,'가져온 데이터')
-
-      // console.log(searchTags)
+      // console.log(data)
 
       root.innerHTML = ''
       root.append(rootInner)
 
       if (data.length === 0) {
         rootInner.innerHTML = /* HTML */ `
-          <div class="imgBox" style="width:100%; height:300px; margin-top:100px">
+          <div class="imgBox" style="height: 300px; margin-top: 140px;">
             <img src="./images/emptySearch.gif"/>
-            </div>
-            <p style="text-align:center; margin-bottom:100px; color: #333; font-size:15px;">
+          </div>
+          <p style="text-align:center; margin-bottom:170px; color: #333; font-size:15px;">
             <i class="fa-solid fa-quote-left" style="vertical-align:top;"></i> <strong style="font-weight:bold; font-size:34px;">${searchText}</strong> <i class="fa-sharp fa-solid fa-quote-right" style="vertical-align:bottom; margin-right:10px;"></i>의 검색 결과가 없습니다.
-            </p>
+          </p>
         `
       } else {
         rootInner.classList.add('block4')
-        rootInner.style.marginTop = '60px'
+        rootInner.style.margin = '140px auto 100px'
 
-        for (let i = 0; i < data.length; i++) {
-          searchText = data[i].title
-          searchTags.push(data[i].tags)
-          // console.log(searchText)
+        for(let i = 0; i < data.length; i++) {
+          if(data[i].title.includes(searchText)) {
+            rootInner.innerHTML = productList(data)
+          } 
+          // if(data[i].tags.includes(searchText)) {
+          //   searchTags.push(data[i].tags)
+          //   console.log(searchTags)
+          //   // rootInner.innerHTML = productList(searchTags)
+          //   // console.log(data)
+          // }
         }
-        // console.log(searchTags.join(''))
-
-        if (searchTags.join('').includes(searchText)) {
-          rootInner.innerHTML = productList(data)
-          console.log(searchTags.join('').includes(searchText))
-        } else if (searchText.includes(searchText)) {
-          rootInner.innerHTML = productList(data)
-        }
-
       }
       keyword.value = ''
     }
-
   }
 }
 
