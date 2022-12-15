@@ -1,24 +1,24 @@
 // main
 function mainForm() {
   const mainBody = [];
-  const swiperArrowBtn = `
+  const swiperArrowBtn = /* HTML */ `
     <div class="swiper-button-prev"></div>
     <div class="swiper-button-next"></div>
   `
 
-  mainBody.push(`
+  mainBody.push( /* HTML */ `
     <!-- 메인 스와이퍼 -->
     <div class="swiper mainSwiper">
       <ul class="swiper-wrapper">
   `)
 
   for (let i = 1; i <= 7; i++) {
-    mainBody.push(`
+    mainBody.push( /* HTML */ `
       <li class="swiper-slide"><a href="#"><img src="../images/slide1-banner${i}.jpg" alt=""></a></li>
     `)
   }
 
-  mainBody.push(`
+  mainBody.push( /* HTML */ `
       </ul>
 
       <div class="swiper-pagination"></div>
@@ -31,65 +31,64 @@ function mainForm() {
       <ul class="inner block3">
   `)
 
-  mainBody.push(`
-  </ul>
-  </section><!-- 키보드 상품목록 -->
+  mainBody.push( /* HTML */ `
+    </ul>
+    </section><!-- 키보드 상품목록 -->
 
-  <!-- 마우스 배너 -->
-  <section class="keyboard-banner mt70">
-    <div class="swiper keyboardSwiper">
-      <ul class="swiper-wrapper">
-        <li class="swiper-slide"><a href="#"><img src="./images/slide2-banner1.jpg" alt=""></a></li>
-        <li class="swiper-slide"><a href="#"><img src="./images/slide2-banner2.gif" alt=""></a></li>
+    <!-- 마우스 배너 -->
+    <section class="keyboard-banner mt70">
+      <div class="swiper keyboardSwiper">
+        <ul class="swiper-wrapper">
+          <li class="swiper-slide"><a href="#"><img src="./images/slide2-banner1.jpg" alt=""></a></li>
+          <li class="swiper-slide"><a href="#"><img src="./images/slide2-banner2.gif" alt=""></a></li>
+        </ul>
+        ${swiperArrowBtn}
+      </div>
+
+      <h3>디자인 키보드는 엑토</h3>
+      <p>편의성, 디자인, 기능을 모두 갖춘 <br /> 레트로 감성의 기계식 키보드가 곧 출시됩니다.</p>
+      <a href="#" class="blackBtn">제품 모두 보기</a>
+    </section><!-- 마우스 배너 -->
+
+    <!-- 마우스 상품목록 -->
+    <section class="mouse mt70">
+      <h1>MOUSE</h1>
+      <ul class="inner block3">
       </ul>
-      ${swiperArrowBtn}
-    </div>
+    </section><!-- 마우스 상품목록 -->
 
-    <h3>디자인 키보드는 엑토</h3>
-    <p>편의성, 디자인, 기능을 모두 갖춘 <br /> 레트로 감성의 기계식 키보드가 곧 출시됩니다.</p>
-    <a href="#" class="blackBtn">제품 모두 보기</a>
-  </section><!-- 마우스 배너 -->
+    <!-- 마우스 배너 -->
+    <section class="mouse-banner mt70">
+      <img src="./images/mouseBanner.gif" alt="">
+      <h3>편안한 그립감의 마우스</h3>
+      <p>인체공학적 설계로 편안한 그립감과 엑토만의 <br /> 감각적인 디자인의 마우스를 만나보세요.</p>
+      <a href="#" class="blackBtn">제품 모두 보기</a>
+    </section><!-- 마우스 배너 -->
 
-  <!-- 마우스 상품목록 -->
-  <section class="mouse mt70">
-    <h1>MOUSE</h1>
-    <ul class="inner block2">
-    </ul>
-  </section><!-- 마우스 상품목록 -->
+    <!-- 데스크셋업 배너 -->
+    <section class="deskSetup mt70">
+      <img src="./images/deskSetup.jpg" alt="">
+      <h3>데스크셋업의 완성</h3>
+      <p>당신의 데스크를 더욱 업그레이드 시켜 줄 <br /> 다양한 기기들을 만나보세요.</p>
+      <a href="#" class="blackBtn">제품 모두 보기</a>
+    </section><!-- 데스크셋업 배너 -->
 
-  <!-- 마우스 배너 -->
-  <section class="mouse-banner mt70">
-    <img src="./images/mouseBanner.gif" alt="">
-    <h3>편안한 그립감의 마우스</h3>
-    <p>인체공학적 설계로 편안한 그립감과 엑토만의 <br /> 감각적인 디자인의 마우스를 만나보세요.</p>
-    <a href="#" class="blackBtn">제품 모두 보기</a>
-  </section><!-- 마우스 배너 -->
+    <!-- 뉴아이템 상품목록 -->
+    <section class="newItem mt70">
+      <h1>NEW ITEM</h1>
+      <ul class="inner block3">
+      </ul>
+    </section><!-- 뉴아이템 상품목록 -->
 
-  <!-- 데스크셋업 배너 -->
-  <section class="deskSetup mt70">
-    <img src="./images/deskSetup.jpg" alt="">
-    <h3>데스크셋업의 완성</h3>
-    <p>당신의 데스크를 더욱 업그레이드 시켜 줄 <br /> 다양한 기기들을 만나보세요.</p>
-    <a href="#" class="blackBtn">제품 모두 보기</a>
-  </section><!-- 데스크셋업 배너 -->
-
-  <!-- 뉴아이템 상품목록 -->
-  <section class="newItem mt70">
-    <h1>NEW ITEM</h1>
-    <ul class="inner block3">
-    </ul>
-  </section><!-- 뉴아이템 상품목록 -->
-
-  <!-- 리뷰 영역 -->
-  <section class="review">
-    <h1>REVIEW</h1>
-    <ul class="inner block5">
-`)
+    <!-- 리뷰 영역 -->
+    <section class="review">
+      <h1>REVIEW</h1>
+      <ul class="inner block5">
+  `)
 
   for (let i = 1; i <= 10; i++) {
 
-    mainBody.push(
-      `
+    mainBody.push( /* HTML */ `
       <li>
       <a href="#">
         <div class="imgBox">
@@ -114,13 +113,63 @@ function mainForm() {
     `)
   }
 
-  mainBody.push(`
+  mainBody.push( /* HTML */ `
       </ul>
     </section><!-- 리뷰 영역 -->
   `
   )
 
   return mainBody.join('')
+}
+
+// 상품 목록
+function productList(tags) {
+  const colorChart = ["beige", "pastelBeige", "mint", "pink", "white", "navy", "blueNavy", "black", "green", "gray"]
+  const mainBody = []
+
+  for (let i = 0; i < tags.length; i++) {
+    if(tags[i].thumbnail === null || tags[i].thumbnail === undefined) {
+      tags[i].thumbnail = './images/preparingProduct.jpg'
+    }
+    mainBody.push(`
+      <li>
+        <a href="#details/${tags[i].id}"> 
+          <div class="imgBox">
+            <img src="${tags[i].thumbnail}" alt="">
+          </div>
+          <div class="colorBox">
+    `)
+
+    const randomNum = Math.ceil(Math.random() * 5)
+    let randomIndexArray = []
+    for (let j = 0; j < randomNum; j++) {
+      const colorNum = Math.floor(Math.random() * 10);
+
+      if (randomIndexArray.indexOf(colorNum) === -1) {
+        randomIndexArray.push(colorNum);
+        mainBody.push(`
+          <span class='${colorChart[colorNum]}'></span>
+        `);
+      }
+    }
+
+    const discountValue = Math.floor(Math.random() * 9 + 1) * 8;
+
+    mainBody.push(`
+            </div >
+            <div class="textBox">
+                  ${tags[i].title} <span>B300${i}</span>
+            </div>
+            <div class="priceBox">
+              <span class="discount">${tags[i].price.toLocaleString()}원</span> 
+              ${Math.floor((Number(tags[i].price) * (100 - discountValue)) / 100).toLocaleString()}원<br />
+              <span class="salePercent">${discountValue}% SALE</span>
+            </div>
+          </a>
+      </li>
+    `)
+  }
+  return mainBody.join('');
 }
 
 // 회원가입 페이지
@@ -554,12 +603,34 @@ function userAccountForm(totalBalance) {
 // 상품 상세페이지
 function detailForm(productInfo) {
   const main = document.querySelector('main')
-  main.addEventListener('click', (event) => {
-    const topBanner = document.querySelector('.top-banner').offsetHeight
-    const el = event.target['name']
-    const nameEl = document.querySelector(`.${el}`)
-    const scrollH = nameEl.getBoundingClientRect().top - topBanner
-    scrollTo({ left: 0, top: window.pageYOffset + scrollH, behavior: 'smooth' })
+
+  main.addEventListener('click', ({ target }) => {
+    const buyBtn = document.querySelector('.buy-btn')
+    const cartBtn = document.querySelector('.cart-btn')
+    let cartList = []
+    if (target.closest('.tab-menu')) {
+      const topBanner = document.querySelector('.top-banner')
+      const el = target['name']
+      const nameEl = document.querySelector(`.${el}`)
+      const scrollH = nameEl.getBoundingClientRect().top - topBanner.offsetHeight
+      scrollTo({ left: 0, top: window.pageYOffset + scrollH, behavior: 'smooth' })
+    }
+
+    // 카트에 상품 담기 (localstorage.cart에 상품id 추가)
+    function addCart() {
+      cartList.push(productInfo.id)
+      localStorage.setItem('cart', JSON.stringify(cartList))
+    }
+
+    if (target === cartBtn) {
+      if (!localStorage.cart) addCart()
+      else {
+        cartList = [...JSON.parse(localStorage.cart)]
+        addCart()
+      }
+      const modalPayment = document.querySelector('.modal-payment')
+      modalPayment.classList.add('active')
+    }
   })
 
   if (productInfo.thumbnail === null || productInfo.thumbnail === undefined) {
@@ -601,8 +672,8 @@ function detailForm(productInfo) {
               <p><em>판매 상태</em> <span>${productInfo.isSoldOut === true ? '판매중' : '품절'}</span></p>
             </div>
             <div class="btn-group">
-              <a href="#" class="buy-btn">바로 구매하기</a>
-              <a href="#" class="cart-btn"><i class="fas fa-sm ver-0 fa-plus"></i>장바구니</a>
+              <a href="/#payment" class="buy-btn">바로 구매하기</a>
+              <a class="cart-btn"><i class="fas fa-sm ver-0 fa-plus"></i>장바구니</a>
             </div>
             <div class="delivery-info">
               <p>제주도 및 도서산간 지역은 배송료 3,000원이 추가됩니다</p>
@@ -822,4 +893,4 @@ function paymentForm() {
   `
 }
 
-export { joinForm, logInForm, myShoppingForm, myOrderForm, mainForm, userInfoForm, userAccountForm, detailForm, paymentForm }
+export { joinForm, logInForm, myShoppingForm, myOrderForm, mainForm, productList, userInfoForm, userAccountForm, detailForm, paymentForm }
