@@ -127,10 +127,10 @@
 
   <!-- 제품수정페이지 -->
   <main id="edit-products">
-    <section class="admin-add-title">
+    <section class="admin-title">
       <h2>제품 수정</h2>
     </section>
-    <section class="edit">
+    <section class="edit-section">
       <form class="edit-form">
         <!-- 매진 여부 -->
         <div class="soldout-area">
@@ -182,11 +182,11 @@
             required></textarea>
         </div>
         <!-- 수정 파일 업로드 -->
-        <div class="file-upload-area">
+        <div class="file-upload-area edit-file-upload-area">
           <!-- 수정 썸네일 업로드 -->
           <div class="thumbnail-area">
             <label for="edit-thumbnail"> 상품 썸네일 수정 </label>
-            <img id="edit-thumbnail-preview" class="edit-tumbnail-img reset" alt="상품썸네일" />
+            <img id="edit-thumbnail-preview" class="edit-tumbnail-img reset" />
             <span>jpg, jpeg, webp, png, gif, svg 확장자만 등록 가능합니다.</span>
             <span>파일 크기는 1MB 이하여야 합니다.</span>
             <input type="file" accept="image/jpg, .jpeg, .webp, .png, .gif, .svg" class="edit-thumbnail reset"
@@ -196,7 +196,7 @@
           <!-- 수정 상세사진 업로드 -->
           <div class="detail-area">
             <label for="edit-detail"> 상품 상세사진 수정 </label>
-            <img id="edit-detail-preview" class="edit-detail-img reset" alt="상품상세사진" />
+            <img id="edit-detail-preview" class="edit-detail-img reset" />
             <span>jpg, jpeg, webp, png, gif, svg 확장자만 등록 가능합니다.</span>
             <span>파일 크기는 4MB 이하여야 합니다.</span>
             <input type="file" accept="image/jpg, .jpeg, .webp, .png, .gif, .svg" class="edit-detail reset"
@@ -215,10 +215,10 @@
 
   <!-- 상품추가 페이지 -->
   <main id="add-products">
-    <section class="admin-add-title">
+    <section class="admin-title">
       <h2>제품 추가</h2>
     </section>
-    <section class="add">
+    <section class="add-section">
       <form class="add-form">
         <!-- 상품명 -->
         <div class="name-area">
@@ -263,7 +263,7 @@
             required></textarea>
         </div>
         <!-- 파일 업로드 -->
-        <div class="file-upload-area">
+        <div class="file-upload-area add-file-upload-area">
           <!-- 썸네일 업로드 -->
           <div class="thumbnail-area">
             <label for="add-thumbnail"> 상품 썸네일 등록 </label>
