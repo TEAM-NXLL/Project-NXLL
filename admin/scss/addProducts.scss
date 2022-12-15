@@ -1,10 +1,12 @@
-// ADMIN PAGE - ADD ITEMS
-#add-products {
+// ADMIN PAGE - ADD ITEMS / EDIT ITEMS
+#add-products,
+#edit-products {
   width: 80%;
   margin: 0 auto;
 }
 
-.admin-add-title {
+.admin-add-title,
+.admin-edit-title {
   margin-top: 20px;
 
   h2 {
@@ -16,12 +18,14 @@
   }
 }
 
-.add {
+.add,
+.edit {
   font-weight: 600;
   padding: 20px 0;
 }
 
-.add-form {
+.add-form,
+.edit-form {
   background-color: #f5f5f5;
   width: 100%;
   padding: 50px 50px;
@@ -45,6 +49,7 @@
   }
 
   .tag-area,
+  .soldout-area,
   .description-area {
     width: 600px;
     margin: 0 auto;
@@ -57,12 +62,42 @@
     }
   }
 
+  .soldout-area {
+    display: flex;
+    justify-content: space-around;
+
+    input[type="radio"] {
+      display: none;
+
+      +label {
+        width: 100px;
+        height: 30px;
+        line-height: 30px;
+        background-color: #b9c7ee;
+        border: 3px solid black;
+        border-radius: 10px;
+        font-size: 23px;
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 20px;
+        cursor: pointer;
+      }
+
+      &:checked+label {
+        background-color: navy;
+        color: white;
+        font-weight: 900;
+        scale: 1.1;
+        box-shadow: 3px 3px 2px 1px rgba(0, 0, 255, .2);
+      }
+    }
+  }
+
   .tag-area {
 
     input[type="checkbox"] {
       width: 20px;
-      scale: 1.5;
-      // display: none;
+      scale: 1.6;
     }
 
     .taglabel {
@@ -74,15 +109,16 @@
 
       &:active {
         background-color: cornflowerblue;
-        border-radius: 10px;
       }
     }
-
   }
+
 
   // 상품명, 가격 input 칸
   .add-product-name,
-  #add-product-price {
+  .edit-product-name,
+  #add-product-price,
+  #edit-product-price {
     font-size: 20px;
     background-color: white;
     width: 350px;
@@ -91,7 +127,8 @@
   }
 
   // 상세설명 input 칸
-  .add-product-description {
+  .add-product-description,
+  .edit-product-description {
     background-color: white;
     width: 450px;
     height: 100px;
@@ -104,14 +141,16 @@
     margin: 10px 0;
   }
 
-  .add-button-area {
+  .add-button-area,
+  .edit-button-area {
     width: 100%;
     height: 200px;
     display: flex;
     justify-content: center;
     align-items: center;
 
-    .add-btn {
+    .add-btn,
+    .edit-btn {
       display: block;
       background-color: rgb(5, 5, 96);
       color: white;

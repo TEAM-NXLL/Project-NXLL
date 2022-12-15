@@ -1,11 +1,12 @@
 import { doc } from "prettier";
-import { getData, getLogin, getLogOut, stateLogin, postSearch } from "./getdata.js";
+import { getData, getLogin, getLogOut, stateLogin, postSearch, getTransactions } from "./getdata.js";
 import { router } from "./route.js";
 import { deliveryEl, returnEl, deliveryDes, returnDes, mouseenter, mouseleave } from './footer.js'
 import { joinForm, logInForm, myOrderForm, myShoppingForm, mainForm, productList, userInfoForm, userAccountForm, detailForm, paymentForm } from "./body.js";
 import { editUserInfo, userOwnBank, addNewAccount, choiceBank, bankChargeLookUp, ownAccountList, addAbleAccountList, cancelBank } from "./userInfo.js";
 import { viewAllProduct } from '../admin/js/requests.js'
-import { payAccountList, payBankLoopUp, buyProducts, lookProducts, cancelProduct, allCheckBox} from "./payment.js";
+import { payAccountList, payBankLoopUp, buyProducts, lookProducts, cancelProduct, allCheckBox } from "./payment.js";
+import { cancelOrder, confirOrder, transLookUp } from "./myorder.js";
 
 // 변수
 const root = document.querySelector('main');
@@ -14,6 +15,7 @@ const root = document.querySelector('main');
 //   loginRender()
 //   joinRender()
 // }
+
 const keyboard = []
 const mouse = []
 const newItem = []
@@ -27,19 +29,19 @@ async function renderMain() {
   const mouseList = document.querySelector('.mouse > .inner')
   const newItemList = document.querySelector('.newItem > .inner')
 
-  if(keyboard) {
+  if (keyboard) {
     keyboardList.innerHTML = `<img src="./images/commingSoon.png"/>`
-    keyboardList.style.cssText = 'padding-bottom: 170px;';
+    keyboardList.style.cssText = 'padding-bottom: 140px;';
   }
-  if(mouse) {
+  if (mouse) {
     mouseList.innerHTML = `<img src="./images/commingSoon.png"/>`
     mouseList.style.cssText = 'padding-bottom: 70px;';
   }
-  if(newItem) {
+  if (newItem) {
     newItemList.innerHTML = `<img src="./images/commingSoon.png"/>`
     newItemList.style.cssText = 'padding-bottom: 70px;';
   }
-  
+
   data.forEach(e => {
     if (e['tags'].includes('키보드')) {
       keyboard.push(e)
@@ -90,41 +92,59 @@ async function renderMain() {
 // 제품 검색
 async function productSearch(e) {
   const keyword = document.querySelector('#keyword');
-  
-  if(e.key === 'Enter') {
+
+  if (e.key === 'Enter') {
     let rootInner = document.createElement('ul')
     rootInner.classList.add('inner')
     // const searchText = keyword.value;
     // const searchTags = ''
-    
-    if(keyword.value === '') {
+
+    if (keyword.value === '') {
       alert('검색어를 입력해 주세요.')
     } else {
-      let searchText = keyword.value
-      let searchTags
+
+      let searchText = (keyword.value).trim()
+      let searchTags = []
+
       const data = await postSearch(searchText, searchTags);
-      console.log(data)
-      for(let i = 0; i < data.length; i++) {
-        searchTags = data[i].tags
-      }
-      console.log(searchTags)
+      // console.log(data,'가져온 데이터')
+
+      // console.log(searchTags)
+
       root.innerHTML = ''
       root.append(rootInner)
 
-      if(data.length === 0) {
-        rootInner.innerHTML = `
+      if (data.length === 0) {
+        rootInner.innerHTML = /* HTML */ `
           <div class="imgBox" style="width:100%; height:300px; margin-top:100px">
-            <img src="./images/emptySearch.gif""/>
+            <img src="./images/emptySearch.gif"/>
             </div>
             <p style="text-align:center; margin-bottom:100px; color: #333; font-size:15px;">
-            <i class="fa-solid fa-quote-left" style="vertical-align:top;"></i> <strong style="font-weight:bold; font-size:34px;">${keyword.value}</strong> <i class="fa-sharp fa-solid fa-quote-right" style="vertical-align:bottom; margin-right:10px;"></i>의 검색 결과가 없습니다.
+            <i class="fa-solid fa-quote-left" style="vertical-align:top;"></i> <strong style="font-weight:bold; font-size:34px;">${searchText}</strong> <i class="fa-sharp fa-solid fa-quote-right" style="vertical-align:bottom; margin-right:10px;"></i>의 검색 결과가 없습니다.
             </p>
         `
-      }
+      } else {
+        rootInner.classList.add('block5')
+        rootInner.style.marginTop = '60px'
 
+        for (let i = 0; i < data.length; i++) {
+          searchText = data[i].title
+          searchTags.push(data[i].tags)
+          // console.log(searchText)
+        }
+        // console.log(searchTags.join(''))
+
+        if (searchTags.join('').includes(searchText)) {
+          rootInner.innerHTML = productList(data)
+          console.log(searchTags.join('').includes(searchText))
+        } else if (searchText.includes(searchText)) {
+          rootInner.innerHTML = productList(data)
+        }
+
+      }
       keyword.value = ''
     }
-    
+
   }
 }
 
@@ -216,12 +236,17 @@ async function renderMyShop() {
   const { totalBalance, accounts } = await userOwnBank();
   // const total = totalBalance.toLocaleString()
   const total = totalBalance ? totalBalance.toLocaleString() : '';
-  root.innerHTML = myShoppingForm(total);
+  const transactions = await getTransactions(localStorage.accessToken)
+  root.innerHTML = myShoppingForm(transactions.length, total);
 }
 
 // myorder 렌더링
 function renderMyOrder() {
   root.innerHTML = myOrderForm();
+  transLookUp().then(res => {
+    cancelOrder()
+    confirOrder()
+  })
 }
 
 // userInfo 렌더링

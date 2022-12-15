@@ -185,7 +185,7 @@
           }
         }
 
-        a.order-number {
+        .order-number {
           display: block;
           background: linear-gradient(to bottom, #213B85 0%, #213B85 100%);
           border: 1px solid #213B85;
@@ -202,10 +202,7 @@
       }
 
       &.product {
-        * {
-          text-align: left;
-        }
-
+        text-align: left;
         .name {
           font-weight: bold;
         }
@@ -215,6 +212,12 @@
         p {
           font-weight: bold;
           color: #ff6600;
+        }
+      }
+      &.decision {
+        button {
+          width: 120px;
+          height: 50px;
         }
       }
     }

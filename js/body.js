@@ -36,7 +36,7 @@ function mainForm() {
     </section><!-- 키보드 상품목록 -->
 
     <!-- 마우스 배너 -->
-    <section class="keyboard-banner mt70">
+    <section class="keyboard-banner">
       <div class="swiper keyboardSwiper">
         <ul class="swiper-wrapper">
           <li class="swiper-slide"><a href="#"><img src="./images/slide2-banner1.jpg" alt=""></a></li>
@@ -128,7 +128,7 @@ function productList(tags) {
   const mainBody = []
 
   for (let i = 0; i < tags.length; i++) {
-    if(tags[i].thumbnail === null || tags[i].thumbnail === undefined) {
+    if (tags[i].thumbnail === null || tags[i].thumbnail === undefined) {
       tags[i].thumbnail = './images/preparingProduct.jpg'
     }
     mainBody.push(`
@@ -249,7 +249,7 @@ function logInForm() {
 }
 
 // 마이쇼핑 페이지
-function myShoppingForm(price) {
+function myShoppingForm(trans, price) {
   const information = /* html */`
     <div class="information">
       <div class="inner">
@@ -280,6 +280,9 @@ function myShoppingForm(price) {
   const goToLogin = () => {
     return localStorage.accessToken ? '#userinfo' : '#login'
   }
+  const transLookUp = () => {
+    return localStorage.accessToken ? `${trans}` : `0`
+  }
   const chargeLookUp = () => {
     return localStorage.accessToken ? `${price}` : `0`
   }
@@ -298,7 +301,7 @@ function myShoppingForm(price) {
         <a href="#myorder" class="order-list__item">
           <p class="icon order"></p>
           <p>주문 내역</p>
-          <p class="price">0건</p>
+          <p class="price">${transLookUp()}건</p>
           <i class="line--hover"></i>
         </a>
         <a href="#" class="order-list__item">
@@ -367,7 +370,7 @@ function myOrderForm() {
     <div class="tab-menu myorder">
       <div class="inner">
         <ul>
-          <li class="selected"><a href="#">주문 내역 조회 <span>(2)</span></a></li>
+          <li class="selected"><a href="#myorder">주문 내역 조회 <span>(2)</span></a></li>
           <li><a href="#">취소신청 내역 <span>(1)</span></a></li>
           <li><a href="#">과거주문(확정) 내역 <span>(2)</span></a></li>
         </ul>
@@ -413,7 +416,7 @@ function myOrderForm() {
             <col style="width: 61px;">
             <col style="width: 111px;">
             <col style="width: 111px;">
-            <col style="width: 111px;">
+            <col style="width: 150px;">
           </colgroup>
           <thead>
             <tr>
@@ -426,65 +429,7 @@ function myOrderForm() {
               <th scope="col">취소/확정</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <td class="date">
-                <p>2022-12-08</p>
-                <a href="#" class="order-number">
-                  20221208-0000123
-                </a>
-                <a href="#" class="">주문취소</a>
-              </td>
-              <td class="thumb">
-                <a href="#">
-                  <img src="https://acttomall.com/web/product/medium/202211/ce2cf7367043104db47c1d1355065bcb.jpg"
-                    alt="상품 사진">
-                </a>
-              </td>
-              <td class="product">
-                <strong class="name">
-                  <a href="#">상품명 자리 스피드 타입 C to LAN 어댑터</a>
-                </strong>
-                <p class="option">[옵션: LAN-04그레이]</p>
-              </td>
-              <td class="quantity">1</td>
-              <td class="price">21,900원</td>
-              <td class="state">
-                <p>주문 신청중</p>
-              </td>
-              <td class="decision">
-                <p>-</p>
-              </td>
-            </tr>
-            <tr>
-              <td class="date">
-                <p>2022-12-08</p>
-                <a href="#" class="order-number">
-                  20221208-0000123
-                </a>
-                <a href="#" class="">주문취소</a>
-              </td>
-              <td class="thumb">
-                <a href="#">
-                  <img src="https://acttomall.com/web/product/medium/202211/ce2cf7367043104db47c1d1355065bcb.jpg"
-                    alt="상품 사진">
-                </a>
-              </td>
-              <td class="product">
-                <strong class="name">
-                  <a href="#">상품명 자리 스피드 타입 C to LAN 어댑터</a>
-                </strong>
-                <p class="option">[옵션: LAN-04그레이]</p>
-              </td>
-              <td class="quantity">1</td>
-              <td class="price">21,900원</td>
-              <td class="state">
-                <p>주문 신청중</p>
-              </td>
-              <td class="decision">
-                <p>-</p>
-              </td>
-            </tr>
+          <tbody class="trans-product">
           </tbody>
         </table>
       </div>
