@@ -1,5 +1,5 @@
 import { doc } from "prettier";
-import { getData, getLogin, getLogOut, stateLogin, postSearch, getTransactions } from "./getdata.js";
+import { getData, getLogin, getLogOut, stateLogin, postSearch, getTransactions, getProductDetail } from "./getdata.js";
 import { router } from "./route.js";
 import { deliveryEl, returnEl, deliveryDes, returnDes, mouseenter, mouseleave } from './footer.js'
 import { joinForm, logInForm, myOrderForm, myShoppingForm, mainForm, productList, userInfoForm, userAccountForm, detailForm, paymentForm, myCancelOrderForm, myConfirOrderForm } from "./body.js";
@@ -7,7 +7,7 @@ import { editUserInfo, userOwnBank, addNewAccount, choiceBank, bankChargeLookUp,
 import { viewAllProduct } from '../admin/js/requests.js'
 import { payAccountList, payBankLoopUp, buyProducts, lookProducts, cancelProduct, allCheckBox } from "./payment.js";
 import { cancelOrder, confirOrder, transLookUp, cancelOrderLookUp, confirOrderLookUp } from "./myorder.js";
-import { detailScroll } from "./detail.js"
+import { buyProduct, shoppingBasket } from "./detail.js";
 
 // 변수
 const root = document.querySelector('main');
@@ -289,15 +289,18 @@ async function renderUserInfo() {
   cancelBank();
 }
 
-// detail 렌더링 (상품 상세페이지)
-async function renderDetail(productInfo) {
-  root.innerHTML = detailForm(productInfo)
-  // detailScroll()
+// detail 렌더링
+async function renderDetail() {
+  const productId = location.hash.split('/')[1]
+  const res = await getProductDetail(productId)
+  root.innerHTML = detailForm(res)
+  buyProduct()
+  shoppingBasket(res)
 }
 
 // payment 렌더링
 async function renderPayment() {
-  localStorage.setItem('cart', JSON.stringify(['fa5dOlMcvB8uoFDgvZWB', 'Ccm6lX9ORcpSAS8vXDBs'])) // 추후 삭제
+  // localStorage.setItem('cart', JSON.stringify(['fa5dOlMcvB8uoFDgvZWB', 'Ccm6lX9ORcpSAS8vXDBs'])) // 추후 삭제
   root.innerHTML = paymentForm()
   lookProducts()
   allCheckBox()

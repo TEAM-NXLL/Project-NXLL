@@ -678,54 +678,6 @@ function userAccountForm(totalBalance) {
 
 // 상품 상세페이지
 function detailForm(productInfo) {
-  const main = document.querySelector('main')
-  const buyBtn = document.querySelector('.buy-btn')
-  const cartBtn = document.querySelector('.cart-btn')
-  console.log(cartBtn)
-
-  // main.addEventListener('click', ({ target }) => {
-  //   let cartList = []
-  //   let count = 1
-  //   if (target.closest('.tab-menu')) {
-  //     const topBanner = document.querySelector('.top-banner')
-  //     const el = target['name']
-  //     const nameEl = document.querySelector(`.${el}`)
-  //     const scrollH = nameEl.getBoundingClientRect().top - topBanner.offsetHeight
-  //     scrollTo({ left: 0, top: window.pageYOffset + scrollH, behavior: 'smooth' })
-  //   }
-
-  //   if (target === cartBtn) {
-  //     cartList = JSON.parse(localStorage.getItem('cart')) || [] // [{}, {} ...]
-  //     let newProduct = {
-  //       'ID': productInfo.id,
-  //       'QUANTITY': count
-  //     }
-
-  //     // 카드가 안비어 있을 때
-  //     if (cartList.length !== 0) {
-  //       // 새롭에 추가한 상품의 id가 카트에 있을 때, 
-  //       cartList.forEach(el => {
-  //         if (el.ID === productInfo.id) {
-  //           el.QUANTITY += 1
-  //         }
-  //       })
-  //       // 새롭게 추가한 상품의 id가 카트에 없을 때
-  //       const cartCheck = cartList.filter(el => el.ID === productInfo.id)
-  //       if (cartCheck.length === 0) {
-  //         cartList.push(newProduct)
-  //       }
-  //       // 로컬 스토리지에 해당 데이터 삽입
-  //       localStorage.setItem('cart', JSON.stringify(cartList))
-  //       // 카트가 비어있을 때, 
-  //     } else {
-  //       console.log("빈배열로 이동") //
-  //       cartList.push(newProduct)
-  //       localStorage.cart = (JSON.stringify(cartList))
-  //     }
-
-  //     // const modalPayment = document.querySelector('.modal-payment')
-  //   }
-  // })
 
   if (productInfo.thumbnail === null || productInfo.thumbnail === undefined) {
     productInfo.thumbnail = './images/preparingProduct.jpg'
@@ -789,74 +741,9 @@ function detailForm(productInfo) {
         </div>
       </div>
     </div>
-  </div><!-- PRODUCT-DETAIL -->  
-  `
-}
-
-function modalPayment() {
-  return /* html */`
+  </div><!-- PRODUCT-DETAIL -->
   <!-- MODAL-PAYMENT -->
-  <div class="modal-payment">
-    <div class="modal-payment__header">
-      <h3>장바구니 담기</h3>
-      <span>물품을 미리 확인하세요</span>
-      <button>닫기 버튼</button>
-    </div>
-    <div class="modal-payment__body">
-      <div class="modal-payment__title">
-        <em>CART - LIST</em>
-        <span class="subtext">내 장바구니 목록입니다.</span>
-        <span class="total">총 <strong>3</strong>개의 물품</span>
-      </div>
-      <div class="modal-payment__list">
-        <div class="modal-payment__item">
-          <div class="thumb">
-            <img src="/images/christmasGift.jpg" alt="상품 대표이미지">
-          </div>
-          <div class="description">
-            <p class="name">
-              [크리스마스 증정 이벤트] 엑토 레트로 미니 블루투스 키보드 B303 엑토 레트로 미니 블루투스 키보드 B303
-            </p>
-            <p class="delivery-fee">배송비 무료</p>
-          </div>
-          <div class="price">
-            <p>49,900 원</p>
-          </div>
-        </div>
-        <div class="modal-payment__item">
-          <div class="thumb">
-            <img src="/images/christmasGiftMini1.jpg" alt="상품 대표이미지">
-          </div>
-          <div class="description">
-            <p class="name">
-              [크리스마스 증정 이벤트] 엑토 레트로 미니 블루투스 키보드 B303
-            </p>
-            <p class="delivery-fee">배송비 무료</p>
-          </div>
-          <div class="price">
-            <p>49,900 원</p>
-          </div>
-        </div>
-      </div>
-      <div class="pagination">
-      <button class="pagination--control"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
-      </button>
-      <div class="pagination--page">
-        <ul>
-          <li class="active">1</li>
-          <li>2</li>
-        </ul>
-      </div>
-      <button class="pagination--control">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg>
-      </button>
-    </div>
-    </div>    
-    <div class="modal-payment__footer">
-      <span>* 쇼핑을 계속하시려면 이 창을 닫아주시길 바랍니다.</span>
-      <a href="#" class="btn-buy"><i class="fas fa-check"></i>바로 구매하기</a>
-    </div>
-  </div><!-- MODAL-PAYMENT -->
+  <div class="modal-payment"></div><!-- MODAL-PAYMENT -->
   `
 }
 

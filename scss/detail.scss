@@ -360,10 +360,14 @@
         }
       }
 
-      // &__list {}
+      &__list {
+        max-height: 350px;
+        overflow: auto;
+      }
 
       &__item {
         display: flex;
+        align-items: center;
         text-align-last: left;
         font-weight: bold;
         border-top: 1px solid #f0f0f0;
@@ -399,6 +403,13 @@
             color: #999;
           }
 
+        }
+
+        .quantity {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          width: 130px;
         }
 
         .price {
