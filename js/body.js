@@ -36,7 +36,7 @@ function mainForm() {
     </section><!-- 키보드 상품목록 -->
 
     <!-- 마우스 배너 -->
-    <section class="keyboard-banner mt70">
+    <section class="keyboard-banner">
       <div class="swiper keyboardSwiper">
         <ul class="swiper-wrapper">
           <li class="swiper-slide"><a href="#"><img src="./images/slide2-banner1.jpg" alt=""></a></li>

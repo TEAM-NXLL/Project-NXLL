@@ -15,6 +15,7 @@ const root = document.querySelector('main');
 //   loginRender()
 //   joinRender()
 // }
+
 const keyboard = []
 const mouse = []
 const newItem = []
@@ -30,7 +31,7 @@ async function renderMain() {
 
   if (keyboard) {
     keyboardList.innerHTML = `<img src="./images/commingSoon.png"/>`
-    keyboardList.style.cssText = 'padding-bottom: 170px;';
+    keyboardList.style.cssText = 'padding-bottom: 140px;';
   }
   if (mouse) {
     mouseList.innerHTML = `<img src="./images/commingSoon.png"/>`
@@ -101,28 +102,46 @@ async function productSearch(e) {
     if (keyword.value === '') {
       alert('검색어를 입력해 주세요.')
     } else {
-      let searchText = keyword.value
-      let searchTags
+
+      let searchText = (keyword.value).trim()
+      let searchTags = []
+
       const data = await postSearch(searchText, searchTags);
-      console.log(data)
-      for (let i = 0; i < data.length; i++) {
-        searchTags = data[i].tags
-      }
-      console.log(searchTags)
+      // console.log(data,'가져온 데이터')
+
+      // console.log(searchTags)
+
       root.innerHTML = ''
       root.append(rootInner)
 
       if (data.length === 0) {
-        rootInner.innerHTML = `
+        rootInner.innerHTML = /* HTML */ `
           <div class="imgBox" style="width:100%; height:300px; margin-top:100px">
-            <img src="./images/emptySearch.gif""/>
+            <img src="./images/emptySearch.gif"/>
             </div>
             <p style="text-align:center; margin-bottom:100px; color: #333; font-size:15px;">
-            <i class="fa-solid fa-quote-left" style="vertical-align:top;"></i> <strong style="font-weight:bold; font-size:34px;">${keyword.value}</strong> <i class="fa-sharp fa-solid fa-quote-right" style="vertical-align:bottom; margin-right:10px;"></i>의 검색 결과가 없습니다.
+            <i class="fa-solid fa-quote-left" style="vertical-align:top;"></i> <strong style="font-weight:bold; font-size:34px;">${searchText}</strong> <i class="fa-sharp fa-solid fa-quote-right" style="vertical-align:bottom; margin-right:10px;"></i>의 검색 결과가 없습니다.
             </p>
         `
-      }
+      } else {
+        rootInner.classList.add('block5')
+        rootInner.style.marginTop = '60px'
 
+        for (let i = 0; i < data.length; i++) {
+          searchText = data[i].title
+          searchTags.push(data[i].tags)
+          // console.log(searchText)
+        }
+        // console.log(searchTags.join(''))
+
+        if (searchTags.join('').includes(searchText)) {
+          rootInner.innerHTML = productList(data)
+          console.log(searchTags.join('').includes(searchText))
+        } else if (searchText.includes(searchText)) {
+          rootInner.innerHTML = productList(data)
+        }
+
+      }
       keyword.value = ''
     }
 
