@@ -12,42 +12,49 @@ export function lookProducts() {
   if (cart.length > 0) {
     cart.forEach(async (e) => {
       const res = await getProductDetail(e);
-      tbodyEl.innerHTML += /* html */ `
-      <tr>
+      const product = document.createElement('tr');
+      product.innerHTML = /* html */ `
         <td>
           <input type="checkbox" data-id="${res.id}" class="product-checkbox" />
-         </td>
-         <td>
-           <a href="#detail/${res.id}">
-             <img src="${res.thumbnail}" alt="" />
-           </a>
-         </td>
-         <td>
-           <span>${res.title}</span> <br />
-         </td>
-         <td>${res.price.toLocaleString()}원</td>
-         <td>1</td>
-         <td>[무료 배송]</td>
-         <td class="product-price">${res.price.toLocaleString()}원</td>
-       </tr>
-      `;
-      
+        </td>
+        <td>
+          <a href="#detail/${res.id}">
+            <img src="${res.thumbnail}" alt="" />
+          </a>
+        </td>
+        <td>
+          <span>${res.title}</span> <br />
+        </td>
+        <td>${res.price.toLocaleString()}원</td>
+        <td>1</td>
+        <td>[무료 배송]</td>
+        <td class="product-price">${res.price.toLocaleString()}원</td>`;
+      priceCheck(product)
+      tbodyEl.append(product);
     });
   } else return;
 }
 
 // 가격 렌더링 
-export function renderTotalPrice(){
-  const totalPriceEl = document.querySelector('.total-price');
-  const product = document.querySelectorAll('.products tr');
-  
+function renderTotalPrice(){
+  const totalPriceEl = document.querySelectorAll('.total-price');
+  const products = document.querySelectorAll('.products tr');
   let totalPrice = 0;
-  product.forEach(el => {
+  products.forEach( el => {
     if  (el.querySelector('.product-checkbox').checked) {
-      totalPrice += +el.querySelector('td:nth-child(4)').textContent.slice(0,-1).replace(',',''); // 로케일 문자를 숫자로 변환
+      totalPrice += parseInt(el.querySelector('td:nth-child(4)').textContent.slice(0,-1).replace(',','')); // 로케일 문자를 숫자로 변환
     }
   })
-  totalPriceEl.textContent = totalPrice.toLocaleString() + `원`;
+  totalPriceEl.forEach( el => {
+    el.textContent = totalPrice.toLocaleString() + `원`;
+  })
+}
+
+// 선택 박스 상태 변화에 따라 가격 렌더링 변화
+export function priceCheck(product){
+  const checkBox = product.querySelector('.product-checkbox')
+  console.log(checkBox)
+  checkBox.addEventListener('change', () => renderTotalPrice())
 }
 
 // 제품 전체 선택 및 해제
@@ -62,6 +69,7 @@ export function allCheckBox(){
     } else {
       eachCheckBoxs.forEach(el => el.checked = false )
     }
+    renderTotalPrice()
   })
 }
 
@@ -139,6 +147,8 @@ export async function payBankLoopUp() {
   });
 }
 
+
+
 // 결제하기
 export async function buyProducts() {
   const paymentBtn = document.querySelector('.payment-btn');
@@ -147,7 +157,18 @@ export async function buyProducts() {
     const dataResult = e.target[e.target.selectedIndex];
     const accountId = dataResult.dataset.id;
     paymentBtn.addEventListener('click', async () => {
-      await getBuy(localStorage.accessToken, productId, accountId);
+      const checkBoxs = document.querySelectorAll('.product-checkbox');
+      let productIds = []
+      checkBoxs.forEach(el => {
+        if (el.checked){
+          productIds.push(el.dataset.id)
+        }
+      })
+      productIds.forEach( async productId => {
+        await getBuy(localStorage.accessToken, productId, accountId);
+      })
+      // 결제 완료시 로컬 스토리지 카트 삭제
+      localStorage.cart = JSON.stringify([]);
       alert('거래가 완료되었습니다.');
       location.hash = '#myorder';
     });
