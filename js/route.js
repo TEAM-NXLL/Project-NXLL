@@ -1,4 +1,4 @@
-import { loginRender, joinRender, renderMyShop, renderMyOrder, renderMain, renderUserInfo, renderDetail, renderPayment } from "./main"
+import { loginRender, joinRender, renderMyShop, renderMyOrder, renderMain, renderUserInfo, renderDetail, renderPayment, renderMyCancelOrder, renderMyConfirOrder } from "./main.js"
 import { getProductDetail } from "./getdata.js"
 
 export async function router() {
@@ -8,24 +8,22 @@ export async function router() {
     renderMain()
   }
   else if (routePath === '#login') {
-    if (localStorage.length === 0) {
-      loginRender()
-    } else {
-      return
-    }
+    loginRender()
   }
   else if (routePath === '#join') {
-    if (localStorage.length === 0) {
-      joinRender()
-    } else {
-      return
-    }
+    joinRender()
   }
   else if (routePath === '#myshop') {
     renderMyShop()
   }
   else if (routePath === '#myorder') {
     renderMyOrder()
+  }
+  else if (routePath === '#myorder/cancel') {
+    renderMyCancelOrder()
+  }
+  else if (routePath === '#myorder/confir') {
+    renderMyConfirOrder()
   }
   else if (routePath === '#userinfo') {
     renderUserInfo()

@@ -1,11 +1,13 @@
 import { doc } from "prettier";
-import { getData, getLogin, getLogOut, stateLogin } from "./getdata.js";
+import { getData, getLogin, getLogOut, stateLogin, postSearch, getTransactions } from "./getdata.js";
 import { router } from "./route.js";
 import { deliveryEl, returnEl, deliveryDes, returnDes, mouseenter, mouseleave } from './footer.js'
-import { joinForm, logInForm, myOrderForm, myShoppingForm, mainForm, userInfoForm, userAccountForm, detailForm, paymentForm } from "./body.js";
+import { joinForm, logInForm, myOrderForm, myShoppingForm, mainForm, productList, userInfoForm, userAccountForm, detailForm, paymentForm, myCancelOrderForm, myConfirOrderForm } from "./body.js";
 import { editUserInfo, userOwnBank, addNewAccount, choiceBank, bankChargeLookUp, ownAccountList, addAbleAccountList, cancelBank } from "./userInfo.js";
 import { viewAllProduct } from '../admin/js/requests.js'
-import { payAccountList, payBankLoopUp, buyProducts, lookProducts, cancelProduct } from './payment.js';
+import { payAccountList, payBankLoopUp, buyProducts, lookProducts, cancelProduct, allCheckBox } from "./payment.js";
+import { cancelOrder, confirOrder, transLookUp, cancelOrderLookUp, confirOrderLookUp } from "./myorder.js";
+import { detailScroll } from "./detail.js"
 
 // 변수
 const root = document.querySelector('main');
@@ -14,6 +16,10 @@ const root = document.querySelector('main');
 //   loginRender()
 //   joinRender()
 // }
+
+const keyboard = []
+const mouse = []
+const newItem = []
 
 // 메인 페이지
 async function renderMain() {
@@ -24,16 +30,20 @@ async function renderMain() {
   const mouseList = document.querySelector('.mouse > .inner')
   const newItemList = document.querySelector('.newItem > .inner')
 
-  const keyboard = []
-  const mouse = []
-  const newItem = []
-
-  // if(keyboard) {
-  //   keyboardList.innerHTML = '상품 준비중'
-  // }
+  if (keyboard) {
+    keyboardList.innerHTML = `<img src="./images/commingSoon.png"/>`
+    keyboardList.style.cssText = 'padding-bottom: 140px;';
+  }
+  if (mouse) {
+    mouseList.innerHTML = `<img src="./images/commingSoon.png"/>`
+    mouseList.style.cssText = 'padding-bottom: 70px;';
+  }
+  if (newItem) {
+    newItemList.innerHTML = `<img src="./images/commingSoon.png"/>`
+    newItemList.style.cssText = 'padding-bottom: 70px;';
+  }
 
   data.forEach(e => {
-    console.log(e)
     if (e['tags'].includes('키보드')) {
       keyboard.push(e)
       keyboardList.innerHTML = productList(keyboard)
@@ -47,60 +57,6 @@ async function renderMain() {
       newItemList.innerHTML = productList(newItem);
     }
   })
-
-  function productList(tags) {
-    const colorChart = ["beige", "pastelBeige", "mint", "pink", "white", "navy", "blueNavy", "black", "green", "gray"]
-    const mainBody = []
-
-    for (let i = 0; i < tags.length; i++) {
-      const priceBox = document.querySelector('.priceBox')
-      if (tags[i].thumbnail === null || tags[i].thumbnail === undefined) {
-        tags[i].thumbnail = './images/preparingProduct.jpg'
-      }
-      mainBody.push(`
-        <li>
-          <a href="#details/${tags[i].id}"> 
-            <div class="imgBox">
-              <img src="${tags[i].thumbnail}" alt="">
-            </div>
-            <div class="colorBox">
-      `)
-
-      const randomNum = Math.ceil(Math.random() * 5)
-      let randomIndexArray = []
-      for (let j = 0; j < randomNum; j++) {
-        const colorNum = Math.floor(Math.random() * 10);
-
-        if (randomIndexArray.indexOf(colorNum) === -1) {
-          randomIndexArray.push(colorNum);
-          mainBody.push(`
-                  <span class='${colorChart[colorNum]}'></span>
-              `);
-        }
-      }
-
-      const discountValue = Math.floor(Math.random() * 9 + 1) * 8;
-
-      mainBody.push(`
-              </div >
-              <div class="textBox">
-                    ${tags[i].title} <span>B300${i}</span>
-              </div>
-              <div class="priceBox">
-                <span class="discount">${tags[
-          i
-        ].price.toLocaleString()}원</span> 
-                ${Math.floor(
-          (Number(tags[i].price) * (100 - discountValue)) / 100,
-        ).toLocaleString()}원<br />
-                <span class="salePercent">${discountValue}% SALE</span>
-              </div>
-            </a>
-        </li>
-      `)
-    }
-    return mainBody.join('');
-  }
 
   // 메인 스와이퍼
   new Swiper('.mainSwiper', {
@@ -133,6 +89,67 @@ async function renderMain() {
     },
   });
 }
+
+// 제품 검색
+async function productSearch(e) {
+  const keyword = document.querySelector('#keyword');
+
+  if (e.key === 'Enter') {
+    let rootInner = document.createElement('ul')
+    rootInner.classList.add('inner')
+    // const searchText = keyword.value;
+    // const searchTags = ''
+
+    if (keyword.value === '') {
+      alert('검색어를 입력해 주세요.')
+    } else {
+
+      let searchText = (keyword.value).trim()
+      let searchTags = []
+
+      const data = await postSearch(searchText, searchTags);
+      // console.log(data,'가져온 데이터')
+
+      // console.log(searchTags)
+
+      root.innerHTML = ''
+      root.append(rootInner)
+
+      if (data.length === 0) {
+        rootInner.innerHTML = /* HTML */ `
+          <div class="imgBox" style="width:100%; height:300px; margin-top:100px">
+            <img src="./images/emptySearch.gif"/>
+            </div>
+            <p style="text-align:center; margin-bottom:100px; color: #333; font-size:15px;">
+            <i class="fa-solid fa-quote-left" style="vertical-align:top;"></i> <strong style="font-weight:bold; font-size:34px;">${searchText}</strong> <i class="fa-sharp fa-solid fa-quote-right" style="vertical-align:bottom; margin-right:10px;"></i>의 검색 결과가 없습니다.
+            </p>
+        `
+      } else {
+        rootInner.classList.add('block4')
+        rootInner.style.marginTop = '60px'
+
+        for (let i = 0; i < data.length; i++) {
+          searchText = data[i].title
+          searchTags.push(data[i].tags)
+          // console.log(searchText)
+        }
+        // console.log(searchTags.join(''))
+
+        if (searchTags.join('').includes(searchText)) {
+          rootInner.innerHTML = productList(data)
+          console.log(searchTags.join('').includes(searchText))
+        } else if (searchText.includes(searchText)) {
+          rootInner.innerHTML = productList(data)
+        }
+
+      }
+      keyword.value = ''
+    }
+
+  }
+}
+
+keyword.addEventListener('keyup', productSearch)
 
 // 로그인 페이지 해시 값 + 화면 변경
 function loginRender() {
@@ -220,12 +237,40 @@ async function renderMyShop() {
   const { totalBalance, accounts } = await userOwnBank();
   // const total = totalBalance.toLocaleString()
   const total = totalBalance ? totalBalance.toLocaleString() : '';
-  root.innerHTML = myShoppingForm(total);
+  const transactions = await getTransactions(localStorage.accessToken)
+  root.innerHTML = myShoppingForm(transactions.length, total);
+}
+
+// myorder 렌더링 공통 사항
+async function listLookUp() {
+  const products = await getTransactions(localStorage.accessToken)
+  const cancels = products.filter(product => product.isCanceled === true)
+  const confirs = products.filter(product => product.done === true)
+  return { products, cancels, confirs }
 }
 
 // myorder 렌더링
-function renderMyOrder() {
-  root.innerHTML = myOrderForm();
+async function renderMyOrder() {
+  const { products, cancels, confirs } = await listLookUp()
+  root.innerHTML = myOrderForm(products.length, cancels.length, confirs.length);
+  transLookUp().then(res => {
+    cancelOrder()
+    confirOrder()
+  })
+}
+
+// myorder cancel 렌더링
+async function renderMyCancelOrder() {
+  const { products, cancels, confirs } = await listLookUp()
+  root.innerHTML = myCancelOrderForm(products.length, cancels.length, confirs.length)
+  cancelOrderLookUp()
+}
+
+// myorder confir 렌더링
+async function renderMyConfirOrder() {
+  const { products, cancels, confirs } = await listLookUp()
+  root.innerHTML = myConfirOrderForm(products.length, cancels.length, confirs.length)
+  confirOrderLookUp()
 }
 
 // userInfo 렌더링
@@ -244,17 +289,18 @@ async function renderUserInfo() {
   cancelBank();
 }
 
-// detail 렌더링
+// detail 렌더링 (상품 상세페이지)
 async function renderDetail(productInfo) {
-  root.innerHTML = detailForm(productInfo);
-  // detailScrollEvent();
+  root.innerHTML = detailForm(productInfo)
+  // detailScroll()
 }
 
 // payment 렌더링
 async function renderPayment() {
-  localStorage.setItem('cart', JSON.stringify(['bDsZ5y7DG9p39AlS05aj']))
+  localStorage.setItem('cart', JSON.stringify(['fa5dOlMcvB8uoFDgvZWB', 'Ccm6lX9ORcpSAS8vXDBs'])) // 추후 삭제
   root.innerHTML = paymentForm()
   lookProducts()
+  allCheckBox()
   const { accounts } = await userOwnBank()
   payAccountList(accounts)
   payBankLoopUp()
@@ -279,4 +325,4 @@ router();
   } else return
 })();
 
-export { loginRender, joinRender, logOut, renderMyShop, renderMyOrder, renderMain, renderUserInfo, renderDetail, renderPayment }
+export { loginRender, joinRender, logOut, renderMyShop, renderMyOrder, renderMain, renderUserInfo, renderDetail, renderPayment, renderMyCancelOrder, renderMyConfirOrder }

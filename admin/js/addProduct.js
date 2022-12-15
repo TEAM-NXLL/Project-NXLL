@@ -108,6 +108,7 @@ export function addItem(event) {
   selectedTags.forEach(tag => {
     tags.push(tag.value)
   });
+  console.log(tags)
   const description = document.querySelector('.add-product-description').value;
   const thumbnail = thumbnailEl.dataset.id;
   const photo = detailImgEl.dataset.id;

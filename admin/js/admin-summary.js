@@ -1,5 +1,5 @@
-import { viewAllProduct } from './requests';
-import { viewAllTransactions } from './requests';
+import { viewAllProduct } from './requests.js';
+import { viewAllTransactions } from './requests.js';
 
 export async function renderAdminSummary() {
   const allProduct = await viewAllProduct();
@@ -77,7 +77,7 @@ export async function renderAdminSummary() {
     /*html*/ `
     <span class="total-income-text">전체 판매액</span>
     <span class="total-income-num hilight">${allIncome}</span>
-    <span class="num-text">건</span>
+    <span class="num-text">원</span>
   `,
   );
   new Status(
