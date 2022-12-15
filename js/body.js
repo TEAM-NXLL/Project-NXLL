@@ -703,40 +703,40 @@ function userAccountForm(totalBalance) {
 
 // 상품 상세페이지
 function detailForm(productInfo) {
-  const main = document.querySelector('main')
+  // const main = document.querySelector('main')
 
-  main.addEventListener('click', ({ target }) => {
-    const buyBtn = document.querySelector('.buy-btn')
-    const cartBtn = document.querySelector('.cart-btn')
-    let cartList = []
-    if (target.closest('.tab-menu')) {
-      const topBanner = document.querySelector('.top-banner')
-      const el = target['name']
-      const nameEl = document.querySelector(`.${el}`)
-      const scrollH = nameEl.getBoundingClientRect().top - topBanner.offsetHeight
-      scrollTo({ left: 0, top: window.pageYOffset + scrollH, behavior: 'smooth' })
-    }
+  // main.addEventListener('click', ({ target }) => {
+  //   const buyBtn = document.querySelector('.buy-btn')
+  //   const cartBtn = document.querySelector('.cart-btn')
+  //   let cartList = []
+  //   if (target.closest('.tab-menu')) {
+  //     const topBanner = document.querySelector('.top-banner')
+  //     const el = target['name']
+  //     const nameEl = document.querySelector(`.${el}`)
+  //     const scrollH = nameEl.getBoundingClientRect().top - topBanner.offsetHeight
+  //     scrollTo({ left: 0, top: window.pageYOffset + scrollH, behavior: 'smooth' })
+  //   }
 
-    // 카트에 상품 담기 (localstorage.cart에 상품id 추가)
-    function addCart() {
-      cartList.push(productInfo.id)
-      localStorage.setItem('cart', JSON.stringify(cartList))
-    }
+  //   // 카트에 상품 담기 (localstorage.cart에 상품id 추가)
+  //   function addCart() {
+  //     cartList.push(productInfo.id)
+  //     localStorage.setItem('cart', JSON.stringify(cartList))
+  //   }
 
-    if (target === cartBtn) {
-      if (!localStorage.cart) addCart()
-      else {
-        cartList = [...JSON.parse(localStorage.cart)]
-        addCart()
-      }
-      const modalPayment = document.querySelector('.modal-payment')
-      modalPayment.classList.add('active')
-    }
-  })
+  //   if (target === cartBtn) {
+  //     if (!localStorage.cart) addCart()
+  //     else {
+  //       cartList = [...JSON.parse(localStorage.cart)]
+  //       addCart()
+  //     }
+  //     const modalPayment = document.querySelector('.modal-payment')
+  //     modalPayment.classList.add('active')
+  //   }
+  // })
 
-  if (productInfo.thumbnail === null || productInfo.thumbnail === undefined) {
-    productInfo.thumbnail = './images/preparingProduct.jpg'
-  }
+  // if (productInfo.thumbnail === null || productInfo.thumbnail === undefined) {
+  //   productInfo.thumbnail = './images/preparingProduct.jpg'
+  // }
 
   const discountValue = Math.floor(((Math.random() * 9) + 1)) * 8
 
