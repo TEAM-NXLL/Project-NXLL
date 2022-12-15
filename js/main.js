@@ -124,7 +124,7 @@ async function productSearch(e) {
             </p>
         `
       } else {
-        rootInner.classList.add('block5')
+        rootInner.classList.add('block4')
         rootInner.style.marginTop = '60px'
 
         for (let i = 0; i < data.length; i++) {
