@@ -71,3 +71,77 @@ export function confirOrder() {
     })
   })
 }
+
+// 취소 내역
+export async function cancelOrderLookUp() {
+  const transProductEl = document.querySelector('.trans-product')
+  const products = await getTransactions(localStorage.accessToken)
+  const cancels = products.filter(product => product.isCanceled === true)
+  cancels.forEach(cancel => {
+    transProductEl.innerHTML += /* html */ `
+    <tr class="buy-product">
+      <td class="date">
+        <p>${cancel.timePaid.slice(0, 10)}</p>
+        <p class="order-number">${cancel.detailId}</p>
+      </td>
+      <td class="thumb">
+        <a href="#detail/${cancel.product.productId}">
+          <img src=${cancel.product.thumbnail}
+            alt="상품 사진">
+        </a>
+      </td>
+      <td class="product">
+        <strong class="name">
+          ${cancel.product.title}
+        </strong> <br />
+        <span>${cancel.product.description}</span>
+      </td>
+      <td class="quantity">1</td>
+      <td class="price">${cancel.product.price.toLocaleString()}원</td>
+      <td class="state">
+        <p>주문 취소</p>
+      </td>
+      <td class="decision">
+        '-'
+      </td>
+    </tr>
+    `
+  })
+}
+
+// 확정 내역
+export async function confirOrderLookUp() {
+  const transProductEl = document.querySelector('.trans-product')
+  const products = await getTransactions(localStorage.accessToken)
+  const confirs = products.filter(product => product.done === true)
+  confirs.forEach(confir => {
+    transProductEl.innerHTML += /* html */ `
+    <tr class="buy-product">
+      <td class="date">
+        <p>${confir.timePaid.slice(0, 10)}</p>
+        <p class="order-number">${confir.detailId}</p>
+      </td>
+      <td class="thumb">
+        <a href="#detail/${confir.product.productId}">
+          <img src=${confir.product.thumbnail}
+            alt="상품 사진">
+        </a>
+      </td>
+      <td class="product">
+        <strong class="name">
+          ${confir.product.title}
+        </strong> <br />
+        <span>${confir.product.description}</span>
+      </td>
+      <td class="quantity">1</td>
+      <td class="price">${confir.product.price.toLocaleString()}원</td>
+      <td class="state">
+        <p>주문 확정</p>
+      </td>
+      <td class="decision">
+        '-'
+      </td>
+    </tr>
+    `
+  })
+}
