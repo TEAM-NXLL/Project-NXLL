@@ -8,75 +8,107 @@ export function buyProduct() {
   })
 }
 
-export function shoppingBasket(res) {
-  const productId = location.hash.split('/')[1]
-  const cartBtn = document.querySelector('.cart-btn')
+async function cart(product) {
+  const cartList = JSON.parse(localStorage.getItem('cart')) || []
 
-  async function getPrice() {
-    const res = await getProductDetail(productId)
-    // console.log(res.price)
-    return res.price
+  let newProduct = {
+    'ID': product.id,
+    'QUANTITY': 1,
+    'TITLE': product.title,
+    'THUMB': product.thumbnail,
+    'PRICE': product.price
   }
-  cartBtn.addEventListener('click', () => {
-    const cartList = JSON.parse(localStorage.getItem('cart')) || [] // [{}, {} ...]
-    let newProduct = {
-      'ID': productId,
-      'QUANTITY': 1,
-      'TITLE': res.title,
-      'THUMB': res.thumbnail,
-      'PRICE': res.price
-    }
-    // 카트가 안비어 있을 때
-    if (cartList.length !== 0) {
-      // 새롭에 추가한 상품의 id가 카트에 있을 때,
-      cartList.forEach(async (el) => {
-        const price = await getPrice()
-        if (el.ID === productId) {
-          el.QUANTITY += 1
-          el.PRICE = price * el.QUANTITY
-          console.log(price * el.QUANTITY)
-        }
-        localStorage.setItem('cart', JSON.stringify(cartList))
-      })
-      //
 
-      // 새롭게 추가한 상품의 id가 카트에 없을 때
-      const cartCheck = cartList.filter(el => el.ID === productId)
-      if (cartCheck.length === 0) {
-        cartList.push(newProduct)
+  if (cartList.length > 0) {
+    cartList.forEach(e => {
+      if (e.ID === product.id) {
+        e.QUANTITY += 1
+        e.PRICE = product.price * e.QUANTITY
+        localStorage.setItem('cart', JSON.stringify(cartList))
+      } else {
+        const cartCheck = cartList.filter(e => e.ID === product.id)
+        if (cartCheck.length === 0) {
+          cartList.push(newProduct)
+          localStorage.setItem('cart', JSON.stringify(cartList))
+        }
       }
-      // 로컬 스토리지에 해당 데이터 삽입
-      // localStorage.setItem('cart', JSON.stringify(cartList))
-      // 카트가 비어있을 때, 
-    } else {
-      console.log("빈배열로 이동")
-      cartList.push(newProduct)
-      localStorage.cart = (JSON.stringify(cartList))
-    }
+    })
+  } else {
+    cartList.push(newProduct)
+    localStorage.setItem('cart', JSON.stringify(cartList))
+  }
+}
+
+export function shoppingBasket(product) {
+  console.log(product)
+  const cartBtn = document.querySelector('.cart-btn')
+  cartBtn.addEventListener('click', () => {
+    cart(product)
     showModal()
   })
+  // async function getPrice() {
+  //   const res = await getProductDetail(productId)
+  //   return res.price
+  // }
+  // cartBtn.addEventListener('click', () => {
+  //   const cartList = JSON.parse(localStorage.getItem('cart')) || [] // [{}, {} ...]
+  //   let newProduct = {
+  //     'ID': productId,
+  //     'QUANTITY': 1,
+  //     'TITLE': product.title,
+  //     'THUMB': product.thumbnail,
+  //     'PRICE': product.price
+  //   }
+  //   // 카트가 안비어 있을 때
+  //   if (cartList.length !== 0) {
+  //     // 새롭에 추가한 상품의 id가 카트에 있을 때,
+  //     cartList.forEach(async (el) => {
+  //       const price = await getPrice()
+  //       if (el.ID === productId) {
+  //         el.QUANTITY += 1
+  //         el.PRICE = price * el.QUANTITY
+  //         console.log(price * el.QUANTITY)
+  //       }
+  //       localStorage.setItem('cart', JSON.stringify(cartList))
+  //     })
+  //     //
 
-  // 상품 총 수량 구하기
-  function totalQuantity() {
-    const cartList = JSON.parse(localStorage.getItem('cart')) || []
-    let quant = 0
-    cartList.forEach(el => {
-      quant += Number(el.QUANTITY)
-    })
-    return quant
-  }
+  //     // 새롭게 추가한 상품의 id가 카트에 없을 때
+  //     const cartCheck = cartList.filter(el => el.ID === productId)
+  //     if (cartCheck.length === 0) {
+  //       cartList.push(newProduct)
+  //     }
+  //     // 로컬 스토리지에 해당 데이터 삽입
+  //     // localStorage.setItem('cart', JSON.stringify(cartList))
+  //     // 카트가 비어있을 때, 
+  //   } else {
+  //     console.log("빈배열로 이동")
+  //     cartList.push(newProduct)
+  //     localStorage.cart = (JSON.stringify(cartList))
+  //   }
+}
 
-  //상품 총 금액 구하기
-  function totalPrice() {
+// 상품 총 수량 구하기
+function totalQuantity() {
+  const cartList = JSON.parse(localStorage.getItem('cart')) || []
+  let quant = 0
+  cartList.forEach(el => {
+    quant += Number(el.QUANTITY)
+  })
+  return quant
+}
 
-  }
+//상품 총 금액 구하기
+function totalPrice() {
 
-  // 모달창
-  function showModal() {
-    const cartList = JSON.parse(localStorage.getItem('cart')) || []
-    const MODAL = document.querySelector('.modal-payment')
-    MODAL.classList.add('active')
-    MODAL.innerHTML = /* html */`
+}
+
+// 모달창
+function showModal() {
+  const cartList = JSON.parse(localStorage.getItem('cart')) || []
+  const MODAL = document.querySelector('.modal-payment')
+  MODAL.classList.add('active')
+  MODAL.innerHTML = /* html */`
       <div class="modal-payment__header">
         <h3>장바구니 담기</h3>
         <span>물품을 미리 확인하세요</span>
@@ -100,11 +132,11 @@ export function shoppingBasket(res) {
       </div>
     `
 
-    const MODAL_LIST = document.querySelector('.modal-payment__list')
-    cartList.forEach(item => {
-      const MODAL_ITEM = document.createElement('div')
-      MODAL_ITEM.classList.add('modal-payment__item')
-      MODAL_ITEM.innerHTML = /* html */`
+  const MODAL_LIST = document.querySelector('.modal-payment__list')
+  cartList.forEach(item => {
+    const MODAL_ITEM = document.createElement('div')
+    MODAL_ITEM.classList.add('modal-payment__item')
+    MODAL_ITEM.innerHTML = /* html */`
         <div class="thumb">
           <img src="${item.THUMB}" alt="상품 대표이미지">
         </div>
@@ -121,50 +153,49 @@ export function shoppingBasket(res) {
           <p>${item.PRICE} 원</p>
         </div>
       `
-      MODAL_LIST.append(MODAL_ITEM)
+    MODAL_LIST.append(MODAL_ITEM)
+  })
+
+  const btnClose = document.querySelector('.btn-close')
+  const btnPlus = document.querySelectorAll('.btn-plus')
+  const btnMinus = document.querySelectorAll('.btn-minus')
+  btnClose.addEventListener('click', () => {
+    MODAL.classList.remove('active')
+  })
+  // 수량 ++
+  btnPlus.forEach(el => el.addEventListener('click', ({ target }) => {
+    const text = target.closest('div').children[1]
+    text.innerHTML = Number(text.textContent) + 1
+
+    const productId = target.closest('.quantity').dataset.id
+    cartList.forEach(async (el) => {
+      const price = await getPrice()
+      if (el.ID === productId) {
+        el.QUANTITY += 1
+        el.PRICE = price * el.QUANTITY
+        console.log(price * el.QUANTITY)
+      }
+      // console.log(await getPrice())
     })
+    // async function getPrice() {
+    //   const res = await getProductDetail(productId)
+    //   return res.price
+    // }
+    localStorage.setItem('cart', JSON.stringify(cartList))
+    showModal()
+  }))
+  // 수량--
+  btnMinus.forEach(el => el.addEventListener('click', ({ target }) => {
+    const text = target.closest('div').children[1]
+    text.innerHTML = Number(text.textContent) - 1
 
-    const btnClose = document.querySelector('.btn-close')
-    const btnPlus = document.querySelectorAll('.btn-plus')
-    const btnMinus = document.querySelectorAll('.btn-minus')
-    btnClose.addEventListener('click', () => {
-      MODAL.classList.remove('active')
+    const productId = target.closest('.quantity').dataset.id
+    cartList.forEach(el => {
+      if (el.ID === productId) {
+        el.QUANTITY -= 1
+      }
     })
-    // 수량 ++
-    btnPlus.forEach(el => el.addEventListener('click', ({ target }) => {
-      const text = target.closest('div').children[1]
-      text.innerHTML = Number(text.textContent) + 1
-
-      const productId = target.closest('.quantity').dataset.id
-      cartList.forEach(async (el) => {
-        const price = await getPrice()
-        if (el.ID === productId) {
-          el.QUANTITY += 1
-          el.PRICE = price * el.QUANTITY
-          console.log(price * el.QUANTITY)
-        }
-        // console.log(await getPrice())
-      })
-      // async function getPrice() {
-      //   const res = await getProductDetail(productId)
-      //   return res.price
-      // }
-      localStorage.setItem('cart', JSON.stringify(cartList))
-      showModal()
-    }))
-    // 수량--
-    btnMinus.forEach(el => el.addEventListener('click', ({ target }) => {
-      const text = target.closest('div').children[1]
-      text.innerHTML = Number(text.textContent) - 1
-
-      const productId = target.closest('.quantity').dataset.id
-      cartList.forEach(el => {
-        if (el.ID === productId) {
-          el.QUANTITY -= 1
-        }
-      })
-      localStorage.setItem('cart', JSON.stringify(cartList))
-      showModal()
-    }))
-  }
+    localStorage.setItem('cart', JSON.stringify(cartList))
+    showModal()
+  }))
 }
