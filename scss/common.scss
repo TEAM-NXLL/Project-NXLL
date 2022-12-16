@@ -193,35 +193,6 @@ p {
 }
 
 // 한 줄 당 박스 갯수
-.block2 {
-  display: flex;
-  flex-wrap: wrap;
-
-  li {
-    width: calc(50% - 10px);
-    margin-right: 20px;
-    margin-bottom: 60px;
-
-    &:nth-child(2n) {
-      margin-right: 0;
-    }
-
-    .imgBox {
-      height: 790px;
-    }
-
-    &:hover {
-      .imgBox {
-        > img {
-          &.imgHover {
-            opacity: 1;
-          }
-        }
-      }
-    }
-  }
-}
-
 .block3 {
   display: flex;
   flex-wrap: wrap;
@@ -251,6 +222,26 @@ p {
   }
 }
 
+.block4 {
+  display: flex;
+  flex-wrap: wrap;
+
+  li {
+    width: calc(25% - 15px);
+    margin-right: 20px;
+    margin-bottom: 60px;
+
+    .imgBox {
+      height: 400px;
+      background-color: #e5e5e5;
+    }
+
+    &:nth-child(4n) {
+      margin-right: 0;
+    }
+  }
+}
+
 .block5 {
   display: flex;
   flex-wrap: wrap;
@@ -260,23 +251,12 @@ p {
     margin-right: 20px;
     margin-bottom: 60px;
 
-    &:nth-child(5n) {
-      margin-right: 0;
+    .imgBox {
+      height: 237px;
+      background-color: #e5e5e5;
     }
-  }
-}
 
-.block10 {
-  display: flex;
-  flex-wrap: wrap;
-
-  li {
-    width: 150px;
-    height: 150px;
-    margin-right: 20px;
-    margin-bottom: 60px;
-
-    &:nth-child(10n) {
+    &:nth-child(5n) {
       margin-right: 0;
     }
   }

@@ -9,16 +9,16 @@
     position: fixed;
     z-index: 3;
     top: 300px;
-    background-color: rgb(37, 87, 179);
-    border-radius: 10px;
-    box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2);
+    background-color: #9baee0;
+    border-radius: 20px;
+    box-shadow: 8px 8px 2px 1px rgba(57, 57, 102, 0.2);
 
     .toast {
       color: whitesmoke;
-      font-size: 30px;
+      font-size: 20px;
       line-height: 100px;
       text-align: center;
-      width: 400px;
+      width: 380px;
       height: 100px;
     }
   }
