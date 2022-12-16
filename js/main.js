@@ -57,19 +57,7 @@ async function renderMain() {
       newItem.push(e)
       newItemList.innerHTML = productList(newItem);
     }
-  })
-
-  // if(data[i].isSoldOut) {
-  //   const priceBox = document.querySelectorAll('.priceBox')
-  //   priceBox.forEach(e => {
-  //     e.append(/* HTML */`
-  //         매진
-  //     `)
-  //   })
-  //   // priceBox.append(/* HTML */`
-  //   //   매진
-  //   // `)
-  // }
+  })  
 
   // 메인 스와이퍼
   new Swiper('.mainSwiper', {
@@ -116,6 +104,7 @@ async function productSearch(e) {
     } else {
       let searchText = keyword.value.trim()
       let searchTags = []
+      let searchTitle = []
 
       const data = await postSearch(searchText, searchTags);
       // console.log(data)
@@ -135,20 +124,20 @@ async function productSearch(e) {
       } else {
         rootInner.classList.add('block4')
         rootInner.style.margin = '140px auto 100px'
-        for(let i = 0; i < data.length; i++) {
-          // 상품이름으로 검색
-          // if(data[i].title.includes(searchText)) {
-          //   rootInner.innerHTML = productList(data)
-          // } 
+        
+        data.forEach(e => { 
           // 상품종류로 검색
-          console.log(data[i])
-          if(data[i].tags.includes(searchText)) {
-            searchTags.push(data[i].tags)
-            console.log(searchTags)
-            rootInner.innerHTML += productList(data)
-            
+          // if (e['tags'].includes(searchText)) {
+          //   searchTags.push(e)
+          //   rootInner.innerHTML = productList(searchTags)
+          // }
+
+          // 상품명으로 검색
+          if (e['title'].includes(searchText)) {
+            searchTitle.push(e)
+            rootInner.innerHTML = productList(searchTitle)
           }
-        }
+        })  
       }
       keyword.value = ''
     }
