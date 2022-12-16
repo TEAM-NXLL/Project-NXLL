@@ -741,9 +741,76 @@ function detailForm(productInfo) {
         </div>
       </div>
     </div>
-  </div><!-- PRODUCT-DETAIL -->
+  </div><!-- PRODUCT-DETAIL -->  
   <!-- MODAL-PAYMENT -->
   <div class="modal-payment"></div><!-- MODAL-PAYMENT -->
+  `
+}
+
+function modalPayment() {
+  return /* html */`
+  <!-- MODAL-PAYMENT -->
+  <div class="modal-payment">
+    <div class="modal-payment__header">
+      <h3>장바구니 담기</h3>
+      <span>물품을 미리 확인하세요</span>
+      <button>닫기 버튼</button>
+    </div>
+    <div class="modal-payment__body">
+      <div class="modal-payment__title">
+        <em>CART - LIST</em>
+        <span class="subtext">내 장바구니 목록입니다.</span>
+        <span class="total">총 <strong>3</strong>개의 물품</span>
+      </div>
+      <div class="modal-payment__list">
+        <div class="modal-payment__item">
+          <div class="thumb">
+            <img src="/images/christmasGift.jpg" alt="상품 대표이미지">
+          </div>
+          <div class="description">
+            <p class="name">
+              [크리스마스 증정 이벤트] 엑토 레트로 미니 블루투스 키보드 B303 엑토 레트로 미니 블루투스 키보드 B303
+            </p>
+            <p class="delivery-fee">배송비 무료</p>
+          </div>
+          <div class="price">
+            <p>49,900 원</p>
+          </div>
+        </div>
+        <div class="modal-payment__item">
+          <div class="thumb">
+            <img src="/images/christmasGiftMini1.jpg" alt="상품 대표이미지">
+          </div>
+          <div class="description">
+            <p class="name">
+              [크리스마스 증정 이벤트] 엑토 레트로 미니 블루투스 키보드 B303
+            </p>
+            <p class="delivery-fee">배송비 무료</p>
+          </div>
+          <div class="price">
+            <p>49,900 원</p>
+          </div>
+        </div>
+      </div>
+      <div class="pagination">
+      <button class="pagination--control"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
+      </button>
+      <div class="pagination--page">
+        <ul>
+          <li class="active">1</li>
+          <li>2</li>
+        </ul>
+      </div>
+      <button class="pagination--control">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg>
+      </button>
+    </div>
+    </div>    
+    <div class="modal-payment__footer">
+      <span>* 쇼핑을 계속하시려면 이 창을 닫아주시길 바랍니다.</span>
+      <a href="#" class="btn-buy"><i class="fas fa-check"></i>바로 구매하기</a>
+    </div>
+  </div><!-- MODAL-PAYMENT -->
   `
 }
 

@@ -9,12 +9,12 @@ export function buyProduct() {
 }
 
 export function shoppingBasket(res) {
-  // console.log(res)
   const productId = location.hash.split('/')[1]
   const cartBtn = document.querySelector('.cart-btn')
 
   async function getPrice() {
     const res = await getProductDetail(productId)
+    // console.log(res.price)
     return res.price
   }
   cartBtn.addEventListener('click', () => {
@@ -30,11 +30,13 @@ export function shoppingBasket(res) {
     if (cartList.length !== 0) {
       // 새롭에 추가한 상품의 id가 카트에 있을 때,
       cartList.forEach(async (el) => {
+        const price = await getPrice()
         if (el.ID === productId) {
           el.QUANTITY += 1
-          el.PRICE = await getPrice() * el.QUANTITY
-          console.log(el)
+          el.PRICE = price * el.QUANTITY
+          console.log(price * el.QUANTITY)
         }
+        localStorage.setItem('cart', JSON.stringify(cartList))
       })
       //
 
@@ -43,10 +45,8 @@ export function shoppingBasket(res) {
       if (cartCheck.length === 0) {
         cartList.push(newProduct)
       }
-      console.log(cartList)
       // 로컬 스토리지에 해당 데이터 삽입
-      localStorage.setItem('cart', JSON.stringify(cartList))
-      console.log(localStorage.cart)
+      // localStorage.setItem('cart', JSON.stringify(cartList))
       // 카트가 비어있을 때, 
     } else {
       console.log("빈배열로 이동")
@@ -118,7 +118,7 @@ export function shoppingBasket(res) {
           <button class="btn-plus"><i class="fa-solid fa-plus"></i></button>
         </div>
         <div class="price">
-          <p>${item.PRICE.toLocaleString()} 원</p>
+          <p>${item.PRICE} 원</p>
         </div>
       `
       MODAL_LIST.append(MODAL_ITEM)
@@ -137,20 +137,18 @@ export function shoppingBasket(res) {
 
       const productId = target.closest('.quantity').dataset.id
       cartList.forEach(async (el) => {
+        const price = await getPrice()
         if (el.ID === productId) {
           el.QUANTITY += 1
-          el.PRICE = await getPrice() * el.QUANTITY
-          console.log(el.PRICE)
-          console.log(await getPrice() * el.QUANTITY)
+          el.PRICE = price * el.QUANTITY
+          console.log(price * el.QUANTITY)
         }
         // console.log(await getPrice())
       })
-      async function getPrice() {
-        const res = await getProductDetail(productId)
-        return res.price
-      }
-
-
+      // async function getPrice() {
+      //   const res = await getProductDetail(productId)
+      //   return res.price
+      // }
       localStorage.setItem('cart', JSON.stringify(cartList))
       showModal()
     }))
