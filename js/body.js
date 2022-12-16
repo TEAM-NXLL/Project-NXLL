@@ -124,6 +124,7 @@ function mainForm() {
 
 // 상품 목록
 function productList(tags) {
+  console.log(tags)
   const colorChart = ["beige", "pastelBeige", "mint", "pink", "white", "navy", "blueNavy", "black", "green", "gray"]
   const mainBody = []
 
