@@ -678,7 +678,7 @@ function userAccountForm(totalBalance) {
 
 // 상품 상세페이지
 function detailForm(productInfo) {
-  
+
   if (productInfo.thumbnail === null || productInfo.thumbnail === undefined) {
     productInfo.thumbnail = './images/preparingProduct.jpg'
   }
@@ -718,7 +718,7 @@ function detailForm(productInfo) {
               <p><em>판매 상태</em> <span>${productInfo.isSoldOut === true ? '판매중' : '품절'}</span></p>
             </div>
             <div class="btn-group">
-              <a href="/#payment" class="buy-btn">바로 구매하기</a>
+              <a class="buy-btn">바로 구매하기</a>
               <a class="cart-btn"><i class="fas fa-sm ver-0 fa-plus"></i>장바구니</a>
             </div>
             <div class="delivery-info">
