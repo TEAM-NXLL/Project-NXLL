@@ -22,7 +22,7 @@ export async function renderAllProduct() {
         <div class="text-wrapper">
           <div class="id">${id}</div>
           <div class="title">${title}</div>
-          <div class="price">${price}</div>
+          <div class="price">${price.toLocaleString()+'원'}</div>
           <div class="tags">${tag}</div>
           <div class="is-sold-out">${isSold}</div>
           <div class="descript">${description}</div>

@@ -603,8 +603,8 @@ function userAccountForm(totalBalance) {
 // 상품 상세페이지
 function detailForm(productInfo) {
   const main = document.querySelector('main')
-
   main.addEventListener('click', ({ target }) => {
+    console.log(target)
     const buyBtn = document.querySelector('.buy-btn')
     const cartBtn = document.querySelector('.cart-btn')
     let cartList = []
@@ -617,16 +617,33 @@ function detailForm(productInfo) {
     }
 
     // 카트에 상품 담기 (localstorage.cart에 상품id 추가)
-    function addCart() {
-      cartList.push(productInfo.id)
-      localStorage.setItem('cart', JSON.stringify(cartList))
-    }
-
     if (target === cartBtn) {
-      if (!localStorage.cart) addCart()
-      else {
-        cartList = [...JSON.parse(localStorage.cart)]
-        addCart()
+      cartList = JSON.parse(localStorage.getItem('cart')) || [] // [{}, {} ...]
+      let newProduct = {
+        'ID': productInfo.id,
+        'QUANTITY': 1
+      }
+
+      // 카드가 안비어 있을 때
+      if (cartList.length !== 0) {
+        // 새롭에 추가한 상품의 id가 카트에 있을 때, 
+        cartList.forEach(el => {
+          if (el.ID === productInfo.id) {
+            el.QUANTITY += 1
+          }
+        })
+        // 새롭게 추가한 상품의 id가 카트에 없을 때
+        const cartCheck = cartList.filter(el => el.ID === productInfo.id)
+        if (cartCheck.length === 0 ) {
+          cartList.push(newProduct)
+        }
+        // 로컬 스토리지에 해당 데이터 삽입
+        localStorage.setItem('cart', JSON.stringify(cartList))
+      // 카트가 비어있을 때, 
+      } else {
+        console.log("빈배열로 이동") //
+        cartList.push(newProduct)
+        localStorage.cart = (JSON.stringify(cartList))
       }
       const modalPayment = document.querySelector('.modal-payment')
       modalPayment.classList.add('active')

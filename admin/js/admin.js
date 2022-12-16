@@ -1,7 +1,7 @@
 import { renderAllProduct } from './renderAllProducts.js';
 import { renderAlltransacs } from './renderAlltransacs.js';
 import { deleteItem } from './delete.js';
-import { renderAdminSummary } from './admin-summary';
+import { renderAdminSummary } from './adminSummary';
 import { addItem } from './addProduct.js';
 
 
