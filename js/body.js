@@ -124,56 +124,95 @@ function mainForm() {
 
 // 상품 목록
 function productList(data) {
-  // console.log(data)
   const colorChart = ["beige", "pastelBeige", "mint", "pink", "white", "navy", "blueNavy", "black", "green", "gray"]
   const mainBody = []
 
   for (let i = 0; i < data.length; i++) {
-    if (data[i].thumbnail === null || data[i].thumbnail === undefined) {
-      data[i].thumbnail = './images/preparingProduct.jpg'
-    }
-
-    mainBody.push(`
-      <li>
-        <a href="#details/${data[i].id}"> 
-          <div class="imgBox">
-            <img src="${data[i].thumbnail}" alt="">
-          </div>
-          <div class="colorBox">
-    `)
-    // for (let i = 0; i < data.length; i++) {
-    //   if (data[i].tags)
-    // }
     
-    const randomNum = Math.ceil(Math.random() * 5)
-    let randomIndexArray = []
-    for (let j = 0; j < randomNum; j++) {
-      const colorNum = Math.floor(Math.random() * 10);
+    mainBody.push(/* HTML */`
+      <li>
+        <a href="#details/${data[i].id}">
+    `)
 
-      if (randomIndexArray.indexOf(colorNum) === -1) {
-        randomIndexArray.push(colorNum);
-        mainBody.push(`
-          <span class='${colorChart[colorNum]}'></span>
-        `);
+    if (data[i].thumbnail === null || data[i].thumbnail === undefined) {
+
+      mainBody.push(/* HTML */`
+            <div class="imgBox">
+              <img style="z-index:1; width:60%; height:auto; top:-10px; left:-8px; transform: translate(0, 0);" src="./images/icons/commingSoonIcon.png" alt=""/>
+              <img src="./images/preparingProduct.jpg" alt="">
+            </div>
+            <div class="colorBox">
+            <!-- <div>최상의 상품을 제공 드리기 위해 준비중입니다. <br />조금만 기다려 주세요.</div> -->
+            `)
+      const randomNum = Math.ceil(Math.random() * 5)
+      let randomIndexArray = []
+
+      for (let j = 0; j < randomNum; j++) {
+        const colorNum = Math.floor(Math.random() * 10);
+
+        if (randomIndexArray.indexOf(colorNum) === -1) {
+          randomIndexArray.push(colorNum);
+          mainBody.push(/* HTML */`
+            <span class='${colorChart[colorNum]}'></span>
+          `);
+        }
+      }
+
+      mainBody.push( /* HTML */`
+            </div >
+            <div class="textBox" style="border-bottom:0">
+            ${data[i].title} <span>B300${i}</span>
+            </div>
+          </a>
+        </li>
+      `)
+    } else {
+      mainBody.push(/* HTML */`
+        <div class="imgBox">
+          <img src="${data[i].thumbnail}" alt="">
+        </div>
+        <div class="colorBox">
+      `)
+
+      const randomNum = Math.ceil(Math.random() * 5)
+      let randomIndexArray = []
+      
+      for (let j = 0; j < randomNum; j++) {
+        const colorNum = Math.floor(Math.random() * 10);
+
+        if (randomIndexArray.indexOf(colorNum) === -1) {
+          randomIndexArray.push(colorNum);
+          mainBody.push(/* HTML */`
+            <span class='${colorChart[colorNum]}'></span>
+          `);
+        }
+      }
+      const discountValue = Math.floor(Math.random() * 9 + 1) * 8;
+      mainBody.push(/* HTML */`
+          </div >
+          <div class="textBox">
+          ${data[i].title} <span>B300${i}</span>
+          </div>
+          <div class="priceBox">
+      `)
+      if(data[i].isSoldOut) {
+        mainBody.push(/* HTML */`
+          <span style="position:relative; width:100%; display:block;"><img style="width:200px; position:absolute; right:0;" src="./images/icons/sold-out-icon.png"/></span>
+        `)
+      } else {
+        mainBody.push(/* HTML */`
+                <span class="discount">${data[i].price.toLocaleString()}원</span> 
+                ${Math.floor((Number(data[i].price) * (100 - discountValue)) / 100).toLocaleString()}원<br />
+                <span class="salePercent">${discountValue}% SALE</span>
+              </div>
+            </a>
+          </li>
+        `)
       }
     }
 
-    const discountValue = Math.floor(Math.random() * 9 + 1) * 8;
+  }  
 
-    mainBody.push(`
-            </div >
-            <div class="textBox">
-                  ${data[i].title} <span>B300${i}</span>
-            </div>
-            <div class="priceBox">
-              <span class="discount">${data[i].price.toLocaleString()}원</span> 
-              ${Math.floor((Number(data[i].price) * (100 - discountValue)) / 100).toLocaleString()}원<br />
-              <span class="salePercent">${discountValue}% SALE</span>
-            </div>
-          </a>
-      </li>
-    `)
-  }
   return mainBody.join('');
 }
 
