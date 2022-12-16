@@ -44,7 +44,7 @@ async function renderMain() {
     newItemList.style.cssText = 'padding-bottom: 70px;';
   }
 
-  data.forEach(e => {
+  data.forEach(e => {    
     if (e['tags'].includes('키보드')) {
       keyboard.push(e)
       keyboardList.innerHTML = productList(keyboard)
@@ -58,6 +58,18 @@ async function renderMain() {
       newItemList.innerHTML = productList(newItem);
     }
   })
+
+  // if(data[i].isSoldOut) {
+  //   const priceBox = document.querySelectorAll('.priceBox')
+  //   priceBox.forEach(e => {
+  //     e.append(/* HTML */`
+  //         매진
+  //     `)
+  //   })
+  //   // priceBox.append(/* HTML */`
+  //   //   매진
+  //   // `)
+  // }
 
   // 메인 스와이퍼
   new Swiper('.mainSwiper', {
@@ -123,17 +135,19 @@ async function productSearch(e) {
       } else {
         rootInner.classList.add('block4')
         rootInner.style.margin = '140px auto 100px'
-
         for(let i = 0; i < data.length; i++) {
-          if(data[i].title.includes(searchText)) {
-            rootInner.innerHTML = productList(data)
-          } 
-          // if(data[i].tags.includes(searchText)) {
-          //   searchTags.push(data[i].tags)
-          //   console.log(searchTags)
-          //   // rootInner.innerHTML = productList(searchTags)
-          //   // console.log(data)
-          // }
+          // 상품이름으로 검색
+          // if(data[i].title.includes(searchText)) {
+          //   rootInner.innerHTML = productList(data)
+          // } 
+          // 상품종류로 검색
+          console.log(data[i])
+          if(data[i].tags.includes(searchText)) {
+            searchTags.push(data[i].tags)
+            console.log(searchTags)
+            rootInner.innerHTML += productList(data)
+            
+          }
         }
       }
       keyword.value = ''

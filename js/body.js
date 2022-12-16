@@ -123,24 +123,27 @@ function mainForm() {
 }
 
 // 상품 목록
-function productList(tags) {
-  console.log(tags)
+function productList(data) {
+  console.log(data)
   const colorChart = ["beige", "pastelBeige", "mint", "pink", "white", "navy", "blueNavy", "black", "green", "gray"]
   const mainBody = []
 
-  for (let i = 0; i < tags.length; i++) {
-    if (tags[i].thumbnail === null || tags[i].thumbnail === undefined) {
-      tags[i].thumbnail = './images/preparingProduct.jpg'
+  for (let i = 0; i < data.length; i++) {
+    if (data[i].thumbnail === null || data[i].thumbnail === undefined) {
+      data[i].thumbnail = './images/preparingProduct.jpg'
     }
     mainBody.push(`
       <li>
-        <a href="#details/${tags[i].id}"> 
+        <a href="#details/${data[i].id}"> 
           <div class="imgBox">
-            <img src="${tags[i].thumbnail}" alt="">
+            <img src="${data[i].thumbnail}" alt="">
           </div>
           <div class="colorBox">
     `)
-
+    // for (let i = 0; i < data.length; i++) {
+    //   if (data[i].tags)
+    // }
+    
     const randomNum = Math.ceil(Math.random() * 5)
     let randomIndexArray = []
     for (let j = 0; j < randomNum; j++) {
@@ -159,16 +162,23 @@ function productList(tags) {
     mainBody.push(`
             </div >
             <div class="textBox">
-                  ${tags[i].title} <span>B300${i}</span>
+                  ${data[i].title} <span>B300${i}</span>
             </div>
             <div class="priceBox">
-              <span class="discount">${tags[i].price.toLocaleString()}원</span> 
-              ${Math.floor((Number(tags[i].price) * (100 - discountValue)) / 100).toLocaleString()}원<br />
+              <span class="discount">${data[i].price.toLocaleString()}원</span> 
+              ${Math.floor((Number(data[i].price) * (100 - discountValue)) / 100).toLocaleString()}원<br />
               <span class="salePercent">${discountValue}% SALE</span>
             </div>
           </a>
       </li>
     `)
+
+    console.log(data[i])
+    const priceBox = document.querySelectorAll('.priceBox')
+    if(data[i].isSoldOut) {
+      priceBox.innerHTML = '하이'
+      
+    }
   }
   return mainBody.join('');
 }
