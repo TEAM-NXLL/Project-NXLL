@@ -4,7 +4,9 @@ export function buyProduct() {
   const buyBtn = document.querySelector('.buy-btn')
   buyBtn.addEventListener('click', () => {
     localStorage.setItem('cart', JSON.stringify([productId]))
-    location.hash = '#payment'
+    const accessToken = localStorage.getItem('accessToken')
+    if (accessToken) location.hash = '#payment'
+    else location.hash = '#login'
   })
 }
 
@@ -16,7 +18,8 @@ async function cart(product) {
     'QUANTITY': 1,
     'TITLE': product.title,
     'THUMB': product.thumbnail,
-    'PRICE': product.price
+    'PRICE': product.price,
+    'ORIGIN_PRICE': product.price
   }
 
   if (cartList.length > 0) {
@@ -40,52 +43,11 @@ async function cart(product) {
 }
 
 export function shoppingBasket(product) {
-  console.log(product)
   const cartBtn = document.querySelector('.cart-btn')
   cartBtn.addEventListener('click', () => {
     cart(product)
-    showModal()
+    showModal(product)
   })
-  // async function getPrice() {
-  //   const res = await getProductDetail(productId)
-  //   return res.price
-  // }
-  // cartBtn.addEventListener('click', () => {
-  //   const cartList = JSON.parse(localStorage.getItem('cart')) || [] // [{}, {} ...]
-  //   let newProduct = {
-  //     'ID': productId,
-  //     'QUANTITY': 1,
-  //     'TITLE': product.title,
-  //     'THUMB': product.thumbnail,
-  //     'PRICE': product.price
-  //   }
-  //   // 카트가 안비어 있을 때
-  //   if (cartList.length !== 0) {
-  //     // 새롭에 추가한 상품의 id가 카트에 있을 때,
-  //     cartList.forEach(async (el) => {
-  //       const price = await getPrice()
-  //       if (el.ID === productId) {
-  //         el.QUANTITY += 1
-  //         el.PRICE = price * el.QUANTITY
-  //         console.log(price * el.QUANTITY)
-  //       }
-  //       localStorage.setItem('cart', JSON.stringify(cartList))
-  //     })
-  //     //
-
-  //     // 새롭게 추가한 상품의 id가 카트에 없을 때
-  //     const cartCheck = cartList.filter(el => el.ID === productId)
-  //     if (cartCheck.length === 0) {
-  //       cartList.push(newProduct)
-  //     }
-  //     // 로컬 스토리지에 해당 데이터 삽입
-  //     // localStorage.setItem('cart', JSON.stringify(cartList))
-  //     // 카트가 비어있을 때, 
-  //   } else {
-  //     console.log("빈배열로 이동")
-  //     cartList.push(newProduct)
-  //     localStorage.cart = (JSON.stringify(cartList))
-  //   }
 }
 
 // 상품 총 수량 구하기
@@ -96,11 +58,6 @@ function totalQuantity() {
     quant += Number(el.QUANTITY)
   })
   return quant
-}
-
-//상품 총 금액 구하기
-function totalPrice() {
-
 }
 
 // 모달창
@@ -121,9 +78,7 @@ function showModal() {
           <span class="total">총 <strong>${totalQuantity()}</strong>개의 물품</span>
         </div>
         <div class="modal-payment__list">
-
           <!-- item -->
-
         </div>
       </div>    
       <div class="modal-payment__footer">
@@ -159,6 +114,7 @@ function showModal() {
   const btnClose = document.querySelector('.btn-close')
   const btnPlus = document.querySelectorAll('.btn-plus')
   const btnMinus = document.querySelectorAll('.btn-minus')
+
   btnClose.addEventListener('click', () => {
     MODAL.classList.remove('active')
   })
@@ -168,19 +124,13 @@ function showModal() {
     text.innerHTML = Number(text.textContent) + 1
 
     const productId = target.closest('.quantity').dataset.id
-    cartList.forEach(async (el) => {
-      const price = await getPrice()
+    cartList.forEach(el => {
       if (el.ID === productId) {
         el.QUANTITY += 1
-        el.PRICE = price * el.QUANTITY
-        console.log(price * el.QUANTITY)
+        el.PRICE = el.ORIGIN_PRICE * el.QUANTITY
       }
-      // console.log(await getPrice())
     })
-    // async function getPrice() {
-    //   const res = await getProductDetail(productId)
-    //   return res.price
-    // }
+
     localStorage.setItem('cart', JSON.stringify(cartList))
     showModal()
   }))
@@ -192,10 +142,13 @@ function showModal() {
     const productId = target.closest('.quantity').dataset.id
     cartList.forEach(el => {
       if (el.ID === productId) {
-        el.QUANTITY -= 1
+        el.QUANTITY = el.QUANTITY === 0 ? 0 : el.QUANTITY - 1
+        el.PRICE = el.ORIGIN_PRICE * el.QUANTITY
       }
     })
+
     localStorage.setItem('cart', JSON.stringify(cartList))
     showModal()
   }))
+
 }
