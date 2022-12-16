@@ -4,7 +4,9 @@ export function buyProduct() {
   const buyBtn = document.querySelector('.buy-btn')
   buyBtn.addEventListener('click', () => {
     localStorage.setItem('cart', JSON.stringify([productId]))
-    location.hash = '#payment'
+    const accessToken = localStorage.getItem('accessToken')
+    if (accessToken) location.hash = '#payment'
+    else location.hash = '#login'
   })
 }
 
