@@ -4,7 +4,7 @@ const deliveryDes = document.querySelector('.delivery-des')
 const returnDes = document.querySelector('.return-des')
 
 
-function mouseenter () {
+function mouseenter() {
   deliveryEl.addEventListener('mouseenter', () => {
     deliveryEl.classList.add('active')
     deliveryDes.style.display = 'flex'
@@ -17,7 +17,7 @@ function mouseenter () {
   })
 }
 
-function mouseleave () {
+function mouseleave() {
   deliveryEl.addEventListener('mouseleave', () => {
     deliveryEl.classList.remove('active')
     deliveryDes.style.display = 'none'
