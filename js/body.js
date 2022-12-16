@@ -678,7 +678,7 @@ function userAccountForm(totalBalance) {
 
 // 상품 상세페이지
 function detailForm(productInfo) {
-
+  
   if (productInfo.thumbnail === null || productInfo.thumbnail === undefined) {
     productInfo.thumbnail = './images/preparingProduct.jpg'
   }

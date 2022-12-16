@@ -1,6 +1,5 @@
 import { getBuy, getProductDetail } from './getdata.js';
 import { userOwnBank } from './userInfo.js';
-import { delProduct } from '../admin/js/requests.js';
 import { renderPayment } from './main.js';
 
 // 주문 상품 정보 조회
@@ -87,7 +86,6 @@ export function cancelProduct() {
         if (isChecked) {
           const id = el.dataset.id;
           console.log(id)
-          delProduct(id);
           const cart = JSON.parse(localStorage.cart);
           const AfterCart = cart.filter((el) => el !== id);
           localStorage.cart = JSON.stringify(AfterCart);

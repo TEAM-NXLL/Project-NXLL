@@ -4,29 +4,29 @@ import { viewAllTransactions } from './requests.js';
 export async function renderAdminSummary() {
   const allProduct = await viewAllProduct();
   const allTransac = await viewAllTransactions();
-
-  // 삽입 생성자 함수
   const adminSummary = document.querySelector('.admin-summary');
+  
+  // 삽입 생성자 함수
   function Status(selector, html) {
     adminSummary.querySelector(selector).innerHTML = html;
   }
 
   // 주문 현황
+  const date = new Date();
+  const today =
+    date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
+    
+
   const newOrder = allTransac.filter((el) => {
-    const date = new Date();
-    const today =
-      date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
-    const transacTimeSource = el.timePaid; //결제 시간 "2021-11-07T20:01:49.100Z"
-    const transacTime = transacTimeSource.slice(10);
-    transacTime === today;
+    return el.timePaid.slice(0,10)  === today;
   });
 
   const purchaseConfirmed = allTransac.filter((el) => {
-    el.done === true;
+    return el.done === true;
   });
 
   const purchaseCancled = allTransac.filter((el) => {
-    el.isCancled === true;
+    return el.isCanceled === true;
   });
 
   new Status(
@@ -58,25 +58,24 @@ export async function renderAdminSummary() {
   // 매출액 계산
   let allIncome = 0;
   allTransac.forEach((el) => {
-    if (el) {
+    if (el && el.done) {
       allIncome += el.product.price;
     }
   });
-  console.log(allIncome);
 
   new Status(
     '.total-products-num',
     /*html*/ `
     <span class="total-products-num-text">전체 상품수</span>
     <span class="total-products-num hilight">${allProduct.length}</span>
-    <span class="num-text">건</span>
+    <span class="num-text">개</span>
   `,
   );
   new Status(
     '.total-income',
     /*html*/ `
     <span class="total-income-text">전체 판매액</span>
-    <span class="total-income-num hilight">${allIncome}</span>
+    <span class="total-income-num hilight">${allIncome.toLocaleString()}</span>
     <span class="num-text">원</span>
   `,
   );

@@ -64,11 +64,9 @@
           <li>
             <a href="#add-products">제품 추가</a>
           </li>
+
           <li>
             <a href="#all-transacs">전체 거래 내역</a>
-          </li>
-          <li>
-            <a href="#transacs-status">개별 거래 내역</a>
           </li>
         </ul>
       </div>
@@ -119,7 +117,6 @@
             <div class="descript">기본 정보</div>
             <button class="edit-delete delete-checked">선택항목 삭제</button>
           </div>
-          <!-- observer 생성해서 무한 스크롤하기-->
         </div>
       </div>
     </div>
@@ -297,7 +294,7 @@
   <main id="all-transacs" class="all-transacs">
     <div class="inner">
       <div class="all-transac-container">
-        <div class="properties">
+        <div class="properties properties-head">
           <div class="thumbnail">썸네일 이미지</div>
           <div class="text-wrapper">
             <div class="transacId">거래번호</div>
@@ -312,19 +309,12 @@
             <div class="account-number">계좌번호</div>
             <div class="transac-time">거래시간</div>
             <div class="transac-status">거래상태</div>
-
-            <!-- 날짜 정보... 구매일/ 수정일-->
           </div>
         </div>
-        <!-- observer 생성해서 무한 스크롤하기-->
       </div>
     </div>
   </main>
-  <div class="go-top">
-    <div class="inner">
-      <a href="#all-products" style="height: 20px; background-color: orange">위로가자</a>
-    </div>
-  </div>
+  
   <!-- Transaction Status -->
   <main id="product-transacs" class="product-transacs">
     <div class="inner">
@@ -354,13 +344,7 @@
     </div>
   </main>
 
-  <!-- MAIN -->
-  <!-- 임시 위로가기 버튼 -->
-  <div class="go-top">
-    <div class="inner">
-      <a href="#all-products" style="height: 20px; background-color: orange">위로가자</a>
-    </div>
-  </div>
+  <!-- MODAL-->
 </body>
 
 </html>
