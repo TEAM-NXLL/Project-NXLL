@@ -290,13 +290,12 @@ async function renderUserInfo() {
 }
 
 // detail 렌더링
-async function renderDetail(productInfo) {
+async function renderDetail() {
   const productId = location.hash.split('/')[1]
   const res = await getProductDetail(productId)
   root.innerHTML = detailForm(res)
   buyProduct()
-  shoppingBasket()
-  // detailScrollEvent();
+  shoppingBasket(res)
 }
 
 // payment 렌더링
@@ -330,4 +329,3 @@ router();
 })();
 
 export { loginRender, joinRender, logOut, renderMyShop, renderMyOrder, renderMain, renderUserInfo, renderDetail, renderPayment, renderMyCancelOrder, renderMyConfirOrder }
-
