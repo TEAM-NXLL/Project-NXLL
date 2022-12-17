@@ -157,8 +157,10 @@ addFormEl.addEventListener('submit', async (event) => {
 export function addItem(event) {
   const title = event.target[0].value;
   const price = +(event.target[1].value.replace(/[^0-9]/g, ''));
+  const selectedCategory = document.querySelector('input[name="category"]:checked').value;
   const selectedTags = document.querySelectorAll('input[name="check"]:checked');
   const tags = [];
+  tags.push(selectedCategory);
   selectedTags.forEach(tag => {
     tags.push(tag.value)
   });
