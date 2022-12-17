@@ -6,7 +6,7 @@ import { addItem } from './addProduct.js';
 // import { router } from './adminRouter.js';
 
 (async () => {
+  await renderAdminSummary();
   await renderAllProduct();
   await renderAlltransacs();
-  await renderAdminSummary();
 })();

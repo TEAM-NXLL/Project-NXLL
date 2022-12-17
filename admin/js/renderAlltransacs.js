@@ -3,7 +3,7 @@ import { viewAllTransactions, transactionStatus } from './requests.js';
 
 export async function renderAlltransacs() {
   const transacs = await viewAllTransactions();
-  console.log(transacs);
+
   transacs.forEach((el) => {
     //transacId
     const transacId = el.detailId;
@@ -49,7 +49,6 @@ export async function renderAlltransacs() {
           <div class="bank-name">${bankName}</div>
           <div class="bank-code">${bankCode}</div>
           <div class="account-number">${accountNumber}</div>
-          <div class="deal-status">${done}</div>
           <div class="transac-time">${timePaid}</div>
           <div class="transac-status"> </div>
         </div>
