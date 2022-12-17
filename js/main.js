@@ -326,7 +326,6 @@ router();
   if (localStorage.accessToken) {
     const res = await stateLogin(localStorage.accessToken)
     res.displayName ? completeLogin() : window.localStorage.clear()
-    console.log(res.displayName)
   } else return
 })();
 
