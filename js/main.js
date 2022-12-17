@@ -22,7 +22,7 @@ const root = document.querySelector('main');
 async function renderMain() {
   const data = await viewAllProduct();
   root.innerHTML = mainForm();
-  
+
   const keyboardList = document.querySelector('.keyboard > .inner')
   const mouseList = document.querySelector('.mouse > .inner')
   const newItemList = document.querySelector('.newItem > .inner')
@@ -44,7 +44,7 @@ async function renderMain() {
     newItemList.style.cssText = 'padding-bottom: 70px;';
   }
 
-  data.forEach(e => {    
+  data.forEach(e => {
     // if(e.isSoldOut) {
     //   const priceBox = document.querySelector('.priceBox')
     //   priceBox.innerHTML = /*HTML*/ `
@@ -63,7 +63,7 @@ async function renderMain() {
       newItem.push(e)
       newItemList.innerHTML = productList(newItem);
     }
-  })  
+  })
 
   // 메인 스와이퍼
   new Swiper('.mainSwiper', {
@@ -131,7 +131,7 @@ async function productSearch(e) {
         rootInner.classList.add('block4')
         rootInner.style.margin = '140px auto 100px'
 
-        data.forEach(e => { 
+        data.forEach(e => {
           // 상품종류로 검색
           // if (e['tags'].includes(searchText)) {
           //   searchTags.push(e)
@@ -143,7 +143,7 @@ async function productSearch(e) {
             searchTitle.push(e)
             rootInner.innerHTML = productList(data)
           }
-        })  
+        })
       }
       keyword.value = ''
     }
@@ -295,8 +295,8 @@ async function renderDetail() {
   const productId = location.hash.split('/')[1]
   const res = await getProductDetail(productId)
   root.innerHTML = detailForm(res)
-  buyProduct()
   shoppingBasket(res)
+  buyProduct()
 }
 
 // payment 렌더링
@@ -326,6 +326,7 @@ router();
   if (localStorage.accessToken) {
     const res = await stateLogin(localStorage.accessToken)
     res.displayName ? completeLogin() : window.localStorage.clear()
+    console.log(res.displayName)
   } else return
 })();
 
