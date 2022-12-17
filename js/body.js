@@ -197,7 +197,7 @@ function productList(data) {
       `)
       if(data[i].isSoldOut) {
         mainBody.push(/* HTML */`
-          <span style="position:relative; width:100%; display:block;"><img style="width:200px; position:absolute; right:0;" src="./images/icons/sold-out-icon.png"/></span>
+          <span><img style="width:150px;" src="./images/icons/sold-out-icon.png"/></span>
         `)
       } else {
         mainBody.push(/* HTML */`
