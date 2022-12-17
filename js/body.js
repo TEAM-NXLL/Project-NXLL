@@ -731,6 +731,10 @@ function userAccountForm(totalBalance) {
 
 // 상품 상세페이지
 function detailForm(product) {
+  startTop()
+  function startTop() {
+    window.scrollTo(0, 0)
+  }
 
   if (product.thumbnail === null || product.thumbnail === undefined) {
     product.thumbnail = './images/preparingProduct.jpg'
