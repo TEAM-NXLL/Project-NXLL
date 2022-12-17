@@ -1,107 +1,143 @@
-import { viewAllTransactions } from './requests.js';
+import { viewAllTransactions, transactionStatus } from './requests.js';
 
 // 전체 함수 생성자 함수로 만들어서 all 과 individual로 구분하기
 
-export async function renderProductTransacs(product_id, parent_event) {
-  const transacs = await viewAllTransactions();
-  console.log(transacs);
-  // 초기화 하기
-  const productTransacCont = document.querySelector(
-    '.product-transac-container',
-  );
-  productTransacCont.innerHTML = '';
+export async function renderProductTransacs(DOM) {
+  let transacs = await viewAllTransactions();
+  const productTransacBtn = DOM.querySelector('.each-transac-btn-down');
+  const hideBtn = DOM.querySelector('.each-transac-btn-up');
+  const productTransacCont = DOM.querySelector('.transac-container');
+  
+  hideBtn.addEventListener('click', event => {
+    hideBtn.style.display = "none"
+    productTransacBtn.style.display = "block"
+    productTransacCont.style.display = "none"  
+  })
+  productTransacBtn.addEventListener('click', (event) => {
+    hideBtn.style.display = "block"
+    productTransacBtn.style.display = "none"
+    productTransacCont.style.display = "block"
+    event.stopPropagation()
+    productTransacCont.innerHTML = '';
+    const productHead = document.createElement('div');
+    productHead.classList.add('each-transac-item');
+    productHead.classList.add('transac-head');
+    productHead.innerHTML = /*html*/ `
+    <div class="each-transacs-wrapper">
+      <div class="each-transacId">거래번호</div>
+      <div class="each-displayName">이름</div>
+      <div class="each-email">이메일</div>
+      <div class="each-bank-name">은행명</div>
+      <div class="each-bank-code">은행코드</div>
+      <div class="each-account-number">계좌번호</div>
+      <div class="each-transac-time">거래시간</div>
+      <div class="each-transac-status">거래상태</div>
+    </div>
+    `;
+    productTransacCont.append(productHead)
 
-  transacs.forEach((el) => {
-    //transacId
-    const transacId = el.detailId;
-
-    //product
-    const product = el.product;
-    const id = product.id;
-
-    //확인
-    if (product_id !== id) {
-      return; // continue와 동일 기능
-    }
-
-    const title = product.title;
-    const price = product.price;
-    const tag = product.tag;
-    const thumbnail = product.thumbnail;
-
-    //account
-    const account = el.account;
-    const bankName = account.bankName;
-    const bankCode = account.bankCode;
-    const accountNumber = account.accountNumber;
-
-    //user
-    const user = el.user;
-    const email = user.email;
-    const displayName = user.displayName;
-
-    //transaction info
-    const timePaid = el.timePaid; // 제품을 거래한 시간
-    const isCanceled = el.isCanceled; // 거래 취소 여부
-    const done = el.done; // 거래 완료 여부
 
     const transac = document.createElement('div');
-    transac.classList.add('transac-item');
+    transac.classList.add('each-transac-item');
 
-    const innerHTMLContents = /*html*/ `
-        
-        <div class="text-wrapper">
-          <div class="transacId">${transacId}</div>
-          <div class="displayName">${displayName}</div>
-          <div class="email">${email}</div>
-          <div class="bank-name">${bankName}</div>
-          <div class="bank-code">${bankCode}</div>
-          <div class="account-number">${accountNumber}</div>
-          <div class="deal-status">${deal}</div>
-          <div class="transac-time">${timePaid}</div>
-          <div class="transac-status"> </div>
-        </div>
-    `;
+    const product_id = event.path[1].dataset.id;
+    
+    transacs.forEach((el) => {
 
-    transac.innerHTML = innerHTMLContents;
+      //transacId
+      const transacId = el.detailId;
+  
+      //product
+      const product = el.product;
+      const id = product.productId;
 
-    if (isCanceled === true) {
-      transac.querySelector('.transac-status').innerHTML = /*html*/ `
-        <div class = "isCancled">거래 취소</div>
+
+      //확인
+      if (product_id !== id) {
+        return; // continue와 동일 기능
+      }
+  
+      //account
+      const account = el.account;
+      const bankName = account.bankName;
+      const bankCode = account.bankCode;
+      const accountNumber = account.accountNumber;
+  
+      //user
+      const user = el.user;
+      const email = user.email;
+      const displayName = user.displayName;
+  
+      //transaction info
+      const date = new Date(el.timePaid)
+      const timePaid = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();  // 제품을 거래한 시간
+      const isCanceled = el.isCanceled; // 거래 취소 여부
+      const done = el.done; // 거래 완료 여부
+  
+      
+  
+      const innerHTMLContents = /*html*/ `
+          
+          <div class="each-transacs-wrapper">
+            <div class="each-transacId">${transacId}</div>
+            <div class="each-displayName">${displayName}</div>
+            <div class="each-email">${email}</div>
+            <div class="each-bank-name">${bankName}</div>
+            <div class="each-bank-code">${bankCode}</div>
+            <div class="each-account-number">${accountNumber}</div>
+            <div class="each-transac-time">${timePaid}</div>
+            <div class="each-transac-status"> </div>
+          </div>
       `;
-    } else if (done === true) {
-      transac.querySelector('.transac-status').innerHTML = /*html*/ `
-      <div class = "done">거래 완료</div>
-    `;
-    } else if (done === false && isCanceled === false) {
-      transac.querySelector('.transac-status').innerHTML = /*html*/ `
-      <div class = "transacting">거래중</div>
-      <button class = "isCancled-btn">거래 취소</button>
-      <button class = "done-btn">거래 완료</button>
+  
+      transac.innerHTML = innerHTMLContents;
+    
+      if (isCanceled) {
+        transac.querySelector('.each-transac-status').innerHTML = /*html*/ `
+          <div class = "isCancled">거래 취소</div>
+        `;
+      } else if (done) {
+        transac.querySelector('.each-transac-status').innerHTML = /*html*/ `
+        <div class = "done">거래 완료</div>
       `;
-    }
-
-    //여기 중복 되는 것 생성자 함수로 만들기
-    // 버튼 이벤트 리스너 추가
-    transac
-      .querySelector('.isCancled-btn')
-      .addEventListener('click', (event) => {
-        //모달 띄우기
-        //정말 거래를 취소하시겠습니까?
-        //거래가 취소되었습니다. <-> 사용자 API와 공유하깈
-        const product_id = event.path[3].querySelector('.transacId').innerTex;
-        transactionStatus(product_id, true, false);
-      });
-    transac.querySelector('.done-btn').addEventListener('click', (event) => {
-      //모달 띄우기
-      //정말 거래를 완료하시겠습니까?
-      //거래가 완료되었습니다.
-      const product_id = event.path[3].querySelector('.transacId').innerTex;
-      transactionStatus(product_id, false, true);
-    });
-
-    productTransacCont.append(product);
-    // 이렇게 하고 맨 처음과 맨 끝의 transac만 안보이게 하던가
-    // 아무것도 없는 div를 추가하여 아래에 보이게 하던가...
-  });
+      } else if (!done && !isCanceled) {
+        transac.querySelector('.each-transac-status').innerHTML = /*html*/ `
+        <div class = "transacting">거래중</div>
+        <div class = "btn-wrapper">
+          <button class = "isCancled-btn">거래 취소</button>
+          <button class = "done-btn">거래 완료</button>
+        </div>`;
+  
+         // 버튼 이벤트 리스너 추가
+        transac.querySelector('.isCancled-btn').addEventListener('click', (event) => {
+          console.log(event.path);
+          const product_id = event.path[3].querySelector('.transacId').innerText;
+          transactionStatus(product_id, true, false);
+          renderAdminSummary()
+          setTimeout(() => {
+            transac.querySelector('.transac-status').innerHTML = /*html*/ `
+              <div class = "isCancled">거래 취소</div>`
+            }, 700)
+          const TotalIncome = document.querySelector(".totalIncomeNumHilight")
+          const newTotalIncome = parseInt(TotalIncome.innerText) + parseInt(event.path[3].querySelector('.price').innerText) 
+          TotalIncome.innerText = newTotalIncome.toLocaleString()
+        });
+  
+        transac.querySelector('.done-btn').addEventListener('click', (event) => {
+          const product_id = event.path[3].querySelector('.transacId').innerText;
+          transactionStatus(product_id, false, true);
+          renderAdminSummary()
+          setTimeout(() => {
+            transac.querySelector('.transac-status').innerHTML = /*html*/ `
+              <div class = "done">거래 완료</div>`
+            }, 700)
+          const TotalIncome = document.querySelector(".totalIncomeNumHilight")
+          const newTotalIncome = parseInt(TotalIncome.innerText) + parseInt(event.path[3].querySelector('.price').innerText) 
+          TotalIncome.innerText = newTotalIncome.toLocaleString()
+        });
+      }
+      productTransacCont.append(transac);
+      console.log("완료")
+    }); 
+  })
 }
