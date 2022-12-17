@@ -82,7 +82,7 @@ function showModal() {
       </div>    
       <div class="modal-payment__footer">
         <span>* 쇼핑을 계속하시려면 이 창을 닫아주시길 바랍니다.</span>
-        <a href="#" class="cart-btn-buy"><i class="fas fa-check"></i>바로 구매하기</a>
+        <a class="cart-btn-buy"><i class="fas fa-check"></i>바로 구매하기</a>
       </div>
     `
 
@@ -152,13 +152,8 @@ function showModal() {
   }))
 
   btnBuy.addEventListener('click', function () {
-    if (localStorage.accessToken) {
-      console.log('로그인 되어 있음')
-      location.hash = '#payment'
-    } else {
-      console.log('로그인 안 되어 잇음')
-      location.hash = '#login'
-      console.log(location.hash)
-    }
+    const accessToken = localStorage.accessToken
+    if (accessToken) location.hash = '#payment'
+    else location.hash = '#login'
   })
 }
