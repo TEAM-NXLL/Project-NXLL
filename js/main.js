@@ -51,7 +51,7 @@ async function renderMain() {
     //     <span>매진</span>
     //   `
     // }
-    if (e['tags'].includes('keybord')) {
+    if (e['tags'].includes('keyboard')) {
       keyboard.push(e)
       keyboardList.innerHTML = productList(keyboard)
     }
