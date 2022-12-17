@@ -94,7 +94,7 @@ header {
   align-items: center;
   justify-content: space-between;
   background-color: #213b85;
-  padding: 0 100px;
+  padding: 0 10%;
   color: #fff;
   position: relative;
   .logo {
@@ -130,7 +130,7 @@ header {
 
     &.gnb {
       position: absolute;
-      left: 300px;
+      left: 25%;
       height: 80%;
       bottom: 0;
       display: flex;
