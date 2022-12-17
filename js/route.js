@@ -29,13 +29,6 @@ export async function router() {
     renderUserInfo()
   }
   else if (routePath.includes(`#detail`)) {
-    // const productId = location.hash.split('/')[1]
-    // try {
-    //   const productInfo = await getProductDetail(productId);
-    //   renderDetail(productInfo)
-    // } catch (error) {
-    //   console.log(error)
-    // }
     renderDetail()
   }
   else if (routePath === '#payment') {
