@@ -95,6 +95,16 @@ async function renderMain() {
     },
   });
 }
+// 카테고리별 제품조회
+export async function renderCategory (tag) { //tag = string"태그이름"
+  const datas = await viewAllProduct();
+  for (let data of datas) {
+    if (data.tags.includes(tag)) {
+      console.log(data)
+    }
+  }
+}
+
 
 // 제품 검색
 async function productSearch(e) {
