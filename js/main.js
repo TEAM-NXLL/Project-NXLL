@@ -51,15 +51,15 @@ async function renderMain() {
     //     <span>매진</span>
     //   `
     // }
-    if (e['tags'].includes('키보드')) {
+    if (e['tags'].includes('keybord')) {
       keyboard.push(e)
       keyboardList.innerHTML = productList(keyboard)
     }
-    if (e['tags'].includes('마우스')) {
+    if (e['tags'].includes('mouse')) {
       mouse.push(e)
       mouseList.innerHTML = productList(mouse)
     }
-    if (e['tags'].includes('NEW ITEM')) {
+    if (e['tags'].includes('new-item')) {
       newItem.push(e)
       newItemList.innerHTML = productList(newItem);
     }
