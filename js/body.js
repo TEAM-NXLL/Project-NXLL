@@ -736,8 +736,6 @@ function detailForm(productInfo) {
     productInfo.thumbnail = './images/preparingProduct.jpg'
   }
 
-  const discountValue = Math.floor(((Math.random() * 9) + 1)) * 8
-
   return /* html */`
   <div class="page-nav">
     <div class="inner">
@@ -758,9 +756,7 @@ function detailForm(productInfo) {
               <span>${productInfo.description}</span>
               <p>${productInfo.title}</p>
               <div class="priceBox">
-                <span class="discount">${productInfo.price.toLocaleString()}원</span>
-                <span class="price">${(Math.floor(Number(productInfo.price) * (100 - discountValue) / 100).toLocaleString())}원</span>
-                <span class="salePercent">${discountValue}% SALE</span>
+                <span class="price">${productInfo.price.toLocaleString()}원</span>
               </div>
             </div>
             <div class="product-summary__info">
@@ -768,7 +764,7 @@ function detailForm(productInfo) {
               <p><em>상품 설명</em> <span>${productInfo.description}</span></p>
               <p><em>상품 포함 태그</em> <span style="color:#555;">${productInfo.tags}</span></p>
               <p><em>배송비</em> <span style="color:red;">무료</span></p>
-              <p><em>판매 상태</em> <span>${productInfo.isSoldOut === true ? '판매중' : '품절'}</span></p>
+              <p><em>판매 상태</em> <span>${productInfo.isSoldOut === true ? '품절' : '판매 중'}</span></p>
             </div>
             <div class="btn-group">
               <a class="buy-btn">바로 구매하기</a>
