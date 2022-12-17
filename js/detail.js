@@ -18,6 +18,7 @@ export function buyProduct(product) {
 
 async function cart(product) {
   const cartList = JSON.parse(localStorage.getItem('cart')) || []
+  const selling = product.isSoldOut === true ? false : true
 
   let newProduct = {
     'ID': product.id,
@@ -28,7 +29,7 @@ async function cart(product) {
     'ORIGIN_PRICE': product.price
   }
 
-  if (cartList.length > 0) {
+  if (cartList.length > 0 && selling) {
     cartList.forEach(e => {
       if (e.ID === product.id) {
         e.QUANTITY += 1
@@ -42,7 +43,7 @@ async function cart(product) {
         }
       }
     })
-  } else {
+  } else if (selling) {
     cartList.push(newProduct)
     localStorage.setItem('cart', JSON.stringify(cartList))
   }
@@ -50,10 +51,25 @@ async function cart(product) {
 
 export function shoppingBasket(product) {
   const cartBtn = document.querySelector('.cart-btn')
+  const selling = product.isSoldOut === true ? false : true
   cartBtn.addEventListener('click', () => {
     cart(product)
-    showModal(product)
+    if (selling) showModal(product)
+    else popMessage()
   })
+}
+
+function popMessage() {
+  const main = document.querySelector('main')
+  const popUp = document.createElement('div')
+  popUp.classList.add('pop-message', 'active')
+  popUp.innerHTML = /* html */`
+    <p>품절된 상품입니다.</p>
+  `
+  main.append(popUp)
+  setTimeout(() => {
+    popUp.remove()
+  }, 800)
 }
 
 // 상품 총 수량 구하기
