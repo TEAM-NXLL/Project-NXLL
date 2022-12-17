@@ -1,4 +1,3 @@
-import { getProductDetail } from "./getdata"
 export function buyProduct() {
   const productId = location.hash.split('/')[1]
   const buyBtn = document.querySelector('.buy-btn')
