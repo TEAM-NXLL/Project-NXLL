@@ -7,8 +7,8 @@ import { toast } from "./toast.js";
 // 수정버튼 클릭 이벤트 핸들러 (추가랑 내용 겹침... 나중에합쳐보기)
 export function editItem(event) {
   const productId = event.target.dataset.id;
-  editInputPlaceholder(productId)
-  editEvent(event)
+  editInputPlaceholder(productId);
+  editEvent(event);
   // 수정페이지 모달로 변경?
 }
 
