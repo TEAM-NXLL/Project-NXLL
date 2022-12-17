@@ -36,10 +36,12 @@
     align-items: center;
   }
 
+
   .product-item.item-head {
     width: 100%;
     border: none;
     box-sizing: border-box;
+    display: block;
     
     .product-wrapper{
       width: 100%;
@@ -67,6 +69,10 @@
         background-image: none;
       }
     }
+  }
+
+  .hide{
+    display: none;
   }
 
   .product-item {
@@ -157,3 +163,4 @@
     }
   }  
 }
+

@@ -1,8 +1,7 @@
 import { renderAdminSummary } from './adminSummary.js';
 import { viewAllTransactions, transactionStatus } from './requests.js';
 
-export async function renderAlltransacs() {
-  const transacs = await viewAllTransactions();
+export async function renderAlltransacs(transacs) {
 
   transacs.forEach((el) => {
     //transacId

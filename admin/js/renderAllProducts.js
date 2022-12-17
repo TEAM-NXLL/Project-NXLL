@@ -1,8 +1,7 @@
 import { viewAllProduct } from './requests.js';
 import { renderProductTransacs } from './renderProductTransacs.js';
 
-export async function renderAllProduct() {
-  const products = await viewAllProduct();
+export async function renderAllProduct(allTransac, products) {
   // console.log(products);
   products.forEach(async (el) =>  {
     const id = el.id;
@@ -53,7 +52,6 @@ export async function renderAllProduct() {
     product.innerHTML = innerHTMLContents;
     
     const productCont = document.querySelector('.products-container');
-    await renderProductTransacs(product)
     productCont.append(product);    
   });
 }
