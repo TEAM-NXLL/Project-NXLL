@@ -187,9 +187,9 @@
 
         .order-number {
           display: block;
-          background: linear-gradient(to bottom, #213B85 0%, #213B85 100%);
-          border: 1px solid #213B85;
-          border-bottom-color: #213B85;
+          background: linear-gradient(to bottom, var(--signature-color) 0%, var(--signature-color) 100%);
+          border: 1px solid var(--signature-color);
+          border-bottom-color: var(--signature-color);
           box-shadow: 0 0 2px rgb(0 0 0 / 20%);
           text-shadow: 0 0 2px rgb(0 0 0 / 20%);
           color: #eaeaea;
