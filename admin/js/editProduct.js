@@ -25,7 +25,8 @@ async function editInputPlaceholder(productId) {
   document.querySelector('#edit-product-price').value = getResult.price;
 
   const selectedTags = getResult.tags;
-  const tagArr = ["mouse", "keyboard", "mousepad", "usbhub", "monitorstand", "cardreader", "notebookstand", "lock", "keypad", "ear-head", "speaker", "mic", "kids", "audiocable", "adapter", "charging", "smartholder", "smart-etc", "new-item", "discount", "pc", "notebook", "audio", "smart"];
+  const tagArr = ["mouse", "keyboard", "mousepad", "usbhub", "monitorstand", "cardreader", "notebookstand", "lock", "keypad", "ear-head", "speaker", "mic", "kids", "audiocable", "adapter", "charging", "smartholder", "smart-etc", "new-item", "discount", "pc", "notebook", "audio", "smart", 
+  "beige", "mint", "pink", "white", "blue", "black", "green", "gray"];
 
   for (let i=0; i < tagArr.length; i+=1) {
     selectedTags.includes(`${tagArr[i]}`)
@@ -52,6 +53,7 @@ function editEvent(e) {
     const title = document.querySelector('.edit-product-name').value;
     const price = +(document.querySelector('#edit-product-price').value.replace(/[^0-9]/g, ''));
     const selectedCategory = document.querySelector('input[name="edit-category"]:checked').value;
+    console.log(selectedCategory)
     const selectedTags = document.querySelectorAll('input[name="edit-check"]:checked');
     const tags = [];
     tags.push(selectedCategory);

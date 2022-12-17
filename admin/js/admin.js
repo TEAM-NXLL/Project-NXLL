@@ -5,7 +5,6 @@ import { renderAdminSummary } from './adminSummary';
 import { addItem } from './addProduct.js';
 import { viewAllProduct, viewAllTransactions } from './requests.js';
 import { renderProductTransacs } from './renderProductTransacs.js';
-// import { router } from './adminRouter.js';
 
 (async () => {
   const allTransac = await viewAllTransactions();
