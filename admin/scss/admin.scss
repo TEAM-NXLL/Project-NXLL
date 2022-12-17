@@ -13,7 +13,9 @@ header {
   background-color: var(--signature-color);
   padding: 0 10%;
   color: #fff;
-  position: relative;
+  position: sticky;
+  top: 0;
+  z-index: 10;
   .logo {
     display:flex;
     align-items: center;
