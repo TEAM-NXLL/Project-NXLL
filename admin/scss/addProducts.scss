@@ -93,6 +93,30 @@
 
   .tag-area {
 
+    input[type="radio"] {
+      display:none;
+
+      +label {
+        font-size: 16px;
+        width: 70px;
+        height: 30px;
+        line-height: 30px;
+        background-color: skyblue;
+        color: white;
+        border-radius: 10px;
+        text-align: center;
+        cursor: pointer;
+      }
+    
+      &:checked+label {
+        background-color: black;
+        color: white;
+        font-weight: 900;
+        scale: 1.1;
+        box-shadow: 3px 3px 2px 1px rgba(0, 0, 255, .2);
+      }
+    }
+
     input[type="checkbox"] {
       width: 20px;
       scale: 1.6;
