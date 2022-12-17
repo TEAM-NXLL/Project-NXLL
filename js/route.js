@@ -29,11 +29,9 @@ export async function router() {
     renderUserInfo()
   }
   else if (routePath.includes(`#detail`)) {
-    window.scrollTo({ left: 0, top: 0});
     renderDetail()
   }
   else if (routePath === '#payment') {
-    window.scrollTo({ left: 0, top: 0});
     renderPayment()
   }
 }
