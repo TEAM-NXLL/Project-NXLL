@@ -4,7 +4,7 @@ export function buyProduct() {
   const buyBtn = document.querySelector('.buy-btn')
   buyBtn.addEventListener('click', () => {
     localStorage.setItem('cart', JSON.stringify([productId]))
-    const accessToken = localStorage.getItem('accessToken')
+    const accessToken = localStorage.accessToken
     if (accessToken) location.hash = '#payment'
     else location.hash = '#login'
   })
@@ -83,7 +83,7 @@ function showModal() {
       </div>    
       <div class="modal-payment__footer">
         <span>* 쇼핑을 계속하시려면 이 창을 닫아주시길 바랍니다.</span>
-        <a href="#" class="btn-buy"><i class="fas fa-check"></i>바로 구매하기</a>
+        <a href="#" class="cart-btn-buy"><i class="fas fa-check"></i>바로 구매하기</a>
       </div>
     `
 
@@ -114,6 +114,7 @@ function showModal() {
   const btnClose = document.querySelector('.btn-close')
   const btnPlus = document.querySelectorAll('.btn-plus')
   const btnMinus = document.querySelectorAll('.btn-minus')
+  const btnBuy = document.querySelector('.cart-btn-buy')
 
   btnClose.addEventListener('click', () => {
     MODAL.classList.remove('active')
@@ -151,4 +152,14 @@ function showModal() {
     showModal()
   }))
 
+  btnBuy.addEventListener('click', function () {
+    if (localStorage.accessToken) {
+      console.log('로그인 되어 있음')
+      location.hash = '#payment'
+    } else {
+      console.log('로그인 안 되어 잇음')
+      location.hash = '#login'
+      console.log(location.hash)
+    }
+  })
 }
