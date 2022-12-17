@@ -292,7 +292,7 @@ function logInForm() {
 }
 
 // 마이쇼핑 페이지
-function myShoppingForm(trans, price) {
+function myShoppingForm(trans, price, cancelList, confirList) {
   const information = /* html */`
     <div class="information">
       <div class="inner">
@@ -323,12 +323,6 @@ function myShoppingForm(trans, price) {
   const goToLogin = (link) => {
     return localStorage.accessToken ? link : '#login'
   }
-  const transLookUp = () => {
-    return trans > 0 ? `${trans}` : `0`
-  }
-  const chargeLookUp = () => {
-    return localStorage.accessToken ? `${price}` : `0`
-  }
 
   return /* html */ `
   <div class="title-box" scope="sub">
@@ -342,13 +336,13 @@ function myShoppingForm(trans, price) {
         <a href="#myorder" class="order-list__item">
           <p class="icon order"></p>
           <p>주문 내역</p>
-          <p class="price">${transLookUp()}건</p>
+          <p class="price">${trans ?? 0}건</p>
           <i class="line--hover"></i>
         </a>
         <a href="#" class="order-list__item">
           <p class="icon mileage"></p>
           <p>계좌 잔액</p>
-          <p class="price">${chargeLookUp()}원</p>
+          <p class="price">${price ?? 0}원</p>
           <i class="line--hover"></i>
         </a>
       </div>
@@ -383,12 +377,12 @@ function myShoppingForm(trans, price) {
         <div class="order-state">
           <div class="order-state__box">
             <a class="order-state__item">
-              <p class="count">0</p>
+              <p class="count">${cancelList ?? 0}</p>
               <p class="state">취소</p>
               <i class="line--hover"></i>
             </a>
             <a class="order-state__item">
-              <p class="count">0</p>
+              <p class="count">${confirList ?? 0}</p>
               <p class="state">완료</p>
               <i class="line--hover"></i>
             </a>
@@ -731,10 +725,6 @@ function userAccountForm(totalBalance) {
 
 // 상품 상세페이지
 function detailForm(product) {
-  if (product.thumbnail === null || product.thumbnail === undefined) {
-    product.thumbnail = './images/preparingProduct.jpg'
-  }
-
   return /* html */`
   <div class="page-nav">
     <div class="inner">
@@ -747,7 +737,7 @@ function detailForm(product) {
     <div class="product-detail__header">
       <div class="inner">
         <div class="product-thumbnail">
-          <img src="${product.thumbnail}" alt="대표이미지">
+          <img src="${product.thumbnail ?? './images/preparingProduct.jpg'}" alt="대표이미지">
         </div>
         <div class="product-order">
           <div class="product-summary">
@@ -795,73 +785,7 @@ function detailForm(product) {
   `
 }
 
-function modalPayment() {
-  return /* html */`
-  <!-- MODAL-PAYMENT -->
-  <div class="modal-payment">
-    <div class="modal-payment__header">
-      <h3>장바구니 담기</h3>
-      <span>물품을 미리 확인하세요</span>
-      <button>닫기 버튼</button>
-    </div>
-    <div class="modal-payment__body">
-      <div class="modal-payment__title">
-        <em>CART - LIST</em>
-        <span class="subtext">내 장바구니 목록입니다.</span>
-        <span class="total">총 <strong>3</strong>개의 물품</span>
-      </div>
-      <div class="modal-payment__list">
-        <div class="modal-payment__item">
-          <div class="thumb">
-            <img src="/images/christmasGift.jpg" alt="상품 대표이미지">
-          </div>
-          <div class="description">
-            <p class="name">
-              [크리스마스 증정 이벤트] 엑토 레트로 미니 블루투스 키보드 B303 엑토 레트로 미니 블루투스 키보드 B303
-            </p>
-            <p class="delivery-fee">배송비 무료</p>
-          </div>
-          <div class="price">
-            <p>49,900 원</p>
-          </div>
-        </div>
-        <div class="modal-payment__item">
-          <div class="thumb">
-            <img src="/images/christmasGiftMini1.jpg" alt="상품 대표이미지">
-          </div>
-          <div class="description">
-            <p class="name">
-              [크리스마스 증정 이벤트] 엑토 레트로 미니 블루투스 키보드 B303
-            </p>
-            <p class="delivery-fee">배송비 무료</p>
-          </div>
-          <div class="price">
-            <p>49,900 원</p>
-          </div>
-        </div>
-      </div>
-      <div class="pagination">
-      <button class="pagination--control"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
-      </button>
-      <div class="pagination--page">
-        <ul>
-          <li class="active">1</li>
-          <li>2</li>
-        </ul>
-      </div>
-      <button class="pagination--control">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg>
-      </button>
-    </div>
-    </div>    
-    <div class="modal-payment__footer">
-      <span>* 쇼핑을 계속하시려면 이 창을 닫아주시길 바랍니다.</span>
-      <a href="#" class="btn-buy"><i class="fas fa-check"></i>바로 구매하기</a>
-    </div>
-  </div><!-- MODAL-PAYMENT -->
-  `
-}
-
+// 결제 페이지
 function paymentForm() {
   return /* html */ `
    <div class="title-box" scope="sub">

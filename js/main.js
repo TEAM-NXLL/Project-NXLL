@@ -17,11 +17,6 @@ function startTop() {
   window.scrollTo(0, 0)
 }
 
-// function loginNjoin() {
-//   loginRender()
-//   joinRender()
-// }
-
 // 메인 페이지
 async function renderMain() {
   const data = await viewAllProduct();
@@ -240,22 +235,32 @@ function completeLogin() {
   logOut();
 }
 
-// myshop 렌더링
-async function renderMyShop() {
-  const { totalBalance, accounts } = await userOwnBank();
-  // const total = totalBalance.toLocaleString()
-  const total = totalBalance ? totalBalance.toLocaleString() : '';
-  const transactions = await getTransactions(localStorage.accessToken)
-  startTop()
-  root.innerHTML = myShoppingForm(transactions.length, total);
-}
-
 // myorder 렌더링 공통 사항
 async function listLookUp() {
-  const products = await getTransactions(localStorage.accessToken)
-  const cancels = products.filter(product => product.isCanceled === true)
-  const confirs = products.filter(product => product.done === true)
-  return { products, cancels, confirs }
+  try {
+    const products = await getTransactions(localStorage.accessToken)
+    const cancels = products.filter(product => product.isCanceled === true)
+    const confirs = products.filter(product => product.done === true)
+    return { products, cancels, confirs }
+  } catch (err) {
+    console.log('로그인 안 함')
+  }
+}
+
+// myshop 렌더링
+async function renderMyShop() {
+  const login = await stateLogin(localStorage.accessToken)
+  if (login !== '유효한 사용자가 아닙니다.') {
+    console.log('로그인 됨')
+    const { totalBalance } = await userOwnBank();
+    const { cancels, confirs } = await listLookUp()
+    const total = totalBalance ? totalBalance.toLocaleString() : '';
+    const transactions = await getTransactions(localStorage.accessToken)
+    startTop()
+    root.innerHTML = myShoppingForm(transactions.length, total, cancels.length, confirs.length);
+  } else {
+    root.innerHTML = myShoppingForm()
+  }
 }
 
 // myorder 렌더링
