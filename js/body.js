@@ -20,9 +20,11 @@ function mainForm() {
 
   mainBody.push( /* HTML */ `
       </ul>
+
       <div class="swiper-pagination"></div>
       ${swiperArrowBtn}
     </div><!-- 메인 스와이퍼 -->
+
     <!-- 키보드 상품목록 -->
     <section class="keyboard mt70">
       <h1>KEYBOARD</h1>
@@ -32,6 +34,7 @@ function mainForm() {
   mainBody.push( /* HTML */ `
     </ul>
     </section><!-- 키보드 상품목록 -->
+
     <!-- 마우스 배너 -->
     <section class="keyboard-banner">
       <div class="swiper keyboardSwiper">
@@ -41,16 +44,19 @@ function mainForm() {
         </ul>
         ${swiperArrowBtn}
       </div>
+
       <h3>디자인 키보드는 엑토</h3>
       <p>편의성, 디자인, 기능을 모두 갖춘 <br /> 레트로 감성의 기계식 키보드가 곧 출시됩니다.</p>
       <a href="#" class="blackBtn">제품 모두 보기</a>
     </section><!-- 마우스 배너 -->
+
     <!-- 마우스 상품목록 -->
     <section class="mouse mt70">
       <h1>MOUSE</h1>
       <ul class="inner block3">
       </ul>
     </section><!-- 마우스 상품목록 -->
+
     <!-- 마우스 배너 -->
     <section class="mouse-banner mt70">
       <img src="./images/mouseBanner.gif" alt="">
@@ -58,6 +64,7 @@ function mainForm() {
       <p>인체공학적 설계로 편안한 그립감과 엑토만의 <br /> 감각적인 디자인의 마우스를 만나보세요.</p>
       <a href="#" class="blackBtn">제품 모두 보기</a>
     </section><!-- 마우스 배너 -->
+
     <!-- 데스크셋업 배너 -->
     <section class="deskSetup mt70">
       <img src="./images/deskSetup.jpg" alt="">
@@ -65,12 +72,14 @@ function mainForm() {
       <p>당신의 데스크를 더욱 업그레이드 시켜 줄 <br /> 다양한 기기들을 만나보세요.</p>
       <a href="#" class="blackBtn">제품 모두 보기</a>
     </section><!-- 데스크셋업 배너 -->
+
     <!-- 뉴아이템 상품목록 -->
     <section class="newItem mt70">
       <h1>NEW ITEM</h1>
       <ul class="inner block3">
       </ul>
     </section><!-- 뉴아이템 상품목록 -->
+
     <!-- 리뷰 영역 -->
     <section class="review">
       <h1>REVIEW</h1>
@@ -114,52 +123,96 @@ function mainForm() {
 }
 
 // 상품 목록
-function productList(tags) {
+function productList(data) {
   const colorChart = ["beige", "pastelBeige", "mint", "pink", "white", "navy", "blueNavy", "black", "green", "gray"]
   const mainBody = []
 
-  for (let i = 0; i < tags.length; i++) {
-    if (tags[i].thumbnail === null || tags[i].thumbnail === undefined) {
-      tags[i].thumbnail = './images/preparingProduct.jpg'
-    }
-    mainBody.push(`
+  for (let i = 0; i < data.length; i++) {
+    
+    mainBody.push(/* HTML */`
       <li>
-        <a href="#details/${tags[i].id}"> 
-          <div class="imgBox">
-            <img src="${tags[i].thumbnail}" alt="">
-          </div>
-          <div class="colorBox">
+        <a href="#details/${data[i].id}">
     `)
 
-    const randomNum = Math.ceil(Math.random() * 5)
-    let randomIndexArray = []
-    for (let j = 0; j < randomNum; j++) {
-      const colorNum = Math.floor(Math.random() * 10);
+    if (data[i].thumbnail === null || data[i].thumbnail === undefined) {
 
-      if (randomIndexArray.indexOf(colorNum) === -1) {
-        randomIndexArray.push(colorNum);
-        mainBody.push(`
-          <span class='${colorChart[colorNum]}'></span>
-        `);
+      mainBody.push(/* HTML */`
+            <div class="imgBox">
+              <img style="z-index:1; width:60%; height:auto; top:-10px; left:-8px; transform: translate(0, 0);" src="./images/icons/commingSoonIcon.png" alt=""/>
+              <img src="./images/preparingProduct.jpg" alt="">
+            </div>
+            <div class="colorBox">
+            <!-- <div>최상의 상품을 제공 드리기 위해 준비중입니다. <br />조금만 기다려 주세요.</div> -->
+            `)
+      const randomNum = Math.ceil(Math.random() * 5)
+      let randomIndexArray = []
+
+      for (let j = 0; j < randomNum; j++) {
+        const colorNum = Math.floor(Math.random() * 10);
+
+        if (randomIndexArray.indexOf(colorNum) === -1) {
+          randomIndexArray.push(colorNum);
+          mainBody.push(/* HTML */`
+            <span class='${colorChart[colorNum]}'></span>
+          `);
+        }
+      }
+
+      mainBody.push( /* HTML */`
+            </div >
+            <div class="textBox" style="border-bottom:0">
+            ${data[i].title} <span>B300${i}</span>
+            </div>
+          </a>
+        </li>
+      `)
+    } else {
+      mainBody.push(/* HTML */`
+        <div class="imgBox">
+          <img src="${data[i].thumbnail}" alt="">
+        </div>
+        <div class="colorBox">
+      `)
+
+      const randomNum = Math.ceil(Math.random() * 5)
+      let randomIndexArray = []
+      
+      for (let j = 0; j < randomNum; j++) {
+        const colorNum = Math.floor(Math.random() * 10);
+
+        if (randomIndexArray.indexOf(colorNum) === -1) {
+          randomIndexArray.push(colorNum);
+          mainBody.push(/* HTML */`
+            <span class='${colorChart[colorNum]}'></span>
+          `);
+        }
+      }
+      const discountValue = Math.floor(Math.random() * 9 + 1) * 8;
+      mainBody.push(/* HTML */`
+          </div >
+          <div class="textBox">
+          ${data[i].title} <span>B300${i}</span>
+          </div>
+          <div class="priceBox">
+      `)
+      if(data[i].isSoldOut) {
+        mainBody.push(/* HTML */`
+          <span style="position:relative; width:100%; display:block;"><img style="width:200px; position:absolute; right:0;" src="./images/icons/sold-out-icon.png"/></span>
+        `)
+      } else {
+        mainBody.push(/* HTML */`
+                <span class="discount">${data[i].price.toLocaleString()}원</span> 
+                ${Math.floor((Number(data[i].price) * (100 - discountValue)) / 100).toLocaleString()}원<br />
+                <span class="salePercent">${discountValue}% SALE</span>
+              </div>
+            </a>
+          </li>
+        `)
       }
     }
 
-    const discountValue = Math.floor(Math.random() * 9 + 1) * 8;
+  }  
 
-    mainBody.push(`
-            </div >
-            <div class="textBox">
-                  ${tags[i].title} <span>B300${i}</span>
-            </div>
-            <div class="priceBox">
-              <span class="discount">${tags[i].price.toLocaleString()}원</span> 
-              ${Math.floor((Number(tags[i].price) * (100 - discountValue)) / 100).toLocaleString()}원<br />
-              <span class="salePercent">${discountValue}% SALE</span>
-            </div>
-          </a>
-      </li>
-    `)
-  }
   return mainBody.join('');
 }
 
