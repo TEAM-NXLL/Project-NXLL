@@ -296,7 +296,7 @@ async function renderDetail() {
   const res = await getProductDetail(productId)
   root.innerHTML = detailForm(res)
   shoppingBasket(res)
-  buyProduct()
+  buyProduct(res)
 }
 
 // payment 렌더링

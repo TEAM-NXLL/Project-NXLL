@@ -23,7 +23,7 @@ export function lookProducts() {
           <span>${res.title}</span> <br />
         </td>
         <td>${res.price.toLocaleString()}원</td>
-        <td>${e.QUANTITY}</td>
+        <td class="product-quantity">${e.QUANTITY}</td>
         <td>[무료 배송]</td>
         <td class="product-price">${(res.price * e.QUANTITY).toLocaleString()}원</td>`;
       priceCheck(product)
@@ -132,8 +132,9 @@ export async function payBankLoopUp() {
 
 // 결제하기
 export async function buyProducts() {
-  const paymentBtn = document.querySelector('.payment-btn');
-  const payAccountEl = document.querySelector('#pay-account');
+  const paymentBtn = document.querySelector('.payment-btn')
+  const payAccountEl = document.querySelector('#pay-account')
+  const productQuantity = JSON.parse(localStorage.cart)
   payAccountEl.addEventListener('change', (e) => {
     const dataResult = e.target[e.target.selectedIndex];
     const accountId = dataResult.dataset.id;
@@ -142,9 +143,16 @@ export async function buyProducts() {
       let productIds = []
       checkBoxs.forEach(el => {
         if (el.checked) {
-          productIds.push(el.dataset.id)
+          productQuantity.forEach(product => {
+            if (el.dataset.id === product.ID) {
+              for (let i = 1; i <= product.QUANTITY; i += 1) {
+                productIds.push(el.dataset.id)
+              }
+            }
+          })
         }
       })
+      console.log(productIds)
       if (productIds.length !== 0) {
         productIds.forEach(async productId => {
           await getBuy(localStorage.accessToken, productId, accountId);
@@ -154,6 +162,6 @@ export async function buyProducts() {
         alert('거래가 완료되었습니다.');
         location.hash = '#myorder';
       } else { alert("선택항목이 존재하지 않습니다.") }
-    });
-  });
+    })
+  })
 }
