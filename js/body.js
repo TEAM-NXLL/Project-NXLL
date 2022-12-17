@@ -260,7 +260,6 @@ function joinForm() {
             </tbody>
           </table>
         </li>
-
         <button id="joinBtn" class="joinBtn hover-navy" type="submit"><i class="fa-solid fa-check"></i>회원가입</button>
       </ul>
     </form>
@@ -336,9 +335,7 @@ function myShoppingForm(trans, price) {
       <h2 class="title-box__text">MY-SHOP</h2>
       <p class="title-box__subtext">나의 쇼핑내역을 한눈에 확인하세요.</p>
   </div>
-
   ${localStorage.accessToken ? '' : information}
-
     <!-- ORDER-LIST -->
     <div class="order-list">
       <div class="inner">
@@ -356,7 +353,6 @@ function myShoppingForm(trans, price) {
         </a>
       </div>
     </div>
-
     <!-- QUICK-MENU -->
     <div class="quick-menu">
       <div class="inner">
@@ -410,7 +406,6 @@ function myOrderForm(orderList, cancelList, confirList) {
       <p class="title-box__text">MY-ORDER</p>
       <p class="title-box__subtext">고객님의 주문내역 입니다.</p>
     </div>
-
     <div class="tab-menu myorder">
       <div class="inner">
         <ul>
@@ -420,7 +415,6 @@ function myOrderForm(orderList, cancelList, confirList) {
         </ul>
       </div>
     </div>
-
     <!-- INFOMATION MYORDER -->
     <div class="information myorder">
       <div class="inner">
@@ -440,7 +434,6 @@ function myOrderForm(orderList, cancelList, confirList) {
         </div>
       </div>
     </div><!-- INFORMATION MYORDER -->
-
     <!-- MYORDER-LIST -->
     <div class="myorder-list">
       <div class="inner">
@@ -449,7 +442,6 @@ function myOrderForm(orderList, cancelList, confirList) {
           <span class="title-box__subtext">주문 상품 정보</span>
         </div>
       </div>
-
       <div class="inner">
         <table>
           <caption>주문 상품 정보</caption>
@@ -488,7 +480,6 @@ function myCancelOrderForm(orderList, cancelList, confirList) {
       <p class="title-box__text">MY-ORDER</p>
       <p class="title-box__subtext">고객님의 주문내역 입니다.</p>
     </div>
-
     <div class="tab-menu myorder">
       <div class="inner">
         <ul>
@@ -498,7 +489,6 @@ function myCancelOrderForm(orderList, cancelList, confirList) {
         </ul>
       </div>
     </div>
-
     <!-- INFOMATION MYORDER -->
     <div class="information myorder">
       <div class="inner">
@@ -518,7 +508,6 @@ function myCancelOrderForm(orderList, cancelList, confirList) {
         </div>
       </div>
     </div><!-- INFORMATION MYORDER -->
-
     <!-- MYORDER-LIST -->
     <div class="myorder-list">
       <div class="inner">
@@ -527,7 +516,6 @@ function myCancelOrderForm(orderList, cancelList, confirList) {
           <span class="title-box__subtext">주문 상품 정보</span>
         </div>
       </div>
-
       <div class="inner">
         <table>
           <caption>주문 상품 정보</caption>
@@ -566,7 +554,6 @@ function myConfirOrderForm(orderList, cancelList, confirList) {
       <p class="title-box__text">MY-ORDER</p>
       <p class="title-box__subtext">고객님의 주문내역 입니다.</p>
     </div>
-
     <div class="tab-menu myorder">
       <div class="inner">
         <ul>
@@ -576,7 +563,6 @@ function myConfirOrderForm(orderList, cancelList, confirList) {
         </ul>
       </div>
     </div>
-
     <!-- INFOMATION MYORDER -->
     <div class="information myorder">
       <div class="inner">
@@ -596,7 +582,6 @@ function myConfirOrderForm(orderList, cancelList, confirList) {
         </div>
       </div>
     </div><!-- INFORMATION MYORDER -->
-
     <!-- MYORDER-LIST -->
     <div class="myorder-list">
       <div class="inner">
@@ -605,7 +590,6 @@ function myConfirOrderForm(orderList, cancelList, confirList) {
           <span class="title-box__subtext">주문 상품 정보</span>
         </div>
       </div>
-
       <div class="inner">
         <table>
           <caption>주문 상품 정보</caption>
@@ -747,40 +731,10 @@ function userAccountForm(totalBalance) {
 
 // 상품 상세페이지
 function detailForm(productInfo) {
-  // const main = document.querySelector('main')
 
-  // main.addEventListener('click', ({ target }) => {
-  //   const buyBtn = document.querySelector('.buy-btn')
-  //   const cartBtn = document.querySelector('.cart-btn')
-  //   let cartList = []
-  //   if (target.closest('.tab-menu')) {
-  //     const topBanner = document.querySelector('.top-banner')
-  //     const el = target['name']
-  //     const nameEl = document.querySelector(`.${el}`)
-  //     const scrollH = nameEl.getBoundingClientRect().top - topBanner.offsetHeight
-  //     scrollTo({ left: 0, top: window.pageYOffset + scrollH, behavior: 'smooth' })
-  //   }
-
-  //   // 카트에 상품 담기 (localstorage.cart에 상품id 추가)
-  //   function addCart() {
-  //     cartList.push(productInfo.id)
-  //     localStorage.setItem('cart', JSON.stringify(cartList))
-  //   }
-
-  //   if (target === cartBtn) {
-  //     if (!localStorage.cart) addCart()
-  //     else {
-  //       cartList = [...JSON.parse(localStorage.cart)]
-  //       addCart()
-  //     }
-  //     const modalPayment = document.querySelector('.modal-payment')
-  //     modalPayment.classList.add('active')
-  //   }
-  // })
-
-  // if (productInfo.thumbnail === null || productInfo.thumbnail === undefined) {
-  //   productInfo.thumbnail = './images/preparingProduct.jpg'
-  // }
+  if (productInfo.thumbnail === null || productInfo.thumbnail === undefined) {
+    productInfo.thumbnail = './images/preparingProduct.jpg'
+  }
 
   const discountValue = Math.floor(((Math.random() * 9) + 1)) * 8
 
@@ -840,7 +794,14 @@ function detailForm(productInfo) {
         </div>
       </div>
     </div>
-  </div><!-- PRODUCT-DETAIL -->
+  </div><!-- PRODUCT-DETAIL -->  
+  <!-- MODAL-PAYMENT -->
+  <div class="modal-payment"></div><!-- MODAL-PAYMENT -->
+  `
+}
+
+function modalPayment() {
+  return /* html */`
   <!-- MODAL-PAYMENT -->
   <div class="modal-payment">
     <div class="modal-payment__header">
@@ -912,7 +873,6 @@ function paymentForm() {
       <p class="title-box__text">ORDER - FORM</p>
       <p class="title-box__subtext">나의 장바구니 내역</p>
     </div>
-
     <div class="order-form">
       <div class="inner">
         <ul>
@@ -923,7 +883,6 @@ function paymentForm() {
         </ul>
       </div>
     </div>
-
     <ul class="table-area">
       <li class="product-info">
         <h2>PRODUCT <span>주문 상품 정보</span></h2>
@@ -965,7 +924,6 @@ function paymentForm() {
       </li>
       <button class="product-delete-btn hover-navy">선택 상품 삭제하기</button>
     </ul>
-
     <ul class="table-area">
       <li class="shipping-info">
       <h2>SHIPPING <span>배송 정보</span></h2>
@@ -1004,7 +962,6 @@ function paymentForm() {
         </table>
       </li>
     </ul>
-
     <ul class="table-area">
       <li class="payment-info">
       <h2>PAYMENT <span>결제</span></h2>
