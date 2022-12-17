@@ -259,6 +259,7 @@ async function renderMyShop() {
     startTop()
     root.innerHTML = myShoppingForm(transactions.length, total, cancels.length, confirs.length);
   } else {
+    startTop()
     root.innerHTML = myShoppingForm()
   }
 }

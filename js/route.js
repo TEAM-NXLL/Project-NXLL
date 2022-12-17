@@ -1,5 +1,4 @@
 import { loginRender, joinRender, renderMyShop, renderMyOrder, renderMain, renderUserInfo, renderDetail, renderPayment, renderMyCancelOrder, renderMyConfirOrder } from "./main.js"
-import { getProductDetail } from "./getdata.js"
 
 export async function router() {
 
