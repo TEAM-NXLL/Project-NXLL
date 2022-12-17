@@ -130,9 +130,9 @@
       padding: 0 20px;
       height: 40px;
       background-color: #fff;
-      border: 2px solid #213B85;
+      border: 2px solid var(--signature-color);
       font-size: 13px;
-      color: #213B85;
+      color: var(--signature-color);
       transition: all .3s;
 
       &::before {
@@ -152,7 +152,7 @@
       }
 
       &:hover {
-        background-color: #213B85;
+        background-color: var(--signature-color);
         color: #fff;
       }
     }
