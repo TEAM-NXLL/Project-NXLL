@@ -12,11 +12,10 @@ import { buyProduct, cart, shoppingBasket } from "./detail.js";
 // 변수
 const root = document.querySelector('main');
 
-// function loginNjoin() {
-//   loginRender()
-//   joinRender()
-// }
-
+// 페이지 새로 렌더하면 스크롤 맨 위로 이동하기
+function startTop() {
+  window.scrollTo(0, 0)
+}
 
 // 메인 페이지
 async function renderMain() {
@@ -102,6 +101,7 @@ async function productSearch(e) {
   const keyword = document.querySelector('#keyword');
 
   if (e.key === 'Enter') {
+    startTop()
     let rootInner = document.createElement('ul')
     rootInner.classList.add('inner')
 
@@ -154,12 +154,14 @@ keyword.addEventListener('keyup', productSearch)
 
 // 로그인 페이지 해시 값 + 화면 변경
 function loginRender() {
+  startTop()
   root.innerHTML = logInForm();
   sendLogin();
 }
 
 // 회원가입 페이지 해시 값 + 화면 변경
 function joinRender() {
+  startTop()
   root.innerHTML = joinForm();
   sendSignUp();
 }
@@ -233,26 +235,38 @@ function completeLogin() {
   logOut();
 }
 
-// myshop 렌더링
-async function renderMyShop() {
-  const { totalBalance, accounts } = await userOwnBank();
-  // const total = totalBalance.toLocaleString()
-  const total = totalBalance ? totalBalance.toLocaleString() : '';
-  const transactions = await getTransactions(localStorage.accessToken)
-  root.innerHTML = myShoppingForm(transactions.length, total);
-}
-
 // myorder 렌더링 공통 사항
 async function listLookUp() {
-  const products = await getTransactions(localStorage.accessToken)
-  const cancels = products.filter(product => product.isCanceled === true)
-  const confirs = products.filter(product => product.done === true)
-  return { products, cancels, confirs }
+  try {
+    const products = await getTransactions(localStorage.accessToken)
+    const cancels = products.filter(product => product.isCanceled === true)
+    const confirs = products.filter(product => product.done === true)
+    return { products, cancels, confirs }
+  } catch (err) {
+    console.log('로그인 안 함')
+  }
+}
+
+// myshop 렌더링
+async function renderMyShop() {
+  const login = await stateLogin(localStorage.accessToken)
+  if (login !== '유효한 사용자가 아닙니다.') {
+    console.log('로그인 됨')
+    const { totalBalance } = await userOwnBank();
+    const { cancels, confirs } = await listLookUp()
+    const total = totalBalance ? totalBalance.toLocaleString() : '';
+    const transactions = await getTransactions(localStorage.accessToken)
+    startTop()
+    root.innerHTML = myShoppingForm(transactions.length, total, cancels.length, confirs.length);
+  } else {
+    root.innerHTML = myShoppingForm()
+  }
 }
 
 // myorder 렌더링
 async function renderMyOrder() {
   const { products, cancels, confirs } = await listLookUp()
+  startTop()
   root.innerHTML = myOrderForm(products.length, cancels.length, confirs.length);
   transLookUp().then(res => {
     cancelOrder()
@@ -263,6 +277,7 @@ async function renderMyOrder() {
 // myorder cancel 렌더링
 async function renderMyCancelOrder() {
   const { products, cancels, confirs } = await listLookUp()
+  startTop()
   root.innerHTML = myCancelOrderForm(products.length, cancels.length, confirs.length)
   cancelOrderLookUp()
 }
@@ -270,6 +285,7 @@ async function renderMyCancelOrder() {
 // myorder confir 렌더링
 async function renderMyConfirOrder() {
   const { products, cancels, confirs } = await listLookUp()
+  startTop()
   root.innerHTML = myConfirOrderForm(products.length, cancels.length, confirs.length)
   confirOrderLookUp()
 }
@@ -277,6 +293,7 @@ async function renderMyConfirOrder() {
 // userInfo 렌더링
 async function renderUserInfo() {
   const res = await stateLogin(localStorage.accessToken);
+  startTop()
   root.innerHTML = userInfoForm(res.email, res.displayName);
   const { totalBalance, accounts } = await userOwnBank();
   const total = totalBalance.toLocaleString();
@@ -294,6 +311,7 @@ async function renderUserInfo() {
 async function renderDetail() {
   const productId = location.hash.split('/')[1]
   const res = await getProductDetail(productId)
+  startTop()
   root.innerHTML = detailForm(res)
   shoppingBasket(res)
   buyProduct(res)
@@ -302,6 +320,7 @@ async function renderDetail() {
 // payment 렌더링
 async function renderPayment() {
   // localStorage.setItem('cart', JSON.stringify(['fa5dOlMcvB8uoFDgvZWB', 'Ccm6lX9ORcpSAS8vXDBs'])) // 추후 삭제
+  startTop()
   root.innerHTML = paymentForm()
   lookProducts()
   allCheckBox()

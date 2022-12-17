@@ -125,7 +125,7 @@ function showModal() {
     MODAL_ITEM.classList.add('modal-payment__item')
     MODAL_ITEM.innerHTML = /* html */`
         <div class="thumb">
-          <img src="${item.THUMB}" alt="상품 대표이미지">
+          <img src="${item.THUMB ?? './images/preparingProduct.jpg'}" alt="상품 대표이미지">
         </div>
         <div class="description">
           <p class="name">${item.TITLE}</p>
