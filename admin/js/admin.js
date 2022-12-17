@@ -10,3 +10,24 @@ import { addItem } from './addProduct.js';
   await renderAllProduct();
   await renderAlltransacs();
 })();
+
+// GNB 탭
+const gnb = document.querySelector('.gnb')
+const gnbTabs = gnb.querySelectorAll('li')
+let activeTab = gnb.querySelector('.active')
+
+gnbTabs.forEach((tab) => {
+  tab.addEventListener('click', () => {
+    clickItem(tab)
+  })
+})
+
+function clickItem(tab) {
+  if(activeTab == tab) return
+  if(activeTab) {
+    activeTab.classList.remove('active')
+  }
+
+  tab.classList.add("active");
+  activeTab = tab;
+}
