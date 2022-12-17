@@ -12,11 +12,15 @@ import { buyProduct, cart, shoppingBasket } from "./detail.js";
 // 변수
 const root = document.querySelector('main');
 
+// 페이지 새로 렌더하면 스크롤 맨 위로 이동하기
+function startTop() {
+  window.scrollTo(0, 0)
+}
+
 // function loginNjoin() {
 //   loginRender()
 //   joinRender()
 // }
-
 
 // 메인 페이지
 async function renderMain() {
@@ -102,6 +106,7 @@ async function productSearch(e) {
   const keyword = document.querySelector('#keyword');
 
   if (e.key === 'Enter') {
+    startTop()
     let rootInner = document.createElement('ul')
     rootInner.classList.add('inner')
 
@@ -154,12 +159,14 @@ keyword.addEventListener('keyup', productSearch)
 
 // 로그인 페이지 해시 값 + 화면 변경
 function loginRender() {
+  startTop()
   root.innerHTML = logInForm();
   sendLogin();
 }
 
 // 회원가입 페이지 해시 값 + 화면 변경
 function joinRender() {
+  startTop()
   root.innerHTML = joinForm();
   sendSignUp();
 }
@@ -239,6 +246,7 @@ async function renderMyShop() {
   // const total = totalBalance.toLocaleString()
   const total = totalBalance ? totalBalance.toLocaleString() : '';
   const transactions = await getTransactions(localStorage.accessToken)
+  startTop()
   root.innerHTML = myShoppingForm(transactions.length, total);
 }
 
@@ -253,6 +261,7 @@ async function listLookUp() {
 // myorder 렌더링
 async function renderMyOrder() {
   const { products, cancels, confirs } = await listLookUp()
+  startTop()
   root.innerHTML = myOrderForm(products.length, cancels.length, confirs.length);
   transLookUp().then(res => {
     cancelOrder()
@@ -263,6 +272,7 @@ async function renderMyOrder() {
 // myorder cancel 렌더링
 async function renderMyCancelOrder() {
   const { products, cancels, confirs } = await listLookUp()
+  startTop()
   root.innerHTML = myCancelOrderForm(products.length, cancels.length, confirs.length)
   cancelOrderLookUp()
 }
@@ -270,6 +280,7 @@ async function renderMyCancelOrder() {
 // myorder confir 렌더링
 async function renderMyConfirOrder() {
   const { products, cancels, confirs } = await listLookUp()
+  startTop()
   root.innerHTML = myConfirOrderForm(products.length, cancels.length, confirs.length)
   confirOrderLookUp()
 }
@@ -277,6 +288,7 @@ async function renderMyConfirOrder() {
 // userInfo 렌더링
 async function renderUserInfo() {
   const res = await stateLogin(localStorage.accessToken);
+  startTop()
   root.innerHTML = userInfoForm(res.email, res.displayName);
   const { totalBalance, accounts } = await userOwnBank();
   const total = totalBalance.toLocaleString();
@@ -294,6 +306,7 @@ async function renderUserInfo() {
 async function renderDetail() {
   const productId = location.hash.split('/')[1]
   const res = await getProductDetail(productId)
+  startTop()
   root.innerHTML = detailForm(res)
   shoppingBasket(res)
   buyProduct(res)
@@ -302,6 +315,7 @@ async function renderDetail() {
 // payment 렌더링
 async function renderPayment() {
   // localStorage.setItem('cart', JSON.stringify(['fa5dOlMcvB8uoFDgvZWB', 'Ccm6lX9ORcpSAS8vXDBs'])) // 추후 삭제
+  startTop()
   root.innerHTML = paymentForm()
   lookProducts()
   allCheckBox()
