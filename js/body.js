@@ -128,7 +128,7 @@ function productList(data) {
   const mainBody = []
 
   for (let i = 0; i < data.length; i++) {
-    
+
     mainBody.push(/* HTML */`
       <li>
         <a href="#details/${data[i].id}">
@@ -176,7 +176,7 @@ function productList(data) {
 
       const randomNum = Math.ceil(Math.random() * 5)
       let randomIndexArray = []
-      
+
       for (let j = 0; j < randomNum; j++) {
         const colorNum = Math.floor(Math.random() * 10);
 
@@ -195,7 +195,7 @@ function productList(data) {
           </div>
           <div class="priceBox">
       `)
-      if(data[i].isSoldOut) {
+      if (data[i].isSoldOut) {
         mainBody.push(/* HTML */`
           <span><img style="width:150px;" src="./images/icons/sold-out-icon.png"/></span>
         `)
@@ -211,7 +211,7 @@ function productList(data) {
       }
     }
 
-  }  
+  }
 
   return mainBody.join('');
 }
@@ -730,17 +730,17 @@ function userAccountForm(totalBalance) {
 }
 
 // 상품 상세페이지
-function detailForm(productInfo) {
+function detailForm(product) {
 
-  if (productInfo.thumbnail === null || productInfo.thumbnail === undefined) {
-    productInfo.thumbnail = './images/preparingProduct.jpg'
+  if (product.thumbnail === null || product.thumbnail === undefined) {
+    product.thumbnail = './images/preparingProduct.jpg'
   }
 
   return /* html */`
   <div class="page-nav">
     <div class="inner">
       <a href="/">HOME</a>
-      <a href="#">${productInfo.tags}</a>
+      <a href="#">${product.tags}</a>
     </div>
   </div>
   <!-- PRODUCT-DETAIL -->
@@ -748,23 +748,23 @@ function detailForm(productInfo) {
     <div class="product-detail__header">
       <div class="inner">
         <div class="product-thumbnail">
-          <img src="${productInfo.thumbnail}" alt="대표이미지">
+          <img src="${product.thumbnail}" alt="대표이미지">
         </div>
         <div class="product-order">
           <div class="product-summary">
             <div class="product-summary__title">
-              <span>${productInfo.description}</span>
-              <p>${productInfo.title}</p>
+              <span>${product.description}</span>
+              <p>${product.title}</p>
               <div class="priceBox">
-                <span class="price">${productInfo.price.toLocaleString()}원</span>
+                <span class="price">${product.price.toLocaleString()}원</span>
               </div>
             </div>
             <div class="product-summary__info">
               <p class="info-title">상품 정보</p>
-              <p><em>상품 설명</em> <span>${productInfo.description}</span></p>
-              <p><em>상품 포함 태그</em> <span style="color:#555;">${productInfo.tags}</span></p>
+              <p><em>상품 설명</em> <span>${product.description}</span></p>
+              <p><em>상품 포함 태그</em> <span style="color:#555;">${product.tags}</span></p>
               <p><em>배송비</em> <span style="color:red;">무료</span></p>
-              <p><em>판매 상태</em> <span>${productInfo.isSoldOut === true ? '품절' : '판매 중'}</span></p>
+              <p><em>판매 상태</em> <span>${product.isSoldOut === true ? '품절' : '판매 중'}</span></p>
             </div>
             <div class="btn-group">
               <a class="buy-btn">바로 구매하기</a>
@@ -786,7 +786,7 @@ function detailForm(productInfo) {
       </ul>
       <div class="inner">
         <div class="product-detail__img">
-          <img src="${productInfo.photo}" alt="">
+          <img src="${product.photo}" alt="">
         </div>
       </div>
     </div>
