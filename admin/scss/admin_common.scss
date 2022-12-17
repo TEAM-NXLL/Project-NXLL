@@ -7,6 +7,7 @@
   --table-th-background: #fafafa;
   --text-color: #333;
   --sub-text-color: #999;
+  --signature-color: #213b85
 }
 
 body {
@@ -34,9 +35,9 @@ input {
 }
 
 button.hover-navy {
-  border: 2px solid #213b85;
+  border: 2px solid var(--signature-color);
   line-height: 36px;
-  color: #213b85;
+  color: var(--signature-color);
   padding: 0 20px;
   transition: 0.3s;
 
@@ -46,7 +47,7 @@ button.hover-navy {
 }
 
 button.hover-navy:hover {
-  background-color: #213b85;
+  background-color: var(--signature-color);
   color: #fff;
 }
 
@@ -89,42 +90,143 @@ img.require {
   margin: 0 auto;
 }
 
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--signature-color);
+  padding: 0 10%;
+  color: #fff;
+  position: relative;
+  .logo {
+    display:flex;
+    align-items: center;
+    height: 70px;
+    img {
+      height: 30px;
+    }
+  }
+  
+  ul {
+    display: flex;
+    > li {
+      padding: 0 20px;
+      font-weight: normal;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+
+      &.logOutBtn {
+        // border: 1px solid #fff;
+        border-radius: 5px;
+        background-color: #fff;
+        color: var(--signature-color);
+        padding: 10px 15px;
+      }
+
+      i {
+        margin-left: 10px;
+      }
+    }
+
+    &.gnb {
+      position: absolute;
+      left: 25%;
+      height: 80%;
+      bottom: 0;
+      display: flex;
+      align-items: end;
+      
+      li {
+        border-radius: 10px 10px 0 0;
+        font-size: 14px;
+        height: 90%;
+        padding: 0;
+        position: relative;
+        transition: 0.2s;
+        border-right: 1px solid var(--signature-color);
+
+        a {
+          width: 100%;
+          height: 100%;
+          padding: 0 20px;
+          display: flex;
+          align-items: center;
+        }
+
+        &::after {
+          content: '';
+          position: absolute;
+          width: 0px;
+          height: 0px;
+          border-top: 10px solid #fff;
+          border-left: 10px solid transparent;
+          border-right: 10px solid transparent;
+          top: 0;
+          left: 50%;
+          transform: translateX(-50%);
+          opacity: 0;
+        }
+
+        &:hover {
+          height: 100%;
+
+          &::after {
+            opacity: 1;
+          }
+        }
+        
+        &.active {
+          height: 100%;
+          background: #fff;
+          color: var(--signature-color);
+          font-weight: bold;
+          font-size: 14px;
+          
+          .tabStyle {
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            background-color: #fff;
+            bottom: 0;
+
+            span {
+              display: block;
+              background-color: var(--signature-color);
+              width: 100%;
+              height: 100%;
+            }
+
+            &:nth-of-type(1) {
+              left: -20px;
+
+              span {
+                border-radius: 0 0 50% 0;
+              }
+            }
+
+            &:last-of-type {
+              right: -20px;
+
+              span {
+                border-radius: 0 0 0 50%;
+              }
+            }
+          }
+        }
+
+        &:last-child {
+          border-right: 0;
+        }
+      }
+    }
+  }
+}
+
 table {
   width: 100%;
   font-size: 12px;
   color: #353535;
-
-  tr.number-tr {
-    input[type='text'] {
-      width: 100px;
-    }
-  }
-
-  tr.address-tr {
-    input[type='text'] {
-      width: 370px;
-    }
-  }
-
-  tr.address {
-    td {
-      input {
-        margin-bottom: 5px;
-
-        &:first-child {
-          width: 100px;
-        }
-
-        &:last-child {
-          margin-bottom: 0;
-        }
-      }
-
-      button {
-        margin-left: 5px;
-      }
-    }
-  }
 
   th,
   td {
@@ -181,229 +283,4 @@ h2 {
 
 p {
   text-align: center;
-}
-
-.mt70 {
-  margin-top: 70px;
-}
-
-// 한 줄 당 박스 갯수
-.block2 {
-  display: flex;
-  flex-wrap: wrap;
-
-  li {
-    width: calc(50% - 10px);
-    margin-right: 20px;
-    margin-bottom: 60px;
-
-    &:nth-child(2n) {
-      margin-right: 0;
-    }
-
-    .imgBox {
-      height: 790px;
-    }
-
-    &:hover {
-      .imgBox {
-        >img {
-          &.imgHover {
-            opacity: 1;
-          }
-        }
-      }
-    }
-  }
-}
-
-.block3 {
-  display: flex;
-  flex-wrap: wrap;
-
-  li {
-    width: calc(33.3333% - 13.4px);
-    margin-right: 20px;
-    margin-bottom: 60px;
-
-    &:nth-child(3n) {
-      margin-right: 0;
-    }
-
-    .imgBox {
-      height: 520px;
-    }
-
-    &:hover {
-      .imgBox {
-        >img {
-          &.imgHover {
-            opacity: 1;
-          }
-        }
-      }
-    }
-  }
-}
-
-.block5 {
-  display: flex;
-  flex-wrap: wrap;
-
-  li {
-    width: calc(20% - 16px);
-    margin-right: 20px;
-    margin-bottom: 60px;
-
-    &:nth-child(5n) {
-      margin-right: 0;
-    }
-  }
-}
-
-.block10 {
-  display: flex;
-  flex-wrap: wrap;
-
-  li {
-    width: 150px;
-    height: 150px;
-    margin-right: 20px;
-    margin-bottom: 60px;
-
-    &:nth-child(10n) {
-      margin-right: 0;
-    }
-  }
-}
-
-.imgBox {
-  position: relative;
-  overflow: hidden;
-
-  .icon {
-    position: absolute;
-    z-index: 1;
-
-    &.best {
-      left: 0;
-      top: 0;
-    }
-
-    &.saleTree {
-      top: 0;
-      right: 0;
-    }
-
-    &.insta {
-      background: url('../../static/images/logo.png') no-repeat center;
-      background-position: -28px -661px;
-      top: 0;
-      right: 0;
-      width: 26px;
-      height: 26px;
-    }
-  }
-
-  >img {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    transition: 0.3s;
-
-    &.imgHover {
-      opacity: 0;
-    }
-  }
-}
-
-.colorBox {
-  margin: 20px 0 10px;
-
-  span {
-    display: inline-block;
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
-  }
-
-  .beige {
-    background-color: #f8ecca;
-  }
-
-  .pastelBeige {
-    background-color: #fffdf0;
-  }
-
-  .mint {
-    background-color: #b8dfdc;
-  }
-
-  .pink {
-    background-color: #fbbdc0;
-  }
-
-  .white {
-    background-color: #fff;
-    border: 1px solid #f0f0f0;
-    box-sizing: border-box;
-  }
-
-  .navy {
-    background-color: #1f1f38;
-  }
-
-  .blueNavy {
-    background-color: #000082;
-  }
-
-  .black {
-    background-color: #000;
-  }
-
-  .green {
-    background-color: #13755c;
-  }
-
-  .gray {
-    background-color: #8c8c8c;
-  }
-}
-
-.textBox {
-  line-height: 1.5;
-  font-size: 15px;
-  border-bottom: 1px solid var(--border-color);
-  padding-bottom: 20px;
-  margin-bottom: 10px;
-
-  span {
-    color: #3399ff;
-  }
-}
-
-.priceBox {
-  font-weight: bold;
-  font-size: 18px;
-
-  .discount {
-    font-size: 16px;
-    font-weight: normal;
-    margin-right: 15px;
-    color: #999;
-    text-decoration: line-through;
-  }
-
-  .salePercent {
-    display: inline-block;
-    color: #ff6600;
-    margin-top: 15px;
-  }
-
-  .newIcon {
-    width: 40px;
-    display: block;
-    margin-top: 10px;
-  }
 }

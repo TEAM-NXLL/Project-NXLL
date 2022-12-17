@@ -16,3 +16,24 @@ import { renderProductTransacs } from './renderProductTransacs.js';
   await renderProductTransacs(allTransac)
   await renderAlltransacs(allTransac, allTransac);
 })();
+
+// GNB 탭
+const gnb = document.querySelector('.gnb')
+const gnbTabs = gnb.querySelectorAll('li')
+let activeTab = gnb.querySelector('.active')
+
+gnbTabs.forEach((tab) => {
+  tab.addEventListener('click', () => {
+    clickItem(tab)
+  })
+})
+
+function clickItem(tab) {
+  if(activeTab == tab) return
+  if(activeTab) {
+    activeTab.classList.remove('active')
+  }
+
+  tab.classList.add("active");
+  activeTab = tab;
+}

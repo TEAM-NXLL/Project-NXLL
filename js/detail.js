@@ -1,5 +1,6 @@
 export function buyProduct(product) {
   const buyBtn = document.querySelector('.buy-btn')
+  const selling = product.isSoldOut === true ? false : true
   buyBtn.addEventListener('click', () => {
     let newProduct = {
       'ID': product.id,
@@ -11,7 +12,8 @@ export function buyProduct(product) {
     }
     localStorage.setItem('cart', JSON.stringify([newProduct]))
     const accessToken = localStorage.accessToken
-    if (accessToken) location.hash = '#payment'
+    if (accessToken && selling) location.hash = '#payment'
+    else if (accessToken) popMessage()
     else location.hash = '#login'
   })
 }
@@ -51,11 +53,19 @@ async function cart(product) {
 
 export function shoppingBasket(product) {
   const cartBtn = document.querySelector('.cart-btn')
+  const tabMenu = document.querySelector('.tab-menu')
   const selling = product.isSoldOut === true ? false : true
   cartBtn.addEventListener('click', () => {
     cart(product)
     if (selling) showModal(product)
     else popMessage()
+  })
+  tabMenu.addEventListener('click', ({ target }) => {
+    const topBanner = document.querySelector('.top-banner')
+    const el = target['name']
+    const nameEl = document.querySelector(`.${el}`)
+    const scrollH = nameEl.getBoundingClientRect().top - topBanner.offsetHeight
+    scrollTo({ left: 0, top: window.pageYOffset + scrollH, behavior: 'smooth' })
   })
 }
 

@@ -319,9 +319,9 @@ function myShoppingForm(trans, price) {
         </div>
       </div>
     </div>
-    `
-  const goToLogin = () => {
-    return localStorage.accessToken ? '#userinfo' : '#login'
+  `
+  const goToLogin = (link) => {
+    return localStorage.accessToken ? link : '#login'
   }
   const transLookUp = () => {
     return trans > 0 ? `${trans}` : `0`
@@ -369,7 +369,7 @@ function myShoppingForm(trans, price) {
             <span class="quick-menu__title"><strong>주문내역 조회</strong>
               고객님께서 주문하신 상품의 주문내역을 확인하실 수 있습니다.
             </span>
-            <span class="quick-menu__linked"><a href="#myorder" class="myOrder" targer="_blank">조회</a></span>
+            <span class="quick-menu__linked"><a href=${goToLogin('#myorder')} class="myOrder" targer="_blank">조회</a></span>
           </div>
           <div class="quick-menu__item">
             <span class="icon mileage"><i></i></span>
@@ -377,7 +377,7 @@ function myShoppingForm(trans, price) {
             <span class="quick-menu__title"><strong>회원 정보</strong>
               회원이신 고객님의 개인정보를 관리하는 공간입니다.
             </span>
-            <span class="quick-menu__linked"><a href=${goToLogin()}>조회</a></span>
+            <span class="quick-menu__linked"><a href=${goToLogin('#userinfo')}>조회</a></span>
           </div>
         </div>
         <div class="order-state">
@@ -731,7 +731,6 @@ function userAccountForm(totalBalance) {
 
 // 상품 상세페이지
 function detailForm(product) {
-
   if (product.thumbnail === null || product.thumbnail === undefined) {
     product.thumbnail = './images/preparingProduct.jpg'
   }
