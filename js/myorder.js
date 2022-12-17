@@ -102,7 +102,7 @@ export async function cancelOrderLookUp() {
         <p>주문 취소</p>
       </td>
       <td class="decision">
-        '-'
+        -
       </td>
     </tr>
     `
@@ -139,7 +139,7 @@ export async function confirOrderLookUp() {
         <p>주문 확정</p>
       </td>
       <td class="decision">
-        '-'
+        -
       </td>
     </tr>
     `

@@ -1,8 +1,15 @@
-export function buyProduct() {
-  const productId = location.hash.split('/')[1]
+export function buyProduct(product) {
   const buyBtn = document.querySelector('.buy-btn')
   buyBtn.addEventListener('click', () => {
-    localStorage.setItem('cart', JSON.stringify([productId]))
+    let newProduct = {
+      'ID': product.id,
+      'QUANTITY': 1,
+      'TITLE': product.title,
+      'THUMB': product.thumbnail,
+      'PRICE': product.price,
+      'ORIGIN_PRICE': product.price
+    }
+    localStorage.setItem('cart', JSON.stringify([newProduct]))
     const accessToken = localStorage.accessToken
     if (accessToken) location.hash = '#payment'
     else location.hash = '#login'

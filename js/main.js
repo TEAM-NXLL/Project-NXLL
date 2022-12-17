@@ -295,7 +295,7 @@ async function renderDetail() {
   const productId = location.hash.split('/')[1]
   const res = await getProductDetail(productId)
   root.innerHTML = detailForm(res)
-  buyProduct()
+  buyProduct(res)
   shoppingBasket(res)
 }
 
