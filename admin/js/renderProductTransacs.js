@@ -1,9 +1,11 @@
 import { viewAllTransactions, transactionStatus } from './requests.js';
+import { renderAdminSummary } from './adminSummary.js';
 
 // 전체 함수 생성자 함수로 만들어서 all 과 individual로 구분하기
 
 export async function renderProductTransacs(DOM) {
   let transacs = await viewAllTransactions();
+
   const productTransacBtn = DOM.querySelector('.each-transac-btn-down');
   const hideBtn = DOM.querySelector('.each-transac-btn-up');
   const productTransacCont = DOM.querySelector('.transac-container');
@@ -94,7 +96,7 @@ export async function renderProductTransacs(DOM) {
     
       if (isCanceled) {
         transac.querySelector('.each-transac-status').innerHTML = /*html*/ `
-          <div class = "isCancled">거래 취소</div>
+          <div class = "isCanceled">거래 취소</div>
         `;
       } else if (done) {
         transac.querySelector('.each-transac-status').innerHTML = /*html*/ `
@@ -104,35 +106,34 @@ export async function renderProductTransacs(DOM) {
         transac.querySelector('.each-transac-status').innerHTML = /*html*/ `
         <div class = "transacting">거래중</div>
         <div class = "btn-wrapper">
-          <button class = "isCancled-btn">거래 취소</button>
+          <button class = "isCanceled-btn">거래 취소</button>
           <button class = "done-btn">거래 완료</button>
         </div>`;
   
          // 버튼 이벤트 리스너 추가
-        transac.querySelector('.isCancled-btn').addEventListener('click', (event) => {
-          console.log(event.path);
-          const product_id = event.path[3].querySelector('.transacId').innerText;
-          transactionStatus(product_id, true, false);
+        transac.querySelector('.isCanceled-btn').addEventListener('click', (event) => {
+          transactionStatus(transacId, true, false);
           renderAdminSummary()
           setTimeout(() => {
-            transac.querySelector('.transac-status').innerHTML = /*html*/ `
-              <div class = "isCancled">거래 취소</div>`
+            transac.querySelector('.each-transac-status').innerHTML = /*html*/ `
+              <div class = "isCanceled">거래 취소</div>`
             }, 700)
-          const TotalIncome = document.querySelector(".totalIncomeNumHilight")
-          const newTotalIncome = parseInt(TotalIncome.innerText) + parseInt(event.path[3].querySelector('.price').innerText) 
+          const TotalIncome = document.querySelector(".total-income-num")
+          const newTotalIncome = parseInt(TotalIncome.innerText) + parseInt(event.path[6].querySelector('.price').innerText) 
           TotalIncome.innerText = newTotalIncome.toLocaleString()
         });
   
         transac.querySelector('.done-btn').addEventListener('click', (event) => {
-          const product_id = event.path[3].querySelector('.transacId').innerText;
-          transactionStatus(product_id, false, true);
+          transactionStatus(transacId, false, true);
           renderAdminSummary()
           setTimeout(() => {
-            transac.querySelector('.transac-status').innerHTML = /*html*/ `
+            transac.querySelector('.each-transac-status').innerHTML = /*html*/ `
               <div class = "done">거래 완료</div>`
             }, 700)
-          const TotalIncome = document.querySelector(".totalIncomeNumHilight")
-          const newTotalIncome = parseInt(TotalIncome.innerText) + parseInt(event.path[3].querySelector('.price').innerText) 
+          const TotalIncome = document.querySelector(".total-income-num")
+          console.log(TotalIncome)
+
+          const newTotalIncome = parseInt(TotalIncome.innerText) + parseInt(event.path[6].querySelector('.price').innerText)
           TotalIncome.innerText = newTotalIncome.toLocaleString()
         });
       }

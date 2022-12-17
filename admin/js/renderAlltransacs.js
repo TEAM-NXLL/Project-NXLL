@@ -58,7 +58,7 @@ export async function renderAlltransacs() {
 
     if (isCanceled) {
       transac.querySelector('.transac-status').innerHTML = /*html*/ `
-        <div class = "isCancled">거래 취소</div>
+        <div class = "isCanceled">거래 취소</div>
       `;
     } else if (done) {
       transac.querySelector('.transac-status').innerHTML = /*html*/ `
@@ -68,21 +68,21 @@ export async function renderAlltransacs() {
       transac.querySelector('.transac-status').innerHTML = /*html*/ `
       <div class = "transacting">거래중</div>
       <div class = "btn-wrapper">
-        <button class = "isCancled-btn">거래 취소</button>
+        <button class = "isCanceled-btn">거래 취소</button>
         <button class = "done-btn">거래 완료</button>
       </div>`;
 
        // 버튼 이벤트 리스너 추가
-      transac.querySelector('.isCancled-btn').addEventListener('click', (event) => {
+      transac.querySelector('.isCanceled-btn').addEventListener('click', (event) => {
+        console.log(event.path);
         const product_id = event.path[3].querySelector('.transacId').innerText;
-        const transacStatus = transac.querySelector('.transac-status')
         transactionStatus(product_id, true, false);
         renderAdminSummary()
         setTimeout(() => {
           transac.querySelector('.transac-status').innerHTML = /*html*/ `
-            <div class = "isCancled">거래 취소</div>`
+            <div class = "isCanceled">거래 취소</div>`
           }, 700)
-        const TotalIncome = document.querySelector(".totalIncomeNumHilight")
+        const TotalIncome = document.querySelector(".total-income-num")
         const newTotalIncome = parseInt(TotalIncome.innerText) + parseInt(event.path[3].querySelector('.price').innerText) 
         TotalIncome.innerText = newTotalIncome.toLocaleString()
       });
@@ -95,7 +95,7 @@ export async function renderAlltransacs() {
           transac.querySelector('.transac-status').innerHTML = /*html*/ `
             <div class = "done">거래 완료</div>`
           }, 700)
-        const TotalIncome = document.querySelector(".totalIncomeNumHilight")
+        const TotalIncome = document.querySelector(".total-income-num")
         const newTotalIncome = parseInt(TotalIncome.innerText) + parseInt(event.path[3].querySelector('.price').innerText) 
         TotalIncome.innerText = newTotalIncome.toLocaleString()
       });
