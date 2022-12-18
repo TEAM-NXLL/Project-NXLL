@@ -157,7 +157,6 @@ img.require {
 
       tbody {
         tr {
-          border-bottom: 1px solid #d6dcf9;
 
           &:nth-child(2n) {
             background-color: #E4EBF5;
@@ -177,8 +176,8 @@ img.require {
                 height: 100%;
                 position: absolute;
                 top:50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
+                left: 0;
+                transform: translateY(-50%);
               }
             }
           }
