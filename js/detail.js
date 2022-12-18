@@ -65,6 +65,13 @@ export function shoppingBasket(product) {
     const scrollH = nameEl.getBoundingClientRect().top - topBanner.offsetHeight
     scrollTo({ left: 0, top: window.pageYOffset + scrollH, behavior: 'smooth' })
   })
+  // 바로 구매하기 클릭시 연결 페이지
+  const cartBtnBuy = document.querySelector('.cart-buy-btn')
+  cartBtnBuy.addEventListener('click', () => {
+    const accessToken = localStorage.accessToken
+    if (accessToken) location.hash = '#payment'
+    else location.hash = '#login'
+  })
 }
 
 // 품절 상품을 장바구니에 담으면 뜨는 팝업메세지
@@ -219,15 +226,6 @@ export function showModal() {
   const btnClose = document.querySelector('.btn-close')
   btnClose.addEventListener('click', () => {
     MODAL.classList.remove('active')
-  })
-
-  // 바로 구매하기 클릭시 연결 페이지
-  const cartBtnBuy = document.querySelector('.cart-buy-btn')
-  cartBtnBuy.addEventListener('click', () => {
-    console.log('작동')
-    const accessToken = localStorage.accessToken
-    if (accessToken) location.hash = '#payment'
-    else location.hash = '#login'
   })
 
   cartCountCheck()
