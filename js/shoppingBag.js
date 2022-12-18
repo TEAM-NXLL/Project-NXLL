@@ -1,97 +1,12 @@
-export function buyProduct(product) {
-  const buyBtn = document.querySelector('.buy-btn');
-  buyBtn.addEventListener('click', () => {
-    let newProduct = {
-      ID: product.id,
-      QUANTITY: 1,
-      TITLE: product.title,
-      THUMB: product.thumbnail,
-      PRICE: product.price,
-      ORIGIN_PRICE: product.price,
-    };
-    localStorage.setItem('cart', JSON.stringify([newProduct]));
-    const accessToken = localStorage.accessToken;
-    if (accessToken) location.hash = '#payment';
-    else location.hash = '#login';
-  });
-}
+import { buyProduct, totalQuantity } from './detail';
 
-async function cart(product) {
+export function viewShoppingBag() {
   const cartList = JSON.parse(localStorage.getItem('cart')) || [];
-  const selling = product.isSoldOut === true ? false : true;
-
-  let newProduct = {
-    ID: product.id,
-    QUANTITY: 1,
-    TITLE: product.title,
-    THUMB: product.thumbnail,
-    PRICE: product.price,
-    ORIGIN_PRICE: product.price,
-  };
-
-  if (cartList.length > 0 && selling) {
-    cartList.forEach((e) => {
-      if (e.ID === product.id) {
-        e.QUANTITY += 1;
-        e.PRICE = product.price * e.QUANTITY;
-        localStorage.setItem('cart', JSON.stringify(cartList));
-      } else {
-        const cartCheck = cartList.filter((e) => e.ID === product.id);
-        if (cartCheck.length === 0) {
-          cartList.push(newProduct);
-          localStorage.setItem('cart', JSON.stringify(cartList));
-        }
-      }
-    });
-  } else if (selling) {
-    cartList.push(newProduct);
-    localStorage.setItem('cart', JSON.stringify(cartList));
-  }
-}
-
-export function shoppingBasket(product) {
-  const cartBtn = document.querySelector('.cart-btn');
-  const selling = product.isSoldOut === true ? false : true;
-  cartBtn.addEventListener('click', () => {
-    cart(product);
-    if (selling) showModal(product);
-    else popMessage();
-  });
-}
-
-function popMessage() {
-  const main = document.querySelector('main');
-  const popUp = document.createElement('div');
-  popUp.classList.add('pop-message', 'active');
-  popUp.innerHTML = /* html */ `
-    <p>품절된 상품입니다.</p>
-  `;
-  main.append(popUp);
-  setTimeout(() => {
-    popUp.remove();
-  }, 800);
-}
-
-// 상품 총 수량 구하기
-export function totalQuantity() {
-  const cartList = JSON.parse(localStorage.getItem('cart')) || [];
-  let quant = 0;
-  cartList.forEach((el) => {
-    quant += Number(el.QUANTITY);
-  });
-  return quant;
-}
-
-// 모달창
-function showModal() {
-  const cartList = JSON.parse(localStorage.getItem('cart')) || [];
-  const MODAL = document.querySelector('.modal-payment');
+  const MODAL = document.querySelector('.shopping-box');
   MODAL.classList.add('active');
   MODAL.innerHTML = /* html */ `
       <div class="modal-payment__header">
-        <h3>장바구니 담기</h3>
-        <span>물품을 미리 확인하세요</span>
-        <button class="btn-close">닫기 버튼</button>
+        <h3>SHOPPING - BOX</h3>
       </div>
       <div class="modal-payment__body">
         <div class="modal-payment__title">
@@ -104,8 +19,7 @@ function showModal() {
         </div>
       </div>    
       <div class="modal-payment__footer">
-        <span>* 쇼핑을 계속하시려면 이 창을 닫아주시길 바랍니다.</span>
-        <a class="cart-btn-buy"><i class="fas fa-check"></i>바로 구매하기</a>
+        <a class="cart-btn-buy"><i class="fas fa-check"></i>장바구니 이동</a>
       </div>
     `;
 
@@ -138,7 +52,7 @@ function showModal() {
   const btnMinus = document.querySelectorAll('.btn-minus');
   const btnBuy = document.querySelector('.cart-btn-buy');
 
-  btnClose.addEventListener('click', () => {
+  MODAL.addEventListener('click', () => {
     MODAL.classList.remove('active');
   });
   // 수량 ++
@@ -156,7 +70,7 @@ function showModal() {
       });
 
       localStorage.setItem('cart', JSON.stringify(cartList));
-      showModal();
+      viewShoppingBag();
     }),
   );
   // 수량--
@@ -174,11 +88,12 @@ function showModal() {
       });
 
       localStorage.setItem('cart', JSON.stringify(cartList));
-      showModal();
+      viewShoppingBag();
     }),
   );
 
   btnBuy.addEventListener('click', function () {
+    MODAL.classList.remove('block');
     const accessToken = localStorage.accessToken;
     if (accessToken) location.hash = '#payment';
     else location.hash = '#login';
