@@ -5,6 +5,7 @@ import { renderAdminSummary } from './adminSummary';
 import { addItem } from './addProduct.js';
 import { viewAllProduct, viewAllTransactions } from './requests.js';
 import { renderProductTransacs } from './renderProductTransacs.js';
+import { transacSearch } from './transacSearch.js';
 
 (async () => {
   const allTransac = await viewAllTransactions();
@@ -13,6 +14,7 @@ import { renderProductTransacs } from './renderProductTransacs.js';
   await renderAdminSummary(allTransac, allProduct);
   await renderAllProduct( allTransac, allProduct);
   await renderProductTransacs(allTransac)
+  transacSearch(allTransac);
   await renderAlltransacs(allTransac, allTransac);
 })();
 
