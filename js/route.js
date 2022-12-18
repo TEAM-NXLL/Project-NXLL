@@ -1,4 +1,4 @@
-import { loginRender, joinRender, renderMyShop, renderMyOrder, renderMain, renderUserInfo, renderDetail, renderPayment, renderMyCancelOrder, renderMyConfirOrder, renderCategory, cartCountCheck } from "./main.js"
+import { loginRender, joinRender, renderMyShop, renderMyOrder, renderMain, renderUserInfo, renderDetail, renderPayment, renderMyCancelOrder, renderMyConfirOrder, renderCategory, cartCountCheck, sortByTag } from "./main.js"
 
 export async function router() {
   cartCountCheck()
@@ -34,7 +34,7 @@ export async function router() {
   else if (routePath === '#payment') {
     renderPayment()
   }
-  else if (routePath === '#new') {
+  else if (routePath === '#new-item') {
     renderCategory("new-item")
   }
   else if (routePath === '#discount') {
@@ -53,11 +53,73 @@ export async function router() {
     renderCategory("audio")
   }
   else if (routePath === '#mouse') {
-    renderCategory("pc")
-    // 마우스탭 정렬
+    sortByTag()
   }
   else if (routePath === '#keyboard') {
-    renderCategory("pc")
-    // 키보드탭 정렬
+    sortByTag()
+  }
+  else if (routePath === '#mousepad') {
+    // renderCategory("pc")
+    sortByTag()
+  }
+  else if (routePath === '#usbhub') {
+    // renderCategory("pc")
+    sortByTag()
+  }
+  else if (routePath === '#cardreader') {
+    // renderCategory("pc")
+    sortByTag()
+  }
+  else if (routePath === '#monitorstand') {
+    // renderCategory("pc")
+    sortByTag()
+  }
+  else if (routePath === '#charging') {
+    // renderCategory("smart")
+    sortByTag()
+  }
+  else if (routePath === '#adapter') {
+    // renderCategory("smart")
+    sortByTag()
+  }
+  else if (routePath === '#smartholder') {
+    // renderCategory("smart")
+    sortByTag()
+  }
+  else if (routePath === '#smart-etc') {
+    // renderCategory("smart")
+    sortByTag()
+  }
+  else if (routePath === '#notebookstand') {
+    // renderCategory("notebook")
+    sortByTag()
+  }
+  else if (routePath === '#keypad') {
+    // renderCategory("notebook")
+    sortByTag()
+  }
+  else if (routePath === '#lock') {
+    // renderCategory("notebook")
+    sortByTag()
+  }
+  else if (routePath === '#ear-head') {
+    // renderCategory("audio")
+    sortByTag()
+  }
+  else if (routePath === '#kids') {
+    // renderCategory("audio")
+    sortByTag()
+  }
+  else if (routePath === '#mic') {
+    // renderCategory("audio")
+    sortByTag()
+  }
+  else if (routePath === '#speaker') {
+    // renderCategory("audio")
+    sortByTag()
+  }
+  else if (routePath === '#audiocable') {
+    // renderCategory("audio")
+    sortByTag()
   }
 }

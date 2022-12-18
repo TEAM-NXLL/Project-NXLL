@@ -207,6 +207,11 @@ function productList(data) {
 
 // 카테고리 내부 메뉴
 export function renderInnerCategory(tag, count = 0) {
+  const pcTags = ["pc", "keyboard", "mouse", "mousepad",  "usbhub",  "monitorstand", "cardreader"];
+  const notebookTags = ["notebook", "notebookstand", "lock", "keypad"];
+  const smartTags = ["smart", "adapter", "charging", "smartholder", "smart-etc"];
+  const audioTags = ["audio", "ear-head", "speaker", "mic", "kids", "audiocable"];
+
   if (tag === "new-item") {
     return  /* HTML */  `  
     <div class="category-area">
@@ -230,7 +235,7 @@ export function renderInnerCategory(tag, count = 0) {
         </div>
       </div>
     `
-  } else if (tag === "pc") {
+  } else if (pcTags.includes(tag)) {
     return  /* HTML */  `  
       <div class="category-area">
         <div class="category-title-area">
@@ -250,7 +255,7 @@ export function renderInnerCategory(tag, count = 0) {
         </div>
       </div>
     `
-  } else if (tag === "notebook") {
+  } else if (notebookTags.includes(tag)) {
     return /* HTML */  `  
       <div class="category-area">
         <div class="category-title-area">
@@ -266,7 +271,7 @@ export function renderInnerCategory(tag, count = 0) {
         </div>     
       </div>
       `
-  } else if (tag === "smart") {
+  } else if (smartTags.includes(tag)) {
     return /* HTML */  `  
       <div class="category-area">
         <div class="category-title-area">
@@ -284,7 +289,7 @@ export function renderInnerCategory(tag, count = 0) {
         </div>   
       </div>
       `
-  } else if (tag === "audio") {
+  } else if (audioTags.includes(tag)) {
     return /* HTML */  `  
       <div class="category-area">
         <div class="category-title-area">
