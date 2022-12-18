@@ -47,7 +47,7 @@ function mainForm() {
 
       <h3>디자인 키보드는 엑토</h3>
       <p>편의성, 디자인, 기능을 모두 갖춘 <br /> 레트로 감성의 기계식 키보드가 곧 출시됩니다.</p>
-      <a href="#" class="blackBtn">제품 모두 보기</a>
+      <a href="#keyboard" class="blackBtn">제품 모두 보기</a>
     </section><!-- 마우스 배너 -->
 
     <!-- 마우스 상품목록 -->
@@ -62,7 +62,7 @@ function mainForm() {
       <img src="./images/mouseBanner.gif" alt="">
       <h3>편안한 그립감의 마우스</h3>
       <p>인체공학적 설계로 편안한 그립감과 엑토만의 <br /> 감각적인 디자인의 마우스를 만나보세요.</p>
-      <a href="#" class="blackBtn">제품 모두 보기</a>
+      <a href="#mouse" class="blackBtn">제품 모두 보기</a>
     </section><!-- 마우스 배너 -->
 
     <!-- 데스크셋업 배너 -->
@@ -70,7 +70,7 @@ function mainForm() {
       <img src="./images/deskSetup.jpg" alt="">
       <h3>데스크셋업의 완성</h3>
       <p>당신의 데스크를 더욱 업그레이드 시켜 줄 <br /> 다양한 기기들을 만나보세요.</p>
-      <a href="#" class="blackBtn">제품 모두 보기</a>
+      <a href="#pc" class="blackBtn">제품 모두 보기</a>
     </section><!-- 데스크셋업 배너 -->
 
     <!-- 뉴아이템 상품목록 -->
@@ -240,12 +240,12 @@ export function renderInnerCategory(tag, count = 0) {
         </div>
         <div class="category-menu-area">
           <ul>
-            <li>키보드</li>
-            <li>마우스</li>
-            <li>마우스패드</li>
-            <li>USB허브</li>
-            <li>모니터 스탠드</li>
-            <li>카드 리더기</li>
+            <li class="tab-keyboard">키보드</li>
+            <li class="tab-mouse">마우스</li>
+            <li class="tab-mousepad">마우스패드</li>
+            <li class="tab-usbhub">USB허브</li>
+            <li class="tab-monitorstand">모니터 스탠드</li>
+            <li class="tab-cardreader">카드 리더기</li>
           </ul>
         </div>
       </div>
@@ -260,9 +260,9 @@ export function renderInnerCategory(tag, count = 0) {
         </div>
         <div class="category-menu-area">
           <ul>
-            <li>노트북 스탠드</li>
-            <li>노트북 잠금장치</li>
-            <li>노트북 키패드</li>
+            <li class="tab-notebookstand">노트북 스탠드</li>
+            <li class="tab-lock">노트북 잠금장치</li>
+            <li class="tab-keypad">노트북 키패드</li>
         </div>     
       </div>
       `
@@ -276,10 +276,10 @@ export function renderInnerCategory(tag, count = 0) {
         </div>
         <div class="category-menu-area">
           <ul>
-            <li>어댑터</li>
-            <li>충전기</li>
-            <li>스마트 거치대</li>
-            <li>기타 스마트기기</li>
+            <li class="tab-adapter">어댑터</li>
+            <li class="tab-charging">충전기</li>
+            <li class="tab-holder">스마트 거치대</li>
+            <li class="tab-smart-etc">기타 스마트기기</li>
           </ul>
         </div>   
       </div>
@@ -294,11 +294,11 @@ export function renderInnerCategory(tag, count = 0) {
         </div>
         <div class="category-menu-area">
           <ul>
-            <li>이어폰&헤드폰</li>
-            <li>스피커</li>
-            <li>마이크</li>
-            <li>키즈헤드폰</li>
-            <li>음향케이블 & 기타</li>
+            <li class="tab-ear-head">이어폰&헤드폰</li>
+            <li class="tab-speaker">스피커</li>
+            <li class="tab-mic">마이크</li>
+            <li class="tab-kids">키즈헤드폰</li>
+            <li class="tab-audiocable">음향케이블 & 기타</li>
           </ul>
         </div>
       </div>
@@ -315,6 +315,7 @@ export function renderInnerCategory(tag, count = 0) {
     `
   }
 }
+
 
 
 // 회원가입 페이지

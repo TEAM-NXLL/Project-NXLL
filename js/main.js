@@ -11,6 +11,7 @@ import { payAccountList, payBankLoopUp, buyProducts, lookProducts, cancelProduct
 import { cancelOrder, confirOrder, transLookUp, cancelOrderLookUp, confirOrderLookUp } from "./myorder.js";
 import { buyProduct, cart, shoppingBasket } from "./detail.js";
 import { viewShoppingBag } from './shoppingBag.js';
+import { tagArr } from "../admin/js/editProduct.js";
 
 // 변수
 const root = document.querySelector('main');
@@ -126,15 +127,55 @@ export async function renderCategory(tag) {
       dataArr.push(data)
     }
   }
+  startTop()
   root.innerHTML = renderInnerCategory(tag, dataArr.length);
 
   let rootInner = document.createElement('ul');
   rootInner.classList.add('inner');
   rootInner.classList.add('block4');
   rootInner.style.margin = '140px auto 100px';
+
   rootInner.innerHTML += productList(dataArr);
   root.append(rootInner)
+
+  // 서브카테고리 클릭 시 해당 제품만 나오게
+  renderSubCategory(rootInner, dataArr, tag)
+
+  // 서브카테고리 안에서 메인카테고리 다시 클릭 시
+  const category = document.querySelector(`a[href="#${tag}"]`)
+  category.addEventListener("click", event => {
+    root.innerHTML = renderInnerCategory(tag, dataArr.length);
+
+    let rootInner = document.createElement('ul');
+    rootInner.classList.add('inner');
+    rootInner.classList.add('block4');
+    rootInner.style.margin = '140px auto 100px';
+  
+    rootInner.innerHTML += productList(dataArr);
+    root.append(rootInner)
+  })
 }
+
+// 서브카테고리 클릭 시 렌더링
+function renderSubCategory(rootInner, dataArr, tag) {
+  const menu = root.querySelectorAll('.category-menu-area>ul>li')
+  menu.forEach(title => {
+    title.addEventListener("click", event => {
+      const {target} = event;
+      const subCategory = target.classList.value.slice(4)
+      const subDataArr = [];
+      
+      for (let data of dataArr) {
+        if (data.tags.includes(`${subCategory}`)) {
+          subDataArr.push(data)
+        }
+      }
+      rootInner.innerHTML = productList(subDataArr);
+      root.append(rootInner);
+    })
+  })
+}
+
 
 // 제품 검색
 async function productSearch(e) {
@@ -211,8 +252,8 @@ shoppingBag.addEventListener('click', () => {
 // 로그인 페이지 해시 값 + 화면 변경
 function loginRender() {
   startTop()
-  root.innerHTML = logInForm();
-  sendLogin();
+  root.innerHTML = logInForm()
+  sendLogin()
 }
 
 // 회원가입 페이지 해시 값 + 화면 변경
@@ -335,8 +376,8 @@ router();
   if (localStorage.accessToken) {
     const res = await stateLogin(localStorage.accessToken);
     res.displayName ? completeLogin() : window.localStorage.clear();
-  } else {
-    // document.querySelector('.community').href = '#'
+  }  else {
+    document.querySelector('.community').href = '#'
   }
 })();
 

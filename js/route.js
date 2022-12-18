@@ -34,10 +34,6 @@ export async function router() {
   else if (routePath === '#payment') {
     renderPayment()
   }
-
-  else if (routePath === '#event') {
-    console.log("이벤트카테고리")
-  }
   else if (routePath === '#new') {
     renderCategory("new-item")
   }
@@ -55,5 +51,13 @@ export async function router() {
   }
   else if (routePath === '#audio') {
     renderCategory("audio")
+  }
+  else if (routePath === '#mouse') {
+    renderCategory("pc")
+    // 마우스탭 정렬
+  }
+  else if (routePath === '#keyboard') {
+    renderCategory("pc")
+    // 키보드탭 정렬
   }
 }

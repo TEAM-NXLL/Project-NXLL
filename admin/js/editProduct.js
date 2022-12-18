@@ -2,7 +2,8 @@ import { store } from "../../js/store.js";
 import { correctProduct, createRequest } from "./requests.js";
 import { toast } from "./toast.js";
 
-
+export const tagArr = ["mouse", "keyboard", "mousepad", "usbhub", "monitorstand", "cardreader", "notebookstand", "lock", "keypad", "ear-head", "speaker", "mic", "kids", "audiocable", "adapter", "charging", "smartholder", "smart-etc", "new-item", "discount", "pc", "notebook", "audio", "smart", 
+"beige", "mint", "pink", "white", "blue", "black", "green", "gray"];
 
 // 수정버튼 클릭 이벤트 핸들러 (추가랑 내용 겹침... 나중에합쳐보기)
 export function editItem(event) {
@@ -25,8 +26,6 @@ async function editInputPlaceholder(productId) {
   document.querySelector('#edit-product-price').value = getResult.price;
 
   const selectedTags = getResult.tags;
-  const tagArr = ["mouse", "keyboard", "mousepad", "usbhub", "monitorstand", "cardreader", "notebookstand", "lock", "keypad", "ear-head", "speaker", "mic", "kids", "audiocable", "adapter", "charging", "smartholder", "smart-etc", "new-item", "discount", "pc", "notebook", "audio", "smart", 
-  "beige", "mint", "pink", "white", "blue", "black", "green", "gray"];
 
   for (let i=0; i < tagArr.length; i+=1) {
     selectedTags.includes(`${tagArr[i]}`)
