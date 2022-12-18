@@ -46,9 +46,9 @@ export function deleteItem(target) {
   items.forEach(item => {
     if (item.dataset.id === itemId) {
       item.classList.add('delete');
-      item.addEventListener('transitionend', () => {
-        item.remove();
-      })
+      item.remove();
+      // item.addEventListener('transitionend', () => {
+      // })
     }
   })
   delProduct(itemId);

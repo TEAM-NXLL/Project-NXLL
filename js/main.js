@@ -336,7 +336,7 @@ router();
     const res = await stateLogin(localStorage.accessToken);
     res.displayName ? completeLogin() : window.localStorage.clear();
   } else {
-    document.querySelector('.community').href = '#'
+    // document.querySelector('.community').href = '#'
   }
 })();
 

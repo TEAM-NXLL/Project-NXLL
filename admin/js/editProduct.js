@@ -70,10 +70,10 @@ function editEvent(e) {
     try {
       correctProduct(productId, title, price, description, tags, thumbnail, photo, isSoldOut);
       toast("상품 수정이 완료되었습니다.")
-      // if (window.confirm("상품 수정이 완료되었습니다.")) {
-      //   location.hash = '#all-products'
-      //   location.reload();
-      // }
+      if (window.confirm("상품 수정이 완료되었습니다.")) {
+        location.hash = '#all-products'
+        location.reload();
+      }
     } catch (error) {
       toast(error, "잠시 후 다시 시도해주세요 ")
     }

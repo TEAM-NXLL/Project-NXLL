@@ -1,188 +1,190 @@
 // // 모든 상품 조회
-// .all-products {
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
+.all-products {
+  // display: flex;
+  // justify-content: center;
+  // align-items: center;
 
-//   .inner {
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-//   }
+  // .inner {
+  //   display: flex;
+  //   justify-content: center;
+  //   align-items: center;
+  // }
 
-//   .products-container {
-//     width: 100%;
-//     display: flex;
-//     flex-direction: column;
-//     justify-content: center;
-//     align-items: center;
-//   }
+  // .products-container {
+  //   width: 100%;
+  //   display: flex;
+  //   flex-direction: column;
+  //   justify-content: center;
+  //   align-items: center;
+  // }
 
 
-//   .product-item.item-head {
-//     width: 100%;
-//     border: none;
-//     box-sizing: border-box;
-//     display: block;
+  // .product-item.item-head {
+  //   width: 100%;
+  //   border: none;
+  //   box-sizing: border-box;
+  //   display: block;
     
-//     .product-wrapper{
-//       width: 100%;
-//       background-color: #b9c7ee;
-//       font-weight: 700;
-//       font-size: 14px;
-//       height: 50px;
-//       margin: 0;
+  //   .product-wrapper{
+  //     width: 100%;
+  //     background-color: #b9c7ee;
+  //     font-weight: 700;
+  //     font-size: 14px;
+  //     height: 50px;
+  //     margin: 0;
 
-//       .delete-checked {
-//         background-color: whitesmoke;
-//         border: 1px solid black;
-//         padding: 8px;
-//         width: fit-content;
-//         height: fit-content;
-//         border-radius: 10px;
+  //     .delete-checked {
+  //       background-color: whitesmoke;
+  //       border: 1px solid black;
+  //       padding: 8px;
+  //       width: fit-content;
+  //       height: fit-content;
+  //       border-radius: 10px;
 
-//         &:hover {
-//           scale: 1.1;
-//           box-shadow: 3px 3px 2px 1px rgba(0, 0, 255, .2);
-//         }
-//       }
+  //       &:hover {
+  //         scale: 1.1;
+  //         box-shadow: 3px 3px 2px 1px rgba(0, 0, 255, .2);
+  //       }
+  //     }
 
-//       .thumbnail {
-//         background-image: none;
-//       }
-//     }
-//   }
+  //     .thumbnail {
+  //       background-image: none;
+  //     }
+  //   }
+  // }
 
-//   .hide{
-//     display: none;
-//   }
+  // .hide{
+  //   display: none;
+  // }
 
-//   .product-item {
-//     width: 100%;
-//     border: 1px solid #000;
-//     box-sizing: border-box;
-//     margin-bottom: 1px;
-//     .product-wrapper{
-//       width: 100%;
-//       background-color: #f5f5f5;
-//       font-weight: 700;
-//       font-size: 10px;
-//       height: 150px;
-//       display: flex;
-//       justify-content: space-between;
-//       transition: .5s ease;
-//       &.delete {
-//         transform: translateX(10rem);
-//         opacity: 0;
-//       }
+  .product-item {
+    // width: 100%;
+    // border: 1px solid #000;
+    // box-sizing: border-box;
+    // margin-bottom: 1px;
+    .product-wrapper{
+      // width: 100%;
+      // background-color: #f5f5f5;
+      // font-weight: 700;
+      // font-size: 10px;
+      // height: 150px;
+      // display: flex;
+      // justify-content: space-between;
+      // transition: .5s ease;
+      &.delete {
+        transform: translateX(10rem);
+        opacity: 0;
+      }
   
-//       .thumbnail {
-//         display: flex;
-//         width: 20%;
-//         justify-content: center;
-//         align-items: center;
-//         margin: 5px;
+      // .thumbnail {
+      //   display: flex;
+      //   width: 20%;
+      //   justify-content: center;
+      //   align-items: center;
+      //   margin: 5px;
   
-//         img {
-//           max-height: 100%;
-//           width: auto;
-//         }
-//       }
+      //   img {
+      //     max-height: 100%;
+      //     width: auto;
+      //   }
+      // }
   
-//       .text-wrapper {
-//         width: 80%;
-//         display: flex;
-//         justify-content: space-around;
-//         align-items: center;
+      .text-wrapper {
+        // width: 80%;
+        // display: flex;
+        // justify-content: space-around;
+        // align-items: center;
   
-//         .descript {
-//           width: 30%;
-//           display: flex;
-//           justify-content: center;
-//           align-items: center;
-//         }
+        // .descript {
+        //   width: 30%;
+        //   display: flex;
+        //   justify-content: center;
+        //   align-items: center;
+        // }
   
-//         .edit-delete-btn {
-//           font-size: 10px;
-//           display: flex;
-//           flex-direction: column;
-//           justify-content: center;
-//           align-items: center;
+        .edit-delete-btn {
+          // font-size: 10px;
+          // display: flex;
+          // flex-direction: column;
+          // justify-content: center;
+          // align-items: center;
   
-//           .edit-btn {
-//             background-color: #b9c7ee;
-//             width: 80px;
-//             height: 25px;
-//             border-radius: 15px;
-//             margin-bottom: 10px;
-  
-//             &:hover {
-//               background-color: #fff;
-//               border: 1px solid #b9c7ee;
-//               scale: 1.1;
-//             }
-//           }
-  
-//           .del-btn {
-//             background-color: #b9c7ee;
-//             width: 80px;
-//             height: 25px;
-//             border-radius: 15px;
-  
-//             &:hover {
-//               background-color: #fff;
-//               border: 1px solid #b9c7ee;
-//               scale: 1.1;
-//             }
-//           }
-  
-//           .delete-checkbox {
-//             transform: scale(1.4);
-//             margin-bottom: 12px;
-//           }
-//         }
-//       }
-//     }
-//   }  
-// }
+          
+          .delete-checkbox {
+            transform: scale(1.4);
+            margin-bottom: 12px;
+          }
+        }
+      }
+    }
+  }  
+}
+.edit-btn {
+  background-color: #b9c7ee;
+  width: 80px;
+  height: 25px;
+  border-radius: 15px;
+  margin-bottom: 10px;
 
-// .toast-box {
-//   position: fixed;
-//   z-index: 3;
-//   top: 300px;
-//   background-color: #9baee0;
-//   border-radius: 20px;
-//   box-shadow: 8px 8px 2px 1px rgba(57, 57, 102, 0.2);
+  &:hover {
+    background-color: #fff;
+    border: 1px solid #b9c7ee;
+    scale: 1.1;
+  }
+}
 
-//   .toast {
-//     color: whitesmoke;
-//     font-size: 20px;
-//     line-height: 120px;
-//     text-align: center;
-//     width: 380px;
-//     height: 120px;
-//   }
+.del-btn {
+  background-color: #b9c7ee;
+  width: 80px;
+  height: 25px;
+  border-radius: 15px;
 
-//   .confirm-area{
-//     background-color: blanchedalmond;
-//     margin-top: -20px;
-//     height: 40px;
-//     display: flex;
-//     justify-content: space-around;
-//     margin-bottom: 20px;
+  &:hover {
+    background-color: #fff;
+    border: 1px solid #b9c7ee;
+    scale: 1.1;
+  }
+}
 
-//     .confirm {
-//       font-size: 18px;
-//       width: 120px;
-//       background-color: blanchedalmond;
-//       border-radius: 20px;
-//       display: block;
-//     }
+.toast-box {
+  position: fixed;
+  z-index: 3;
+  top: calc(50% + 70px);
+  left: calc(50% + 350px);
+  transform: translate(calc(-50% - 175px), calc(-50% - 35px));
+  background-color: #9baee0;
+  border-radius: 20px;
+  box-shadow: 8px 8px 2px 1px rgba(57, 57, 102, 0.2);
+
+  .toast {
+    color: whitesmoke;
+    font-size: 20px;
+    line-height: 120px;
+    text-align: center;
+    width: 380px;
+    height: 120px;
+  }
+
+  .confirm-area{
+    background-color: blanchedalmond;
+    margin-top: -20px;
+    height: 40px;
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+
+    .confirm {
+      font-size: 18px;
+      width: 120px;
+      background-color: blanchedalmond;
+      border-radius: 20px;
+      display: block;
+    }
     
-//     .cancel {
-//       font-size: 18px;
-//       width: 120px;
-//       // background-color: rebeccapurple;
-//     }
-//   }
-// }
+    .cancel {
+      font-size: 18px;
+      width: 120px;
+      // background-color: rebeccapurple;
+    }
+  }
+}
