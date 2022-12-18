@@ -1,32 +1,32 @@
-import { buyProduct, totalQuantity } from './detail';
+import { totalQuantity } from './detail';
 
 export function viewShoppingBag() {
   const cartList = JSON.parse(localStorage.getItem('cart')) || []
   const MODAL = document.querySelector('.shopping-box')
   // MODAL.classList.add('active');
   MODAL.innerHTML = /* html */ `
-      <div class="modal-payment__header">
+      <div class="bag-payment__header">
         <h3>장바구니</h3>
       </div>
-      <div class="modal-payment__body">
-        <div class="modal-payment__title">
+      <div class="bag-payment__body">
+        <div class="bag-payment__title">
           <em>CART - LIST</em>
           <span class="subtext">내 장바구니 목록입니다.</span>
           <span class="total">총 <strong>${totalQuantity()}</strong>개의 물품</span>
         </div>
-        <div class="modal-payment__list">
+        <div class="bag-payment__list">
           <!-- item -->
         </div>
       </div>    
-      <div class="modal-payment__footer">
+      <div class="bag-payment__footer">
         <a class="cart-btn-buy"><i class="fas fa-check"></i>장바구니 이동</a>
       </div>
     `
 
-  const MODAL_LIST = document.querySelector('.modal-payment__list');
+  const MODAL_LIST = document.querySelector('.bag-payment__list');
   cartList.forEach((item) => {
     const MODAL_ITEM = document.createElement('div');
-    MODAL_ITEM.classList.add('modal-payment__item');
+    MODAL_ITEM.classList.add('bag-payment__item');
     MODAL_ITEM.innerHTML = /* html */ `
         <div class="thumb">
           <img src="${item.THUMB}" alt="상품 대표이미지">
@@ -82,7 +82,7 @@ export function viewShoppingBag() {
       const productId = target.closest('.quantity').dataset.id
       cartList.forEach((el) => {
         if (el.ID === productId) {
-          el.QUANTITY = el.QUANTITY === 0 ? 0 : el.QUANTITY - 1
+          el.QUANTITY = el.QUANTITY === 1 ? 1 : el.QUANTITY - 1
           el.PRICE = el.ORIGIN_PRICE * el.QUANTITY
         }
       })
