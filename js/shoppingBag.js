@@ -1,4 +1,4 @@
-import { totalQuantity } from './detail';
+import { totalQuantity,showModal } from './detail';
 
 export function viewShoppingBag() {
   const cartList = JSON.parse(localStorage.getItem('cart')) || [];
@@ -52,9 +52,6 @@ export function viewShoppingBag() {
   const btnMinus = document.querySelectorAll('.btn-minus')
   const btnBuy = document.querySelector('.cart-btn-buy')
 
-  MODAL.addEventListener('click', () => {
-    // MODAL.classList.remove('active')
-  })
   // 수량 ++
   btnPlus.forEach((el) =>
     el.addEventListener('click', ({ target }) => {
@@ -71,6 +68,7 @@ export function viewShoppingBag() {
 
       localStorage.setItem('cart', JSON.stringify(cartList))
       viewShoppingBag()
+      showModal()
     })
   )
   // 수량--
@@ -89,6 +87,7 @@ export function viewShoppingBag() {
 
       localStorage.setItem('cart', JSON.stringify(cartList))
       viewShoppingBag()
+      showModal()
     })
   )
 
