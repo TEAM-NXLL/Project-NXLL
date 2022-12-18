@@ -1,5 +1,5 @@
-import { cartCountCheck } from "./main"
-import { viewShoppingBag } from "./shoppingBag"
+import { cartCountCheck } from "./main.js"
+import { viewShoppingBag } from "./shoppingBag.js"
 
 export function buyProduct(product) {
   const buyBtn = document.querySelector('.buy-btn')
