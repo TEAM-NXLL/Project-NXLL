@@ -42,7 +42,6 @@ export async function getLogin(email, password) {
   if (json === '유효한 사용자가 아닙니다.') {
     alert('유효한 사용자가 아닙니다.')
   }
-
   return json
 }
 
