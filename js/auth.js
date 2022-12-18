@@ -75,7 +75,7 @@ export async function adminLogin(accessToken) {
     const authLogin = await stateLogin(accessToken)
     const toAdminPageEl = document.querySelector('.community')
     if (authLogin.email ? authLogin.email.includes('admin') : false) {
-      toAdminPageEl.href = './admin/admin.html'
+      toAdminPageEl.href = '../admin/admin.html'
     } else {
       toAdminPageEl.href = '#'
     }
