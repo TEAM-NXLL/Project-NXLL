@@ -1,8 +1,8 @@
 import { totalQuantity } from './detail';
 
 export function viewShoppingBag() {
-  const cartList = JSON.parse(localStorage.getItem('cart')) || [];
-  const MODAL = document.querySelector('.shopping-box');
+  const cartList = JSON.parse(localStorage.getItem('cart')) || []
+  const MODAL = document.querySelector('.shopping-box')
   // MODAL.classList.add('active');
   MODAL.innerHTML = /* html */ `
       <div class="bag-payment__header">
