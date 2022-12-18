@@ -53,7 +53,6 @@ function editEvent(e) {
     const title = document.querySelector('.edit-product-name').value;
     const price = +(document.querySelector('#edit-product-price').value.replace(/[^0-9]/g, ''));
     const selectedCategory = document.querySelector('input[name="edit-category"]:checked').value;
-    console.log(selectedCategory)
     const selectedTags = document.querySelectorAll('input[name="edit-check"]:checked');
     const tags = [];
     tags.push(selectedCategory);
@@ -71,9 +70,12 @@ function editEvent(e) {
     try {
       correctProduct(productId, title, price, description, tags, thumbnail, photo, isSoldOut);
       toast("상품 수정이 완료되었습니다.")
+      // if (window.confirm("상품 수정이 완료되었습니다.")) {
+      //   location.hash = '#all-products'
+      //   location.reload();
+      // }
     } catch (error) {
       toast(error, "잠시 후 다시 시도해주세요 ")
     }
   });
 }
-

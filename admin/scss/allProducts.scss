@@ -1,26 +1,8 @@
 // 모든 상품 조회
 .all-products {
-  // display: flex;
-  // justify-content: center;
-  // align-items: center;
-
-  .toast-box {
-    position: fixed;
-    z-index: 3;
-    top: 300px;
-    background-color: #9baee0;
-    border-radius: 20px;
-    box-shadow: 8px 8px 2px 1px rgba(57, 57, 102, 0.2);
-
-    .toast {
-      color: whitesmoke;
-      font-size: 20px;
-      line-height: 100px;
-      text-align: center;
-      width: 380px;
-      height: 100px;
-    }
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   .inner {
     display: flex;
@@ -164,3 +146,43 @@
   }  
 }
 
+.toast-box {
+  position: fixed;
+  z-index: 3;
+  top: 300px;
+  background-color: #9baee0;
+  border-radius: 20px;
+  box-shadow: 8px 8px 2px 1px rgba(57, 57, 102, 0.2);
+
+  .toast {
+    color: whitesmoke;
+    font-size: 20px;
+    line-height: 120px;
+    text-align: center;
+    width: 380px;
+    height: 120px;
+  }
+
+  .confirm-area{
+    background-color: blanchedalmond;
+    margin-top: -20px;
+    height: 40px;
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+
+    .confirm {
+      font-size: 18px;
+      width: 120px;
+      background-color: blanchedalmond;
+      border-radius: 20px;
+      display: block;
+    }
+    
+    .cancel {
+      font-size: 18px;
+      width: 120px;
+      // background-color: rebeccapurple;
+    }
+  }
+}
