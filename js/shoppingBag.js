@@ -1,4 +1,5 @@
-import { totalQuantity,showModal } from './detail';
+import { totalQuantity,showModal } from './detail.js';
+import { cartCountCheck } from './main.js';
 
 export function viewShoppingBag() {
   const cartList = JSON.parse(localStorage.getItem('cart')) || []
@@ -51,13 +52,15 @@ export function viewShoppingBag() {
   const btnPlus = document.querySelectorAll('.btn-plus')
   const btnMinus = document.querySelectorAll('.btn-minus')
   const btnBuy = document.querySelector('.cart-btn-buy')
+  const test = document.querySelector('.item-count')
 
   // 수량 ++
   btnPlus.forEach((el) =>
     el.addEventListener('click', ({ target }) => {
       const text = target.closest('div').children[1]
       text.innerHTML = Number(text.textContent) + 1
-
+      test.textContent = totalQuantity()
+      
       const productId = target.closest('.quantity').dataset.id
       cartList.forEach((el) => {
         if (el.ID === productId) {
@@ -76,6 +79,7 @@ export function viewShoppingBag() {
     el.addEventListener('click', ({ target }) => {
       const text = target.closest('div').children[1]
       text.innerHTML = Number(text.textContent) - 1
+      test.textContent = totalQuantity()
 
       const productId = target.closest('.quantity').dataset.id
       cartList.forEach((el) => {
