@@ -242,7 +242,6 @@ async function listLookUp() {
 async function renderMyShop() {
   const login = await stateLogin(localStorage.accessToken)
   if (login !== '유효한 사용자가 아닙니다.') {
-    console.log('로그인 됨')
     const { totalBalance } = await userOwnBank();
     const { cancels, confirs } = await listLookUp()
     const total = totalBalance ? totalBalance.toLocaleString() : '';
@@ -336,7 +335,9 @@ router();
   if (localStorage.accessToken) {
     const res = await stateLogin(localStorage.accessToken);
     res.displayName ? completeLogin() : window.localStorage.clear();
-  } else return;
+  } else {
+    document.querySelector('.community').href = '#'
+  }
 })();
 
 export {
