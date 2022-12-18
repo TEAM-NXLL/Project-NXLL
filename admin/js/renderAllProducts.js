@@ -9,7 +9,7 @@ export async function renderAllProduct(allTransac, products) {
     const price = el.price;
     const description = el.description;
     const tag = el.tags;
-    const isSold = el.isSoldOut;
+    const isSold = el.isSoldOut ? '매진' : '재고있음';
     const thumbnail = el.thumbnail;
     
     const product = document.createElement('div');
@@ -24,7 +24,7 @@ export async function renderAllProduct(allTransac, products) {
             <div class="title">${title}</div>
             <div class="price">${price.toLocaleString()+'원'}</div>
             <div class="tags">${tag}</div>
-            <div class="is-sold-out">${isSold}</div>
+            <div class="is-sold-out">${(isSold)}</div>
             <div class="descript">${description}</div>
             <div class="edit-delete-btn">
               <input type="checkbox" name="checkbox" class="delete-checkbox" data-id="${id}">

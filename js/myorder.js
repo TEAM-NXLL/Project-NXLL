@@ -14,7 +14,7 @@ export async function transLookUp() {
   `
     const stateDisplay = () => {
       if (product.done) {
-        return '주문 완료'
+        return '거래 완료'
       } else if (product.isCanceled) {
         return '주문 취소'
       } else return '주문 진행 중'
