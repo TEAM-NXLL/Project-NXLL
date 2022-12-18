@@ -4,7 +4,7 @@
   --font-style: 'Nanum Gothic', sans-serif;
   --border-color: #f5f5f5;
   --table-border-color: #f0f0f0;
-  --table-th-background: #fafafa;
+  --table-th-background: #b1bee3;
   --text-color: #333;
   --sub-text-color: #999;
   --signature-color: #213b85
@@ -90,30 +90,100 @@ img.require {
   margin: 0 auto;
 }
 
-table {
-  width: 100%;
-  font-size: 12px;
-  color: #353535;
+.table-area {
+  > li {
+    h2 {
+      font-weight: bold;
+      color: #000;
+      display: flex;
+      align-items: center;
+      border-bottom: 3px solid #000;
+      padding-bottom: 10px;
+      margin-bottom: 10px;
+      font-size: 17px;
+      position: relative;
+      width: 100%;
 
-  th,
-  td {
-    border: 1px solid var(--table-border-color);
-  }
+      span {
+        color:var(--sub-text-color);
+        font-size: 12px;
+        font-weight: normal;
+        margin-left: 50px;
+        position: relative;
 
-  th {
-    position: relative;
-    background-color: var(--table-th-background);
-    padding-left: 18px;
-  }
+        &::after {
+          display: block;
+          content: "";
+          width: 2px;
+          height: 10px;
+          background:#000;
+          position: absolute;
+          left: -25px;
+          top:50%;
+          transform: translateY(-50%);
+        }
+      }
+    }
 
-  td {
-    padding: 10px;
+    table {
+      width: 100%;
+      font-size: 12px;
+      color: #353535;
 
-    input {
-      border: 1px solid #eaeaea;
-      line-height: 40px;
-      padding: 0 20px;
-      box-sizing: border-box;
+      thead {
+        position: sticky;
+        top: -100px;
+        z-index:1;
+        tr {
+          background-color: var(--signature-color);
+          th {
+            color: #fff;
+            font-weight: bold;
+            padding: 20px 0;
+            text-align: center;
+            font-size: 14px;
+            vertical-align: middle;
+
+            button {
+              color: #fff;
+              font-weight: normal;
+              border-radius: 10px;
+              padding: 10px;
+              font-size: 15px;
+            }
+          }
+        }
+      }
+
+      tbody {
+        tr {
+          border-bottom: 1px solid #d6dcf9;
+
+          &:nth-child(2n) {
+            background-color: #E4EBF5;
+          }
+
+          td {
+            vertical-align: middle;
+            text-align: center;
+
+            &.thumbnail {
+              height: 150px;
+              position: relative;
+              overflow: hidden;
+
+              img {
+                width: auto;
+                height: 100%;
+                position: absolute;
+                top:50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+              }
+            }
+          }
+        }
+      }
     }
   }
 }
