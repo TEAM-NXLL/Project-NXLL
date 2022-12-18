@@ -43,6 +43,8 @@ async function editInputPlaceholder(productId) {
 function editEvent(e) {
   const productId = e.target.dataset.id;
   const editFormEl = document.querySelector('.edit-form');
+  const editProducts = document.querySelector('.editProducts')
+  const closeBtn = document.querySelector('.closeBtn')
 
   editFormEl.addEventListener('submit', async (event) => {
     event.preventDefault();
@@ -73,9 +75,14 @@ function editEvent(e) {
       if (window.confirm("상품 수정이 완료되었습니다.")) {
         location.hash = '#all-products'
         location.reload();
+        editProducts.classList.remove('show')
       }
     } catch (error) {
       toast(error, "잠시 후 다시 시도해주세요 ")
-    }
+    }    
   });
+
+  closeBtn.addEventListener('click', () => {
+    editProducts.classList.remove('show')
+  })
 }

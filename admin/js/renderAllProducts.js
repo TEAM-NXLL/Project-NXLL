@@ -33,9 +33,9 @@ export async function renderAllProduct(allTransac, products) {
       <td class="is-sold-out">${(isSold)}</td>
       <td class="descript">${description}</td>
       <td class="">
-        <a href="#edit-products/${id}" data-link><button class="edit-btn" data-id="${id}">제품 수정</button></a>
+        <a href="#edit-products/${id}" data-link><button class="edit-btn" data-id="${id}">수정</button></a>
         <!-- <a href="#edit-products" data-link><button class="edit-btn" data-id="${id}">제품 수정</button></a> -->
-        <button class="del-btn" data-id="${id}">제품 삭제</button>
+        <button class="del-btn" data-id="${id}">삭제</button>
       </td>
     `; //edit은 수정예정
 

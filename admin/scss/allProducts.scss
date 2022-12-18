@@ -119,30 +119,51 @@
     }
   }  
 }
+
+.editProducts {
+  position: fixed;
+  top: calc(50% + 70px);
+  left: calc(50% + 350px);
+  transform: translate(calc(-50% - 175px), calc(-50% - 35px));
+  background-color: #fff;
+  width: 800px;
+  max-height: 90vh;
+  z-index: 1;
+  display: none;
+  overflow-y: auto;
+  box-shadow: 5px 5px 7px rgba(0, 0, 0, 0.1);
+
+  &.show {
+    display: block;
+  }
+}
+
+
 .edit-btn {
   background-color: #b9c7ee;
-  width: 80px;
+  width: 50px;
   height: 25px;
   border-radius: 15px;
   margin-bottom: 10px;
 
   &:hover {
-    background-color: #fff;
-    border: 1px solid #b9c7ee;
-    scale: 1.1;
+    background-color: #53619d;
+    color: #fff;
+    font-weight: normal;
   }
 }
 
 .del-btn {
-  background-color: #b9c7ee;
-  width: 80px;
+  background-color: #ef3737;
+  color: #fff;
+  width: 50px;
   height: 25px;
   border-radius: 15px;
 
   &:hover {
-    background-color: #fff;
-    border: 1px solid #b9c7ee;
-    scale: 1.1;
+    background-color: red;
+    color: #fff;
+    font-weight: normal;
   }
 }
 
