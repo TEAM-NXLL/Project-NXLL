@@ -1,4 +1,5 @@
 import { cartCountCheck } from "./main"
+import { viewShoppingBag } from "./shoppingBag"
 
 export function buyProduct(product) {
   const buyBtn = document.querySelector('.buy-btn')
@@ -87,7 +88,7 @@ export function totalQuantity() {
 }
 
 // 모달창
-function showModal() {
+export function showModal() {
   const cartList = JSON.parse(localStorage.getItem('cart')) || []
   const MODAL = document.querySelector('.modal-payment')
   MODAL.classList.add('active')
@@ -169,6 +170,7 @@ function showModal() {
     deleteTarget.remove()
     localStorage.setItem('cart', JSON.stringify(cartFilter))
     showModal()
+    viewShoppingBag()
   }))
 
   btnClose.addEventListener('click', () => {
@@ -191,6 +193,7 @@ function showModal() {
 
       localStorage.setItem('cart', JSON.stringify(cartList))
       showModal()
+      viewShoppingBag()
     }),
   )
   // 수량--
@@ -207,6 +210,7 @@ function showModal() {
       })
       localStorage.setItem('cart', JSON.stringify(cartList))
       showModal()
+      viewShoppingBag()
     })
   )
   // 바로 구매하기 클릭시 연결 페이지
