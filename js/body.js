@@ -1,7 +1,7 @@
 // main
 function mainForm() {
   const mainBody = [];
-  const swiperArrowBtn = /* HTML */ `
+  const swiperArrowBtn = /* HTML 테스트 */ `
     <div class="swiper-button-prev"></div>
     <div class="swiper-button-next"></div>
   `
@@ -124,7 +124,7 @@ function mainForm() {
 
 // 상품 목록
 function productList(data) {
-  const colorChart = ["beige", "pastelBeige", "mint", "pink", "white", "navy", "blueNavy", "black", "green", "gray"]
+  const colorChart = ["beige", "mint", "pink", "white", "blue", "black", "green", "gray"]
   const mainBody = []
 
   for (let i = 0; i < data.length; i++) {
@@ -144,16 +144,11 @@ function productList(data) {
             <div class="colorBox">
             <!-- <div>최상의 상품을 제공 드리기 위해 준비중입니다. <br />조금만 기다려 주세요.</div> -->
             `)
-      const randomNum = Math.ceil(Math.random() * 5)
-      let randomIndexArray = []
 
-      for (let j = 0; j < randomNum; j++) {
-        const colorNum = Math.floor(Math.random() * 10);
-
-        if (randomIndexArray.indexOf(colorNum) === -1) {
-          randomIndexArray.push(colorNum);
+      for(let j = 0; j < colorChart.length; j+=1) {
+        if (data[i].tags.includes(colorChart[j])) {
           mainBody.push(/* HTML */`
-            <span class='${colorChart[colorNum]}'></span>
+            <span class='${colorChart[j]}'></span>
           `);
         }
       }
@@ -173,20 +168,14 @@ function productList(data) {
         </div>
         <div class="colorBox">
       `)
-
-      const randomNum = Math.ceil(Math.random() * 5)
-      let randomIndexArray = []
-
-      for (let j = 0; j < randomNum; j++) {
-        const colorNum = Math.floor(Math.random() * 10);
-
-        if (randomIndexArray.indexOf(colorNum) === -1) {
-          randomIndexArray.push(colorNum);
+      for(let j = 0; j < colorChart.length; j+=1) {
+        if (data[i].tags.includes(colorChart[j])) {
           mainBody.push(/* HTML */`
-            <span class='${colorChart[colorNum]}'></span>
+            <span class='${colorChart[j]}'></span>
           `);
         }
       }
+
       const discountValue = Math.floor(Math.random() * 9 + 1) * 8;
       mainBody.push(/* HTML */`
           </div >
@@ -215,6 +204,118 @@ function productList(data) {
 
   return mainBody.join('');
 }
+
+// 카테고리 내부 메뉴
+export function renderInnerCategory(tag, count=0){
+  if (tag === "new-item") {
+    return  /* HTML */  `  
+    <div class="category-area">
+      <div class="category-title-area">
+        <span class="category-title">NEW</span> 
+        <span class="category-count1">${count}</span>
+        <span class="category-count2">개의 상품이 있습니다.</span>
+      </div>
+    </div>
+   `
+  } else if (tag === "discount") {
+      return  /* HTML */  `  
+      <div class="category-area">
+        <div class="event-img-area">
+          <img src="https://acttomall.com/web/upload/category/shop1_141_top_476608.gif" alt="홀리데이 특가 이벤트"/>
+        </div>
+        <div class="category-title-area">
+          <span class="category-title">홀리데이 특가</span> 
+          <span class="category-count1">${count}</span>
+          <span class="category-count2">개의 상품이 있습니다.</span>
+        </div>
+      </div>
+    `
+  } else if (tag === "pc") {
+      return  /* HTML */  `  
+      <div class="category-area">
+        <div class="category-title-area">
+          <span class="category-title">PC</span> 
+          <span class="category-count1">${count}</span>
+          <span class="category-count2">개의 상품이 있습니다.</span>
+        </div>
+        <div class="category-menu-area">
+          <ul>
+            <li>키보드</li>
+            <li>마우스</li>
+            <li>마우스패드</li>
+            <li>USB허브</li>
+            <li>모니터 스탠드</li>
+            <li>카드 리더기</li>
+          </ul>
+        </div>
+      </div>
+    `
+  } else if (tag === "notebook") {
+      return /* HTML */  `  
+      <div class="category-area">
+        <div class="category-title-area">
+          <span class="category-title">노트북</span> 
+          <span class="category-count1">${count}</span>
+          <span class="category-count2">개의 상품이 있습니다.</span>
+        </div>
+        <div class="category-menu-area">
+          <ul>
+            <li>노트북 스탠드</li>
+            <li>노트북 잠금장치</li>
+            <li>노트북 키패드</li>
+        </div>     
+      </div>
+      `
+  } else if (tag === "smart") {
+      return /* HTML */  `  
+      <div class="category-area">
+        <div class="category-title-area">
+          <span class="category-title">스마트</span> 
+          <span class="category-count1">${count}</span>
+          <span class="category-count2">개의 상품이 있습니다.</span>
+        </div>
+        <div class="category-menu-area">
+          <ul>
+            <li>어댑터</li>
+            <li>충전기</li>
+            <li>스마트 거치대</li>
+            <li>기타 스마트기기</li>
+          </ul>
+        </div>   
+      </div>
+      `
+  } else if (tag === "audio") {
+      return /* HTML */  `  
+      <div class="category-area">
+        <div class="category-title-area">
+          <span class="category-title">음향</span> 
+          <span class="category-count1">${count}</span>
+          <span class="category-count2">개의 상품이 있습니다.</span>
+        </div>
+        <div class="category-menu-area">
+          <ul>
+            <li>이어폰&헤드폰</li>
+            <li>스피커</li>
+            <li>마이크</li>
+            <li>키즈헤드폰</li>
+            <li>음향케이블 & 기타</li>
+          </ul>
+        </div>
+      </div>
+      `
+  } else if (tag === "search") {
+    return /* HTML */  `  
+    <div class="category-area">
+      <div class="category-title-area">
+        <span class="category-title">SEARCH</span> 
+        <span class="category-count1">${count}</span>
+        <span class="category-count2">개의 상품이 있습니다.</span>
+      </div>
+    </div>
+    `
+}
+}
+
 
 // 회원가입 페이지
 function joinForm() {

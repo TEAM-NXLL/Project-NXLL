@@ -1,16 +1,20 @@
+
 import { doc } from "prettier";
 import { getData, getLogin, getLogOut, stateLogin, postSearch, getTransactions, getProductDetail } from "./getdata.js";
 import { router } from "./route.js";
+import { sendSignUp, sendLogin, adminLogin, completeLogin, adminPage } from './auth.js'
 import { deliveryEl, returnEl, deliveryDes, returnDes, mouseenter, mouseleave } from './footer.js'
-import { joinForm, logInForm, myOrderForm, myShoppingForm, mainForm, productList, userInfoForm, userAccountForm, detailForm, paymentForm, myCancelOrderForm, myConfirOrderForm } from "./body.js";
+import { joinForm, logInForm, myOrderForm, myShoppingForm, mainForm, productList, userInfoForm, userAccountForm, detailForm, paymentForm, myCancelOrderForm, myConfirOrderForm, renderInnerCategory } from "./body.js";
 import { editUserInfo, userOwnBank, addNewAccount, choiceBank, bankChargeLookUp, ownAccountList, addAbleAccountList, cancelBank } from "./userInfo.js";
 import { viewAllProduct } from '../admin/js/requests.js'
 import { payAccountList, payBankLoopUp, buyProducts, lookProducts, cancelProduct, allCheckBox } from "./payment.js";
 import { cancelOrder, confirOrder, transLookUp, cancelOrderLookUp, confirOrderLookUp } from "./myorder.js";
 import { buyProduct, cart, shoppingBasket } from "./detail.js";
+import { viewShoppingBag } from './shoppingBag.js';
 
 // 변수
 const root = document.querySelector('main');
+const shoppingBag = document.querySelector('.shopping-btn');
 
 // 페이지 새로 렌더하면 스크롤 맨 위로 이동하기
 function startTop() {
@@ -22,28 +26,28 @@ async function renderMain() {
   const data = await viewAllProduct();
   root.innerHTML = mainForm();
 
-  const keyboardList = document.querySelector('.keyboard > .inner')
-  const mouseList = document.querySelector('.mouse > .inner')
-  const newItemList = document.querySelector('.newItem > .inner')
+  const keyboardList = document.querySelector('.keyboard > .inner');
+  const mouseList = document.querySelector('.mouse > .inner');
+  const newItemList = document.querySelector('.newItem > .inner');
 
-  const keyboard = []
-  const mouse = []
-  const newItem = []
+  const keyboard = [];
+  const mouse = [];
+  const newItem = [];
 
   if (keyboard) {
-    keyboardList.innerHTML = `<img src="./images/commingSoon.png"/>`
+    keyboardList.innerHTML = `<img src="./images/commingSoon.png"/>`;
     keyboardList.style.cssText = 'padding-bottom: 140px;';
   }
   if (mouse) {
-    mouseList.innerHTML = `<img src="./images/commingSoon.png"/>`
+    mouseList.innerHTML = `<img src="./images/commingSoon.png"/>`;
     mouseList.style.cssText = 'padding-bottom: 70px;';
   }
   if (newItem) {
-    newItemList.innerHTML = `<img src="./images/commingSoon.png"/>`
+    newItemList.innerHTML = `<img src="./images/commingSoon.png"/>`;
     newItemList.style.cssText = 'padding-bottom: 70px;';
   }
 
-  data.forEach(e => {
+  data.forEach((e) => {
     // if(e.isSoldOut) {
     //   const priceBox = document.querySelector('.priceBox')
     //   priceBox.innerHTML = /*HTML*/ `
@@ -51,18 +55,18 @@ async function renderMain() {
     //   `
     // }
     if (e['tags'].includes('keyboard')) {
-      keyboard.push(e)
-      keyboardList.innerHTML = productList(keyboard)
+      keyboard.push(e);
+      keyboardList.innerHTML = productList(keyboard);
     }
     if (e['tags'].includes('mouse')) {
-      mouse.push(e)
-      mouseList.innerHTML = productList(mouse)
+      mouse.push(e);
+      mouseList.innerHTML = productList(mouse);
     }
     if (e['tags'].includes('new-item')) {
-      newItem.push(e)
+      newItem.push(e);
       newItemList.innerHTML = productList(newItem);
     }
-  })
+  });
 
   // 메인 스와이퍼
   new Swiper('.mainSwiper', {
@@ -95,52 +99,72 @@ async function renderMain() {
     },
   });
 }
+
 // 카테고리별 제품조회
-export async function renderCategory (tag) { //tag = string"태그이름"
+export async function renderCategory(tag) {
   const datas = await viewAllProduct();
+  const dataArr = [];
   for (let data of datas) {
     if (data.tags.includes(tag)) {
-      console.log(data)
+      dataArr.push(data)
     }
   }
-}
+  root.innerHTML = renderInnerCategory(tag, dataArr.length);
 
+  let rootInner = document.createElement('ul');
+  rootInner.classList.add('inner');
+  rootInner.classList.add('block4');
+  rootInner.style.margin = '140px auto 100px';
+  rootInner.innerHTML += productList(dataArr);
+  root.append(rootInner)
+}
 
 // 제품 검색
 async function productSearch(e) {
   const keyword = document.querySelector('#keyword');
 
   if (e.key === 'Enter') {
+
     startTop()
     let rootInner = document.createElement('ul')
     rootInner.classList.add('inner')
 
     if (keyword.value === '') {
-      alert('검색어를 입력해 주세요.')
+      alert('검색어를 입력해 주세요.');
     } else {
-      let searchText = keyword.value.trim()
-      let searchTags = []
-      let searchTitle = []
+      let searchText = keyword.value.trim();
+      let searchTags = [];
+      let searchTitle = [];
 
       const data = await postSearch(searchText, searchTags);
 
       console.log(data)
-      root.innerHTML = ''
+      root.innerHTML = renderInnerCategory("search", data.length);
       root.append(rootInner)
 
       if (data.length === 0) {
         rootInner.innerHTML = /* HTML */ `
           <div class="imgBox" style="height: 300px; margin-top: 140px;">
-            <img src="./images/emptySearch.gif"/>
+            <img src="./images/emptySearch.gif" />
           </div>
-          <p style="text-align:center; margin-bottom:170px; color: #333; font-size:15px;">
-            <i class="fa-solid fa-quote-left" style="vertical-align:top;"></i> <strong style="font-weight:bold; font-size:34px;">${searchText}</strong> <i class="fa-sharp fa-solid fa-quote-right" style="vertical-align:bottom; margin-right:10px;"></i>의 검색 결과가 없습니다.
+          <p
+            style="text-align:center; margin-bottom:170px; color: #333; font-size:15px;"
+          >
+            <i class="fa-solid fa-quote-left" style="vertical-align:top;"></i>
+            <strong style="font-weight:bold; font-size:34px;"
+              >${searchText}</strong
+            >
+            <i
+              class="fa-sharp fa-solid fa-quote-right"
+              style="vertical-align:bottom; margin-right:10px;"
+            ></i
+            >의 검색 결과가 없습니다.
           </p>
-        `
+        `;
       } else {
+
         rootInner.classList.add('block4')
         rootInner.style.margin = '140px auto 100px'
-
         data.forEach(e => {
           // 상품종류로 검색
           // if (e['tags'].includes(searchText)) {
@@ -150,17 +174,22 @@ async function productSearch(e) {
 
           // 상품명으로 검색
           if (e.title.includes(searchText)) {
-            searchTitle.push(e)
-            rootInner.innerHTML = productList(data)
+            searchTitle.push(e);
+            rootInner.innerHTML = productList(data);
           }
-        })
+        });
       }
-      keyword.value = ''
+      keyword.value = '';
     }
   }
 }
 
-keyword.addEventListener('keyup', productSearch)
+keyword.addEventListener('keyup', productSearch);
+shoppingBag.addEventListener('click', () => {
+  const box = document.querySelector('.shopping-box');
+  box.classList.toggle('block');
+  viewShoppingBag();
+});
 
 // 로그인 페이지 해시 값 + 화면 변경
 function loginRender() {
@@ -176,74 +205,9 @@ function joinRender() {
   sendSignUp();
 }
 
-// 회원가입 처리 핸들러
-function sendSignUp() {
-  const formTag = document.querySelector('#form-tag');
-
-  formTag.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const idValue = document.querySelector('.id-input').value;
-    const pwValue = document.querySelector('.pw-input').value;
-    const nameValue = document.querySelector('.name-input').value;
-
-    const res = await getData(idValue, pwValue, nameValue, null);
-    document.cookie = `accessToken=${res.accessToken}; max-age=60`;
-    if (res.user.email) {
-      return (root.innerHTML = logInForm());
-    } else {
-      alert('정보를 다시 입력해 주세요');
-    }
-    e.stopPropagation();
-  });
-}
-
-// 로그인 요청 핸들러 (localStorage 이름, 토큰값 추가)
-function sendLogin() {
-  const loginForm = document.querySelector('#login-form');
-  loginForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const idValue = document.querySelector('.signin-id-input').value;
-    const pwValue = document.querySelector('.signin-pw-input').value;
-    const res = await getLogin(idValue, pwValue);
-    if (res.user.email) {
-      const userName = res.user.displayName;
-      const accessToken = res.accessToken;
-      localStorage.setItem('accessToken', accessToken);
-      localStorage.setItem('userName', userName);
-      completeLogin();
-      location.href = '/';
-    } else {
-      alert('로그인 정보를 확인해 주세요.');
-    }
-    e.stopPropagation();
-  });
-}
-
-// 로그아웃 핸들러
-function logOut() {
-  const logOutBtn = document.querySelector('.logOutBtn');
-  logOutBtn.addEventListener('click', async () => {
-    const accessToken = localStorage.getItem('accessToken');
-    console.log(accessToken);
-    const res = await getLogOut(accessToken);
-    if (res) {
-      localStorage.removeItem('accessToken'),
-        localStorage.removeItem('userName');
-    }
-    location.href = '/';
-  });
-}
-
-// userName 있을 때 로그인 상태 유지 핸들러
-function completeLogin() {
-  const li = document.querySelector('.signUpsignIn');
-  const userName = localStorage.getItem('userName');
-  li.innerHTML = /*HTML*/ `
-    <p><strong>${userName}</strong>님, 환영합니다.</p>
-    <a class="logOutBtn">로그아웃</a>
-    `;
-  logOut();
-}
+// 관리자 로그인인지 확인
+adminLogin(localStorage.accessToken)
+adminPage()
 
 // myorder 렌더링 공통 사항
 async function listLookUp() {
@@ -279,10 +243,10 @@ async function renderMyOrder() {
   const { products, cancels, confirs } = await listLookUp()
   startTop()
   root.innerHTML = myOrderForm(products.length, cancels.length, confirs.length);
-  transLookUp().then(res => {
-    cancelOrder()
-    confirOrder()
-  })
+  transLookUp().then((res) => {
+    cancelOrder();
+    confirOrder();
+  });
 }
 
 // myorder cancel 렌더링
@@ -330,7 +294,6 @@ async function renderDetail() {
 
 // payment 렌더링
 async function renderPayment() {
-  // localStorage.setItem('cart', JSON.stringify(['fa5dOlMcvB8uoFDgvZWB', 'Ccm6lX9ORcpSAS8vXDBs'])) // 추후 삭제
   startTop()
   root.innerHTML = paymentForm()
   lookProducts()
@@ -343,20 +306,31 @@ async function renderPayment() {
 }
 
 // footer 함수
-mouseenter()
-mouseleave()
+mouseenter();
+mouseleave();
 
 // router
-window.addEventListener('hashchange', router)
+window.addEventListener('hashchange', router);
 router();
 
 // 로그인 로그아웃 확인
 (async () => {
   // localStorage.length === 0 ? loginNjoin() : completeLogin();
   if (localStorage.accessToken) {
-    const res = await stateLogin(localStorage.accessToken)
-    res.displayName ? completeLogin() : window.localStorage.clear()
-  } else return
+    const res = await stateLogin(localStorage.accessToken);
+    res.displayName ? completeLogin() : window.localStorage.clear();
+  } else return;
 })();
 
-export { loginRender, joinRender, logOut, renderMyShop, renderMyOrder, renderMain, renderUserInfo, renderDetail, renderPayment, renderMyCancelOrder, renderMyConfirOrder }
+export {
+  loginRender,
+  joinRender,
+  renderMyShop,
+  renderMyOrder,
+  renderMain,
+  renderUserInfo,
+  renderDetail,
+  renderPayment,
+  renderMyCancelOrder,
+  renderMyConfirOrder,
+};
