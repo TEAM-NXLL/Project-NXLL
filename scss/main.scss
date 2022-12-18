@@ -350,21 +350,6 @@ header {
               }
             }
           }
-
-          .shopping-box {
-            position: fixed;
-            width: 400px;
-            right: -100%;
-            bottom: 0;
-            transition: 0.8s;
-            max-height: 100%;
-            background-color: white;
-            z-index: 100;
-            .modal-payment__footer {
-              display: flex;
-              justify-content: center;
-            }
-          }
         }
       }
     }
