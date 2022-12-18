@@ -122,67 +122,85 @@
               <span>원</span>
             </div>
 
-            <!-- 수정 태그 선택 -->
-            <div class="tag-area">
-              <label>상품 태그</label>
-              <input type="checkbox" id="new-item" class="check" name="edit-check" value="new-item" />
-              <label for="new-item" class="taglabel">NEW ITEM</label>
-              <input type="checkbox" id="discount" class="check" name="edit-check" value="discount" />
-              <label for="discount" class="taglabel">할인</label>
+        <!-- 수정 태그 선택 -->
+        <div class="tag-area">
+          <label>상품 색상</label>
+          <input type="checkbox" id="beige" class="check" name="edit-check" value="beige" />
+          <label for="beige" class="taglabel">베이지</label>
+          <input type="checkbox" id="mint" class="check" name="edit-check" value="mint" />
+          <label for="mint" class="taglabel">민트</label>
+          <input type="checkbox" id="pink" class="check" name="edit-check" value="pink" />
+          <label for="pink" class="taglabel">핑크</label>
+          <input type="checkbox" id="white" class="check" name="edit-check" value="white" />
+          <label for="white" class="taglabel">화이트</label>
+          <input type="checkbox" id="blue" class="check" name="edit-check" value="blue" />
+          <label for="blue" class="taglabel">블루</label>
+          <input type="checkbox" id="black" class="check" name="edit-check" value="black" />
+          <label for="black" class="taglabel">블랙</label>
+          <input type="checkbox" id="green" class="check" name="edit-check" value="green" />
+          <label for="green" class="taglabel">그린</label>
+          <input type="checkbox" id="gray" class="check" name="edit-check" value="gray" />
+          <label for="gray" class="taglabel">그레이</label>
 
-              <div class="pc-tags">
-                <input type="radio" id="pc" class="category" name="edit-category" value="pc" />
-                <label for="category-pc" class="category-label">PC</label>
-                <input type="checkbox" id="mouse" class="check" name="edit-check" value="mouse" />
-                <label for="mouse" class="taglabel">마우스</label>
-                <input type="checkbox" id="keyboard" class="check" name="edit-check" value="keyboard" />
-                <label for="keyboard" class="taglabel">키보드</label>
-                <input type="checkbox" id="mousepad" class="check" name="edit-check" value="mousepad" />
-                <label for="mousepad" class="taglabel">마우스패드</label>
-                <input type="checkbox" id="usbhub" class="check" name="edit-check" value="usbhub" />
-                <label for="usbhub" class="taglabel">USB허브</label>
-                <input type="checkbox" id="monitorstand" class="check" name="edit-check" value="monitorstand" />
-                <label for="monitorstand" class="taglabel">모니터스탠드</label>
-                <input type="checkbox" id="cardreader" class="check" name="edit-check" value="cardreader" />
-                <label for="cardreader" class="taglabel">카드리더기</label>
-              </div>
-              <div class="notebook-tags">
-                <input type="radio" id="notebook" class="edit-category" name="edit-category" value="notebook" />
-                <label for="category-notebook" class="category-label">노트북</label>
-                <input type="checkbox" id="notebookstand" class="check" name="edit-check" value="notebookstand" />
-                <label for="notebookstand" class="taglabel">노트북스탠드</label>
-                <input type="checkbox" id="lock" class="check" name="edit-check" value="lock" />
-                <label for="lock" class="taglabel">노트북잠금장치</label>
-                <input type="checkbox" id="keypad" class="check" name="edit-check" value="keypad" />
-                <label for="keypad" class="taglabel">노트북키패드</label>
-              </div>
-              <div class="audio-tags">
-                <input type="radio" id="audio" class="edit-category" name="edit-category" value="audio" />
-                <label for="category-audio" class="category-label">음향</label>
-                <input type="checkbox" id="ear-head" class="check" name="edit-check" value="ear-head" />
-                <label for="ear-head" class="taglabel">이어폰&헤드폰</label>
-                <input type="checkbox" id="speaker" class="check" name="edit-check" value="speaker" />
-                <label for="speaker" class="taglabel">스피커</label>
-                <input type="checkbox" id="mic" class="check" name="edit-check" value="mic" />
-                <label for="mic" class="taglabel">마이크</label>
-                <input type="checkbox" id="kids" class="check" name="edit-check" value="kids" />
-                <label for="kids" class="taglabel">키즈 헤드폰</label>        
-                <input type="checkbox" id="audiocable" class="check" name="edit-check" value="audiocable" />
-                <label for="audiocable" class="taglabel">음향케이블&기타</label>
-              </div>
-              <div class="smart-tags">
-                <input type="radio" id="smart" class="edit-category" name="edit-category" value="smart" />
-                <label for="category-smart" class="category-label">스마트</label>
-                <input type="checkbox" id="adapter" class="check" name="edit-check" value="adapter" />
-                <label for="adapter" class="taglabel">어댑터</label>
-                <input type="checkbox" id="charging" class="check" name="edit-check" value="charging" />
-                <label for="charging" class="taglabel">충전기</label>
-                <input type="checkbox" id="smartholder" class="check" name="edit-check" value="smartholder" />
-                <label for="smartholder" class="taglabel">스마트거치대</label>
-                <input type="checkbox" id="smart-etc" class="check" name="edit-check" value="smart-etc" />
-                <label for="smart-etc" class="taglabel">기타스마트기기</label>
-              </div>
-            </div>
+          <label>상품 태그</label>
+          <input type="checkbox" id="new-item" class="check" name="edit-check" value="new-item" />
+          <label for="new-item" class="taglabel">NEW ITEM</label>
+          <input type="checkbox" id="discount" class="check" name="edit-check" value="discount" />
+          <label for="discount" class="taglabel">할인</label>
+
+          <div class="pc-tags">
+            <input type="radio" id="pc" class="category" name="edit-category" value="pc" />
+            <label for="pc" class="category-label">PC</label>
+            <input type="checkbox" id="mouse" class="check" name="edit-check" value="mouse" />
+            <label for="mouse" class="taglabel">마우스</label>
+            <input type="checkbox" id="keyboard" class="check" name="edit-check" value="keyboard" />
+            <label for="keyboard" class="taglabel">키보드</label>
+            <input type="checkbox" id="mousepad" class="check" name="edit-check" value="mousepad" />
+            <label for="mousepad" class="taglabel">마우스패드</label>
+            <input type="checkbox" id="usbhub" class="check" name="edit-check" value="usbhub" />
+            <label for="usbhub" class="taglabel">USB허브</label>
+            <input type="checkbox" id="monitorstand" class="check" name="edit-check" value="monitorstand" />
+            <label for="monitorstand" class="taglabel">모니터스탠드</label>
+            <input type="checkbox" id="cardreader" class="check" name="edit-check" value="cardreader" />
+            <label for="cardreader" class="taglabel">카드리더기</label>
+          </div>
+          <div class="notebook-tags">
+            <input type="radio" id="notebook" class="edit-category" name="edit-category" value="notebook" />
+            <label for="notebook" class="category-label">노트북</label>
+            <input type="checkbox" id="notebookstand" class="check" name="edit-check" value="notebookstand" />
+            <label for="notebookstand" class="taglabel">노트북스탠드</label>
+            <input type="checkbox" id="lock" class="check" name="edit-check" value="lock" />
+            <label for="lock" class="taglabel">노트북잠금장치</label>
+            <input type="checkbox" id="keypad" class="check" name="edit-check" value="keypad" />
+            <label for="keypad" class="taglabel">노트북키패드</label>
+          </div>
+          <div class="audio-tags">
+            <input type="radio" id="audio" class="edit-category" name="edit-category" value="audio" />
+            <label for="audio" class="category-label">음향</label>
+            <input type="checkbox" id="ear-head" class="check" name="edit-check" value="ear-head" />
+            <label for="ear-head" class="taglabel">이어폰&헤드폰</label>
+            <input type="checkbox" id="speaker" class="check" name="edit-check" value="speaker" />
+            <label for="speaker" class="taglabel">스피커</label>
+            <input type="checkbox" id="mic" class="check" name="edit-check" value="mic" />
+            <label for="mic" class="taglabel">마이크</label>
+            <input type="checkbox" id="kids" class="check" name="edit-check" value="kids" />
+            <label for="kids" class="taglabel">키즈 헤드폰</label>        
+            <input type="checkbox" id="audiocable" class="check" name="edit-check" value="audiocable" />
+            <label for="audiocable" class="taglabel">음향케이블&기타</label>
+          </div>
+          <div class="smart-tags">
+            <input type="radio" id="smart" class="edit-category" name="edit-category" value="smart" />
+            <label for="smart" class="category-label">스마트</label>
+            <input type="checkbox" id="adapter" class="check" name="edit-check" value="adapter" />
+            <label for="adapter" class="taglabel">어댑터</label>
+            <input type="checkbox" id="charging" class="check" name="edit-check" value="charging" />
+            <label for="charging" class="taglabel">충전기</label>
+            <input type="checkbox" id="smartholder" class="check" name="edit-check" value="smartholder" />
+            <label for="smartholder" class="taglabel">스마트거치대</label>
+            <input type="checkbox" id="smart-etc" class="check" name="edit-check" value="smart-etc" />
+            <label for="smart-etc" class="taglabel">기타스마트기기</label>
+          </div>
+        </div>
 
             <!-- 수정 상품 상세설명 -->
             <div class="description-area">
@@ -240,13 +258,31 @@
               <span>원</span>
             </div>
 
-            <!-- 태그 선택 -->
-            <div class="tag-area">
-              <label>상품 태그</label>
-              <input type="checkbox" id="check19" class="check" name="check" value="new-item" />
-              <label for="check19" class="taglabel">NEW ITEM</label>
-              <input type="checkbox" id="check20" class="check" name="check" value="discount" />
-              <label for="check20" class="taglabel">할인</label>
+        <!-- 태그 선택 -->
+        <div class="tag-area">
+          <label>상품 색상</label>
+          <input type="checkbox" id="check25" class="check" name="check" value="beige" />
+          <label for="check25" class="taglabel">베이지</label>
+          <input type="checkbox" id="check26" class="check" name="check" value="mint" />
+          <label for="check26" class="taglabel">민트</label>
+          <input type="checkbox" id="check27" class="check" name="check" value="pink" />
+          <label for="check27" class="taglabel">핑크</label>
+          <input type="checkbox" id="check28" class="check" name="check" value="white" />
+          <label for="check28" class="taglabel">화이트</label>
+          <input type="checkbox" id="check29" class="check" name="check" value="blue" />
+          <label for="check29" class="taglabel">블루</label>
+          <input type="checkbox" id="check30" class="check" name="check" value="black" />
+          <label for="check30" class="taglabel">블랙</label>
+          <input type="checkbox" id="check31" class="check" name="check" value="green" />
+          <label for="check31" class="taglabel">그린</label>
+          <input type="checkbox" id="check32" class="check" name="check" value="gray" />
+          <label for="check32" class="taglabel">그레이</label>
+
+          <label>상품 태그</label>
+          <input type="checkbox" id="check19" class="check" name="check" value="new-item" />
+          <label for="check19" class="taglabel">NEW ITEM</label>
+          <input type="checkbox" id="check20" class="check" name="check" value="discount" />
+          <label for="check20" class="taglabel">할인</label>
 
               <div class="pc-tags">
                 <input type="radio" id="check21" class="category check" name="category" value="pc" />

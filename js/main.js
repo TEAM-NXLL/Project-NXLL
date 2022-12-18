@@ -2,7 +2,7 @@ import { doc } from "prettier";
 import { getData, getLogin, getLogOut, stateLogin, postSearch, getTransactions, getProductDetail } from "./getdata.js";
 import { router } from "./route.js";
 import { deliveryEl, returnEl, deliveryDes, returnDes, mouseenter, mouseleave } from './footer.js'
-import { joinForm, logInForm, myOrderForm, myShoppingForm, mainForm, productList, userInfoForm, userAccountForm, detailForm, paymentForm, myCancelOrderForm, myConfirOrderForm } from "./body.js";
+import { joinForm, logInForm, myOrderForm, myShoppingForm, mainForm, productList, userInfoForm, userAccountForm, detailForm, paymentForm, myCancelOrderForm, myConfirOrderForm, renderInnerCategory } from "./body.js";
 import { editUserInfo, userOwnBank, addNewAccount, choiceBank, bankChargeLookUp, ownAccountList, addAbleAccountList, cancelBank } from "./userInfo.js";
 import { viewAllProduct } from '../admin/js/requests.js'
 import { payAccountList, payBankLoopUp, buyProducts, lookProducts, cancelProduct, allCheckBox } from "./payment.js";
@@ -95,14 +95,24 @@ async function renderMain() {
     },
   });
 }
+
 // 카테고리별 제품조회
-export async function renderCategory (tag) { //tag = string"태그이름"
+export async function renderCategory (tag) {
   const datas = await viewAllProduct();
+  const dataArr = [];
   for (let data of datas) {
     if (data.tags.includes(tag)) {
-      console.log(data)
+      dataArr.push(data)
     }
   }
+  root.innerHTML = renderInnerCategory(tag, dataArr.length);
+
+  let rootInner = document.createElement('ul');
+  rootInner.classList.add('inner');
+  rootInner.classList.add('block4');
+  rootInner.style.margin = '140px auto 100px';
+  rootInner.innerHTML += productList(dataArr);
+  root.append(rootInner)
 }
 
 
@@ -125,7 +135,7 @@ async function productSearch(e) {
       const data = await postSearch(searchText, searchTags);
 
       console.log(data)
-      root.innerHTML = ''
+      root.innerHTML = renderInnerCategory("search", data.length);
       root.append(rootInner)
 
       if (data.length === 0) {
@@ -140,7 +150,6 @@ async function productSearch(e) {
       } else {
         rootInner.classList.add('block4')
         rootInner.style.margin = '140px auto 100px'
-
         data.forEach(e => {
           // 상품종류로 검색
           // if (e['tags'].includes(searchText)) {
