@@ -252,8 +252,8 @@ shoppingBag.addEventListener('click', () => {
 // 로그인 페이지 해시 값 + 화면 변경
 function loginRender() {
   startTop()
-  root.innerHTML = logInForm();
-  sendLogin();
+  root.innerHTML = logInForm()
+  sendLogin()
 }
 
 // 회원가입 페이지 해시 값 + 화면 변경
@@ -283,7 +283,6 @@ async function listLookUp() {
 async function renderMyShop() {
   const login = await stateLogin(localStorage.accessToken)
   if (login !== '유효한 사용자가 아닙니다.') {
-    console.log('로그인 됨')
     const { totalBalance } = await userOwnBank();
     const { cancels, confirs } = await listLookUp()
     const total = totalBalance ? totalBalance.toLocaleString() : '';
@@ -377,7 +376,9 @@ router();
   if (localStorage.accessToken) {
     const res = await stateLogin(localStorage.accessToken);
     res.displayName ? completeLogin() : window.localStorage.clear();
-  } else return;
+  }  else {
+    document.querySelector('.community').href = '#'
+  }
 })();
 
 export {
