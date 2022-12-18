@@ -1,3 +1,5 @@
+import { cartCountCheck } from "./main"
+
 export function buyProduct(product) {
   const buyBtn = document.querySelector('.buy-btn')
   const selling = product.isSoldOut === true ? false : true
@@ -10,9 +12,9 @@ export function buyProduct(product) {
   })
 }
 
-async function cart(product) {
-  const cartList = JSON.parse(localStorage.getItem('cart')) || [];
-  const selling = product.isSoldOut === true ? false : true;
+export async function cart(product) {
+  const cartList = JSON.parse(localStorage.getItem('cart')) || []
+  const selling = product.isSoldOut === true ? false : true
 
   let newProduct = {
     ID: product.id,
@@ -112,10 +114,23 @@ function showModal() {
     `
 
   const MODAL_LIST = document.querySelector('.modal-payment__list')
+  // 카트 비었을 때 대체 텍스트 보여주기
+  console.log(cartList)
+  if (cartList.length === 0) {
+    MODAL_LIST.innerHTML = /* html */`
+    <div class="text--empty">
+      <p>장바구니가 비어있어요.
+        <span>상품을 담아보세요.</span>
+      </p>
+    </div>
+  `
+  }
+  // 상품 항목 만들어서 목록에 넣기
   cartList.forEach(item => {
     const MODAL_ITEM = document.createElement('div')
     MODAL_ITEM.setAttribute('data-id', item.ID)
     MODAL_ITEM.classList.add('modal-payment__item')
+
     MODAL_ITEM.innerHTML = /* html */`
       <div class="thumb">
         <img src="${item.THUMB ?? './images/preparingProduct.jpg'}" alt="상품 대표이미지">
@@ -146,12 +161,11 @@ function showModal() {
   btnDelete.forEach(el => el.addEventListener('click', ({ target }) => {
     const deleteTarget = target.closest('.modal-payment__item')
     const productId = target.closest('.modal-payment__item').dataset.id
-    const cartList = JSON.parse(localStorage.getItem('cart')) || []
+    let cartList = JSON.parse(localStorage.getItem('cart')) || []
     let cartFilter = []
     cartList.filter(e => {
       if (e.ID !== productId) cartFilter.push(e)
     })
-    console.log(cartFilter)
     deleteTarget.remove()
     localStorage.setItem('cart', JSON.stringify(cartFilter))
     showModal()
@@ -162,7 +176,7 @@ function showModal() {
   })
 
   // 수량 ++
-  btnPlus.forEach((el) =>
+  btnPlus.forEach(el =>
     el.addEventListener('click', ({ target }) => {
       const text = target.closest('div').children[1]
       text.innerHTML = Number(text.textContent) + 1
@@ -180,7 +194,7 @@ function showModal() {
     }),
   )
   // 수량--
-  btnMinus.forEach((el) =>
+  btnMinus.forEach(el =>
     el.addEventListener('click', ({ target }) => {
       const text = target.closest('div').children[1]
       text.innerHTML = Number(text.textContent) - 1
@@ -195,10 +209,11 @@ function showModal() {
       showModal()
     })
   )
-
+  // 바로 구매하기 클릭시 연결 페이지
   btnBuy.addEventListener('click', function () {
     const accessToken = localStorage.accessToken
     if (accessToken) location.hash = '#payment'
     else location.hash = '#login'
   })
+  cartCountCheck()
 }

@@ -427,7 +427,27 @@
           font-size: 19px;
         }
       }
+    }
 
+    .text--empty {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding-top: 10px;
+      height: 70px;
+
+      p {
+        font-weight: bold;
+        font-size: 16px;
+      }
+
+      span {
+        margin-top: 8px;
+        display: block;
+        font-weight: normal;
+        font-size: 14px;
+        color: var(--sub-text-color);
+      }
     }
   }
 

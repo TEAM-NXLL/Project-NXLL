@@ -21,6 +21,23 @@ function startTop() {
   window.scrollTo(0, 0)
 }
 
+// 장바구니에 담긴 상품 개수 확인
+export function cartCountCheck() {
+  const cartCount = document.querySelector('.shopping-btn .item-count')
+  const cartList = JSON.parse(localStorage.getItem('cart')) || []
+  let total = 0
+  if (cartList.length === 0) {
+    cartCount.style.backgroundColor = '#ccc'
+    cartCount.innerHTML = 0
+    return
+  }
+  cartList.forEach(e => {
+    total += e.QUANTITY
+  })
+  cartCount.innerHTML = total
+  cartCount.style.backgroundColor = 'red'
+}
+
 // 메인 페이지
 async function renderMain() {
   const data = await viewAllProduct();

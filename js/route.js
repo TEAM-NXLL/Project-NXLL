@@ -1,6 +1,7 @@
-import { loginRender, joinRender, renderMyShop, renderMyOrder, renderMain, renderUserInfo, renderDetail, renderPayment, renderMyCancelOrder, renderMyConfirOrder, renderCategory } from "./main.js"
+import { loginRender, joinRender, renderMyShop, renderMyOrder, renderMain, renderUserInfo, renderDetail, renderPayment, renderMyCancelOrder, renderMyConfirOrder, renderCategory, cartCountCheck } from "./main.js"
 
 export async function router() {
+  cartCountCheck()
 
   const routePath = location.hash
   if (routePath === '') {
@@ -33,7 +34,7 @@ export async function router() {
   else if (routePath === '#payment') {
     renderPayment()
   }
-  
+
   else if (routePath === '#event') {
     console.log("이벤트카테고리")
   }
