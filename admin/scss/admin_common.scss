@@ -136,7 +136,7 @@ img.require {
         top: -100px;
         z-index:1;
         tr {
-          background-color: #c2cbe3;
+          background-color: var(--table-th-background);
           th {
             color: var(--text-color);
             font-weight: bold;
