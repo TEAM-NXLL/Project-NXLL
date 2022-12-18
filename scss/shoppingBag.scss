@@ -1,4 +1,22 @@
-.bag-payment {
+.shopping-box {
+  position: fixed;
+  width: 500px;
+  right: -100%;
+  top:0;
+  bottom: 0;
+  transition: 0.8s;
+  height: 100%;
+  background-color: white;
+  z-index: 100;
+  box-shadow: -10px -10px 20px rgba(0,0,0,.1);
+  // .modal-payment__footer {
+  //   display: flex;
+  //   justify-content: center;
+  // }
+}
+  
+  .bag-payment {
+
     &.active {
       display: block;
     }
@@ -40,11 +58,11 @@
       }
   
       button {
-        position: absolute;
+        position: absolute !important;
         right: 0;
         font-size: 0;
-        width: 54px;
-        height: 54px;
+        width: 54px !important;
+        height: 54px !important;
         background: transparent url('https://acttomall.com/_sp/_image/svg/close.svg');
         background-size: 11px 11px;
         background-repeat: no-repeat;
@@ -54,6 +72,7 @@
   
     &__body {
       padding: 30px;
+      height: calc(100% - 60px - 57px - 71px);
   
       .bag-payment {
         &__title {
@@ -120,7 +139,7 @@
         }
   
         &__list {
-          max-height: 350px;
+          height: calc(100% - 32px);
           overflow: auto;
         }
   
@@ -192,7 +211,7 @@
   
     &__footer {
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
       padding: 0 30px;
       height: 70px;
@@ -277,4 +296,3 @@
       }
     }
   }
-  

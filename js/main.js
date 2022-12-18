@@ -252,8 +252,8 @@ shoppingBag.addEventListener('click', () => {
 // 로그인 페이지 해시 값 + 화면 변경
 function loginRender() {
   startTop()
-  root.innerHTML = logInForm();
-  sendLogin();
+  root.innerHTML = logInForm()
+  sendLogin()
 }
 
 // 회원가입 페이지 해시 값 + 화면 변경
@@ -376,7 +376,7 @@ router();
   if (localStorage.accessToken) {
     const res = await stateLogin(localStorage.accessToken);
     res.displayName ? completeLogin() : window.localStorage.clear();
-  } else {
+  }  else {
     document.querySelector('.community').href = '#'
   }
 })();
