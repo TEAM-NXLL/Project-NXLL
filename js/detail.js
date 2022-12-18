@@ -1,21 +1,4 @@
 export function buyProduct(product) {
-<<<<<<< HEAD
-  const buyBtn = document.querySelector('.buy-btn');
-  buyBtn.addEventListener('click', () => {
-    let newProduct = {
-      ID: product.id,
-      QUANTITY: 1,
-      TITLE: product.title,
-      THUMB: product.thumbnail,
-      PRICE: product.price,
-      ORIGIN_PRICE: product.price,
-    };
-    localStorage.setItem('cart', JSON.stringify([newProduct]));
-    const accessToken = localStorage.accessToken;
-    if (accessToken) location.hash = '#payment';
-    else location.hash = '#login';
-  });
-=======
   const buyBtn = document.querySelector('.buy-btn')
   const selling = product.isSoldOut === true ? false : true
   buyBtn.addEventListener('click', () => {
@@ -33,7 +16,6 @@ export function buyProduct(product) {
     else if (accessToken) popMessage()
     else location.hash = '#login'
   })
->>>>>>> 37322d52831ab0b56fbb52bb62ef416a09f27922
 }
 
 async function cart(product) {
@@ -70,15 +52,6 @@ async function cart(product) {
 }
 
 export function shoppingBasket(product) {
-<<<<<<< HEAD
-  const cartBtn = document.querySelector('.cart-btn');
-  const selling = product.isSoldOut === true ? false : true;
-  cartBtn.addEventListener('click', () => {
-    cart(product);
-    if (selling) showModal(product);
-    else popMessage();
-  });
-=======
   const cartBtn = document.querySelector('.cart-btn')
   const tabMenu = document.querySelector('.tab-menu')
   const selling = product.isSoldOut === true ? false : true
@@ -94,7 +67,6 @@ export function shoppingBasket(product) {
     const scrollH = nameEl.getBoundingClientRect().top - topBanner.offsetHeight
     scrollTo({ left: 0, top: window.pageYOffset + scrollH, behavior: 'smooth' })
   })
->>>>>>> 37322d52831ab0b56fbb52bb62ef416a09f27922
 }
 
 function popMessage() {
