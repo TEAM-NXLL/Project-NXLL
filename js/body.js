@@ -145,7 +145,7 @@ function productList(data) {
             <!-- <div>최상의 상품을 제공 드리기 위해 준비중입니다. <br />조금만 기다려 주세요.</div> -->
             `)
 
-      for(let j = 0; j < colorChart.length; j+=1) {
+      for (let j = 0; j < colorChart.length; j += 1) {
         if (data[i].tags.includes(colorChart[j])) {
           mainBody.push(/* HTML */`
             <span class='${colorChart[j]}'></span>
@@ -168,7 +168,7 @@ function productList(data) {
         </div>
         <div class="colorBox">
       `)
-      for(let j = 0; j < colorChart.length; j+=1) {
+      for (let j = 0; j < colorChart.length; j += 1) {
         if (data[i].tags.includes(colorChart[j])) {
           mainBody.push(/* HTML */`
             <span class='${colorChart[j]}'></span>
@@ -206,7 +206,7 @@ function productList(data) {
 }
 
 // 카테고리 내부 메뉴
-export function renderInnerCategory(tag, count=0){
+export function renderInnerCategory(tag, count = 0) {
   if (tag === "new-item") {
     return  /* HTML */  `  
     <div class="category-area">
@@ -218,7 +218,7 @@ export function renderInnerCategory(tag, count=0){
     </div>
    `
   } else if (tag === "discount") {
-      return  /* HTML */  `  
+    return  /* HTML */  `  
       <div class="category-area">
         <div class="event-img-area">
           <img src="https://acttomall.com/web/upload/category/shop1_141_top_476608.gif" alt="홀리데이 특가 이벤트"/>
@@ -231,7 +231,7 @@ export function renderInnerCategory(tag, count=0){
       </div>
     `
   } else if (tag === "pc") {
-      return  /* HTML */  `  
+    return  /* HTML */  `  
       <div class="category-area">
         <div class="category-title-area">
           <span class="category-title">PC</span> 
@@ -251,7 +251,7 @@ export function renderInnerCategory(tag, count=0){
       </div>
     `
   } else if (tag === "notebook") {
-      return /* HTML */  `  
+    return /* HTML */  `  
       <div class="category-area">
         <div class="category-title-area">
           <span class="category-title">노트북</span> 
@@ -267,7 +267,7 @@ export function renderInnerCategory(tag, count=0){
       </div>
       `
   } else if (tag === "smart") {
-      return /* HTML */  `  
+    return /* HTML */  `  
       <div class="category-area">
         <div class="category-title-area">
           <span class="category-title">스마트</span> 
@@ -285,7 +285,7 @@ export function renderInnerCategory(tag, count=0){
       </div>
       `
   } else if (tag === "audio") {
-      return /* HTML */  `  
+    return /* HTML */  `  
       <div class="category-area">
         <div class="category-title-area">
           <span class="category-title">음향</span> 
@@ -313,7 +313,7 @@ export function renderInnerCategory(tag, count=0){
       </div>
     </div>
     `
-}
+  }
 }
 
 
@@ -882,7 +882,19 @@ function detailForm(product) {
     </div>
   </div><!-- PRODUCT-DETAIL -->  
   <!-- MODAL-PAYMENT -->
-  <div class="modal-payment"></div><!-- MODAL-PAYMENT -->
+  <div class="modal-payment">
+    <div class="modal-payment__header">
+      <h3>장바구니 담기</h3>
+      <span>물품을 미리 확인하세요</span>
+      <button class="btn-close">닫기 버튼</button>
+    </div>
+    <div class="modal-payment__body"></div>
+    
+    <div class="modal-payment__footer">
+      <span>* 쇼핑을 계속하시려면 이 창을 닫아주시길 바랍니다.</span>
+      <a class="cart-buy-btn"><i class="fas fa-check"></i>바로 구매하기</a>
+    </div>
+  </div><!-- MODAL-PAYMENT -->
   `
 }
 
