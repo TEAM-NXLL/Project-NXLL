@@ -50,7 +50,6 @@ function renderTotalPrice() {
 // 선택 박스 상태 변화에 따라 가격 렌더링 변화
 export function priceCheck(product) {
   const checkBox = product.querySelector('.product-checkbox')
-  console.log(checkBox)
   checkBox.addEventListener('change', () => renderTotalPrice())
 }
 
@@ -75,17 +74,15 @@ export function cancelProduct() {
   const productDeleteBtn = document.querySelector('.product-delete-btn');
   const productCheckBox = document.querySelectorAll('.product-checkbox');
 
-  productDeleteBtn.addEventListener('click', async (event) => {
+  productDeleteBtn.addEventListener('click', (event) => {
     event.preventDefault;
-    const totalPriceEl = document.querySelector('.total-price');
     productCheckBox.forEach((el) => {
       const isChecked = el.checked;
       try {
         if (isChecked) {
           const id = el.dataset.id;
-          console.log(id)
           const cart = JSON.parse(localStorage.cart);
-          const AfterCart = cart.filter((el) => el !== id);
+          const AfterCart = cart.filter((el) => el.ID !== id);
           localStorage.cart = JSON.stringify(AfterCart);
         }
       } catch {

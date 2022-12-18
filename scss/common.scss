@@ -7,6 +7,7 @@
   --table-th-background: #fafafa;
   --text-color: #333;
   --sub-text-color: #999;
+  --signature-color: #213b85;
 }
 
 body {
@@ -29,9 +30,9 @@ button, input {
 }
 
 button.hover-navy {
-  border: 2px solid #213b85;
+  border: 2px solid var(--signature-color);
   line-height: 36px;
-  color: #213b85;
+  color: var(--signature-color);
   padding: 0 20px;
   transition: 0.3s;
   
@@ -41,7 +42,7 @@ button.hover-navy {
 }
 
 button.hover-navy:hover {
-  background-color: #213b85;
+  background-color: var(--signature-color);
   color: #fff;
 }
 

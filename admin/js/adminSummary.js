@@ -1,9 +1,8 @@
 import { viewAllProduct } from './requests.js';
 import { viewAllTransactions } from './requests.js';
 
-export async function renderAdminSummary() {
-  const allProduct = await viewAllProduct();
-  const allTransac = await viewAllTransactions();
+export async function renderAdminSummary(allTransac, allProduct) {
+
   const adminSummary = document.querySelector('.admin-summary');
   
   // 삽입 생성자 함수

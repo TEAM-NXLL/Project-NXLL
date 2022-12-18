@@ -130,8 +130,8 @@
           position: relative;
           display: block;
           color: #eaeaea;
-          border: 2px solid #213B85;
-          border-bottom-color: #213B85;
+          border: 2px solid var(--signature-color);
+          border-bottom-color: var(--signature-color);
           box-shadow: 0 2px 2px rgba(0, 0, 0, 0.04);
           text-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
           font-size: 16px;
@@ -142,13 +142,13 @@
           transition: 0.2s;
 
           &:hover {
-            background: #213B85;
+            background: var(--signature-color);
             color: #fff;
           }
         }
 
         .buy-btn {
-          background: linear-gradient(to bottom, #213B85 0%, #213B85 100%);
+          background: linear-gradient(to bottom, var(--signature-color) 0%, var(--signature-color) 100%);
 
           &:hover {
             background: linear-gradient(to bottom, #053271 0%, #053271 100%);
@@ -156,7 +156,7 @@
         }
 
         .cart-btn {
-          color: #213B85;
+          color: var(--signature-color);
 
           i {
             margin-right: 10px;
@@ -441,15 +441,15 @@
       display: inline-block;
       padding: 0 20px;
       line-height: 40px;
-      border: 2px solid #213B85;
-      color: #213B85;
+      border: 2px solid var(--signature-color);
+      color: var(--signature-color);
       background-color: #fff;
       font-size: 13px;
       transition: .3s;
 
       &:hover {
-        border-color: #213B85;
-        background-color: #213B85;
+        border-color: var(--signature-color);
+        background-color: var(--signature-color);
         color: #fff;
       }
 

@@ -124,7 +124,7 @@ function mainForm() {
 
 // 상품 목록
 function productList(data) {
-  const colorChart = ["beige", "pastelBeige", "mint", "pink", "white", "navy", "blueNavy", "black", "green", "gray"]
+  const colorChart = ["beige", "mint", "pink", "white", "blue", "black", "green", "gray"]
   const mainBody = []
 
   for (let i = 0; i < data.length; i++) {
@@ -144,16 +144,11 @@ function productList(data) {
             <div class="colorBox">
             <!-- <div>최상의 상품을 제공 드리기 위해 준비중입니다. <br />조금만 기다려 주세요.</div> -->
             `)
-      const randomNum = Math.ceil(Math.random() * 5)
-      let randomIndexArray = []
 
-      for (let j = 0; j < randomNum; j++) {
-        const colorNum = Math.floor(Math.random() * 10);
-
-        if (randomIndexArray.indexOf(colorNum) === -1) {
-          randomIndexArray.push(colorNum);
+      for(let j = 0; j < colorChart.length; j+=1) {
+        if (data[i].tags.includes(colorChart[j])) {
           mainBody.push(/* HTML */`
-            <span class='${colorChart[colorNum]}'></span>
+            <span class='${colorChart[j]}'></span>
           `);
         }
       }
@@ -173,20 +168,14 @@ function productList(data) {
         </div>
         <div class="colorBox">
       `)
-
-      const randomNum = Math.ceil(Math.random() * 5)
-      let randomIndexArray = []
-
-      for (let j = 0; j < randomNum; j++) {
-        const colorNum = Math.floor(Math.random() * 10);
-
-        if (randomIndexArray.indexOf(colorNum) === -1) {
-          randomIndexArray.push(colorNum);
+      for(let j = 0; j < colorChart.length; j+=1) {
+        if (data[i].tags.includes(colorChart[j])) {
           mainBody.push(/* HTML */`
-            <span class='${colorChart[colorNum]}'></span>
+            <span class='${colorChart[j]}'></span>
           `);
         }
       }
+
       const discountValue = Math.floor(Math.random() * 9 + 1) * 8;
       mainBody.push(/* HTML */`
           </div >
@@ -215,6 +204,118 @@ function productList(data) {
 
   return mainBody.join('');
 }
+
+// 카테고리 내부 메뉴
+export function renderInnerCategory(tag, count=0){
+  if (tag === "new-item") {
+    return  /* HTML */  `  
+    <div class="category-area">
+      <div class="category-title-area">
+        <span class="category-title">NEW</span> 
+        <span class="category-count1">${count}</span>
+        <span class="category-count2">개의 상품이 있습니다.</span>
+      </div>
+    </div>
+   `
+  } else if (tag === "discount") {
+      return  /* HTML */  `  
+      <div class="category-area">
+        <div class="event-img-area">
+          <img src="https://acttomall.com/web/upload/category/shop1_141_top_476608.gif" alt="홀리데이 특가 이벤트"/>
+        </div>
+        <div class="category-title-area">
+          <span class="category-title">홀리데이 특가</span> 
+          <span class="category-count1">${count}</span>
+          <span class="category-count2">개의 상품이 있습니다.</span>
+        </div>
+      </div>
+    `
+  } else if (tag === "pc") {
+      return  /* HTML */  `  
+      <div class="category-area">
+        <div class="category-title-area">
+          <span class="category-title">PC</span> 
+          <span class="category-count1">${count}</span>
+          <span class="category-count2">개의 상품이 있습니다.</span>
+        </div>
+        <div class="category-menu-area">
+          <ul>
+            <li>키보드</li>
+            <li>마우스</li>
+            <li>마우스패드</li>
+            <li>USB허브</li>
+            <li>모니터 스탠드</li>
+            <li>카드 리더기</li>
+          </ul>
+        </div>
+      </div>
+    `
+  } else if (tag === "notebook") {
+      return /* HTML */  `  
+      <div class="category-area">
+        <div class="category-title-area">
+          <span class="category-title">노트북</span> 
+          <span class="category-count1">${count}</span>
+          <span class="category-count2">개의 상품이 있습니다.</span>
+        </div>
+        <div class="category-menu-area">
+          <ul>
+            <li>노트북 스탠드</li>
+            <li>노트북 잠금장치</li>
+            <li>노트북 키패드</li>
+        </div>     
+      </div>
+      `
+  } else if (tag === "smart") {
+      return /* HTML */  `  
+      <div class="category-area">
+        <div class="category-title-area">
+          <span class="category-title">스마트</span> 
+          <span class="category-count1">${count}</span>
+          <span class="category-count2">개의 상품이 있습니다.</span>
+        </div>
+        <div class="category-menu-area">
+          <ul>
+            <li>어댑터</li>
+            <li>충전기</li>
+            <li>스마트 거치대</li>
+            <li>기타 스마트기기</li>
+          </ul>
+        </div>   
+      </div>
+      `
+  } else if (tag === "audio") {
+      return /* HTML */  `  
+      <div class="category-area">
+        <div class="category-title-area">
+          <span class="category-title">음향</span> 
+          <span class="category-count1">${count}</span>
+          <span class="category-count2">개의 상품이 있습니다.</span>
+        </div>
+        <div class="category-menu-area">
+          <ul>
+            <li>이어폰&헤드폰</li>
+            <li>스피커</li>
+            <li>마이크</li>
+            <li>키즈헤드폰</li>
+            <li>음향케이블 & 기타</li>
+          </ul>
+        </div>
+      </div>
+      `
+  } else if (tag === "search") {
+    return /* HTML */  `  
+    <div class="category-area">
+      <div class="category-title-area">
+        <span class="category-title">SEARCH</span> 
+        <span class="category-count1">${count}</span>
+        <span class="category-count2">개의 상품이 있습니다.</span>
+      </div>
+    </div>
+    `
+}
+}
+
 
 // 회원가입 페이지
 function joinForm() {
@@ -292,7 +393,7 @@ function logInForm() {
 }
 
 // 마이쇼핑 페이지
-function myShoppingForm(trans, price) {
+function myShoppingForm(trans, price, cancelList, confirList) {
   const information = /* html */`
     <div class="information">
       <div class="inner">
@@ -319,15 +420,9 @@ function myShoppingForm(trans, price) {
         </div>
       </div>
     </div>
-    `
-  const goToLogin = () => {
-    return localStorage.accessToken ? '#userinfo' : '#login'
-  }
-  const transLookUp = () => {
-    return trans > 0 ? `${trans}` : `0`
-  }
-  const chargeLookUp = () => {
-    return localStorage.accessToken ? `${price}` : `0`
+  `
+  const goToLogin = (link) => {
+    return localStorage.accessToken ? link : '#login'
   }
 
   return /* html */ `
@@ -342,13 +437,13 @@ function myShoppingForm(trans, price) {
         <a href="#myorder" class="order-list__item">
           <p class="icon order"></p>
           <p>주문 내역</p>
-          <p class="price">${transLookUp()}건</p>
+          <p class="price">${trans ?? 0}건</p>
           <i class="line--hover"></i>
         </a>
         <a href="#" class="order-list__item">
           <p class="icon mileage"></p>
           <p>계좌 잔액</p>
-          <p class="price">${chargeLookUp()}원</p>
+          <p class="price">${price ?? 0}원</p>
           <i class="line--hover"></i>
         </a>
       </div>
@@ -369,7 +464,7 @@ function myShoppingForm(trans, price) {
             <span class="quick-menu__title"><strong>주문내역 조회</strong>
               고객님께서 주문하신 상품의 주문내역을 확인하실 수 있습니다.
             </span>
-            <span class="quick-menu__linked"><a href="#myorder" class="myOrder" targer="_blank">조회</a></span>
+            <span class="quick-menu__linked"><a href=${goToLogin('#myorder')} class="myOrder" targer="_blank">조회</a></span>
           </div>
           <div class="quick-menu__item">
             <span class="icon mileage"><i></i></span>
@@ -377,18 +472,18 @@ function myShoppingForm(trans, price) {
             <span class="quick-menu__title"><strong>회원 정보</strong>
               회원이신 고객님의 개인정보를 관리하는 공간입니다.
             </span>
-            <span class="quick-menu__linked"><a href=${goToLogin()}>조회</a></span>
+            <span class="quick-menu__linked"><a href=${goToLogin('#userinfo')}>조회</a></span>
           </div>
         </div>
         <div class="order-state">
           <div class="order-state__box">
             <a class="order-state__item">
-              <p class="count">0</p>
+              <p class="count">${cancelList ?? 0}</p>
               <p class="state">취소</p>
               <i class="line--hover"></i>
             </a>
             <a class="order-state__item">
-              <p class="count">0</p>
+              <p class="count">${confirList ?? 0}</p>
               <p class="state">완료</p>
               <i class="line--hover"></i>
             </a>
@@ -731,11 +826,6 @@ function userAccountForm(totalBalance) {
 
 // 상품 상세페이지
 function detailForm(product) {
-
-  if (product.thumbnail === null || product.thumbnail === undefined) {
-    product.thumbnail = './images/preparingProduct.jpg'
-  }
-
   return /* html */`
   <div class="page-nav">
     <div class="inner">
@@ -748,7 +838,7 @@ function detailForm(product) {
     <div class="product-detail__header">
       <div class="inner">
         <div class="product-thumbnail">
-          <img src="${product.thumbnail}" alt="대표이미지">
+          <img src="${product.thumbnail ?? './images/preparingProduct.jpg'}" alt="대표이미지">
         </div>
         <div class="product-order">
           <div class="product-summary">
@@ -796,73 +886,7 @@ function detailForm(product) {
   `
 }
 
-function modalPayment() {
-  return /* html */`
-  <!-- MODAL-PAYMENT -->
-  <div class="modal-payment">
-    <div class="modal-payment__header">
-      <h3>장바구니 담기</h3>
-      <span>물품을 미리 확인하세요</span>
-      <button>닫기 버튼</button>
-    </div>
-    <div class="modal-payment__body">
-      <div class="modal-payment__title">
-        <em>CART - LIST</em>
-        <span class="subtext">내 장바구니 목록입니다.</span>
-        <span class="total">총 <strong>3</strong>개의 물품</span>
-      </div>
-      <div class="modal-payment__list">
-        <div class="modal-payment__item">
-          <div class="thumb">
-            <img src="/images/christmasGift.jpg" alt="상품 대표이미지">
-          </div>
-          <div class="description">
-            <p class="name">
-              [크리스마스 증정 이벤트] 엑토 레트로 미니 블루투스 키보드 B303 엑토 레트로 미니 블루투스 키보드 B303
-            </p>
-            <p class="delivery-fee">배송비 무료</p>
-          </div>
-          <div class="price">
-            <p>49,900 원</p>
-          </div>
-        </div>
-        <div class="modal-payment__item">
-          <div class="thumb">
-            <img src="/images/christmasGiftMini1.jpg" alt="상품 대표이미지">
-          </div>
-          <div class="description">
-            <p class="name">
-              [크리스마스 증정 이벤트] 엑토 레트로 미니 블루투스 키보드 B303
-            </p>
-            <p class="delivery-fee">배송비 무료</p>
-          </div>
-          <div class="price">
-            <p>49,900 원</p>
-          </div>
-        </div>
-      </div>
-      <div class="pagination">
-      <button class="pagination--control"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
-      </button>
-      <div class="pagination--page">
-        <ul>
-          <li class="active">1</li>
-          <li>2</li>
-        </ul>
-      </div>
-      <button class="pagination--control">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg>
-      </button>
-    </div>
-    </div>    
-    <div class="modal-payment__footer">
-      <span>* 쇼핑을 계속하시려면 이 창을 닫아주시길 바랍니다.</span>
-      <a href="#" class="btn-buy"><i class="fas fa-check"></i>바로 구매하기</a>
-    </div>
-  </div><!-- MODAL-PAYMENT -->
-  `
-}
-
+// 결제 페이지
 function paymentForm() {
   return /* html */ `
    <div class="title-box" scope="sub">

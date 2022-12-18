@@ -1,4 +1,5 @@
 export function buyProduct(product) {
+<<<<<<< HEAD
   const buyBtn = document.querySelector('.buy-btn');
   buyBtn.addEventListener('click', () => {
     let newProduct = {
@@ -14,6 +15,25 @@ export function buyProduct(product) {
     if (accessToken) location.hash = '#payment';
     else location.hash = '#login';
   });
+=======
+  const buyBtn = document.querySelector('.buy-btn')
+  const selling = product.isSoldOut === true ? false : true
+  buyBtn.addEventListener('click', () => {
+    let newProduct = {
+      'ID': product.id,
+      'QUANTITY': 1,
+      'TITLE': product.title,
+      'THUMB': product.thumbnail,
+      'PRICE': product.price,
+      'ORIGIN_PRICE': product.price
+    }
+    localStorage.setItem('cart', JSON.stringify([newProduct]))
+    const accessToken = localStorage.accessToken
+    if (accessToken && selling) location.hash = '#payment'
+    else if (accessToken) popMessage()
+    else location.hash = '#login'
+  })
+>>>>>>> 37322d52831ab0b56fbb52bb62ef416a09f27922
 }
 
 async function cart(product) {
@@ -50,6 +70,7 @@ async function cart(product) {
 }
 
 export function shoppingBasket(product) {
+<<<<<<< HEAD
   const cartBtn = document.querySelector('.cart-btn');
   const selling = product.isSoldOut === true ? false : true;
   cartBtn.addEventListener('click', () => {
@@ -57,6 +78,23 @@ export function shoppingBasket(product) {
     if (selling) showModal(product);
     else popMessage();
   });
+=======
+  const cartBtn = document.querySelector('.cart-btn')
+  const tabMenu = document.querySelector('.tab-menu')
+  const selling = product.isSoldOut === true ? false : true
+  cartBtn.addEventListener('click', () => {
+    cart(product)
+    if (selling) showModal(product)
+    else popMessage()
+  })
+  tabMenu.addEventListener('click', ({ target }) => {
+    const topBanner = document.querySelector('.top-banner')
+    const el = target['name']
+    const nameEl = document.querySelector(`.${el}`)
+    const scrollH = nameEl.getBoundingClientRect().top - topBanner.offsetHeight
+    scrollTo({ left: 0, top: window.pageYOffset + scrollH, behavior: 'smooth' })
+  })
+>>>>>>> 37322d52831ab0b56fbb52bb62ef416a09f27922
 }
 
 function popMessage() {
@@ -115,7 +153,7 @@ function showModal() {
     MODAL_ITEM.classList.add('modal-payment__item');
     MODAL_ITEM.innerHTML = /* html */ `
         <div class="thumb">
-          <img src="${item.THUMB}" alt="상품 대표이미지">
+          <img src="${item.THUMB ?? './images/preparingProduct.jpg'}" alt="상품 대표이미지">
         </div>
         <div class="description">
           <p class="name">${item.TITLE}</p>
