@@ -3,10 +3,10 @@ import { buyProduct, totalQuantity } from './detail';
 export function viewShoppingBag() {
   const cartList = JSON.parse(localStorage.getItem('cart')) || [];
   const MODAL = document.querySelector('.shopping-box');
-  MODAL.classList.add('active');
+  // MODAL.classList.add('active');
   MODAL.innerHTML = /* html */ `
       <div class="modal-payment__header">
-        <h3>SHOPPING - BOX</h3>
+        <h3>장바구니</h3>
       </div>
       <div class="modal-payment__body">
         <div class="modal-payment__title">
@@ -21,7 +21,7 @@ export function viewShoppingBag() {
       <div class="modal-payment__footer">
         <a class="cart-btn-buy"><i class="fas fa-check"></i>장바구니 이동</a>
       </div>
-    `;
+    `
 
   const MODAL_LIST = document.querySelector('.modal-payment__list');
   cartList.forEach((item) => {
@@ -43,59 +43,59 @@ export function viewShoppingBag() {
         <div class="price">
           <p>${item.PRICE} 원</p>
         </div>
-      `;
+      `
     MODAL_LIST.append(MODAL_ITEM);
-  });
+  })
 
-  const btnClose = document.querySelector('.btn-close');
-  const btnPlus = document.querySelectorAll('.btn-plus');
-  const btnMinus = document.querySelectorAll('.btn-minus');
-  const btnBuy = document.querySelector('.cart-btn-buy');
+  const btnClose = document.querySelector('.btn-close')
+  const btnPlus = document.querySelectorAll('.btn-plus')
+  const btnMinus = document.querySelectorAll('.btn-minus')
+  const btnBuy = document.querySelector('.cart-btn-buy')
 
   MODAL.addEventListener('click', () => {
-    MODAL.classList.remove('active');
-  });
+    // MODAL.classList.remove('active')
+  })
   // 수량 ++
   btnPlus.forEach((el) =>
     el.addEventListener('click', ({ target }) => {
-      const text = target.closest('div').children[1];
-      text.innerHTML = Number(text.textContent) + 1;
+      const text = target.closest('div').children[1]
+      text.innerHTML = Number(text.textContent) + 1
 
-      const productId = target.closest('.quantity').dataset.id;
+      const productId = target.closest('.quantity').dataset.id
       cartList.forEach((el) => {
         if (el.ID === productId) {
           el.QUANTITY += 1;
           el.PRICE = el.ORIGIN_PRICE * el.QUANTITY;
         }
-      });
+      })
 
-      localStorage.setItem('cart', JSON.stringify(cartList));
-      viewShoppingBag();
-    }),
-  );
+      localStorage.setItem('cart', JSON.stringify(cartList))
+      viewShoppingBag()
+    })
+  )
   // 수량--
   btnMinus.forEach((el) =>
     el.addEventListener('click', ({ target }) => {
-      const text = target.closest('div').children[1];
-      text.innerHTML = Number(text.textContent) - 1;
+      const text = target.closest('div').children[1]
+      text.innerHTML = Number(text.textContent) - 1
 
-      const productId = target.closest('.quantity').dataset.id;
+      const productId = target.closest('.quantity').dataset.id
       cartList.forEach((el) => {
         if (el.ID === productId) {
-          el.QUANTITY = el.QUANTITY === 0 ? 0 : el.QUANTITY - 1;
-          el.PRICE = el.ORIGIN_PRICE * el.QUANTITY;
+          el.QUANTITY = el.QUANTITY === 0 ? 0 : el.QUANTITY - 1
+          el.PRICE = el.ORIGIN_PRICE * el.QUANTITY
         }
-      });
+      })
 
-      localStorage.setItem('cart', JSON.stringify(cartList));
-      viewShoppingBag();
-    }),
-  );
+      localStorage.setItem('cart', JSON.stringify(cartList))
+      viewShoppingBag()
+    })
+  )
 
   btnBuy.addEventListener('click', function () {
     MODAL.classList.remove('block');
-    const accessToken = localStorage.accessToken;
-    if (accessToken) location.hash = '#payment';
-    else location.hash = '#login';
-  });
+    const accessToken = localStorage.accessToken
+    if (accessToken) location.hash = '#payment'
+    else location.hash = '#login'
+  })
 }
