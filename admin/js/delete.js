@@ -20,7 +20,7 @@ export async function deleteCheckedItems(checkedItems) {
       })
       await Promise.all(checkedArr);
     } catch (err) {
-      alert(err, "잠시 후 다시 시도해 주세요.");
+      toast("잠시 후 다시 시도해 주세요.");
     }
   } else {
     toast("아이템 삭제를 취소합니다.");
@@ -35,7 +35,9 @@ productContainer.addEventListener('click', (event) => {
       : toast("아이템 삭제를 취소합니다.")
   }
   else if (event.target.classList.contains('edit-btn')) {
-    editItem(event) //라우터 안쓰면 이걸로
+    const editProducts = document.querySelector('.editProducts')
+    editProducts.classList.add('show')
+    editItem(event)
   }
 })
 
@@ -46,12 +48,9 @@ export function deleteItem(target) {
   items.forEach(item => {
     if (item.dataset.id === itemId) {
       item.classList.add('delete');
-      item.addEventListener('transitionend', () => {
-        item.remove();
-      })
+      item.remove();
     }
   })
   delProduct(itemId);
   toast("상품이 삭제되었습니다.")
 }
-

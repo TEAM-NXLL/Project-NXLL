@@ -84,14 +84,15 @@
           <h2>모든 제품 조회<span>엑토의 모든 제품을 조회할 수 있습니다.</span></h2>
           <table class="products-container">
             <colgroup>
-              <col width="4%" />
+              <col width=".3%" />
               <col width="10%" />
               <col width="10%" />
               <col width="20%" />
               <col width="10%" />
               <col width="10%" />
-              <col width="6%" />
-              <col width="30%"/>
+              <col width="7%" />
+              <col width="25%"/>
+              <col width="5%"/>
             </colgroup>
             <thead class="product-item item-head">
               <tr class="product-wrapper">
@@ -101,8 +102,9 @@
                 <th class="title">제품명</th>
                 <th class="price">가격</th>
                 <th class="tags">태그</th>
-                <th class="is-sold-out">매진여부</th>
+                <th class="is-sold-out">재고</th>
                 <th class="descript">기본 정보</th>
+                <th class="productBtn"></th>
               </tr>
             </thead>
             <tbody class="products"></tbody>
@@ -127,22 +129,205 @@
           </div>
         </div>
       </div> -->
+      
+      <div class="editProducts">
+        <!-- 제품수정페이지 -->
+        <ul class="table-area">
+          <li id="edit-products">
+            <h2>제품 수정</h2>
+            <form class="edit-form">
+              <!-- 매진 여부 -->
+              <div class="soldout-area">
+                <input type="radio" id="sell" class="filter" name="filter" value=false checked />
+                <input type="radio" id="soldout" class="filter" name="filter" value=true />
+                <div class="switch">
+                  <label for="sell" class="taglabel">판매중</label>
+                  <label for="soldout" class="taglabel">매진</label>
+                  <span></span>
+                </div>
+              </div>
 
-      <!-- 제품수정페이지 -->
-      <div id="edit-products">
+              <table>
+                <!-- 수정 상품명 -->
+                <tr class="name-area">
+                  <th><label for="edit-product-name">상품명</label></th>
+                  <td colspan="3"><input type="text" class="edit-product-name reset" name="edit-product-name" required /></td>
+                </tr>
+                <tr class="price-area">
+                  <th><label for="edit-product-price">가격</label></th>
+                  <td colspan="3"><input type="text" name="edit-product-price" class="reset" id="edit-product-price" min="0" required />
+                  <span>원</span></td>
+                </tr>
+    
+                <!-- 수정 태그 선택 -->
+                <tr>
+                  <th><label>상품 색상</label></th>
+                  <td colspan="3">
+                    <input type="checkbox" id="beige" class="check" name="edit-check" value="beige" />
+                    <label for="beige" class="taglabel">베이지</label>
+                    <input type="checkbox" id="mint" class="check" name="edit-check" value="mint" />
+                    <label for="mint" class="taglabel">민트</label>
+                    <input type="checkbox" id="pink" class="check" name="edit-check" value="pink" />
+                    <label for="pink" class="taglabel">핑크</label>
+                    <input type="checkbox" id="white" class="check" name="edit-check" value="white" />
+                    <label for="white" class="taglabel">화이트</label>
+                    <input type="checkbox" id="blue" class="check" name="edit-check" value="blue" />
+                    <label for="blue" class="taglabel">블루</label>
+                    <input type="checkbox" id="black" class="check" name="edit-check" value="black" />
+                    <label for="black" class="taglabel">블랙</label>
+                    <input type="checkbox" id="green" class="check" name="edit-check" value="green" />
+                    <label for="green" class="taglabel">그린</label>
+                    <input type="checkbox" id="gray" class="check" name="edit-check" value="gray" />
+                    <label for="gray" class="taglabel">그레이</label>
+                  </td>
+                </tr>
+
+                <tr>
+                  <th><label>상품 태그</label></th>
+                  <td colspan="3">
+                    <input type="checkbox" id="new-item" class="check" name="edit-check" value="new-item" />
+                    <label for="new-item" class="taglabel">NEW ITEM</label>
+                    <input type="checkbox" id="discount" class="check" name="edit-check" value="discount" />
+                    <label for="discount" class="taglabel">할인</label>
+                  </td>
+                </tr>
+      
+                <tr>
+                  <th>
+                    <input type="radio" id="pc" class="category" name="edit-category" value="pc" />
+                    <label for="pc" class="category-label">PC</label>
+                  </th>
+                  <td colspan="3" class="pc-tags">
+                    <input type="checkbox" id="mouse" class="check" name="edit-check" value="mouse" />
+                    <label for="mouse" class="taglabel">마우스</label>
+                    <input type="checkbox" id="keyboard" class="check" name="edit-check" value="keyboard" />
+                    <label for="keyboard" class="taglabel">키보드</label>
+                    <input type="checkbox" id="mousepad" class="check" name="edit-check" value="mousepad" />
+                    <label for="mousepad" class="taglabel">마우스패드</label>
+                    <input type="checkbox" id="usbhub" class="check" name="edit-check" value="usbhub" />
+                    <label for="usbhub" class="taglabel">USB허브</label>
+                    <input type="checkbox" id="monitorstand" class="check" name="edit-check" value="monitorstand" />
+                    <label for="monitorstand" class="taglabel">모니터스탠드</label>
+                    <input type="checkbox" id="cardreader" class="check" name="edit-check" value="cardreader" />
+                    <label for="cardreader" class="taglabel">카드리더기</label>
+                  </td>
+                </tr>
+
+                <tr>
+                  <th>
+                    <input type="radio" id="notebook" class="edit-category" name="edit-category" value="notebook" />
+                    <label for="notebook" class="category-label">노트북</label>
+                  </th>
+                  <td colspan="3" class="notebook-tags">
+                    <input type="checkbox" id="notebookstand" class="check" name="edit-check" value="notebookstand" />
+                    <label for="notebookstand" class="taglabel">노트북스탠드</label>
+                    <input type="checkbox" id="lock" class="check" name="edit-check" value="lock" />
+                    <label for="lock" class="taglabel">노트북잠금장치</label>
+                    <input type="checkbox" id="keypad" class="check" name="edit-check" value="keypad" />
+                    <label for="keypad" class="taglabel">노트북키패드</label>
+                  </td>
+                </tr>
+
+                <tr>
+                  <th>
+                    <input type="radio" id="audio" class="edit-category" name="edit-category" value="audio" />
+                    <label for="audio" class="category-label">음향</label>
+                  </th>
+                  <td colspan="3" class="audio-tags">
+                    <input type="checkbox" id="ear-head" class="check" name="edit-check" value="ear-head" />
+                    <label for="ear-head" class="taglabel">이어폰&헤드폰</label>
+                    <input type="checkbox" id="speaker" class="check" name="edit-check" value="speaker" />
+                    <label for="speaker" class="taglabel">스피커</label>
+                    <input type="checkbox" id="mic" class="check" name="edit-check" value="mic" />
+                    <label for="mic" class="taglabel">마이크</label>
+                    <input type="checkbox" id="kids" class="check" name="edit-check" value="kids" />
+                    <label for="kids" class="taglabel">키즈 헤드폰</label>        
+                    <input type="checkbox" id="audiocable" class="check" name="edit-check" value="audiocable" />
+                    <label for="audiocable" class="taglabel">음향케이블&기타</label>
+                  </td>
+                </tr>
+
+                <tr>
+                  <th>
+                    <input type="radio" id="smart" class="edit-category" name="edit-category" value="smart" />
+                    <label for="smart" class="category-label">스마트</label>
+                  </th>
+                  <td colspan="3" class="smart-tags">
+                    <input type="checkbox" id="adapter" class="check" name="edit-check" value="adapter" />
+                    <label for="adapter" class="taglabel">어댑터</label>
+                    <input type="checkbox" id="charging" class="check" name="edit-check" value="charging" />
+                    <label for="charging" class="taglabel">충전기</label>
+                    <input type="checkbox" id="smartholder" class="check" name="edit-check" value="smartholder" />
+                    <label for="smartholder" class="taglabel">스마트거치대</label>
+                    <input type="checkbox" id="smart-etc" class="check" name="edit-check" value="smart-etc" />
+                    <label for="smart-etc" class="taglabel">기타스마트기기</label>
+                  </td>
+                </tr>
+    
+                <!-- 수정 상품 상세설명 -->
+                <tr class="description-area">
+                  <th><label for="edit-description">상품 상세 설명</label></th>
+                  <td colspan="3"><textarea class="edit-product-description reset" maxlength=100 placeholder="상세 설명은 100자 이내로 작성해 주세요."
+                    required></textarea></td>
+                </tr>
+
+                <!-- 수정 파일 업로드 -->
+                <tr class="file-upload-area edit-file-upload-area">
+                  <!-- 수정 썸네일 업로드 -->
+                  <th>
+                    <label for="edit-thumbnail"> 상품 썸네일 수정 </label>
+                  </th>
+                  <td>
+                    <div class="imgBox">
+                      <img id="edit-thumbnail-preview" class="edit-tumbnail-img reset" />
+                    </div>
+                    <span><strong>jpeg, webp, png, gif, svg 확장자만</strong> 등록 가능합니다. 파일 크기는 <strong>1MB 이하</strong>여야 합니다.</span>
+                    <input type="file" accept="image/jpg, .jpeg, .webp, .png, .gif, .svg" class="edit-thumbnail reset thumbnailUploadFile"
+                    name="edit-thumbnail" id="edit-thumbnail" />
+                    <label class="thumbnailUploadBtn" for="edit-thumbnail"><i class="fa-solid fa-upload"></i> 업로드</label>
+                    <div class="reset-btn edit-thumbnail-reset">선택 초기화</div>
+                  </td>
+                  
+                  <!-- 수정 상세사진 업로드 -->
+                  <th>
+                    <label for="edit-detail"> 상품 상세사진 수정 </label>
+                  </th>
+                  <td>
+                    <div class="imgBox">
+                      <img id="edit-detail-preview" class="edit-detail-img reset" />
+                    </div>
+                    <span><strong>jpg, jpeg, webp, png, gif, svg 확장자만</strong> 등록 가능합니다. 파일 크기는 <strong>4MB 이하</strong>여야 합니다.</span>
+                    <input type="file" accept="image/jpg, .jpeg, .webp, .png, .gif, .svg" class="edit-detail reset thumbnailUploadFile"
+                      name="edit-detail" id="edit-detail" />
+                    <label class="thumbnailUploadBtn" for="edit-detail"><i class="fa-solid fa-upload"></i> 업로드</label>
+                    <div class="reset-btn edit-detail-reset">선택 초기화</div>
+                  </td>
+                </tr>
+              </table>
+              <!-- 수정 form submit 버튼 -->
+              <div class="edit-button-area">
+                <button class="edit-btn hover-navy" type="submit"><i class="fa-solid fa-check"></i>상품 수정</button>
+              </div>
+            </form>
+            <button class="closeBtn">닫기</button>
+          </li>
+        </ul>
+      </div>
+
+      <!-- <div id="edit-products">
         <section class="admin-title">
           <h2>제품 수정</h2>
         </section>
         <section class="edit-section">
           <form class="edit-form">
-            <!-- 매진 여부 -->
+            
             <div class="soldout-area">
               <input type="radio" id="sell" class="filter" name="filter" value=false checked />
               <label for="sell" class="taglabel">판매중</label>
               <input type="radio" id="soldout" class="filter" name="filter" value=true />
               <label for="soldout" class="taglabel">매진</label>
             </div>
-            <!-- 수정 상품명 -->
+            
             <div class="name-area">
               <label for="edit-product-name">상품명</label>
               <input type="text" class="edit-product-name reset" name="edit-product-name" required />
@@ -153,7 +338,7 @@
               <span>원</span>
             </div>
 
-        <!-- 수정 태그 선택 -->
+        
         <div class="tag-area">
           <label>상품 색상</label>
           <input type="checkbox" id="beige" class="check" name="edit-check" value="beige" />
@@ -233,15 +418,15 @@
           </div>
         </div>
 
-            <!-- 수정 상품 상세설명 -->
+            
             <div class="description-area">
               <label for="edit-description">상품 상세 설명</label>
               <textarea class="edit-product-description reset" maxlength=100 placeholder="상세 설명은 100자 이내로 작성해 주세요."
                 required></textarea>
             </div>
-            <!-- 수정 파일 업로드 -->
+            
             <div class="file-upload-area edit-file-upload-area">
-              <!-- 수정 썸네일 업로드 -->
+              
               <div class="thumbnail-area">
                 <label for="edit-thumbnail"> 상품 썸네일 수정 </label>
                 <img id="edit-thumbnail-preview" class="edit-tumbnail-img reset" />
@@ -251,7 +436,7 @@
                   name="edit-thumbnail" id="edit-thumbnail" />
                 <div class="reset-btn edit-thumbnail-reset">선택 초기화</div>
               </div>
-              <!-- 수정 상세사진 업로드 -->
+              
               <div class="detail-area">
                 <label for="edit-detail"> 상품 상세사진 수정 </label>
                 <img id="edit-detail-preview" class="edit-detail-img reset" />
@@ -262,20 +447,19 @@
                 <div class="reset-btn edit-detail-reset">선택 초기화</div>
               </div>
             </div>
-            <!-- 수정 form submit 버튼 -->
+            
             <div class="edit-button-area">
               <button class="edit-btn" type="submit">상품 수정</button>
             </div>
           </form>
         </section>
-      </div>
+      </div> -->
 
 
       <!-- 상품추가 페이지 -->
       <div id="add-products">
         <section class="admin-title">
           <h2>제품 추가</h2>
-        </section>
         <section class="add-section">
           <form class="add-form">
             <!-- 상품명 -->
@@ -408,6 +592,10 @@
 
       <!-- Lookup All Transactdions -->
       <div id="all-transacs" class="all-transacs">
+        <div class="transac-search-wrapper">
+          <input type="text" class="transac-search-bar" placeholder="제품을 검색하세요">
+          <button class="transac-search-btn">검색</button>
+        </div>
         <div class="all-transac-container">
           <div class="properties properties-head">
             <div class="thumbnail">썸네일 이미지</div>
@@ -428,34 +616,6 @@
           </div>
         </div>
       </div>
-
-      <!-- Transaction Status -->
-      <div id="product-transacs" class="product-transacs">
-        <div class="product-transac-container">
-          <div class="properties">
-            <div class="text-wrapper">
-              <div class="transacId">거래번호</div>
-              <div class="displayName">이름</div>
-              <div class="email">이메일</div>
-              <div class="bank-name">은행명</div>
-              <div class="bank-code">은행코드</div>
-              <div class="account-number">계좌번호</div>
-              <div class="transac-time">거래시간</div>
-              <div class="transac-status">거래상태</div>
-              <div class="btns">
-                취소/확정
-                <!-- <button class="cancel-btn">거래 취소</button>
-                  <button class="cancel-clear">취소 해제</button>
-                  <button class="purchase-confirm">구매 확정</button>
-                  <button class="purchase-clear">확정 취소</button> -->
-                <!-- 4개 중, 토글로 2개만 보이도록 만들어야함 -->
-              </div>
-            </div>
-          </div>
-        </div>
-          <!-- observer 생성해서 무한 스크롤하기-->
-      </div>
-
     </div>
   </main><!-- MAIN -->
 </body>

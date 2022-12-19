@@ -122,11 +122,13 @@ async function renderMain() {
 export async function renderCategory(tag) {
   const datas = await viewAllProduct();
   const dataArr = [];
+
   for (let data of datas) {
     if (data.tags.includes(tag)) {
       dataArr.push(data)
     }
   }
+
   startTop()
   root.innerHTML = renderInnerCategory(tag, dataArr.length);
 
@@ -139,7 +141,7 @@ export async function renderCategory(tag) {
   root.append(rootInner)
 
   // 서브카테고리 클릭 시 해당 제품만 나오게
-  renderSubCategory(rootInner, dataArr, tag)
+  renderSubCategory(rootInner, dataArr)
 
   // 서브카테고리 안에서 메인카테고리 다시 클릭 시
   const category = document.querySelector(`a[href="#${tag}"]`)
@@ -150,26 +152,28 @@ export async function renderCategory(tag) {
     rootInner.classList.add('inner');
     rootInner.classList.add('block4');
     rootInner.style.margin = '140px auto 100px';
-  
+
     rootInner.innerHTML += productList(dataArr);
     root.append(rootInner)
   })
 }
 
 // 서브카테고리 클릭 시 렌더링
-function renderSubCategory(rootInner, dataArr, tag) {
+function renderSubCategory(rootInner, dataArr) {
   const menu = root.querySelectorAll('.category-menu-area>ul>li')
+
   menu.forEach(title => {
     title.addEventListener("click", event => {
-      const {target} = event;
+      const { target } = event;
       const subCategory = target.classList.value.slice(4)
       const subDataArr = [];
-      
+
       for (let data of dataArr) {
         if (data.tags.includes(`${subCategory}`)) {
           subDataArr.push(data)
         }
       }
+
       rootInner.innerHTML = productList(subDataArr);
       root.append(rootInner);
     })
@@ -376,7 +380,7 @@ router();
   if (localStorage.accessToken) {
     const res = await stateLogin(localStorage.accessToken);
     res.displayName ? completeLogin() : window.localStorage.clear();
-  }  else {
+  } else {
     document.querySelector('.community').href = '#'
   }
 })();
