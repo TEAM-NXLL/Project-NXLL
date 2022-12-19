@@ -12,7 +12,9 @@
       }
       .edit-form {
         .soldout-area {
-          
+          .filter {
+            display: none;
+          }
         }
 
         table {
@@ -97,15 +99,15 @@
 // 매진 스위치
 .switch {
   position: absolute;
-  top: 75px;
-  right: -25px;
+  top: 85px;
+  right: -5px;
   transform: translate(-50%, -50%);
-  width: 150px;
-  height: 50px;
+  width: 110px;
+  height: 30px;
   text-align: center;
   background: #00bc9c;
   transition: all 0.2s ease;
-  border-radius: 25px;
+  border-radius: 10px;
 }
 .switch span {
   position: absolute;
@@ -125,30 +127,25 @@
   display: block;
   position: absolute;
   width: 4px;
-  height: 12px;
+  height: 10px;
   margin-top: -8px;
   background: #fff;
   transition: all 0.2s ease;
   border-radius: 2px;
 }
-input[type=radio] {
-  display: none;
-}
 .switch label {
   cursor: pointer;
   color: rgba(0,0,0,0.2);
-  width: 60px;
-  line-height: 50px;
-  -webkit-transition: all 0.2s ease;
-  -moz-transition: all 0.2s ease;
-  -o-transition: all 0.2s ease;
-  -ms-transition: all 0.2s ease;
+  width: 40px;
+  line-height: 30px;
+  vertical-align: middle;
   transition: all 0.2s ease;
+  font-size: 13px;
+  font-weight: bold;
 }
 label[for=sell] {
   position: absolute;
   left: 5px;
-  height: 20px;
 }
 label[for=soldout] {
   position: absolute;
