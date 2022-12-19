@@ -4,185 +4,192 @@
   padding: 70px 50px;
   box-sizing: border-box;
   border-radius: 10px;
-
-  .table-area {
-    #edit-products, #add-products {
-      .edit-form, .add-form {
-        .soldout-area {
-          .filter {
-            display: none;
+  table {
+    border: 1px solid var(--border-color);
+  
+    tr{
+      th {
+        background-color:var(--table-th-background);
+        border-bottom: 1px solid #eaeaea;
+        text-align: center;
+        vertical-align: middle;
+        font-weight: bold;
+      }
+  
+      td {
+        border-bottom: 1px solid var(--border-color);
+        text-align: left;
+        height: 50px;
+        padding: 10px;
+  
+        &:nth-child(2n) {
+          background-color: inherit;
+        }
+  
+        input[type="text"] {
+          border: 1px solid #dfdddd;
+          padding: 5px 10px;
+          width: 100%;
+          box-sizing: border-box;
+  
+          &#edit-product-price, &#add-product-price {
+            width: 50%;
+            background-color: #fff;
+          }
+  
+          &:focus {
+            border-color: #cbc8c8;
           }
         }
-
-        table {
-          border: 1px solid var(--border-color);
-
-          tr{
-            th {
-              background-color:var(--table-th-background);
-              border-bottom: 1px solid #eaeaea;
-              text-align: center;
-              vertical-align: middle;
+  
+        textarea {
+          height: 100px;
+          width: 100%;
+          border: 1px solid #dfdddd;
+          resize: none;
+          outline: none;
+          padding: 10px;
+          box-sizing: border-box;
+  
+          &:focus {
+            border-color: #cbc8c8;
+          }
+        }
+  
+        .imgBox {
+          width: 100%;
+          height: 150px;
+          max-height: 200px;
+          margin-bottom: 10px;
+          overflow: hidden;
+          position: relative;
+          border: 1px solid #dfdddd;
+          background: url("../../static/images/emptyThumbnail.jpg") no-repeat center;
+          background-size: cover;
+  
+          img {
+            position:absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+          }
+        }
+      }
+  
+      &:last-child {
+        border-bottom: 0;
+        th {
+          border-bottom: 0;
+          position: relative;
+  
+        }
+        
+        td {
+          background-color: #fff;
+          label {
+            margin-bottom: 20px;
+          }
+          span {
+            display: block;
+            padding-top: 20px;
+            box-sizing: border-box;
+            bottom: 0;
+            font-weight: normal;
+            line-height: 1.4;
+            padding: 5px;
+  
+            strong {
               font-weight: bold;
-            }
-
-            td {
-              border-bottom: 1px solid var(--border-color);
-              text-align: left;
-              height: 50px;
-              padding: 10px;
-
-              &:nth-child(2n) {
-                background-color: inherit;
-              }
-
-              input[type="text"] {
-                border: 1px solid #dfdddd;
-                padding: 5px 10px;
-                width: 100%;
-                box-sizing: border-box;
-
-                &#edit-product-price {
-                  width: 50%;
-                  background-color: #fff;
-                }
-
-                &:focus {
-                  border-color: #cbc8c8;
-                }
-              }
-
-              textarea {
-                height: 100px;
-                width: 100%;
-                border: 1px solid #dfdddd;
-                resize: none;
-                outline: none;
-                padding: 10px;
-                box-sizing: border-box;
-
-                &:focus {
-                  border-color: #cbc8c8;
-                }
-              }
-
-              .imgBox {
-                width: 100%;
-                height: 150px;
-                max-height: 200px;
-                margin-bottom: 10px;
-                overflow: hidden;
-                position: relative;
-                border: 1px solid #dfdddd;
-                background: url("../../static/images/emptyThumbnail.jpg") no-repeat center;
-                background-size: cover;
-
-                img {
-                  position:absolute;
-                  top: 50%;
-                  left: 50%;
-                  transform: translate(-50%, -50%);
-                }
-              }
-            }
-
-            &:last-child {
-              border-bottom: 0;
-              th {
-                border-bottom: 0;
-                position: relative;
-
-              }
-              
-              td {
-                background-color: #fff;
-                label {
-                  margin-bottom: 20px;
-                }
-                span {
-                  display: block;
-                  padding-top: 20px;
-                  box-sizing: border-box;
-                  bottom: 0;
-                  font-weight: normal;
-                  line-height: 1.4;
-                  padding: 5px;
-
-                  strong {
-                    font-weight: bold;
-                    color: red;
-                  }
-                }
-
-                .thumbnailUploadFile {
-                  position:absolute;
-                  width: 1px;
-                  height: 1px;
-                  padding: 0;
-                  margin: -1px;
-                  overflow: hidden;
-                  clip: rect(0,0,0,0);
-                  border: 0;
-                }
-
-                .thumbnailUploadBtn {
-                  display: inline-block;
-                  // padding:.5em .7em;
-                  color: #999;
-                  background-color: var(--signature-color);
-                  cursor: pointer;
-                  line-height: 30px;
-                  margin-bottom: 10px;
-                  border-radius: 5px;
-                  color: #fff;
-                  text-align: center;
-                  width: 100%;
-
-                  &:hover {
-                    background-color: #0d225c;
-                  }
-                }
-
-                .reset-btn {
-                  background-color: #999;
-                  text-align: center;
-                  color: #fff;
-                  border-radius: 5px;
-                  cursor: pointer;
-
-                  &:hover {
-                    background-color: #888;
-                  }
-                }
-              }
+              color: red;
             }
           }
-        }
-
-        .edit-button-area {
-          display: flex;
-          justify-content: center;
-          margin-top: 30px;
-          .edit-btn {
-            border-radius: 0;
-            margin-bottom: 0;
-            background-color: inherit;
-            width: auto;
-            height:auto;
-
+  
+          .thumbnailUploadFile {
+            position:absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0,0,0,0);
+            border: 0;
+          }
+  
+          .thumbnailUploadBtn {
+            display: inline-block;
+            // padding:.5em .7em;
+            color: #999;
+            background-color: var(--signature-color);
+            cursor: pointer;
+            line-height: 30px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            color: #fff;
+            text-align: center;
+            width: 100%;
+  
             &:hover {
-              background-color: var(--signature-color);
+              background-color: #0d225c;
+            }
+          }
+  
+          .reset-btn {
+            background-color: #999;
+            text-align: center;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+  
+            &:hover {
+              background-color: #888;
             }
           }
         }
       }
-      .closeBtn {
-        position: absolute;
-        top: 30px;
-        right: 50px;
+      &:nth-child(odd) {
+        background-color: #fefefe;
       }
     }
   }
+}
+
+.addProductPanel {
+  width: 100%;
+  .table-area {
+    width: 800px;
+    margin: 0 auto
+  }
+}
+
+.soldout-area {
+  .filter {
+    display: none;
+  }
+}
+
+
+
+.edit-button-area, .add-button-area {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+  .edit-btn, .add-btn {
+    border-radius: 0;
+    margin-bottom: 0;
+    background-color: inherit;
+    width: auto;
+    height:auto;
+
+    &:hover {
+      background-color: var(--signature-color);
+    }
+  }
+}
+
+.closeBtn {
+  position: absolute;
+  top: 30px;
+  right: 50px;
 }
 
 // 매진 스위치

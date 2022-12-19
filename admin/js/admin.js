@@ -22,11 +22,27 @@ import { transacSearch } from './transacSearch.js';
 const gnb = document.querySelector('.gnb')
 const gnbTabs = gnb.querySelectorAll('li')
 let activeTab = gnb.querySelector('.active')
+const editPopup = document.querySelector('.editPopup')
 
 gnbTabs.forEach((tab) => {
   tab.addEventListener('click', (e) => {
     clickItem(tab)
-    console.log(tab)
+
+    const panels = document.querySelectorAll('.panels')
+
+    for(let i = 0; i < panels.length; i++) {
+      const tabTarget = e.target.hash.substr(1)
+
+      if(tabTarget === panels[i].id) {
+        panels[i].classList.add('here')
+        
+        if(editPopup.classList.contains('show')) {
+          editPopup.classList.remove('show')
+        }
+      } else {
+        panels[i].classList.remove('here')
+      }
+    }
   })
 })
 
