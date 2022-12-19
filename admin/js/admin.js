@@ -24,8 +24,9 @@ const gnbTabs = gnb.querySelectorAll('li')
 let activeTab = gnb.querySelector('.active')
 
 gnbTabs.forEach((tab) => {
-  tab.addEventListener('click', () => {
+  tab.addEventListener('click', (e) => {
     clickItem(tab)
+    console.log(tab)
   })
 })
 

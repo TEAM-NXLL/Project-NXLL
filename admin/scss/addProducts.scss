@@ -1,13 +1,13 @@
 // ADMIN PAGE - ADD ITEMS / EDIT ITEMS
 
-.editProducts {
+.editPopup, .addProductPanel {
   padding: 70px 50px;
   box-sizing: border-box;
   border-radius: 10px;
 
   .table-area {
-    #edit-products {
-      .edit-form {
+    #edit-products, #add-products {
+      .edit-form, .add-form {
         .soldout-area {
           .filter {
             display: none;
@@ -44,6 +44,7 @@
 
                 &#edit-product-price {
                   width: 50%;
+                  background-color: #fff;
                 }
 
                 &:focus {
@@ -72,6 +73,9 @@
                 margin-bottom: 10px;
                 overflow: hidden;
                 position: relative;
+                border: 1px solid #dfdddd;
+                background: url("../../static/images/emptyThumbnail.jpg") no-repeat center;
+                background-size: cover;
 
                 img {
                   position:absolute;
@@ -83,6 +87,7 @@
             }
 
             &:last-child {
+              border-bottom: 0;
               th {
                 border-bottom: 0;
                 position: relative;

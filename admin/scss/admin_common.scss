@@ -133,7 +133,7 @@ img.require {
 
       thead {
         position: sticky;
-        top: -100px;
+        top: 0;
         z-index:1;
         tr {
           background-color: var(--table-th-background);
@@ -189,6 +189,10 @@ img.require {
                 transform: translate(-50%, -50%);
               }
             }
+          }
+
+          &:last-child {
+            border-bottom: 1px solid #e1e1e1;
           }
         }
       }
