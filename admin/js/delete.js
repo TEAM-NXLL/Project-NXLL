@@ -37,7 +37,7 @@ productContainer.addEventListener('click', (event) => {
   else if (event.target.classList.contains('edit-btn')) {
     const editProducts = document.querySelector('.editProducts')
     editProducts.classList.add('show')
-    editItem(event) //라우터 안쓰면 이걸로
+    editItem(event)
   }
 })
 
