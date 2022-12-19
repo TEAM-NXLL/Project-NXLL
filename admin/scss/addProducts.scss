@@ -109,6 +109,35 @@
                   }
                 }
 
+                .thumbnailUploadFile {
+                  position:absolute;
+                  width: 1px;
+                  height: 1px;
+                  padding: 0;
+                  margin: -1px;
+                  overflow: hidden;
+                  clip: rect(0,0,0,0);
+                  border: 0;
+                }
+
+                .thumbnailUploadBtn {
+                  display: inline-block;
+                  // padding:.5em .7em;
+                  color: #999;
+                  background-color: var(--signature-color);
+                  cursor: pointer;
+                  line-height: 30px;
+                  margin-bottom: 10px;
+                  border-radius: 5px;
+                  color: #fff;
+                  text-align: center;
+                  width: 100%;
+
+                  &:hover {
+                    background-color: #0d225c;
+                  }
+                }
+
                 .reset-btn {
                   background-color: #999;
                   text-align: center;
