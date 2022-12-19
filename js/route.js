@@ -1,4 +1,4 @@
-import { loginRender, joinRender, renderMyShop, renderMyOrder, renderMain, renderUserInfo, renderDetail, renderPayment, renderMyCancelOrder, renderMyConfirOrder, renderCategory, cartCountCheck } from "./main.js"
+import { loginRender, joinRender, renderMyShop, renderMyOrder, renderMain, renderUserInfo, renderDetail, renderPayment, renderMyCancelOrder, renderMyConfirOrder, renderCategory, cartCountCheck, sortByHash } from "./main.js"
 
 export async function router() {
   cartCountCheck()
@@ -34,30 +34,18 @@ export async function router() {
   else if (routePath === '#payment') {
     renderPayment()
   }
-  else if (routePath === '#new') {
-    renderCategory("new-item")
+  const categoryArr = ['#new-item', '#discount', '#smart', '#notebook', '#pc', '#audio'];
+  for (let category of categoryArr) {
+    if (routePath === category) {
+      const tag = category.substring(1)
+      renderCategory(tag);
+    }
   }
-  else if (routePath === '#discount') {
-    renderCategory("discount")
-  }
-  else if (routePath === '#smart') {
-    renderCategory("smart")
-  }
-  else if (routePath === '#notebook') {
-    renderCategory("notebook")
-  }
-  else if (routePath === '#pc') {
-    renderCategory("pc")
-  }
-  else if (routePath === '#audio') {
-    renderCategory("audio")
-  }
-  else if (routePath === '#mouse') {
-    renderCategory("pc")
-    // 마우스탭 정렬
-  }
-  else if (routePath === '#keyboard') {
-    renderCategory("pc")
-    // 키보드탭 정렬
+  const hashArr = ['#mouse', '#keyboard', '#mousepad', '#usbhub', '#cardreader', '#monitorstand', '#charging',
+  '#adapter', '#smartholder', '#smart-etc', '#notebookstand', '#keypad', '#lock', '#ear-head', '#kids', '#mic', '#speaker','#audiocable'];
+  for (let i = 0; i < hashArr.length; i +=1) {
+    if (routePath === hashArr[i]) {
+      sortByHash();
+    }
   }
 }
