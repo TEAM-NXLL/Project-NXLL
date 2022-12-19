@@ -13,10 +13,10 @@ export function toast(message) {
     confirmArea.classList.add('confirm-area')
 
     const confirmBtn = document.createElement('button');
-    confirmBtn.classList.add('confirm');
-    confirmBtn.textContent = '돌아가기';
     const cancelBtn = document.createElement('button');
+    confirmBtn.classList.add('confirm');
     cancelBtn.classList.add('cancel');
+    confirmBtn.textContent = '돌아가기';
     cancelBtn.textContent = '머무르기';
 
     confirmArea.appendChild(confirmBtn);
