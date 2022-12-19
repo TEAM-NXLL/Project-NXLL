@@ -152,16 +152,10 @@ export async function renderCategory(tag) {
     rootInner.classList.add('inner');
     rootInner.classList.add('block4');
     rootInner.style.margin = '140px auto 100px';
-  
+
     rootInner.innerHTML += productList(dataArr);
     root.append(rootInner)
   })
-}
-
-// 해시변경 카테고리 클릭 시 렌더링
-export function sortByHash(){
-  const hash = location.hash.slice(1);
-  renderCategory(hash)
 }
 
 // 서브카테고리 클릭 시 렌더링
@@ -170,10 +164,10 @@ function renderSubCategory(rootInner, dataArr) {
 
   menu.forEach(title => {
     title.addEventListener("click", event => {
-      const {target} = event;
+      const { target } = event;
       const subCategory = target.classList.value.slice(4)
       const subDataArr = [];
-      
+
       for (let data of dataArr) {
         if (data.tags.includes(`${subCategory}`)) {
           subDataArr.push(data)
@@ -386,7 +380,7 @@ router();
   if (localStorage.accessToken) {
     const res = await stateLogin(localStorage.accessToken);
     res.displayName ? completeLogin() : window.localStorage.clear();
-  }  else {
+  } else {
     document.querySelector('.community').href = '#'
   }
 })();
