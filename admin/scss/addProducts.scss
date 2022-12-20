@@ -145,6 +145,11 @@
         }
       }
     }
+    input[type="checkbox"],
+    input[type="radio"] {
+      width: 20px;
+      scale: 1.4;
+    }
   }
 }
 

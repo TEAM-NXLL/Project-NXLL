@@ -160,6 +160,10 @@
 
                 <!-- 수정 상품명 -->
                 <tr class="name-area">
+                  <th>상품아이디</th>
+                  <td colspan="3" class="edit-product-id"></td>
+                </tr>
+                <tr class="name-area">
                   <th><label for="edit-product-name">상품명</label></th>
                   <td colspan="3"><input type="text" class="edit-product-name reset" name="edit-product-name" required /></td>
                 </tr>
@@ -204,7 +208,7 @@
       
                 <tr>
                   <th>
-                    <input type="radio" id="pc" class="category" name="edit-category" value="pc" />
+                    <input type="radio" id="pc" class="category" name="edit-category" value="pc"  required/>
                     <label for="pc" class="category-label">PC</label>
                   </th>
                   <td colspan="3" class="pc-tags">
@@ -521,7 +525,7 @@
 
                 <tr>
                   <th>
-                    <input type="radio" id="check21" class="category check" name="category" value="pc"/>
+                    <input type="radio" id="check21" class="category check" name="category" value="pc" required checked/>
                     <label for="check21" class="category-label">PC</label>
                   </th>
                   <td colspan="3" class="pc-tags add-pc-tags">

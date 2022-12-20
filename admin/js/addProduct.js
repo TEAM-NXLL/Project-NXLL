@@ -155,6 +155,7 @@ addFormEl.addEventListener('submit', async (event) => {
 
 // 제품추가 이벤트 핸들러
 export function addItem(event) {
+  console.log(event.target)
   const title = event.target[0].value;
   const price = +(event.target[1].value.replace(/[^0-9]/g, ''));
   const selectedCategory = document.querySelector('input[name="category"]:checked').value;
