@@ -20,7 +20,7 @@ export async function transacSearch(allTransac){
     })
 
     console.log(searchTransac)
-    // searchBar.value = ''
+    searchBar.value = ''
     const productCont = document.querySelector('.all-transac-container')
     const allTransacs = productCont.querySelector('.allTransacs')
 
