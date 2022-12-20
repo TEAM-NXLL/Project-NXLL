@@ -100,7 +100,6 @@ export async function renderAlltransacs(transacs) {
 
     const productCont = document.querySelector('.all-transac-container');
     const allTransacs = document.querySelector('.allTransacs')
-    productCont.append(transac);
-    allTransacs.append(transac)
+    allTransacs.append(transac);
   });
 }
