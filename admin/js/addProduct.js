@@ -103,7 +103,7 @@ function checkFileSize(target, selector) {
   const thumbnailSize = 1024 ** 2;
   const detailImgSize = 1024 ** 2 * 4;
   if (selector === thumbnailEl && file > thumbnailSize) {
-    document.querySelector('#thumbnail-preview').src = `${altImg}`; // 초기화버튼 핸들러와 내용 같음, 수정필요
+    document.querySelector('#thumbnail-preview').src = `${altImg}`;
     thumbnailEl.value = "";
     return toast("해당 파일은 제한된 용량을 초과하였습니다.", "추가")
   } else if (selector === detailImgEl && file > detailImgSize) {

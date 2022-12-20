@@ -42,6 +42,7 @@ async function editInputPlaceholder (productId) {
   document.querySelector('.edit-detail-img').src = getResult.photo;
 }
 
+// form제출 이벤트
 editFormEl.addEventListener('submit', (event) => {
   event.preventDefault();
 
@@ -50,7 +51,6 @@ editFormEl.addEventListener('submit', (event) => {
     isSoldOut = true;
   }
   const productId = editFormEl.querySelector('.edit-product-id').textContent
-  console.log(productId)
   const title = document.querySelector('.edit-product-name').value;
   const price = +document
     .querySelector('#edit-product-price')
@@ -76,13 +76,31 @@ editFormEl.addEventListener('submit', (event) => {
   }
   try {
     correctProduct(productId, title, price, description, tags, thumbnail, photo, isSoldOut);
+    setChangedData(productId, title, price, description, tags, isSoldOut)
     toast('상품 수정이 완료되었습니다.', "전체");
   } catch (error) {
     toast(error, '잠시 후 다시 시도해주세요', "전체");
   }
 });
 
+
 // 수정 모달 닫기
 modalCloseBtn.addEventListener('click', () => {
   editPopup.classList.remove('show');
 });
+
+
+// 모든제품조회에 변경사항 넣기
+function setChangedData(productId, title, price, description, tags, isSoldOut) {
+  const lists = document.querySelectorAll('tr.product-item')
+  lists.forEach(list => {
+    if (productId === list.dataset.id) {
+      list.querySelector('img').src = document.querySelector('#edit-thumbnail-preview').src
+      list.querySelector('.title').textContent = title;
+      list.querySelector('.price').textContent = price;
+      list.querySelector('.tags').textContent = tags;
+      list.querySelector('.is-sold-out').textContent = isSoldOut? "X" : "O";
+      list.querySelector('.descript').textContent = description;
+    }
+  })
+}

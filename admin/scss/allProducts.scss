@@ -137,6 +137,17 @@
   overflow-y: auto;
   box-shadow: 5px 5px 7px rgba(0, 0, 0, 0.1);
 
+  &::-webkit-scrollbar {
+    width: 15px;
+  }
+  &::-webkit-scrollbar-thumb{
+    background-color: #1558b6;
+    border-radius: 10px;
+  }
+  &::-webkit-scrollbar-track {
+    background-color:aliceblue;
+  }
+
   &.show {
     display: block;
   }
