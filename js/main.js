@@ -26,9 +26,7 @@ let prevScrollTop = 0;
 document.addEventListener('scroll', () => {
   const nav = document.querySelector('.nav-area')
   const ballon = document.querySelector('.balloon')
-  console.log(ballon)
   let nextScrollTop = window.scrollY;
-  console.log(nextScrollTop)
 
   if(nextScrollTop > prevScrollTop) {
     if(nextScrollTop > 41) {
