@@ -187,6 +187,13 @@ header {
     background-color: #fff;
     position: relative;
 
+    &.scroll {
+      position: fixed;
+      width: 100%;
+      top:40px;
+      z-index: 5;
+    }
+
     .inner {
       display: flex;
       justify-content: space-between;

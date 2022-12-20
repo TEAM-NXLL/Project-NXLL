@@ -40,10 +40,10 @@ export async function createProduct(
         photoBase64,
       }),
     );
-    console.log(res)
+    console.log(res);
     return res;
   } catch (error) {
-    toast(`${error}, 잠시 후 다시 시도해주세요.`);
+    toast(`${error}, 잠시 후 다시 시도해주세요.`, "추가");
   }
 }
 
@@ -55,7 +55,7 @@ export async function viewAllProduct() {
     // console.log(getResult);
     return getResult;
   } catch (error) {
-    toast(`${error}, 잠시 후 다시 시도해주세요.`);
+    toast(`${error}, 잠시 후 다시 시도해주세요.`, "전체");
   }
 }
 // 모든 제품 조회 결과
@@ -80,35 +80,9 @@ export async function viewAllTransactions() {
     // console.log(getResult);
     return getResult;
   } catch (error) {
-    toast(`${error}, 잠시 후 다시 시도해주세요.`);
+    toast(`${error}, 잠시 후 다시 시도해주세요.`, "거래");
   }
 }
-// 전체 거래 내역 조회 결과
-// { // 거래 내역 정보
-//   detailId: string // 거래 내역 ID
-//   user: { // 거래한 사용자 정보
-//     email: string
-//     displayName: string
-//     profileImg: string | null
-//   }
-//   account: { // 거래한 사용자의 계좌 정보
-//     bankName: string
-//     bankCode: string
-//     accountNumber: string
-//   }
-//   product: { // 거래한 제품 정보
-//     productId: string
-//     title: string
-//     price: number
-//     description: string
-//     tags: string[]
-//     thumbnail: string | null
-//   }
-//   reservation: Reservation | null // 거래한 제품의 예약 정보
-//   timePaid: string // 제품을 거래한 시간
-//   isCanceled: boolean // 거래 취소 여부
-//   done: boolean // 거래 완료 여부
-// }
 
 // 거래 내역 완료/취소 및 해제
 export async function transactionStatus(detailId, isCanceled, done) {
@@ -120,7 +94,7 @@ export async function transactionStatus(detailId, isCanceled, done) {
     console.log('거래 내역 상태 관리');
     return res;
   } catch (error) {
-    toast(`${error}, 잠시 후 다시 시도해주세요.`);
+    toast(`${error}, 잠시 후 다시 시도해주세요.`, "거래");
   }
 }
 
@@ -140,7 +114,7 @@ export async function correctProduct(productId, title, price, description, tags,
     );
     return res;
   } catch (error) {
-    toast(`${error}, 잠시 후 다시 시도해주세요.`);
+    toast(`${error}, 잠시 후 다시 시도해주세요.`, "전체");
   }
 }
 
@@ -152,7 +126,7 @@ export async function delProduct(productId) {
       createRequest('DELETE'),
     );
     return res;
-  } catch (err) {
-    toast(`${error}, 잠시 후 다시 시도해주세요.`);
+  } catch (error) {
+    toast(`${error}, 잠시 후 다시 시도해주세요.`, "전체");
   }
 }

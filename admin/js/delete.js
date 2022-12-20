@@ -1,6 +1,6 @@
 import { delProduct } from "./requests.js";
 import { toast } from "./toast.js";
-import { editItem } from './editProduct.js';
+import { editItem, editPopup } from './editProduct.js';
 
 const productContainer = document.querySelector('.products-container');
 const CheckedBtnEl = document.querySelector('.delete-checked');
@@ -20,10 +20,10 @@ export async function deleteCheckedItems(checkedItems) {
       })
       await Promise.all(checkedArr);
     } catch (err) {
-      toast("잠시 후 다시 시도해 주세요.");
+      toast("잠시 후 다시 시도해 주세요.", "전체");
     }
   } else {
-    toast("아이템 삭제를 취소합니다.");
+    toast("아이템 삭제를 취소합니다.", "전체");
   }
 }
 
@@ -32,12 +32,11 @@ productContainer.addEventListener('click', (event) => {
   if (event.target.classList.contains('del-btn')) {
     window.confirm("1개의 아이템을 삭제하시겠습니까?")
       ? deleteItem(event.target)
-      : toast("아이템 삭제를 취소합니다.")
+      : toast("아이템 삭제를 취소합니다.", "전체")
   }
   else if (event.target.classList.contains('edit-btn')) {
-    const editPopup = document.querySelector('.editPopup')
     editPopup.classList.add('show')
-    editItem(event) //라우터 안쓰면 이걸로
+    editItem(event) 
   }
 })
 
@@ -52,5 +51,5 @@ export function deleteItem(target) {
     }
   })
   delProduct(itemId);
-  toast("상품이 삭제되었습니다.")
+  toast("상품이 삭제되었습니다.", "전체")
 }

@@ -1,5 +1,13 @@
-export function toast(message) {
-  const main = document.querySelector('.all-products');
+export function toast(message, state) {
+  let main = '';
+  if (state === "추가") {
+    main = document.querySelector('.addProductPanel');
+  } else if (state === "전체") {
+    main = document.querySelector('.all-products');
+  } else {
+    main = document.querySelector('.all-transacs');
+  }
+
   const toastBox = document.createElement('div');
   toastBox.classList.add('toast-box');
 
@@ -27,6 +35,8 @@ export function toast(message) {
     confirmArea.addEventListener("click", event => {
       const {target} = event;
       if (target.matches('.confirm')) {
+        const editPopup = document.querySelector('.editPopup');
+        editPopup.classList.remove('show');
         location.hash = '#all-products'
         location.reload();
       } else if (target.matches('.cancel')) {

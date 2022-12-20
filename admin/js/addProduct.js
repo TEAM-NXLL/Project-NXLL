@@ -105,19 +105,19 @@ function checkFileSize(target, selector) {
   if (selector === thumbnailEl && file > thumbnailSize) {
     document.querySelector('#thumbnail-preview').src = `${altImg}`; // 초기화버튼 핸들러와 내용 같음, 수정필요
     thumbnailEl.value = "";
-    return toast("해당 파일은 제한된 용량을 초과하였습니다.")
+    return toast("해당 파일은 제한된 용량을 초과하였습니다.", "추가")
   } else if (selector === detailImgEl && file > detailImgSize) {
     document.querySelector('#detail-preview').src = `${altImg}`;
     detailImgEl.value = "";
-    return toast("해당 파일은 제한된 용량을 초과하였습니다.")
+    return toast("해당 파일은 제한된 용량을 초과하였습니다.", "추가")
   } else if (selector === editThumbnailEl && file > thumbnailSize) {
     document.querySelector('#edit-thumbnail-preview').src = `${altImg}`;
     editThumbnailEl.value = "";
-    return toast("해당 파일은 제한된 용량을 초과하였습니다.")
+    return toast("해당 파일은 제한된 용량을 초과하였습니다.", "추가")
   }else if (selector === editDetailImgEl && file > detailImgSize) {    
     document.querySelector('#edit-detail-preview').src = `${altImg}`;
     editDetailImgEl.value = "";
-    return toast("해당 파일은 제한된 용량을 초과하였습니다.")
+    return toast("해당 파일은 제한된 용량을 초과하였습니다.", "추가")
   } else {
     previewImg(target, selector);
     imgIncoding(target, selector);
@@ -168,14 +168,14 @@ export function addItem(event) {
   const thumbnail = thumbnailEl.dataset.id;
   const photo = detailImgEl.dataset.id;
   if (title.length < 2 || price < 1 || description.length < 1) {
-    return toast('내용이 모두 입력되었는지 확인해 주세요');
+    return toast('내용이 모두 입력되었는지 확인해 주세요', "추가");
   }
   try {
+    toast("상품 추가가 완료되었습니다.", "추가")
     createProduct(title, price, description, tags, thumbnail, photo);
-    toast("상품 추가가 완료되었습니다.")
     resetInput()
   } catch (error) {
-    toast(`${error}, 잠시 후 다시 시도해주세요.`)
+    toast(`${error}, 잠시 후 다시 시도해주세요.`, "추가")
   }
 }
 

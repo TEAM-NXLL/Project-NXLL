@@ -10,7 +10,7 @@ import { payAccountList, payBankLoopUp, buyProducts, lookProducts, cancelProduct
 import { cancelOrder, confirOrder, transLookUp, cancelOrderLookUp, confirOrderLookUp } from './myorder.js'
 import { buyProduct, cart, shoppingBasket } from './detail.js'
 import { viewShoppingBag } from './shoppingBag.js';
-import { tagArr } from '../admin/js/editProduct.js';
+// import { tagArr } from '../admin/js/editProduct.js';
 
 // 변수
 const root = document.querySelector('main');
@@ -20,6 +20,29 @@ const shoppingBag = document.querySelector('.shopping-btn');
 function startTop() {
   window.scrollTo(0, 0)
 }
+
+// 헤더 스크롤 고정
+let prevScrollTop = 0;
+document.addEventListener('scroll', () => {
+  const nav = document.querySelector('.nav-area')
+  const ballon = document.querySelector('.balloon')
+  let nextScrollTop = window.scrollY;
+
+  if(nextScrollTop > prevScrollTop) {
+    if(nextScrollTop > 41) {
+      ballon.style.display="none"
+    }
+    if(nextScrollTop > 120) {
+      nav.classList.add('scroll')
+    } 
+  } else if(nextScrollTop < 20) {
+    ballon.style.display="block"
+  } else if (nextScrollTop < 100) {
+      nav.classList.remove('scroll')
+  }
+
+  prevScrollTop = nextScrollTop;
+})
 
 // 장바구니에 담긴 상품 개수 확인
 export function cartCountCheck() {
@@ -373,14 +396,13 @@ router();
 
 // 로그인 로그아웃 확인
 (async () => {
-  // localStorage.length === 0 ? loginNjoin() : completeLogin();
   const toAdminPageEl = document.querySelector('.adminPage')
   if (localStorage.accessToken) {
     const res = await stateLogin(localStorage.accessToken);
     res.displayName ? completeLogin() : window.localStorage.clear();
   } else {
     toAdminPageEl.remove()
-    document.querySelector('.adminPage').href = '#'
+    toAdminPageEl.href = '#'
   }
 })();
 
