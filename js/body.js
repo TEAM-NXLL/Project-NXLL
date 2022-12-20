@@ -142,7 +142,6 @@ function productList(data) {
               <img src="./images/preparingProduct.jpg" alt="">
             </div>
             <div class="colorBox">
-            <!-- <div>최상의 상품을 제공 드리기 위해 준비중입니다. <br />조금만 기다려 주세요.</div> -->
             `)
 
       for (let j = 0; j < colorChart.length; j += 1) {
@@ -190,8 +189,9 @@ function productList(data) {
         `)
       } else {
         mainBody.push(/* HTML */`
-                <span class="discount">${data[i].price.toLocaleString()}원</span> 
-                ${Math.floor((Number(data[i].price) * (100 - discountValue)) / 100).toLocaleString()}원<br />
+                <!-- <span class="discount">${Math.floor((Number(data[i].price) * (100 - discountValue)) / 100).toLocaleString()}원</span> ${data[i].price.toLocaleString()}원 -->
+                <span class="discount">${Math.floor(Number(data[i].price) * 100 / (100 - discountValue)).toLocaleString()}원</span> ${data[i].price.toLocaleString()}원
+                <br />
                 <span class="salePercent">${discountValue}% SALE</span>
               </div>
             </a>
