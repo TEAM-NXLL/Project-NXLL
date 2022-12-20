@@ -133,7 +133,7 @@ img.require {
 
       thead {
         position: sticky;
-        top: -100px;
+        top: 0;
         z-index:1;
         tr {
           background-color: var(--table-th-background);
@@ -168,7 +168,6 @@ img.require {
 
           td {
             vertical-align: middle;
-            text-align: center;
             padding: 10px;
             box-sizing: border-box;
             line-height: 1.7;
@@ -189,6 +188,10 @@ img.require {
                 transform: translate(-50%, -50%);
               }
             }
+          }
+
+          &:last-child {
+            border-bottom: 1px solid #e1e1e1;
           }
         }
       }
