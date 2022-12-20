@@ -27,6 +27,8 @@ export function toast(message) {
     confirmArea.addEventListener("click", event => {
       const {target} = event;
       if (target.matches('.confirm')) {
+        const editPopup = document.querySelector('.editPopup');
+        editPopup.classList.remove('show');
         location.hash = '#all-products'
         location.reload();
       } else if (target.matches('.cancel')) {
