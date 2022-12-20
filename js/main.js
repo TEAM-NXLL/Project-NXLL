@@ -300,10 +300,10 @@ async function renderMyOrder() {
   const { products, cancels, confirs } = await listLookUp()
   startTop()
   root.innerHTML = myOrderForm(products.length, cancels.length, confirs.length);
-  transLookUp().then((res) => {
-    cancelOrder();
-    confirOrder();
-  });
+  transLookUp(products).then((res) => {
+    cancelOrder(cancels)
+    confirOrder(confirs)
+  })
 }
 
 // myorder cancel 렌더링
