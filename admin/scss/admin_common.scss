@@ -4,7 +4,7 @@
   --font-style: 'Nanum Gothic', sans-serif;
   --border-color: #f5f5f5;
   --table-border-color: #f0f0f0;
-  --table-th-background: #dee2ed;
+  --table-th-background: #d5dae8;
   --text-color: #333;
   --sub-text-color: #999;
   --signature-color: #213b85;
@@ -130,10 +130,11 @@ img.require {
       font-size: 12px;
       color: #353535;
       table-layout: fixed;
+      border: 1px solid var(--border-color);
 
       thead {
         position: sticky;
-        top: -100px;
+        top: 0;
         z-index:1;
         tr {
           background-color: var(--table-th-background);
@@ -161,14 +162,14 @@ img.require {
 
       tbody {
         tr {
+          background-color: #fff;
 
           &:nth-child(2n) {
-            background-color: #eff1f6;
+            background-color: #f7f9fd;
           }
 
           td {
             vertical-align: middle;
-            text-align: center;
             padding: 10px;
             box-sizing: border-box;
             line-height: 1.7;
@@ -189,6 +190,10 @@ img.require {
                 transform: translate(-50%, -50%);
               }
             }
+          }
+
+          &:last-child {
+            border-bottom: 1px solid #e1e1e1;
           }
         }
       }

@@ -35,9 +35,9 @@ productContainer.addEventListener('click', (event) => {
       : toast("아이템 삭제를 취소합니다.")
   }
   else if (event.target.classList.contains('edit-btn')) {
-    const editProducts = document.querySelector('.editProducts')
-    editProducts.classList.add('show')
-    editItem(event)
+    const editPopup = document.querySelector('.editPopup')
+    editPopup.classList.add('show')
+    editItem(event) //라우터 안쓰면 이걸로
   }
 })
 

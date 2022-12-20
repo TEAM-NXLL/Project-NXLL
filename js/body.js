@@ -1,7 +1,7 @@
 // main
 function mainForm() {
   const mainBody = [];
-  const swiperArrowBtn = /* HTML 테스트 */ `
+  const swiperArrowBtn = /* HTML */ `
     <div class="swiper-button-prev"></div>
     <div class="swiper-button-next"></div>
   `

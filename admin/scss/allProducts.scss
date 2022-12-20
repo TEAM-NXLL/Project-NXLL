@@ -57,6 +57,10 @@
   //   display: none;
   // }
 
+  table {
+    text-align: center;
+  }
+
   .product-item {
     // width: 100%;
     // border: 1px solid #000;
@@ -120,7 +124,7 @@
   }  
 }
 
-.editProducts {
+.editPopup {
   position: fixed;
   top: calc(50% + 70px);
   left: calc(50% + 350px);

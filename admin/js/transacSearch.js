@@ -1,55 +1,73 @@
-import { renderAlltransacs } from "./renderAlltransacs.js"
+import { renderAlltransacs } from './renderAlltransacs.js';
 
-export async function transacSearch(allTransac){
-  const searchBar = document.querySelector('.transac-search-bar')
-  const searchBtn = document.querySelector('.transac-search-btn')
-  
-  
-  searchBar.addEventListener('keydown', event => {
+export async function transacSearch(allTransac) {
+  const searchBar = document.querySelector('.transac-search-bar');
+  const searchBtn = document.querySelector('.transac-search-btn');
+
+  searchBar.addEventListener('keydown', (event) => {
     if (event.key === 'Enter') {
       event.preventDefault()
       searchBtn.click()
     }
-  })  
+  })
 
-  searchBtn.addEventListener('click', event => {
-    const title = searchBar.value
+  searchBtn.addEventListener('click', (event) => {
+    const title = searchBar.value;
 
-    const searchTransac = allTransac.filter( el => {
-      return el.product.title.includes(title) === true
+    const searchTransac = allTransac.filter((el) => {
+      return el.product.title.includes(title) === true;
     })
 
-    console.log(searchTransac)
     searchBar.value = ''
+    const productCont = document.querySelector('.all-transac-container')
+    const allTransacs = productCont.querySelector('.allTransacs')
 
-    
-    
-
-    if(searchTransac.length > 0){
-      document.querySelector('.all-transac-container').innerHTML = /*html*/`
-        <div class="properties properties-head">
-          <div class="thumbnail">썸네일 이미지</div>
-          <div class="text-wrapper">
-            <div class="transacId">거래번호</div>
-            <div class="displayName">이름</div>
-            <div class="email">이메일</div>
-            <div class="id">제품번호</div>
-            <div class="title">제품명</div>
-            <div class="price">가격</div>
-            <div class="tags">태그</div>
-            <div class="bank-name">은행명</div>
-            <div class="bank-code">은행코드</div>
-            <div class="account-number">계좌번호</div>
-            <div class="transac-time">거래시간</div>
-            <div class="transac-status">거래상태</div>
-          </div>
-        </div>
+    if (searchTransac.length > 0 && allTransacs) {
+      allTransacs.innerHTML = ''
+      renderAlltransacs(searchTransac)
+    } else if (!allTransacs) {
+      productCont.innerHTML = /*html*/ `
+        <colgroup>
+          <col width="">
+          <col width="">
+          <col width="">
+          <col width="">
+          <col width="">
+          <col width="">
+          <col width="">
+          <col width="">
+          <col width="">
+          <col width="5%">
+          <col width="">
+          <col width="">
+          <col width="8%">
+        </colgroup>
+        <thead class="properties properties-head">
+          <tr class="text-wrapper">
+            <th class="thumbnail">썸네일</th>
+            <th class="transacId">거래번호</th>
+            <th class="displayName">이름</th>
+            <th class="email">이메일</th>
+            <th class="id">제품번호</th>
+            <th class="title">제품명</th>
+            <th class="price">가격</th>
+            <th class="tags">태그</th>
+            <th class="bank-name">은행명</th>
+            <th class="bank-code">은행코드</th>
+            <th class="account-number">계좌번호</th>
+            <th class="transac-time">거래시간</th>
+            <th class="transac-status">거래상태</th>
+          </tr>
+        </thead>
+        <tbody class="allTransacs"></tbody>
       `
       renderAlltransacs(searchTransac)
     } else {
-      document.querySelector('.all-transac-container').innerHTML = /*html*/`
-        <img src="../../static/images/nothing.jpg" alt="nothing" />
-        <span class="nothing-text">결과가 존재하지 않습니다.</span>
+      productCont.innerHTML = /* html */ `
+        <div class="emptyTable">
+          <img src="../images/nothing.jpg" alt="nothing" />
+          <span class="nothing-text">결과가 존재하지 않습니다.</span>
+        </div>
       `
     }
   })

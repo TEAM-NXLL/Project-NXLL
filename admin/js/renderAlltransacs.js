@@ -32,25 +32,23 @@ export async function renderAlltransacs(transacs) {
     const isCanceled = el.isCanceled; // 거래 취소 여부
     const done = el.done; // 거래 완료 여부
 
-    const transac = document.createElement('div');
+    const transac = document.createElement('tr');
     transac.classList.add('properties');
 
     const innerHTMLContents = /*html*/ `
-        <div class="thumbnail"><img src="${thumbnail}" alt="thumbnail"></div>
-        <div class="text-wrapper">
-          <div class="transacId">${transacId}</div>
-          <div class="displayName">${displayName}</div>
-          <div class="email">${email}</div>
-          <div class="id">${id}</div>
-          <div class="title">${title}</div>
-          <div class="price">${price.toLocaleString()+'원'}</div>
-          <div class="tags">${tags}</div>
-          <div class="bank-name">${bankName}</div>
-          <div class="bank-code">${bankCode}</div>
-          <div class="account-number">${accountNumber}</div>
-          <div class="transac-time">${timePaid}</div>
-          <div class="transac-status"> </div>
-        </div>
+        <td class="thumbnail"><img src="${thumbnail}" alt="thumbnail"></td>
+        <td class="transacId">${transacId}</td>
+        <td class="displayName">${displayName}</td>
+        <td class="email">${email}</td>
+        <td class="id">${id}</td>
+        <td class="title">${title}</td>
+        <td class="price">${price.toLocaleString()+'원'}</td>
+        <td class="tags">${tags}</td>
+        <td class="bank-name">${bankName}</td>
+        <td class="bank-code">${bankCode}</td>
+        <td class="account-number">${accountNumber}</td>
+        <td class="transac-time">${timePaid}</td>
+        <td class="transac-status"> </td>
     `;
 
     transac.innerHTML = innerHTMLContents;
@@ -101,6 +99,7 @@ export async function renderAlltransacs(transacs) {
     }
 
     const productCont = document.querySelector('.all-transac-container');
-    productCont.append(transac);
+    const allTransacs = document.querySelector('.allTransacs')
+    allTransacs.append(transac);
   });
 }
