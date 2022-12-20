@@ -4,9 +4,7 @@
   padding: 70px 50px;
   box-sizing: border-box;
   border-radius: 10px;
-  table {
-    border: 1px solid var(--border-color);
-  
+  table {  
     tr{
       th {
         background-color:var(--table-th-background);
@@ -145,9 +143,6 @@
             }
           }
         }
-      }
-      &:nth-child(odd) {
-        background-color: #fefefe;
       }
     }
   }
