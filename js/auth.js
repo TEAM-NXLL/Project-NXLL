@@ -1,4 +1,7 @@
 import { getLogin, getLogOut, getData, stateLogin } from "./getdata.js";
+import { logInForm } from './body.js'
+
+const root = document.querySelector('main')
 
 // 회원가입 처리 핸들러
 export function sendSignUp() {

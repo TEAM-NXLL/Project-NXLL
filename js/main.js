@@ -271,9 +271,11 @@ adminPage()
 async function listLookUp() {
   try {
     const products = await getTransactions(localStorage.accessToken)
-    const cancels = products.filter(product => product.isCanceled === true)
-    const confirs = products.filter(product => product.done === true)
-    return { products, cancels, confirs }
+    if (products !== '구매 내역이 존재하지 않습니다.') {
+      const cancels = products.filter(product => product.isCanceled === true)
+      const confirs = products.filter(product => product.done === true)
+      return { products, cancels, confirs }
+    }
   } catch (err) {
     console.log('로그인 안 함')
   }
@@ -281,15 +283,14 @@ async function listLookUp() {
 
 // myshop 렌더링
 async function renderMyShop() {
-  const login = await stateLogin(localStorage.accessToken)
-  if (login !== '유효한 사용자가 아닙니다.') {
-    const { totalBalance } = await userOwnBank();
+  try {
+    const { totalBalance } = await userOwnBank()
     const { cancels, confirs } = await listLookUp()
     const total = totalBalance ? totalBalance.toLocaleString() : '';
     const transactions = await getTransactions(localStorage.accessToken)
     startTop()
     root.innerHTML = myShoppingForm(transactions.length, total, cancels.length, confirs.length);
-  } else {
+  } catch {
     startTop()
     root.innerHTML = myShoppingForm()
   }
@@ -301,8 +302,8 @@ async function renderMyOrder() {
   startTop()
   root.innerHTML = myOrderForm(products.length, cancels.length, confirs.length);
   transLookUp(products).then((res) => {
-    cancelOrder(cancels)
-    confirOrder(confirs)
+    cancelOrder()
+    confirOrder()
   })
 }
 
@@ -311,7 +312,7 @@ async function renderMyCancelOrder() {
   const { products, cancels, confirs } = await listLookUp()
   startTop()
   root.innerHTML = myCancelOrderForm(products.length, cancels.length, confirs.length)
-  cancelOrderLookUp()
+  cancelOrderLookUp(cancels)
 }
 
 // myorder confir 렌더링
@@ -319,24 +320,24 @@ async function renderMyConfirOrder() {
   const { products, cancels, confirs } = await listLookUp()
   startTop()
   root.innerHTML = myConfirOrderForm(products.length, cancels.length, confirs.length)
-  confirOrderLookUp()
+  confirOrderLookUp(confirs)
 }
 
 // userInfo 렌더링
 async function renderUserInfo() {
-  const res = await stateLogin(localStorage.accessToken);
+  const res = await stateLogin(localStorage.accessToken)
   startTop()
-  root.innerHTML = userInfoForm(res.email, res.displayName);
-  const { totalBalance, accounts } = await userOwnBank();
-  const total = totalBalance.toLocaleString();
-  root.innerHTML += userAccountForm(total);
-  bankChargeLookUp();
-  ownAccountList(accounts);
-  editUserInfo();
-  addAbleAccountList();
-  addNewAccount();
-  choiceBank();
-  cancelBank();
+  root.innerHTML = userInfoForm(res.email, res.displayName)
+  const { totalBalance, accounts } = await userOwnBank()
+  const total = totalBalance.toLocaleString()
+  root.innerHTML += userAccountForm(total)
+  bankChargeLookUp()
+  ownAccountList(accounts)
+  editUserInfo()
+  addAbleAccountList()
+  addNewAccount()
+  choiceBank()
+  cancelBank()
 }
 
 // detail 렌더링
