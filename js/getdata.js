@@ -21,6 +21,8 @@ export async function getData(email, password, id, profile = null) {
     alert('유효한 정보를 제공하세요.')
   } else if (json === '유효한 이메일이 아닙니다.') {
     alert('유효한 이메일이 아닙니다.')
+  } else if (json === '이미 존재하는 사용자입니다.') {
+    alert('이미 존재하는 사용자입니다.')
   }
   return json
 }

@@ -151,9 +151,11 @@ export async function buyProducts() {
       })
       console.log(productIds)
       if (productIds.length !== 0) {
-        productIds.forEach(async productId => {
-          await getBuy(localStorage.accessToken, productId, accountId);
-        })
+        async () => {
+          for (const productId of productIds) {
+            await getBuy(localStorage.accessToken, productId, accountId)
+          }
+        }
         // 결제 완료시 로컬 스토리지 카트 삭제
         localStorage.cart = JSON.stringify([]);
         alert('거래가 완료되었습니다.');
