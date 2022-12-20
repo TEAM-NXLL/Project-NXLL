@@ -1,5 +1,16 @@
-export function toast(message) {
-  const main = document.querySelector('.all-products');
+export function toast(message, state) {
+  // const main = state === "추가" 
+  //   ? document.querySelector('.addProductPanel')
+  //   : document.querySelector('.all-products');
+  let main = '';
+  if (state === "추가") {
+    main = document.querySelector('.addProductPanel');
+  } else if (state === "전체") {
+    main = document.querySelector('.all-products');
+  } else {
+    main = document.querySelector('.all-transacs');
+  }
+
   const toastBox = document.createElement('div');
   toastBox.classList.add('toast-box');
 
@@ -39,6 +50,6 @@ export function toast(message) {
     main.appendChild(toastBox);
     setTimeout(() => {
       toastBox.remove()
-    }, 800);
+    }, 8000000);
   }
 }
