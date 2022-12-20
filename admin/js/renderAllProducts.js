@@ -1,5 +1,4 @@
 import { viewAllProduct } from './requests.js';
-import { renderProductTransacs } from './renderProductTransacs.js';
 
 export async function renderAllProduct(allTransac, products) {
   // console.log(products);
