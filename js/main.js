@@ -1,17 +1,16 @@
-
-import { doc } from "prettier";
-import { getData, getLogin, getLogOut, stateLogin, postSearch, getTransactions, getProductDetail } from "./getdata.js";
-import { router } from "./route.js";
-import { sendSignUp, sendLogin, adminLogin, completeLogin, adminPage } from './auth.js'
-import { deliveryEl, returnEl, deliveryDes, returnDes, mouseenter, mouseleave } from './footer.js'
-import { joinForm, logInForm, myOrderForm, myShoppingForm, mainForm, productList, userInfoForm, userAccountForm, detailForm, paymentForm, myCancelOrderForm, myConfirOrderForm, renderInnerCategory } from "./body.js";
-import { editUserInfo, userOwnBank, addNewAccount, choiceBank, bankChargeLookUp, ownAccountList, addAbleAccountList, cancelBank } from "./userInfo.js";
+import { doc } from 'prettier';
+import {getData, getLogin, getLogOut, stateLogin, postSearch, getTransactions, getProductDetail} from './getdata.js';
+import { router } from './route.js';
+import {sendSignUp, sendLogin, adminLogin, completeLogin, adminPage} from './auth.js';
+import {deliveryEl, returnEl, deliveryDes, returnDes, mouseenter, mouseleave} from './footer.js';
+import {joinForm, logInForm, myOrderForm, myShoppingForm, mainForm, productList, userInfoForm, userAccountForm, detailForm, paymentForm, myCancelOrderForm, myConfirOrderForm, renderInnerCategory} from './body.js'
+import {editUserInfo, userOwnBank, addNewAccount, choiceBank, bankChargeLookUp, ownAccountList, addAbleAccountList, cancelBank} from './userInfo.js';
 import { viewAllProduct } from '../admin/js/requests.js'
-import { payAccountList, payBankLoopUp, buyProducts, lookProducts, cancelProduct, allCheckBox } from "./payment.js";
-import { cancelOrder, confirOrder, transLookUp, cancelOrderLookUp, confirOrderLookUp } from "./myorder.js";
-import { buyProduct, cart, shoppingBasket } from "./detail.js";
+import {payAccountList, payBankLoopUp, buyProducts, lookProducts, cancelProduct, allCheckBox} from './payment.js'
+import {cancelOrder, confirOrder, transLookUp, cancelOrderLookUp, confirOrderLookUp} from './myorder.js'
+import { buyProduct, cart, shoppingBasket } from './detail.js'
 import { viewShoppingBag } from './shoppingBag.js';
-import { tagArr } from "../admin/js/editProduct.js";
+import { tagArr } from '../admin/js/editProduct.js';
 
 // 변수
 const root = document.querySelector('main');
@@ -145,7 +144,7 @@ export async function renderCategory(tag) {
 
   // 서브카테고리 안에서 메인카테고리 다시 클릭 시
   const category = document.querySelector(`a[href="#${tag}"]`)
-  category.addEventListener("click", event => {
+  category.addEventListener('click', event => {
     root.innerHTML = renderInnerCategory(tag, dataArr.length);
 
     let rootInner = document.createElement('ul');
@@ -163,7 +162,7 @@ function renderSubCategory(rootInner, dataArr) {
   const menu = root.querySelectorAll('.category-menu-area>ul>li')
 
   menu.forEach(title => {
-    title.addEventListener("click", event => {
+    title.addEventListener('click', (event) => {
       const { target } = event;
       const subCategory = target.classList.value.slice(4)
       const subDataArr = [];
@@ -180,13 +179,11 @@ function renderSubCategory(rootInner, dataArr) {
   })
 }
 
-
 // 제품 검색
 async function productSearch(e) {
   const keyword = document.querySelector('#keyword');
 
   if (e.key === 'Enter') {
-
     startTop()
     let rootInner = document.createElement('ul')
     rootInner.classList.add('inner')
@@ -201,7 +198,7 @@ async function productSearch(e) {
       const data = await postSearch(searchText, searchTags);
 
       console.log(data)
-      root.innerHTML = renderInnerCategory("search", data.length);
+      root.innerHTML = renderInnerCategory('search', data.length)
       root.append(rootInner)
 
       if (data.length === 0) {
@@ -224,7 +221,6 @@ async function productSearch(e) {
           </p>
         `;
       } else {
-
         rootInner.classList.add('block4')
         rootInner.style.margin = '140px auto 100px'
         data.forEach(e => {
@@ -385,15 +381,4 @@ router();
   }
 })();
 
-export {
-  loginRender,
-  joinRender,
-  renderMyShop,
-  renderMyOrder,
-  renderMain,
-  renderUserInfo,
-  renderDetail,
-  renderPayment,
-  renderMyCancelOrder,
-  renderMyConfirOrder,
-};
+export {loginRender, joinRender, renderMyShop, renderMyOrder, renderMain, renderUserInfo, renderDetail, renderPayment, renderMyCancelOrder, renderMyConfirOrder}

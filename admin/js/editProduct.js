@@ -1,39 +1,40 @@
-import { store } from "../../js/store.js";
-import { correctProduct, createRequest } from "./requests.js";
-import { toast } from "./toast.js";
+import { store } from '../../js/store.js';
+import { correctProduct, createRequest } from './requests.js';
+import { toast } from './toast.js';
 
-export const tagArr = ["mouse", "keyboard", "mousepad", "usbhub", "monitorstand", "cardreader", "notebookstand", "lock", "keypad", "ear-head", "speaker", "mic", "kids", "audiocable", "adapter", "charging", "smartholder", "smart-etc", "new-item", "discount", "pc", "notebook", "audio", "smart", 
-"beige", "mint", "pink", "white", "blue", "black", "green", "gray"];
+export const tagArr = ['mouse', 'keyboard', 'mousepad', 'usbhub', 'monitorstand', 'cardreader', 'notebookstand', 'lock', 'keypad', 'ear-head', 'speaker', 'mic', 'kids', 'audiocable', 'adapter', 'charging', 'smartholder', 'smart-etc', 'new-item', 'discount', 'pc', 'notebook', 'audio', 'smart', 'beige', 'mint', 'pink', 'white', 'blue', 'black', 'green', 'gray'];
 
 // 수정버튼 클릭 이벤트 핸들러 (추가랑 내용 겹침... 나중에합쳐보기)
 export function editItem(event) {
   const productId = event.target.dataset.id;
   editInputPlaceholder(productId);
   editEvent(event);
-  // 수정페이지 모달로 변경?
 }
 
 // 수정페이지 input에 기존 데이터 채워넣기
 async function editInputPlaceholder(productId) {
-  const res = await fetch(store.url + `/products/${productId}`, createRequest('GET'));
+  const res = await fetch(
+    store.url + `/products/${productId}`,
+    createRequest('GET')
+  );
   const getResult = await res.json();
 
   getResult.isSoldOut
-    ? document.querySelector('#soldout').checked = true
-    : document.querySelector('#sell').checked = true;
+    ? (document.querySelector('#soldout').checked = true)
+    : (document.querySelector('#sell').checked = true);
 
   document.querySelector('.edit-product-name').value = getResult.title;
   document.querySelector('#edit-product-price').value = getResult.price;
 
   const selectedTags = getResult.tags;
 
-  for (let i=0; i < tagArr.length; i+=1) {
+  for (let i = 0; i < tagArr.length; i += 1) {
     selectedTags.includes(`${tagArr[i]}`)
-      ? document.querySelector(`#${tagArr[i]}`).checked = true
-      : document.querySelector(`#${tagArr[i]}`).checked = false;
+      ? (document.querySelector(`#${tagArr[i]}`).checked = true)
+      : (document.querySelector(`#${tagArr[i]}`).checked = false);
   }
 
-  document.querySelector('.edit-product-description').value = getResult.description;
+  document.querySelector('.edit-product-description').value = getResult.description
   document.querySelector('.edit-tumbnail-img').src = getResult.thumbnail;
   document.querySelector('.edit-detail-img').src = getResult.photo;
 }
@@ -42,26 +43,34 @@ async function editInputPlaceholder(productId) {
 function editEvent(e) {
   const productId = e.target.dataset.id;
   const editFormEl = document.querySelector('.edit-form');
-  const editPopup = document.querySelector('.editPopup')
-  const closeBtn = document.querySelector('.closeBtn')
+  const editPopup = document.querySelector('.editPopup');
+  const closeBtn = document.querySelector('.closeBtn');
 
   editFormEl.addEventListener('submit', async (event) => {
     event.preventDefault();
-    let isSoldOut = false
-    if (document.querySelector('input[name="filter"]:checked').value === "true") {
+    let isSoldOut = false;
+    if (document.querySelector('input[name="filter"]:checked').value === 'true') {
       isSoldOut = true;
     }
     const title = document.querySelector('.edit-product-name').value;
-    const price = +(document.querySelector('#edit-product-price').value.replace(/[^0-9]/g, ''));
-    const selectedCategory = document.querySelector('input[name="edit-category"]:checked').value;
-    const selectedTags = document.querySelectorAll('input[name="edit-check"]:checked');
+    const price = +document
+      .querySelector('#edit-product-price')
+      .value.replace(/[^0-9]/g, '');
+    const selectedCategory = document.querySelector(
+      'input[name="edit-category"]:checked',
+    ).value;
+    const selectedTags = document.querySelectorAll(
+      'input[name="edit-check"]:checked',
+    );
     const tags = [];
     tags.push(selectedCategory);
-    selectedTags.forEach(tag => {
-      tags.push(tag.value)
+    selectedTags.forEach((tag) => {
+      tags.push(tag.value);
     });
 
-    const description = document.querySelector('.edit-product-description').value;
+    const description = document.querySelector(
+      '.edit-product-description',
+    ).value;
     const thumbnail = document.querySelector('.edit-thumbnail').dataset.id;
     const photo = document.querySelector('.edit-thumbnail').dataset.id;
 
@@ -70,18 +79,14 @@ function editEvent(e) {
     }
     try {
       correctProduct(productId, title, price, description, tags, thumbnail, photo, isSoldOut);
-      toast("상품 수정이 완료되었습니다.")
-      if (window.confirm("상품 수정이 완료되었습니다.")) {
-        location.hash = '#all-products'
-        location.reload();
-        editPopup.classList.remove('show')
-      }
+      toast('상품 수정이 완료되었습니다.');
+      editPopup.classList.remove('show');
     } catch (error) {
-      toast(error, "잠시 후 다시 시도해주세요 ")
-    }    
+      toast(error, '잠시 후 다시 시도해주세요 ');
+    }
   });
 
   closeBtn.addEventListener('click', () => {
-    editPopup.classList.remove('show')
-  })
+    editPopup.classList.remove('show');
+  });
 }
