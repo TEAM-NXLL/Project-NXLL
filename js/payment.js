@@ -153,14 +153,18 @@ export async function buyProducts() {
       if (productIds.length !== 0) {
         async () => {
           for (const productId of productIds) {
-            await getBuy(localStorage.accessToken, productId, accountId)
+            try {
+              await getBuy(localStorage.accessToken, productId, accountId)
+            } catch (err) {
+              alert('정보를 다시 확인해 주세요.')
+            }
           }
         }
         // 결제 완료시 로컬 스토리지 카트 삭제
         localStorage.cart = JSON.stringify([]);
         alert('거래가 완료되었습니다.');
         location.hash = '#myorder';
-      } else { alert("선택항목이 존재하지 않습니다.") }
+      } else { alert("정보를 다시 확인해 주세요") }
     })
   })
 }
