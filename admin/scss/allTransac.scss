@@ -2,9 +2,80 @@
 
 .all-transacs {
   h2 {
+    justify-content: space-between;
+
+    p {
+      display: flex;
+      align-items: center;
+    }
+
     .transac-search-wrapper {
-      position:absolute;
-      right: 0;
+      height: 25px;
+      position: relative;
+      .transac-search-bar {
+        position: absolute;
+        background-color: #e9e9e9;
+        box-shadow: inset 3px 3px 5px rgba(0,0,0,0.1);
+        height: 100%;
+        width: 200px;
+        border-radius: 50px;
+        padding: 5px 20px;
+        top: 50%;
+        right: 0;
+        transform: translateY(-50%);
+
+        &::placeholder {
+          color:#aaa;
+          font-weight: normal;
+        }
+      }
+      .transac-search-btn {
+        position:absolute;
+        top: 50%;
+        right: 15px;
+        transform: translateY(-50%);
+        padding: 0;
+      }
+    }
+  }
+
+  table {
+    tbody {
+      tr {
+        td {
+          text-align: center;
+
+          &:last-child {
+            button {
+              text-align: left;
+              padding: 5px;
+              background-color: var(--signature-color);
+              color:#fff;
+              border-radius: 5px;
+              margin-bottom: 5px;
+              font-size: 12px;
+            }
+          }
+        }
+      }
+    }
+
+    .emptyTable {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding: 100px 0;
+      img {
+        width: 300px;
+        margin: 0 auto;
+      }
+      span {
+        display: block;
+        font-weight: bold;
+        font-size: 20px;
+        margin-top: 50px;
+      }
     }
   }
 }
