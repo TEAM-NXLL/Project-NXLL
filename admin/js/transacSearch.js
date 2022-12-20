@@ -61,7 +61,7 @@ export async function transacSearch(allTransac){
             <th class="transac-status">거래상태</th>
           </tr>
         </thead>
-        <tbody className="allTransacs"></tbody>
+        <tbody class="allTransacs"></tbody>
       `
       renderAlltransacs(searchTransac)
     } else {
