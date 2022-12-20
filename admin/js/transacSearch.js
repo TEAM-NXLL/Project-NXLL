@@ -24,8 +24,45 @@ export async function transacSearch(allTransac){
     const productCont = document.querySelector('.all-transac-container')
     const allTransacs = productCont.querySelector('.allTransacs')
 
-    if(searchTransac.length > 0){
+    if(searchTransac.length > 0 && allTransacs){
       allTransacs.innerHTML = ''
+      renderAlltransacs(searchTransac)
+    } else if(!allTransacs){
+      productCont.innerHTML = /*html*/`
+        <colgroup>
+                <col>
+                <col>
+                <col>
+                <col>
+                <col>
+                <col>
+                <col>
+                <col>
+                <col>
+                <col>
+                <col>
+                <col>
+                <col>
+        </colgroup>
+        <thead class="properties properties-head">
+          <tr class="text-wrapper">
+            <th class="thumbnail">썸네일</th>
+            <th class="transacId">거래번호</th>
+            <th class="displayName">이름</th>
+            <th class="email">이메일</th>
+            <th class="id">제품번호</th>
+            <th class="title">제품명</th>
+            <th class="price">가격</th>
+            <th class="tags">태그</th>
+            <th class="bank-name">은행명</th>
+            <th class="bank-code">은행코드</th>
+            <th class="account-number">계좌번호</th>
+            <th class="transac-time">거래시간</th>
+            <th class="transac-status">거래상태</th>
+          </tr>
+        </thead>
+        <tbody className="allTransacs"></tbody>
+      `
       renderAlltransacs(searchTransac)
     } else {
       productCont.innerHTML = /*html*/`
