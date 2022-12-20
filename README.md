@@ -1,4 +1,4 @@
-#  [Project-NXLL](https://team-nxll.netlify.app/)
+#  [Project-NXLL (Demo)](https://team-nxll.netlify.app/)
 
 ## 👻 팀 소개
 안녕하세요, TEAM NXLL입니다. <br />
@@ -19,7 +19,7 @@
 <a href="https://github.com/quokka-eating-carrots"><img src="https://img.shields.io/badge/김상현-B0C4DE?style=flat-square&logo=GitHub&logoColor=black"/></a>: 사용자 페이지 - 로그인, 로그아웃 | 메인 페이지 | 장바구니 <br />
 <a href="https://github.com/quokka-eating-carrots"><img src="https://img.shields.io/badge/배현수-006400?style=flat-square&logo=GitHub&logoColor=white"/></a>: 사용자 페이지 - 마이쇼핑 페이지 퍼블리싱 | 마이오더 페이지 퍼블리싱 | 상세 페이지 | 장바구니 <br />
 <a href="https://github.com/quokka-eating-carrots"><img src="https://img.shields.io/badge/오혜성-606060?style=flat-square&logo=GitHub&logoColor=white"/></a>: 관리자 페이지 - 제품, 구매 내역 목록 조회 페이지 | 구매 내역 확정, 취소 | 사용자 페이지 - 결제 페이지 <br />
-<a href="https://github.com/quokka-eating-carrots"><img src="https://img.shields.io/badge/한혜림-FF55B6?style=flat-square&logo=GitHub&logoColor=white"/></a>: 총괄 퍼블리싱 | 사용자 페이지 - 메인 페이지 | 검색 기능
+<a href="https://github.com/quokka-eating-carrots"><img src="https://img.shields.io/badge/한혜림-FF55B6?style=flat-square&logo=GitHub&logoColor=white"/></a>: 총괄 퍼블리싱 | 사용자 페이지 - 메인 페이지, 검색 기능 | 관리자 페이지 - 디자인
 
 ## 🪄 기술 스택
 <img src="https://img.shields.io/badge/HTML-E34F26?style=flat-square&logo=HTML5&logoColor=white"/> <img src="https://img.shields.io/badge/SCSS-CC6699?style=flat-square&logo=Sass&logoColor=white"/> <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=JavaScript&logoColor=white"/>

@@ -21,6 +21,31 @@ function startTop() {
   window.scrollTo(0, 0)
 }
 
+// 헤더 스크롤 고정
+let prevScrollTop = 0;
+document.addEventListener('scroll', () => {
+  const nav = document.querySelector('.nav-area')
+  const ballon = document.querySelector('.balloon')
+  console.log(ballon)
+  let nextScrollTop = window.scrollY;
+  console.log(nextScrollTop)
+
+  if(nextScrollTop > prevScrollTop) {
+    if(nextScrollTop > 41) {
+      ballon.style.display="none"
+    }
+    if(nextScrollTop > 120) {
+      nav.classList.add('scroll')
+    } 
+  } else if(nextScrollTop < 20) {
+    ballon.style.display="block"
+  } else if (nextScrollTop < 100) {
+      nav.classList.remove('scroll')
+  }
+
+  prevScrollTop = nextScrollTop;
+})
+
 // 장바구니에 담긴 상품 개수 확인
 export function cartCountCheck() {
   const cartCount = document.querySelector('.shopping-btn .item-count')
