@@ -1,6 +1,6 @@
 import { delProduct } from "./requests.js";
 import { toast } from "./toast.js";
-import { editItem } from './editProduct.js';
+import { editItem, editPopup } from './editProduct.js';
 
 const productContainer = document.querySelector('.products-container');
 const CheckedBtnEl = document.querySelector('.delete-checked');
@@ -35,9 +35,8 @@ productContainer.addEventListener('click', (event) => {
       : toast("아이템 삭제를 취소합니다.")
   }
   else if (event.target.classList.contains('edit-btn')) {
-    const editPopup = document.querySelector('.editPopup')
     editPopup.classList.add('show')
-    editItem(event) //라우터 안쓰면 이걸로
+    editItem(event) 
   }
 })
 

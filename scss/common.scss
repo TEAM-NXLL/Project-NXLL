@@ -130,7 +130,7 @@ table {
   th {
     position: relative;
     background-color: var(--table-th-background);
-    padding-left: 18px;
+    padding-left: 10px;
   }
 
   td {
@@ -366,6 +366,9 @@ p {
   font-size: 15px;
   border-bottom: 1px solid var(--border-color);
   padding-bottom: 20px;
+  box-sizing: border-box;
+  height: 55px;
+  max-height: 80px;
   margin-bottom: 10px;
   
   span {

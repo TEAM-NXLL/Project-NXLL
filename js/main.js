@@ -1,17 +1,16 @@
-
-import { doc } from "prettier";
-import { getData, getLogin, getLogOut, stateLogin, postSearch, getTransactions, getProductDetail } from "./getdata.js";
-import { router } from "./route.js";
-import { sendSignUp, sendLogin, adminLogin, completeLogin, adminPage } from './auth.js'
-import { deliveryEl, returnEl, deliveryDes, returnDes, mouseenter, mouseleave } from './footer.js'
-import { joinForm, logInForm, myOrderForm, myShoppingForm, mainForm, productList, userInfoForm, userAccountForm, detailForm, paymentForm, myCancelOrderForm, myConfirOrderForm, renderInnerCategory } from "./body.js";
-import { editUserInfo, userOwnBank, addNewAccount, choiceBank, bankChargeLookUp, ownAccountList, addAbleAccountList, cancelBank } from "./userInfo.js";
+import { doc } from 'prettier';
+import { getData, getLogin, getLogOut, stateLogin, postSearch, getTransactions, getProductDetail } from './getdata.js';
+import { router } from './route.js';
+import { sendSignUp, sendLogin, adminLogin, completeLogin, adminPage } from './auth.js';
+import { deliveryEl, returnEl, deliveryDes, returnDes, mouseenter, mouseleave } from './footer.js';
+import { joinForm, logInForm, myOrderForm, myShoppingForm, mainForm, productList, userInfoForm, userAccountForm, detailForm, paymentForm, myCancelOrderForm, myConfirOrderForm, renderInnerCategory } from './body.js'
+import { editUserInfo, userOwnBank, addNewAccount, choiceBank, bankChargeLookUp, ownAccountList, addAbleAccountList, cancelBank } from './userInfo.js';
 import { viewAllProduct } from '../admin/js/requests.js'
-import { payAccountList, payBankLoopUp, buyProducts, lookProducts, cancelProduct, allCheckBox } from "./payment.js";
-import { cancelOrder, confirOrder, transLookUp, cancelOrderLookUp, confirOrderLookUp } from "./myorder.js";
-import { buyProduct, cart, shoppingBasket } from "./detail.js";
+import { payAccountList, payBankLoopUp, buyProducts, lookProducts, cancelProduct, allCheckBox } from './payment.js'
+import { cancelOrder, confirOrder, transLookUp, cancelOrderLookUp, confirOrderLookUp } from './myorder.js'
+import { buyProduct, cart, shoppingBasket } from './detail.js'
 import { viewShoppingBag } from './shoppingBag.js';
-import { tagArr } from "../admin/js/editProduct.js";
+// import { tagArr } from '../admin/js/editProduct.js';
 
 // 변수
 const root = document.querySelector('main');
@@ -21,6 +20,31 @@ const shoppingBag = document.querySelector('.shopping-btn');
 function startTop() {
   window.scrollTo(0, 0)
 }
+
+// 헤더 스크롤 고정
+let prevScrollTop = 0;
+document.addEventListener('scroll', () => {
+  const nav = document.querySelector('.nav-area')
+  const ballon = document.querySelector('.balloon')
+  console.log(ballon)
+  let nextScrollTop = window.scrollY;
+  console.log(nextScrollTop)
+
+  if(nextScrollTop > prevScrollTop) {
+    if(nextScrollTop > 41) {
+      ballon.style.display="none"
+    }
+    if(nextScrollTop > 120) {
+      nav.classList.add('scroll')
+    } 
+  } else if(nextScrollTop < 20) {
+    ballon.style.display="block"
+  } else if (nextScrollTop < 100) {
+      nav.classList.remove('scroll')
+  }
+
+  prevScrollTop = nextScrollTop;
+})
 
 // 장바구니에 담긴 상품 개수 확인
 export function cartCountCheck() {
@@ -145,7 +169,7 @@ export async function renderCategory(tag) {
 
   // 서브카테고리 안에서 메인카테고리 다시 클릭 시
   const category = document.querySelector(`a[href="#${tag}"]`)
-  category.addEventListener("click", event => {
+  category.addEventListener('click', event => {
     root.innerHTML = renderInnerCategory(tag, dataArr.length);
 
     let rootInner = document.createElement('ul');
@@ -163,7 +187,7 @@ function renderSubCategory(rootInner, dataArr) {
   const menu = root.querySelectorAll('.category-menu-area>ul>li')
 
   menu.forEach(title => {
-    title.addEventListener("click", event => {
+    title.addEventListener('click', (event) => {
       const { target } = event;
       const subCategory = target.classList.value.slice(4)
       const subDataArr = [];
@@ -180,13 +204,11 @@ function renderSubCategory(rootInner, dataArr) {
   })
 }
 
-
 // 제품 검색
 async function productSearch(e) {
   const keyword = document.querySelector('#keyword');
 
   if (e.key === 'Enter') {
-
     startTop()
     let rootInner = document.createElement('ul')
     rootInner.classList.add('inner')
@@ -201,7 +223,7 @@ async function productSearch(e) {
       const data = await postSearch(searchText, searchTags);
 
       console.log(data)
-      root.innerHTML = renderInnerCategory("search", data.length);
+      root.innerHTML = renderInnerCategory('search', data.length)
       root.append(rootInner)
 
       if (data.length === 0) {
@@ -224,7 +246,6 @@ async function productSearch(e) {
           </p>
         `;
       } else {
-
         rootInner.classList.add('block4')
         rootInner.style.margin = '140px auto 100px'
         data.forEach(e => {
@@ -275,9 +296,11 @@ adminPage()
 async function listLookUp() {
   try {
     const products = await getTransactions(localStorage.accessToken)
-    const cancels = products.filter(product => product.isCanceled === true)
-    const confirs = products.filter(product => product.done === true)
-    return { products, cancels, confirs }
+    if (products !== '구매 내역이 존재하지 않습니다.') {
+      const cancels = products.filter(product => product.isCanceled === true)
+      const confirs = products.filter(product => product.done === true)
+      return { products, cancels, confirs }
+    }
   } catch (err) {
     console.log('로그인 안 함')
   }
@@ -285,15 +308,14 @@ async function listLookUp() {
 
 // myshop 렌더링
 async function renderMyShop() {
-  const login = await stateLogin(localStorage.accessToken)
-  if (login !== '유효한 사용자가 아닙니다.') {
-    const { totalBalance } = await userOwnBank();
+  try {
+    const { totalBalance } = await userOwnBank()
     const { cancels, confirs } = await listLookUp()
     const total = totalBalance ? totalBalance.toLocaleString() : '';
     const transactions = await getTransactions(localStorage.accessToken)
     startTop()
     root.innerHTML = myShoppingForm(transactions.length, total, cancels.length, confirs.length);
-  } else {
+  } catch {
     startTop()
     root.innerHTML = myShoppingForm()
   }
@@ -304,10 +326,10 @@ async function renderMyOrder() {
   const { products, cancels, confirs } = await listLookUp()
   startTop()
   root.innerHTML = myOrderForm(products.length, cancels.length, confirs.length);
-  transLookUp().then((res) => {
-    cancelOrder();
-    confirOrder();
-  });
+  transLookUp(products).then((res) => {
+    cancelOrder()
+    confirOrder()
+  })
 }
 
 // myorder cancel 렌더링
@@ -315,7 +337,7 @@ async function renderMyCancelOrder() {
   const { products, cancels, confirs } = await listLookUp()
   startTop()
   root.innerHTML = myCancelOrderForm(products.length, cancels.length, confirs.length)
-  cancelOrderLookUp()
+  cancelOrderLookUp(cancels)
 }
 
 // myorder confir 렌더링
@@ -323,24 +345,24 @@ async function renderMyConfirOrder() {
   const { products, cancels, confirs } = await listLookUp()
   startTop()
   root.innerHTML = myConfirOrderForm(products.length, cancels.length, confirs.length)
-  confirOrderLookUp()
+  confirOrderLookUp(confirs)
 }
 
 // userInfo 렌더링
 async function renderUserInfo() {
-  const res = await stateLogin(localStorage.accessToken);
+  const res = await stateLogin(localStorage.accessToken)
   startTop()
-  root.innerHTML = userInfoForm(res.email, res.displayName);
-  const { totalBalance, accounts } = await userOwnBank();
-  const total = totalBalance.toLocaleString();
-  root.innerHTML += userAccountForm(total);
-  bankChargeLookUp();
-  ownAccountList(accounts);
-  editUserInfo();
-  addAbleAccountList();
-  addNewAccount();
-  choiceBank();
-  cancelBank();
+  root.innerHTML = userInfoForm(res.email, res.displayName)
+  const { totalBalance, accounts } = await userOwnBank()
+  const total = totalBalance.toLocaleString()
+  root.innerHTML += userAccountForm(total)
+  bankChargeLookUp()
+  ownAccountList(accounts)
+  editUserInfo()
+  addAbleAccountList()
+  addNewAccount()
+  choiceBank()
+  cancelBank()
 }
 
 // detail 렌더링
@@ -376,24 +398,14 @@ router();
 
 // 로그인 로그아웃 확인
 (async () => {
-  // localStorage.length === 0 ? loginNjoin() : completeLogin();
+  const toAdminPageEl = document.querySelector('.adminPage')
   if (localStorage.accessToken) {
     const res = await stateLogin(localStorage.accessToken);
     res.displayName ? completeLogin() : window.localStorage.clear();
   } else {
-    document.querySelector('.community').href = '#'
+    toAdminPageEl.remove()
+    toAdminPageEl.href = '#'
   }
 })();
 
-export {
-  loginRender,
-  joinRender,
-  renderMyShop,
-  renderMyOrder,
-  renderMain,
-  renderUserInfo,
-  renderDetail,
-  renderPayment,
-  renderMyCancelOrder,
-  renderMyConfirOrder,
-};
+export {loginRender, joinRender, renderMyShop, renderMyOrder, renderMain, renderUserInfo, renderDetail, renderPayment, renderMyCancelOrder, renderMyConfirOrder}

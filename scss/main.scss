@@ -139,7 +139,7 @@ header {
               margin-right: 5px;
             }
 
-            i.fa-circle-user {
+            i.fa-circle-user, i.fa-gear {
               font-size: 20px;
             }
           }
@@ -186,6 +186,13 @@ header {
     font-size: 15px;
     background-color: #fff;
     position: relative;
+
+    &.scroll {
+      position: fixed;
+      width: 100%;
+      top:40px;
+      z-index: 5;
+    }
 
     .inner {
       display: flex;
