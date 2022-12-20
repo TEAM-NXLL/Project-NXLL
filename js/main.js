@@ -373,11 +373,12 @@ router();
 
 // 로그인 로그아웃 확인
 (async () => {
+  const toAdminPageEl = document.querySelector('.adminPage')
   if (localStorage.accessToken) {
     const res = await stateLogin(localStorage.accessToken);
     res.displayName ? completeLogin() : window.localStorage.clear();
   } else {
-    document.querySelector('.community').href = '#'
+    toAdminPageEl.href = '#'
   }
 })();
 
