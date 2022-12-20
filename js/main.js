@@ -378,6 +378,7 @@ router();
     const res = await stateLogin(localStorage.accessToken);
     res.displayName ? completeLogin() : window.localStorage.clear();
   } else {
+    toAdminPageEl.remove()
     toAdminPageEl.href = '#'
   }
 })();
