@@ -10,7 +10,7 @@ import { payAccountList, payBankLoopUp, buyProducts, lookProducts, cancelProduct
 import { cancelOrder, confirOrder, transLookUp, cancelOrderLookUp, confirOrderLookUp } from './myorder.js'
 import { buyProduct, cart, shoppingBasket } from './detail.js'
 import { viewShoppingBag } from './shoppingBag.js';
-import { tagArr } from '../admin/js/editProduct.js';
+// import { tagArr } from '../admin/js/editProduct.js';
 
 // 변수
 const root = document.querySelector('main');
@@ -373,14 +373,12 @@ router();
 
 // 로그인 로그아웃 확인
 (async () => {
-  // localStorage.length === 0 ? loginNjoin() : completeLogin();
   const toAdminPageEl = document.querySelector('.adminPage')
   if (localStorage.accessToken) {
     const res = await stateLogin(localStorage.accessToken);
     res.displayName ? completeLogin() : window.localStorage.clear();
   } else {
-    toAdminPageEl.remove()
-    document.querySelector('.adminPage').href = '#'
+    toAdminPageEl.href = '#'
   }
 })();
 
