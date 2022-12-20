@@ -440,7 +440,7 @@ function myShoppingForm(trans, price, cancelList, confirList) {
     <!-- ORDER-LIST -->
     <div class="order-list">
       <div class="inner">
-        <a href="#myorder" class="order-list__item">
+        <a href="${trans ? `#myorder` : `#myshop`}" class="order-list__item">
           <p class="icon order"></p>
           <p>주문 내역</p>
           <p class="price">${trans ?? 0}건</p>

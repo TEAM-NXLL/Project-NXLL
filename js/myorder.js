@@ -1,8 +1,7 @@
 import { getTransactions, cancelTransactions, confirmation } from "./getdata.js"
 
 // 구매 내역 렌더링
-export async function transLookUp() {
-  const products = await getTransactions(localStorage.accessToken)
+export async function transLookUp(products) {
   products.sort((a, b) => {
     return a.timePaid < b.timePaid ? -1 : a.timePaid > b.timePaid ? 1 : 0
   })
@@ -68,16 +67,15 @@ export function confirOrder() {
   confirBtn.forEach(confir => {
     confir.addEventListener('click', async (e) => {
       const id = e.target.dataset.id
-      const res = await confirmation(localStorage.accessToken, id)
+      await confirmation(localStorage.accessToken, id)
       alert('구매가 확정되었습니다.')
     })
   })
 }
 
 // 취소 내역
-export async function cancelOrderLookUp() {
+export async function cancelOrderLookUp(products) {
   const transProductEl = document.querySelector('.trans-product')
-  const products = await getTransactions(localStorage.accessToken)
   const cancels = products.filter(product => product.isCanceled === true)
   cancels.sort((a, b) => {
     return a.timePaid < b.timePaid ? -1 : a.timePaid > b.timePaid ? 1 : 0
@@ -115,9 +113,8 @@ export async function cancelOrderLookUp() {
 }
 
 // 확정 내역
-export async function confirOrderLookUp() {
+export async function confirOrderLookUp(products) {
   const transProductEl = document.querySelector('.trans-product')
-  const products = await getTransactions(localStorage.accessToken)
   const confirs = products.filter(product => product.done === true)
   confirs.sort((a, b) => {
     return a.timePaid < b.timePaid ? -1 : a.timePaid > b.timePaid ? 1 : 0
