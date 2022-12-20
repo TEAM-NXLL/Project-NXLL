@@ -1,48 +1,46 @@
-import { renderAlltransacs } from "./renderAlltransacs.js"
+import { renderAlltransacs } from './renderAlltransacs.js';
 
-export async function transacSearch(allTransac){
-  const searchBar = document.querySelector('.transac-search-bar')
-  const searchBtn = document.querySelector('.transac-search-btn')
-  
-  
-  searchBar.addEventListener('keydown', event => {
+export async function transacSearch(allTransac) {
+  const searchBar = document.querySelector('.transac-search-bar');
+  const searchBtn = document.querySelector('.transac-search-btn');
+
+  searchBar.addEventListener('keydown', (event) => {
     if (event.key === 'Enter') {
       event.preventDefault()
       searchBtn.click()
     }
-  })  
+  })
 
-  searchBtn.addEventListener('click', event => {
-    const title = searchBar.value
+  searchBtn.addEventListener('click', (event) => {
+    const title = searchBar.value;
 
-    const searchTransac = allTransac.filter( el => {
-      return el.product.title.includes(title) === true
+    const searchTransac = allTransac.filter((el) => {
+      return el.product.title.includes(title) === true;
     })
 
-    console.log(searchTransac)
     searchBar.value = ''
     const productCont = document.querySelector('.all-transac-container')
     const allTransacs = productCont.querySelector('.allTransacs')
 
-    if(searchTransac.length > 0 && allTransacs){
+    if (searchTransac.length > 0 && allTransacs) {
       allTransacs.innerHTML = ''
       renderAlltransacs(searchTransac)
-    } else if(!allTransacs){
-      productCont.innerHTML = /*html*/`
+    } else if (!allTransacs) {
+      productCont.innerHTML = /*html*/ `
         <colgroup>
-                <col>
-                <col>
-                <col>
-                <col>
-                <col>
-                <col>
-                <col>
-                <col>
-                <col>
-                <col>
-                <col>
-                <col>
-                <col>
+          <col width="">
+          <col width="">
+          <col width="">
+          <col width="">
+          <col width="">
+          <col width="">
+          <col width="">
+          <col width="">
+          <col width="">
+          <col width="5%">
+          <col width="">
+          <col width="">
+          <col width="8%">
         </colgroup>
         <thead class="properties properties-head">
           <tr class="text-wrapper">
@@ -65,7 +63,7 @@ export async function transacSearch(allTransac){
       `
       renderAlltransacs(searchTransac)
     } else {
-      productCont.innerHTML = /*html*/`
+      productCont.innerHTML = /* html */ `
         <div class="emptyTable">
           <img src="../images/nothing.jpg" alt="nothing" />
           <span class="nothing-text">결과가 존재하지 않습니다.</span>

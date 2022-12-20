@@ -1,3 +1,4 @@
+// 삭제될 파일
 import { transactionStatus } from './requests.js';
 import { renderAdminSummary } from './adminSummary.js';
 
