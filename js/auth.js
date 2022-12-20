@@ -73,10 +73,12 @@ export function completeLogin() {
 export async function adminLogin(accessToken) {
   if (accessToken) {
     const authLogin = await stateLogin(accessToken)
-    const toAdminPageEl = document.querySelector('.community')
+    const toAdminPageEl = document.querySelector('.adminPage')
     if (authLogin.email ? authLogin.email.includes('admin') : false) {
+      toAdminPageEl.add()
       toAdminPageEl.href = './admin/admin.html'
     } else {
+      toAdminPageEl.remove()
       toAdminPageEl.href = '#'
     }
   } else return
@@ -84,7 +86,7 @@ export async function adminLogin(accessToken) {
 
 // 관리자 페이지 접근
 export function adminPage() {
-  const toAdminPageEl = document.querySelector('.community')
+  const toAdminPageEl = document.querySelector('.adminPage')
   toAdminPageEl.addEventListener('click', () => {
     if (toAdminPageEl.href.includes('#')) {
       alert('잘못된 접근입니다.')
