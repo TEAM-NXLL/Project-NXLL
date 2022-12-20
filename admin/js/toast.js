@@ -1,7 +1,4 @@
 export function toast(message, state) {
-  // const main = state === "추가" 
-  //   ? document.querySelector('.addProductPanel')
-  //   : document.querySelector('.all-products');
   let main = '';
   if (state === "추가") {
     main = document.querySelector('.addProductPanel');
@@ -50,6 +47,6 @@ export function toast(message, state) {
     main.appendChild(toastBox);
     setTimeout(() => {
       toastBox.remove()
-    }, 8000000);
+    }, 800);
   }
 }
