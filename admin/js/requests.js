@@ -2,8 +2,6 @@ import { store } from '../../js/store.js';
 import { toast } from './toast.js';
 const API_KEY = process.env;
 
-// products';
-
 // JSON Request 양식 만들기
 export function createRequest(type, data) {
   const res = {
@@ -58,16 +56,6 @@ export async function viewAllProduct() {
     toast(`${error}, 잠시 후 다시 시도해주세요.`, "전체");
   }
 }
-// 모든 제품 조회 결과
-// Product { // 제품 정보
-//   id: string // 제품 ID
-//   title: string // 제품 이름
-//   price: number // 제품 가격
-//   description: string // 제품 설명(최대 100자)
-//   tags: string[] // 제품 태그
-//   thumbnail: string | null // 제품 썸네일 이미지(URL)
-//   isSoldOut: boolean // 제품 매진 여부
-// }
 
 // 전체 거래 내역
 export async function viewAllTransactions() {

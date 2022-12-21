@@ -1,6 +1,7 @@
 import { totalQuantity, showModal } from './detail.js';
 import { cartCountCheck } from './main.js';
 
+// 메인 화면 장바구니
 export function viewShoppingBag() {
   const shoppingBox = document.querySelector('.shopping-box')
   const CENTER_MODAL = document.querySelector('.modal-payment')
