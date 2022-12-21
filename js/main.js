@@ -359,7 +359,7 @@ async function renderUserInfo() {
   editUserInfo()
   addAbleAccountList()
   addNewAccount()
-  choiceBank()
+  // choiceBank()
   cancelBank()
 }
 
@@ -406,4 +406,4 @@ router();
   }
 })();
 
-export {loginRender, joinRender, renderMyShop, renderMyOrder, renderMain, renderUserInfo, renderDetail, renderPayment, renderMyCancelOrder, renderMyConfirOrder}
+export { loginRender, joinRender, renderMyShop, renderMyOrder, renderMain, renderUserInfo, renderDetail, renderPayment, renderMyCancelOrder, renderMyConfirOrder }

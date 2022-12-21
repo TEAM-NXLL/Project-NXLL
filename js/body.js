@@ -207,7 +207,7 @@ function productList(data) {
 
 // 카테고리 내부 메뉴
 export function renderInnerCategory(tag, count = 0) {
-  const pcTags = ["pc", "keyboard", "mouse", "mousepad",  "usbhub",  "monitorstand", "cardreader"];
+  const pcTags = ["pc", "keyboard", "mouse", "mousepad", "usbhub", "monitorstand", "cardreader"];
   const notebookTags = ["notebook", "notebookstand", "lock", "keypad"];
   const smartTags = ["smart", "adapter", "charging", "smartholder", "smart-etc"];
   const audioTags = ["audio", "ear-head", "speaker", "mic", "kids", "audiocable"];
@@ -446,7 +446,7 @@ function myShoppingForm(trans, price, cancelList, confirList) {
           <p class="price">${trans ?? 0}건</p>
           <i class="line--hover"></i>
         </a>
-        <a href="#" class="order-list__item">
+        <a class="order-list__item">
           <p class="icon mileage"></p>
           <p>계좌 잔액</p>
           <p class="price">${price ?? 0}원</p>
@@ -805,7 +805,7 @@ function userAccountForm(totalBalance) {
             <th>계좌 추가</th>
             <td>
               <select id="add-account">
-                <option value="default">은행 이름</option>
+                <!-- <option value="default">은행 이름</option> -->
               </select>
             </td>
           </tr>
@@ -836,7 +836,7 @@ function detailForm(product) {
   <div class="page-nav">
     <div class="inner">
       <a href="/">HOME</a>
-      <a href="#">${product.tags}</a>
+      <a>details</a>
     </div>
   </div>
   <!-- PRODUCT-DETAIL -->
