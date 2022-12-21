@@ -25,7 +25,7 @@ editPriceInputEl.addEventListener('input', event => {
 
 // 이미지파일 업로드 이벤트
 editFileArea.addEventListener('change', event => {
-  const {target} = event;
+  const { target } = event;
   if (target.matches('.edit-thumbnail')) {
     checkFileSize(event.target, editThumbnailEl)
   } else if (target.matches('.edit-detail')) {
@@ -33,7 +33,7 @@ editFileArea.addEventListener('change', event => {
   }
 })
 addFileArea.addEventListener('change', event => {
-  const {target} = event;
+  const { target } = event;
   if (target.matches('.add-thumbnail')) {
     checkFileSize(event.target, thumbnailEl)
   } else if (target.matches('.add-detail')) {
@@ -44,7 +44,7 @@ addFileArea.addEventListener('change', event => {
 // 이미지파일 업로드 초기화버튼 클릭이벤트
 const altImg = "https://static.vecteezy.com/system/resources/thumbnails/004/141/669/small/no-photo-or-blank-image-icon-loading-images-or-missing-image-mark-image-not-available-or-image-coming-soon-sign-simple-nature-silhouette-in-frame-isolated-illustration-vector.jpg"
 addFileArea.addEventListener('click', event => {
-  const {target} = event;
+  const { target } = event;
   if (target.matches('.detail-reset')) {
     document.querySelector('#detail-preview').src = `${altImg}`;
     detailImgEl.value = "";
@@ -54,7 +54,7 @@ addFileArea.addEventListener('click', event => {
   }
 })
 editFileArea.addEventListener('click', event => {
-  const {target} = event;
+  const { target } = event;
   if (target.matches('.edit-detail-reset')) {
     document.querySelector('#edit-detail-preview').src = `${altImg}`;
     editDetailImgEl.value = "";
@@ -113,11 +113,13 @@ function checkFileSize(target, selector) {
   } else if (selector === editThumbnailEl && file > thumbnailSize) {
     document.querySelector('#edit-thumbnail-preview').src = `${altImg}`;
     editThumbnailEl.value = "";
-    return toast("해당 파일은 제한된 용량을 초과하였습니다.", "추가")
-  }else if (selector === editDetailImgEl && file > detailImgSize) {    
+    console.log("안됨")
+    return toast("해당 파일은 제한된 용량을 초과하였습니다.", "전체")
+  } else if (selector === editDetailImgEl && file > detailImgSize) {
     document.querySelector('#edit-detail-preview').src = `${altImg}`;
     editDetailImgEl.value = "";
-    return toast("해당 파일은 제한된 용량을 초과하였습니다.", "추가")
+    console.log("안됨")
+    return toast("해당 파일은 제한된 용량을 초과하였습니다.", "전체")
   } else {
     previewImg(target, selector);
     imgIncoding(target, selector);
@@ -189,6 +191,7 @@ function resetInput() {
   for (let i = 0; i < reset.length; i++) {
     reset[i].value = '';
   }
+  document.querySelector('#check21').checked = true;
   document.querySelector('#detail-preview').src = "";
   document.querySelector('#thumbnail-preview').src = "";
 }
