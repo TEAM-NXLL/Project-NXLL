@@ -85,10 +85,8 @@
 
 
 ## 🖥️ 주요 구현 기능
-<br/>
 
 ## 인증 - 사용자
----
 <br/>
 
 ### 1. 회원가입
@@ -100,19 +98,26 @@
 
 <img src="https://i.ibb.co/pbYrG21/login.png" alt="login" border="0">
 
++ 관리자 계정으로 로그인하면 관리자페이지로 갈 수 있는 버튼이 활성화 됨
 + 인증확인 : 24시간이 지나면 자동 로그아웃
 + 로그아웃
 
 <br/><br/><br/>
 
 ## 메인 홈 - 사용자
-
----
 <br/>
 
 ### 1.  홈
 
 <img src="https://i.ibb.co/KFYYs38/home.png" alt="home" border="0">
+
++ keyboard, mouse, new Item 별로 메인 상품 출력
++ 각 섹션별로 등록된 제품이 없을 때 '상품준비중' 배너 구현
++ 매진된 제품은 제품 가격 대신 'sold out' 아이콘으로 대체
++ 상품 검색 가능
++ nav 탭을 누르면 해당 종류별로 품목 출력
++ 장바구니 페이지로 넘어가지 않고 바로 확인 가능
++ 스크롤에 반응하는 nav영역
 
 <br/>
 
@@ -148,11 +153,13 @@
 ### 4. 제품검색
 
 <img src="https://i.ibb.co/zNNsgKV/product-Search.png" alt="product-Search" border="0">
+
++ 품명으로 상품 검색
++ 검색 내용이 없을 때 검색결과 없음 화면 출력
 <br/><br/><br/>
 
 ## ETC. - 사용자
 
----
 <br/>
 
 ### 1. 장바구니
@@ -174,8 +181,6 @@
 <br/><br/><br/><br/>
 
 ## 제품 - 관리자
-
----
 <br/>
 
 ### 1. 모든 제품 조회
