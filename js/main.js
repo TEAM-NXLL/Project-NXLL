@@ -7,7 +7,7 @@ import { joinForm, logInForm, myOrderForm, myShoppingForm, mainForm, productList
 import { editUserInfo, userOwnBank, addNewAccount, choiceBank, bankChargeLookUp, ownAccountList, addAbleAccountList, cancelBank } from './userInfo.js';
 import { viewAllProduct } from '../admin/js/requests.js'
 import { payAccountList, payBankLoopUp, buyProducts, lookProducts, cancelProduct, allCheckBox } from './payment.js'
-import { cancelOrder, confirOrder, transLookUp, cancelOrderLookUp, confirOrderLookUp, transProductEl } from './myorder.js'
+import { cancelOrder, confirOrder, transLookUp, cancelOrderLookUp, confirOrderLookUp } from './myorder.js'
 import { buyProduct, cart, shoppingBasket } from './detail.js'
 import { viewShoppingBag } from './shoppingBag.js';
 // import { tagArr } from '../admin/js/editProduct.js';
@@ -29,17 +29,17 @@ document.addEventListener('scroll', () => {
   const joinBtn = signUpsignIn.querySelector('.join')
   let nextScrollTop = window.scrollY;
 
-  if(nextScrollTop > prevScrollTop) {
-    if(nextScrollTop > 120) {
+  if (nextScrollTop > prevScrollTop) {
+    if (nextScrollTop > 120) {
       nav.classList.add('scroll')
-      if(joinBtn) {
+      if (joinBtn) {
         joinBtn.children[0].classList.add('remove')
       }
-    } 
+    }
   } else if (nextScrollTop < prevScrollTop) {
-    if(nextScrollTop < 100) {
+    if (nextScrollTop < 100) {
       nav.classList.remove('scroll')
-      if(joinBtn) {
+      if (joinBtn) {
         joinBtn.children[0].classList.remove('remove')
       }
     }
@@ -432,4 +432,4 @@ router();
   }
 })();
 
-export {loginRender, joinRender, renderMyShop, renderMyOrder, renderMain, renderUserInfo, renderDetail, renderPayment, renderMyCancelOrder, renderMyConfirOrder}
+export { loginRender, joinRender, renderMyShop, renderMyOrder, renderMain, renderUserInfo, renderDetail, renderPayment, renderMyCancelOrder, renderMyConfirOrder }
