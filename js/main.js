@@ -6,7 +6,7 @@ import { deliveryEl, returnEl, deliveryDes, returnDes, mouseenter, mouseleave } 
 import { joinForm, logInForm, myOrderForm, myShoppingForm, mainForm, productList, userInfoForm, userAccountForm, detailForm, paymentForm, myCancelOrderForm, myConfirOrderForm, renderInnerCategory } from './body.js'
 import { editUserInfo, userOwnBank, addNewAccount, choiceBank, bankChargeLookUp, ownAccountList, addAbleAccountList, cancelBank } from './userInfo.js';
 import { viewAllProduct } from '../admin/js/requests.js'
-import { payAccountList, payBankLoopUp, buyProducts, lookProducts, cancelProduct, allCheckBox } from './payment.js'
+import { payAccountList, payBankLoopUp, buyProducts, lookProducts, cancelProduct, allCheckBox, choiceAccount } from './payment.js'
 import { cancelOrder, confirOrder, transLookUp, cancelOrderLookUp, confirOrderLookUp, transProductEl } from './myorder.js'
 import { buyProduct, cart, shoppingBasket } from './detail.js'
 import { viewShoppingBag } from './shoppingBag.js';
