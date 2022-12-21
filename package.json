@@ -21,7 +21,6 @@
   "devDependencies": {
     "@babel/core": "^7.20.2",
     "@babel/preset-env": "^7.20.2",
-    "@parcel/transformer-sass": "^2.8.0",
     "autoprefixer": "^9.8.8",
     "eslint": "^8.28.0",
     "eslint-config-prettier": "^8.5.0",
