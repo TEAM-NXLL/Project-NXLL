@@ -10,6 +10,7 @@ const editFileArea = document.querySelector(".edit-file-upload-area")
 const editDetailImgEl = document.querySelector('.edit-detail')
 const editThumbnailEl = document.querySelector('.edit-thumbnail')
 const editPriceInputEl = document.querySelector('#edit-product-price')
+const altImg = "https://static.vecteezy.com/system/resources/thumbnails/004/141/669/small/no-photo-or-blank-image-icon-loading-images-or-missing-image-mark-image-not-available-or-image-coming-soon-sign-simple-nature-silhouette-in-frame-isolated-illustration-vector.jpg"
 
 // 가격 입력 input칸에 통화단위 적용
 priceInputEl.addEventListener('input', event => {
@@ -28,38 +29,53 @@ editFileArea.addEventListener('change', event => {
   const { target } = event;
   if (target.matches('.edit-thumbnail')) {
     checkFileSize(event.target, editThumbnailEl)
+    checkFileExtension(event.target, "전체", editThumbnailEl)
   } else if (target.matches('.edit-detail')) {
     checkFileSize(event.target, editDetailImgEl)
+    checkFileExtension(event.target, "전체", editDetailImgEl)
   }
 })
 addFileArea.addEventListener('change', event => {
   const { target } = event;
   if (target.matches('.add-thumbnail')) {
     checkFileSize(event.target, thumbnailEl)
+    checkFileExtension(event.target, "추가", thumbnailEl)
   } else if (target.matches('.add-detail')) {
     checkFileSize(event.target, detailImgEl)
+    checkFileExtension(event.target, "추가", detailImgEl)
   }
 })
 
+// 파일 확장자 유효성검사
+function checkFileExtension(target, location, selector) {
+  const file = target.files[0].name.split('.').pop()
+  const extensions = ['jpg', 'jpeg', 'webp', 'png', 'gif', 'svg'];
+  if (!extensions.includes(file)) {
+    selector.closest('td').childNodes[1].children[0].src = altImg
+    selector.closest('td').childNodes[5].value = '';
+    toast("지원하는 파일 형식이 아닙니다.", location)
+    return
+  }
+}
+
 // 이미지파일 업로드 초기화버튼 클릭이벤트
-const altImg = "https://static.vecteezy.com/system/resources/thumbnails/004/141/669/small/no-photo-or-blank-image-icon-loading-images-or-missing-image-mark-image-not-available-or-image-coming-soon-sign-simple-nature-silhouette-in-frame-isolated-illustration-vector.jpg"
 addFileArea.addEventListener('click', event => {
   const { target } = event;
   if (target.matches('.detail-reset')) {
-    document.querySelector('#detail-preview').src = `${altImg}`;
+    document.querySelector('#detail-preview').src = altImg;
     detailImgEl.value = "";
   } else if (target.matches('.thumbnail-reset')) {
-    document.querySelector('#thumbnail-preview').src = `${altImg}`;
+    document.querySelector('#thumbnail-preview').src = altImg;
     thumbnailEl.value = "";
   }
 })
 editFileArea.addEventListener('click', event => {
   const { target } = event;
   if (target.matches('.edit-detail-reset')) {
-    document.querySelector('#edit-detail-preview').src = `${altImg}`;
+    document.querySelector('#edit-detail-preview').src = altImg;
     editDetailImgEl.value = "";
   } else if (target.matches('.edit-thumbnail-reset')) {
-    document.querySelector('#edit-thumbnail-preview').src = `${altImg}`;
+    document.querySelector('#edit-thumbnail-preview').src = altImg;
     editThumbnailEl.value = "";
   }
 })
@@ -103,20 +119,20 @@ function checkFileSize(target, selector) {
   const thumbnailSize = 1024 ** 2;
   const detailImgSize = 1024 ** 2 * 4;
   if (selector === thumbnailEl && file > thumbnailSize) {
-    document.querySelector('#thumbnail-preview').src = `${altImg}`;
+    document.querySelector('#thumbnail-preview').src = altImg;
     thumbnailEl.value = "";
     return toast("해당 파일은 제한된 용량을 초과하였습니다.", "추가")
   } else if (selector === detailImgEl && file > detailImgSize) {
-    document.querySelector('#detail-preview').src = `${altImg}`;
+    document.querySelector('#detail-preview').src = altImg;
     detailImgEl.value = "";
     return toast("해당 파일은 제한된 용량을 초과하였습니다.", "추가")
   } else if (selector === editThumbnailEl && file > thumbnailSize) {
-    document.querySelector('#edit-thumbnail-preview').src = `${altImg}`;
+    document.querySelector('#edit-thumbnail-preview').src = altImg;
     editThumbnailEl.value = "";
     console.log("안됨")
     return toast("해당 파일은 제한된 용량을 초과하였습니다.", "전체")
   } else if (selector === editDetailImgEl && file > detailImgSize) {
-    document.querySelector('#edit-detail-preview').src = `${altImg}`;
+    document.querySelector('#edit-detail-preview').src = altImg;
     editDetailImgEl.value = "";
     console.log("안됨")
     return toast("해당 파일은 제한된 용량을 초과하였습니다.", "전체")
