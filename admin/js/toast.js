@@ -37,7 +37,6 @@ export function toast(message, state) {
       if (target.matches('.confirm')) {
         const editPopup = document.querySelector('.editPopup');
         editPopup.classList.remove('show');
-        location.hash = '#all-products'
         toastBox.remove()
       } else if (target.matches('.cancel')) {
         toastBox.remove()
