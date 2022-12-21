@@ -28,7 +28,7 @@ export async function createProduct(
   thumbnailBase64 = '', // 기본 썸네일
   photoBase64 = '', // 기본 사진
 ) {
-  try{
+  try {
     const res = await fetch(
       store.url + '/products',
       createRequest('POST', {
@@ -71,7 +71,7 @@ export async function viewAllProduct() {
 
 // 전체 거래 내역
 export async function viewAllTransactions() {
-  try{
+  try {
     const res = await fetch(
       store.url + '/products/transactions/all',
       createRequest('GET'),
@@ -89,9 +89,9 @@ export async function transactionStatus(detailId, isCanceled, done) {
   try {
     const res = await fetch(
       store.url + `/products/transactions/${detailId}`,
-      createRequest('PUT', {isCanceled, done}),
+      createRequest('PUT', { isCanceled, done }),
     );
-    console.log('거래 내역 상태 관리');
+    toast("거래 상태가 변경되었습니다.")
     return res;
   } catch (error) {
     toast(`${error}, 잠시 후 다시 시도해주세요.`, "거래");

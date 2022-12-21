@@ -33,7 +33,7 @@ export function toast(message, state) {
     main.appendChild(toastBox);
 
     confirmArea.addEventListener("click", event => {
-      const {target} = event;
+      const { target } = event;
       if (target.matches('.confirm')) {
         const editPopup = document.querySelector('.editPopup');
         editPopup.classList.remove('show');

@@ -14,7 +14,8 @@
 
   <link rel="stylesheet" href="./scss/admin_common.scss" />
   <link rel="stylesheet" href="./scss/admin.scss" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
   <script type="module" defer src="./js/admin.js"></script>
   <title>administrator</title>
 </head>
@@ -93,12 +94,13 @@
               <col width="10%" />
               <col width="10%" />
               <col width="7%" />
-              <col width="25%"/>
-              <col width="5%"/>
+              <col width="25%" />
+              <col width="5%" />
             </colgroup>
             <thead class="product-item item-head">
               <tr class="product-wrapper">
-                <th><button class="edit-delete delete-checked" title="선택항목삭제"><i class="fa-solid fa-trash-can"></i></button></th>
+                <th><button class="edit-delete delete-checked" title="선택항목삭제"><i
+                      class="fa-solid fa-trash-can"></i></button></th>
                 <th class="thumbnail">썸네일</th>
                 <th class="id">제품번호</th>
                 <th class="title">제품명</th>
@@ -132,7 +134,7 @@
           </div>
         </div>
       </div> -->
-      
+
       <div class="editPopup">
         <!-- 제품수정페이지 -->
         <ul class="table-area">
@@ -152,10 +154,10 @@
 
               <table>
                 <colgroup>
-                  <col width="20%"/>
-                  <col width="30%"/>
-                  <col width="20%"/>
-                  <col width="30%"/>
+                  <col width="20%" />
+                  <col width="30%" />
+                  <col width="20%" />
+                  <col width="30%" />
                 </colgroup>
 
                 <!-- 수정 상품명 -->
@@ -165,14 +167,17 @@
                 </tr>
                 <tr class="name-area">
                   <th><label for="edit-product-name">상품명</label></th>
-                  <td colspan="3"><input type="text" class="edit-product-name reset" name="edit-product-name" required /></td>
+                  <td colspan="3"><input type="text" class="edit-product-name reset" name="edit-product-name"
+                      required /></td>
                 </tr>
                 <tr class="price-area">
                   <th><label for="edit-product-price">가격</label></th>
-                  <td colspan="3"><input type="text" name="edit-product-price" class="reset" id="edit-product-price" min="0" required />
-                  <span>원</span></td>
+                  <td colspan="3"><input type="text" name="edit-product-price" class="reset" id="edit-product-price"
+                      min="0" required />
+                    <span>원</span>
+                  </td>
                 </tr>
-    
+
                 <!-- 수정 태그 선택 -->
                 <tr>
                   <th><label>상품 색상</label></th>
@@ -205,10 +210,10 @@
                     <label for="discount" class="taglabel">할인</label>
                   </td>
                 </tr>
-      
+
                 <tr>
                   <th>
-                    <input type="radio" id="pc" class="category" name="edit-category" value="pc"  required checked/>
+                    <input type="radio" id="pc" class="category" name="edit-category" value="pc" required checked />
                     <label for="pc" class="category-label">PC</label>
                   </th>
                   <td colspan="3" class="pc-tags">
@@ -255,7 +260,7 @@
                     <input type="checkbox" id="mic" class="check" name="edit-check" value="mic" />
                     <label for="mic" class="taglabel">마이크</label>
                     <input type="checkbox" id="kids" class="check" name="edit-check" value="kids" />
-                    <label for="kids" class="taglabel">키즈 헤드폰</label>        
+                    <label for="kids" class="taglabel">키즈 헤드폰</label>
                     <input type="checkbox" id="audiocable" class="check" name="edit-check" value="audiocable" />
                     <label for="audiocable" class="taglabel">음향케이블&기타</label>
                   </td>
@@ -277,12 +282,12 @@
                     <label for="smart-etc" class="taglabel">기타스마트기기</label>
                   </td>
                 </tr>
-    
+
                 <!-- 수정 상품 상세설명 -->
                 <tr class="description-area">
                   <th><label for="edit-description">상품 상세 설명</label></th>
-                  <td colspan="3"><textarea class="edit-product-description reset" maxlength=100 placeholder="상세 설명은 100자 이내로 작성해 주세요."
-                    required></textarea></td>
+                  <td colspan="3"><textarea class="edit-product-description reset" maxlength=100
+                      placeholder="상세 설명은 100자 이내로 작성해 주세요." required></textarea></td>
                 </tr>
 
                 <!-- 수정 파일 업로드 -->
@@ -294,21 +299,26 @@
                       <img id="edit-thumbnail-preview" class="edit-tumbnail-img reset" />
                     </div>
                     <span>
-                      <strong>jpg, jpeg, webp, png, gif, svg 확장자만</strong> 등록 가능합니다. 파일 크기는 <strong>1MB 이하</strong>여야 합니다.
+                      <strong>jpg, jpeg, webp, png, gif, svg 확장자만</strong> 등록 가능합니다. 파일 크기는 <strong>1MB 이하</strong>여야
+                      합니다.
                     </span>
-                    <input type="file" accept="image/jpg, .jpeg, .webp, .png, .gif, .svg" class="edit-thumbnail reset thumbnailUploadFile" name="edit-thumbnail" id="edit-thumbnail" />
-                    <label class="thumbnailUploadBtn" for="edit-thumbnail"><i class="fa-solid fa-upload"></i> 업로드</label>
+                    <input type="file" accept=".jpg, .jpeg, .webp, .png, .gif, .svg"
+                      class="edit-thumbnail reset thumbnailUploadFile" name="edit-thumbnail" id="edit-thumbnail" />
+                    <label class="thumbnailUploadBtn" for="edit-thumbnail"><i class="fa-solid fa-upload"></i>
+                      업로드</label>
                     <div class="reset-btn edit-thumbnail-reset">선택 초기화</div>
                   </td>
-                  
+
                   <!-- 수정 상세사진 업로드 -->
                   <th><label for="edit-detail"> 상품 상세사진 수정 </label></th>
                   <td>
                     <div class="imgBox">
                       <img id="edit-detail-preview" class="edit-detail-img reset" />
                     </div>
-                    <span><strong>jpg, jpeg, webp, png, gif, svg 확장자만</strong> 등록 가능합니다. 파일 크기는 <strong>4MB 이하</strong>여야 합니다.</span>
-                    <input type="file" accept="image/jpg, .jpeg, .webp, .png, .gif, .svg" class="edit-detail reset thumbnailUploadFile" name="edit-detail" id="edit-detail" />
+                    <span><strong>jpg, jpeg, webp, png, gif, svg 확장자만</strong> 등록 가능합니다. 파일 크기는 <strong>4MB
+                        이하</strong>여야 합니다.</span>
+                    <input type="file" accept=".jpg, .jpeg, .webp, .png, .gif, .svg"
+                      class="edit-detail reset thumbnailUploadFile" name="edit-detail" id="edit-detail" />
                     <label class="thumbnailUploadBtn" for="edit-detail"><i class="fa-solid fa-upload"></i> 업로드</label>
                     <div class="reset-btn edit-detail-reset">선택 초기화</div>
                   </td>
@@ -332,20 +342,23 @@
             <form class="add-form">
               <table>
                 <colgroup>
-                  <col width="20%"/>
-                  <col width="30%"/>
-                  <col width="20%"/>
-                  <col width="30%"/>
+                  <col width="20%" />
+                  <col width="30%" />
+                  <col width="20%" />
+                  <col width="30%" />
                 </colgroup>
                 <!-- 상품명 -->
                 <tr class="name-area">
                   <th><label for="add-product-name">상품명</label></th>
-                  <td colspan="3"><input type="text" class="add-product-name reset" name="add-product-name" required /></td>
+                  <td colspan="3"><input type="text" class="add-product-name reset" name="add-product-name" required />
+                  </td>
                 </tr>
                 <tr class="price-area">
                   <th><label for="add-product-price">가격</label></th>
-                  <td colspan="3"><input type="text" name="add-product-price" class="reset" id="add-product-price" min="0" required />
-                  <span>원</span></td>
+                  <td colspan="3"><input type="text" name="add-product-price" class="reset" id="add-product-price"
+                      min="0" required />
+                    <span>원</span>
+                  </td>
                 </tr>
 
                 <!-- 태그 선택 -->
@@ -383,22 +396,22 @@
 
                 <tr>
                   <th>
-                    <input type="radio" id="check21" class="category check" name="category" value="pc" required checked/>
+                    <input type="radio" id="check21" class="category" name="category" value="pc" required checked />
                     <label for="check21" class="category-label">PC</label>
                   </th>
                   <td colspan="3" class="pc-tags add-pc-tags">
-                      <input type="checkbox" id="check1" class="check" name="check" value="mouse" />
-                      <label for="check1" class="taglabel">마우스</label>
-                      <input type="checkbox" id="check2" class="check" name="check" value="keyboard" />
-                      <label for="check2" class="taglabel">키보드</label>
-                      <input type="checkbox" id="check3" class="check" name="check" value="mousepad" />
-                      <label for="check3" class="taglabel">마우스패드</label>
-                      <input type="checkbox" id="check4" class="check" name="check" value="usbhub" />
-                      <label for="check4" class="taglabel">USB허브</label>
-                      <input type="checkbox" id="check5" class="check" name="check" value="monitorstand" />
-                      <label for="check5" class="taglabel">모니터스탠드</label>
-                      <input type="checkbox" id="check6" class="check" name="check" value="cardreader" />
-                      <label for="check6" class="taglabel">카드리더기</label>
+                    <input type="checkbox" id="check1" class="check" name="check" value="mouse" />
+                    <label for="check1" class="taglabel">마우스</label>
+                    <input type="checkbox" id="check2" class="check" name="check" value="keyboard" />
+                    <label for="check2" class="taglabel">키보드</label>
+                    <input type="checkbox" id="check3" class="check" name="check" value="mousepad" />
+                    <label for="check3" class="taglabel">마우스패드</label>
+                    <input type="checkbox" id="check4" class="check" name="check" value="usbhub" />
+                    <label for="check4" class="taglabel">USB허브</label>
+                    <input type="checkbox" id="check5" class="check" name="check" value="monitorstand" />
+                    <label for="check5" class="taglabel">모니터스탠드</label>
+                    <input type="checkbox" id="check6" class="check" name="check" value="cardreader" />
+                    <label for="check6" class="taglabel">카드리더기</label>
                   </td>
                 </tr>
 
@@ -456,37 +469,41 @@
                 <!-- 상품 상세설명 -->
                 <tr class="description-area">
                   <th><label for="description">상품 상세 설명</label></th>
-                  <td colspan="3"><textarea class="add-product-description reset" maxlength=100 placeholder="상세 설명은 100자 이내로 작성해 주세요."
-                    required></textarea></td>
+                  <td colspan="3"><textarea class="add-product-description reset" maxlength=100
+                      placeholder="상세 설명은 100자 이내로 작성해 주세요." required></textarea></td>
                 </tr>
 
                 <!-- 파일 업로드 -->
                 <tr class="file-upload-area add-file-upload-area">
                   <!-- 썸네일 업로드 -->
-                    <th><label for="add-thumbnail"> 상품 썸네일 등록 </label></th>
-                    <td>
-                      <div class="imgBox">
-                        <img id="thumbnail-preview" class="reset" />
-                      </div>
-                      <span>
-                        <strong>jpg, jpeg, webp, png, gif, svg 확장자만</strong> 등록 가능합니다. 파일 크기는 <strong>1MB 이하</strong>여야 합니다.</strong>
-                      </span>
-                      <input type="file" accept="image/jpg, .jpeg, .webp, .png, .gif, .svg" class="add-thumbnail reset thumbnailUploadFile" name="add-thumbnail" id="add-thumbnail" />
-                      <label class="thumbnailUploadBtn" for="add-thumbnail"><i class="fa-solid fa-upload"></i> 업로드</label>
-                      <div class="reset-btn thumbnail-reset">선택 초기화</div>
-                    </td>
+                  <th><label for="add-thumbnail"> 상품 썸네일 등록 </label></th>
+                  <td>
+                    <div class="imgBox">
+                      <img id="thumbnail-preview" class="reset" />
+                    </div>
+                    <span>
+                      <strong>jpg, jpeg, webp, png, gif, svg 확장자만</strong> 등록 가능합니다. 파일 크기는 <strong>1MB 이하</strong>여야
+                      합니다.</strong>
+                    </span>
+                    <input type="file" accept=".jpg, .jpeg, .webp, .png, .gif, .svg"
+                      class="add-thumbnail reset thumbnailUploadFile" name="add-thumbnail" id="add-thumbnail" />
+                    <label class="thumbnailUploadBtn" for="add-thumbnail"><i class="fa-solid fa-upload"></i> 업로드</label>
+                    <div class="reset-btn thumbnail-reset">선택 초기화</div>
+                  </td>
 
                   <!-- 상세사진 업로드 -->
-                    <th><label for="add-detail"> 상품 상세사진 등록 </label></th>
-                    <td>
-                      <div class="imgBox">
-                        <img id="detail-preview" />
-                      </div>
-                      <span><strong>jpg, jpeg, webp, png, gif, svg 확장자만</strong> 등록 가능합니다. 파일 크기는 <strong>4MB 이하</strong>여야 합니다.</span>
-                      <input type="file" accept="image/jpg, .jpeg, .webp, .png, .gif, .svg" class="add-detail reset thumbnailUploadFile" name="add-detail" id="add-detail"/>
-                      <label class="thumbnailUploadBtn" for="add-detail"><i class="fa-solid fa-upload"></i> 업로드</label>
-                      <div class="reset-btn detail-reset">선택 초기화</div>
-                    </td>
+                  <th><label for="add-detail"> 상품 상세사진 등록 </label></th>
+                  <td>
+                    <div class="imgBox">
+                      <img id="detail-preview" />
+                    </div>
+                    <span><strong>jpg, jpeg, webp, png, gif, svg 확장자만</strong> 등록 가능합니다. 파일 크기는 <strong>4MB
+                        이하</strong>여야 합니다.</span>
+                    <input type="file" accept=".jpg, .jpeg, .webp, .png, .gif, .svg"
+                      class="add-detail reset thumbnailUploadFile" name="add-detail" id="add-detail" />
+                    <label class="thumbnailUploadBtn" for="add-detail"><i class="fa-solid fa-upload"></i> 업로드</label>
+                    <div class="reset-btn detail-reset">선택 초기화</div>
+                  </td>
                 </tr>
               </table>
               <!-- form submit 버튼 -->
@@ -504,7 +521,8 @@
           <li>
             <h2>
               <p>전체 거래 내역
-              <span>엑토의 모든 상품 거래 내역을 확인할 수 있습니다.</span></p>
+                <span>엑토의 모든 상품 거래 내역을 확인할 수 있습니다.</span>
+              </p>
               <div class="transac-search-wrapper">
                 <input type="text" class="transac-search-bar" placeholder="제품을 검색하세요">
                 <button class="transac-search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
