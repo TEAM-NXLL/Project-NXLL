@@ -440,7 +440,7 @@ function myShoppingForm(trans, price, cancelList, confirList) {
     <!-- ORDER-LIST -->
     <div class="order-list">
       <div class="inner">
-        <a href="${trans ? `#myorder` : `#myshop`}" class="order-list__item">
+        <a href="#myorder" class="order-list__item">
           <p class="icon order"></p>
           <p>주문 내역</p>
           <p class="price">${trans ?? 0}건</p>
@@ -510,9 +510,9 @@ function myOrderForm(orderList, cancelList, confirList) {
     <div class="tab-menu myorder">
       <div class="inner">
         <ul>
-          <li class="selected"><a href="#myorder">주문 내역 조회 <span>(${orderList})</span></a></li>
-          <li><a href="#myorder/cancel">취소신청 내역 <span>(${cancelList})</span></a></li>
-          <li><a href="#myorder/confir">과거주문(확정) 내역 <span>(${confirList})</span></a></li>
+          <li class="selected"><a href="#myorder">주문 내역 조회 <span>(${orderList ?? 0})</span></a></li>
+          <li><a href="#myorder/cancel">취소신청 내역 <span>(${cancelList ?? 0})</span></a></li>
+          <li><a href="#myorder/confir">과거주문(확정) 내역 <span>(${confirList ?? 0})</span></a></li>
         </ul>
       </div>
     </div>
@@ -584,9 +584,9 @@ function myCancelOrderForm(orderList, cancelList, confirList) {
     <div class="tab-menu myorder">
       <div class="inner">
         <ul>
-          <li><a href="#myorder">주문 내역 조회 <span>(${orderList})</span></a></li>
-          <li class="selected"><a href="#myorder/cancel">취소신청 내역 <span>(${cancelList})</span></a></li>
-          <li><a href="#myorder/confir">과거주문(확정) 내역 <span>(${confirList})</span></a></li>
+          <li><a href="#myorder">주문 내역 조회 <span>(${orderList ?? 0})</span></a></li>
+          <li class="selected"><a href="#myorder/cancel">취소신청 내역 <span>(${cancelList ?? 0})</span></a></li>
+          <li><a href="#myorder/confir">과거주문(확정) 내역 <span>(${confirList ?? 0})</span></a></li>
         </ul>
       </div>
     </div>
@@ -658,9 +658,9 @@ function myConfirOrderForm(orderList, cancelList, confirList) {
     <div class="tab-menu myorder">
       <div class="inner">
         <ul>
-          <li><a href="#myorder">주문 내역 조회 <span>(${orderList})</span></a></li>
-          <li><a href="#myorder/cancel">취소신청 내역 <span>(${cancelList})</span></a></li>
-          <li class="selected"><a href="#myorder/confir">과거주문(확정) 내역 <span>(${confirList})</span></a></li>
+          <li><a href="#myorder">주문 내역 조회 <span>(${orderList ?? 0})</span></a></li>
+          <li><a href="#myorder/cancel">취소신청 내역 <span>(${cancelList ?? 0})</span></a></li>
+          <li class="selected"><a href="#myorder/confir">과거주문(확정) 내역 <span>(${confirList ?? 0})</span></a></li>
         </ul>
       </div>
     </div>

@@ -1,11 +1,22 @@
-import { getTransactions, cancelTransactions, confirmation } from "./getdata.js"
+import { cancelTransactions, confirmation } from "./getdata.js"
 
 // 구매 내역 렌더링
 export async function transLookUp(products) {
+  const transProductEl = document.querySelector('.trans-product')
+  if (!products) {
+    return (
+      transProductEl.innerHTML = /* html */ `
+    <tr class="buy-product-none">
+      <td colspan="7">
+        구매한 상품이 없습니다.
+      </td>
+    </tr>
+    `
+    )
+  }
   products.sort((a, b) => {
     return a.timePaid < b.timePaid ? -1 : a.timePaid > b.timePaid ? 1 : 0
   })
-  const transProductEl = document.querySelector('.trans-product')
   products.forEach(product => {
     const decisionBtn = /* html */ `
     <button data-id=${product.detailId} class="hover-navy cancel-btn">주문 취소</button>
@@ -76,6 +87,17 @@ export function confirOrder() {
 // 취소 내역
 export async function cancelOrderLookUp(products) {
   const transProductEl = document.querySelector('.trans-product')
+  if (!products) {
+    return (
+      transProductEl.innerHTML = /* html */ `
+    <tr class="buy-product-none">
+      <td colspan="7">
+        구매한 상품이 없습니다.
+      </td>
+    </tr>
+    `
+    )
+  }
   const cancels = products.filter(product => product.isCanceled === true)
   cancels.sort((a, b) => {
     return a.timePaid < b.timePaid ? -1 : a.timePaid > b.timePaid ? 1 : 0
@@ -115,6 +137,17 @@ export async function cancelOrderLookUp(products) {
 // 확정 내역
 export async function confirOrderLookUp(products) {
   const transProductEl = document.querySelector('.trans-product')
+  if (!products) {
+    return (
+      transProductEl.innerHTML = /* html */ `
+    <tr class="buy-product-none">
+      <td colspan="7">
+        구매한 상품이 없습니다.
+      </td>
+    </tr>
+    `
+    )
+  }
   const confirs = products.filter(product => product.done === true)
   confirs.sort((a, b) => {
     return a.timePaid < b.timePaid ? -1 : a.timePaid > b.timePaid ? 1 : 0
