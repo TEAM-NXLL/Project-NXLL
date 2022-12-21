@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+
+  <script src="https://kit.fontawesome.com/cd76b4d4dc.js" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+
+  <link rel="stylesheet" href="./scss/main.scss">
+  <script type="module" defer src="./js/main.js"></script>
+  <title>엑토몰 디자인 키보드는 엑토</title>
+</head>
+
+<body>
+  <!-- HEADER -->
+  <header>
+    <!-- top-banner -->
+    <div class="top-banner">
+      <div class="inner">
+        <div class="CS"><a href="#">CS센터 24시간 AS접수</a></div>
+        <ul class="top-nav">
+          <li class="signUpsignIn">
+            <a href="#login" class="login" id="login-btn">로그인</a>
+
+            <a href="#join" class="join" id="join-btn">회원가입
+              <p class="balloon"><span></span>+ 5,000</p>
+            </a>
+          </li>
+          <li>
+            <a class="shipping" href="#"><i class="fa-solid fa-truck-moving"></i>배송조회</a>
+          </li>
+          <li>
+            <a class="community" href="#">커뮤니티</a>
+          </li>
+          <li>
+            <a href="#myshop" class="myShopping"><i class="fa-regular fa-circle-user"></i>마이쇼핑</a>
+          </li>
+          <li>
+            <a class="adminPage" href="./admin/admin.html"><i class="fa-solid fa-gear"></i> 관리자 페이지</a>
+          </li>
+        </ul>
+      </div>
+    </div><!-- top-banner -->
+
+    <!-- logo-area -->
+    <div class="logo-area">
+      <div class="inner">
+        <a href="/" class="logo-area__logo"><img src="./static/images/logo.png" alt="메인 로고"></a>
+        <div class="logo-area__search">
+          <input id="keyword" type="text" title="키워드 검색" />
+          <label for="keyword"><i class="fa-solid fa-magnifying-glass"></i></label>
+        </div>
+      </div>
+    </div><!-- logo-area -->
+
+    <!-- nav-area -->
+    <nav class="nav-area">
+      <div class="inner">
+        <ul class="nav-area__nav">
+          <li>
+            <a href="#new-item">NEW</a>
+          </li>
+          <li>
+            <a href="#discount">홀리데이 특가</a>
+          </li>
+          <li>
+            <a href="#smart">스마트</a>
+            <ul class="nav-area__nav__panel">
+              <div class="inner">
+                <li class="tab-charging">
+                  <a href="#charging">충전기</a>
+                </li>
+                <li class="tab-adapter">
+                  <a href="#adapter">어댑터&케이블</a>
+                </li>
+                <li class="tab-smartholder">
+                  <a href="#smartholder">스마트 거치대</a>
+                </li>
+                <li class="tab-smart-etc">
+                  <a href="#smart-etc">기타 스마트기기</a>
+                </li>
+              </div>
+            </ul>
+          </li>
+          <li>
+            <a href="#notebook">노트북</a>
+            <ul class="nav-area__nav__panel">
+              <div class="inner">
+                <li class="tab-notebookstand">
+                  <a href="#notebookstand">노트북 스탠드</a>
+                </li>
+                <li class="tab-keypad">
+                  <a href="#keypad">노트북 키패드</a>
+                </li>
+                <li class="lock">
+                  <a href="#lock">노트북 잠금장치</a>
+                </li>
+              </div>
+            </ul>
+          </li>
+          <li>
+            <a href="#pc">PC</a>
+            <ul class="nav-area__nav__panel">
+              <div class="inner">
+                <li class="tab-keyboard">
+                  <a href="#keyboard">키보드</a>
+                </li>
+                <li class="tab-mouse">
+                  <a href="#mouse">마우스</a>
+                </li>
+                <li class="tab-mousepad">
+                  <a href="#mousepad">마우스패드</a>
+                </li>
+                <li class="tab-usbhub">
+                  <a href="#usbhub">USB 허브</a>
+                </li>
+                <li class="tab-cardreader">
+                  <a href="#cardreader">카드리더기</a>
+                </li>
+                <li class="tab-monitorstand">
+                  <a href="#monitorstand">모니터 스탠드</a>
+                </li>
+              </div>
+            </ul>
+          </li>
+          <li>
+            <a href="#audio">음향</a>
+            <ul class="nav-area__nav__panel">
+              <div class="inner">
+                <li class="tab-ear-head">
+                  <a href="#ear-head">이어폰&헤드폰</a>
+                </li>
+                <li class="tab-kids">
+                  <a href="#kids">키즈헤드폰</a>
+                </li>
+                <li class="tab-speaker">
+                  <a href="#speaker">스피커</a>
+                </li>
+                <li class="tab-mic">
+                  <a href="#mic">마이크</a>
+                </li>
+                <li class="tab-audiocable">
+                  <a href="#audiocable">음향케이블&기타</a>
+                </li>
+              </div>
+            </ul>
+          </li>
+          <li>
+            <a href="https://www.youtube.com/watch?v=sODFrdNn3JA&t=13s" target="_blank"><i class="fa-brands fa-youtube"
+                style="color: red;"></i>레트로키보드 영상</a>
+          </li>
+        </ul>
+
+        <ul class="nav-area__buttons">
+          <li class="nav-area-btn-li">
+            <button class="shopping-btn">
+              <span class="item-count">0</span>
+            </button>
+            <div class="shopping-box">
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav><!-- nav-area -->
+  </header><!-- HEADER -->
+
+  <!-- MAIN -->
+  <main>
+  </main>
+  <!-- MAIN -->
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="service">
+      <div class="inner">
+        <div class="cs-center">
+          <span class="cs-title">CS CENTER</span>
+          <span class="cs-call">080-123-4567</span>
+          <span class="cs-time">월요일 - 금요일 10:00 - 16:00 <br> 점심시간 12:00 - 13:00</span>
+          <span class="cs-delivery">당일 선발송 다음날 도착 !</span>
+          <button type="button" class="cs-as">가장 빠른 온라인 AS 접수</button>
+        </div>
+        <div class="bank-info">
+          <span class="bank-title">BANK INFO</span>
+          <div class="bank-service">
+            <button class="service-btn">
+              <i class="fa-brands fa-cc-visa"></i>
+              무이자할부</button>
+            <button class="service-btn">
+              <i class="fa-solid fa-bars"></i>
+              미확인 입금</button>
+            <button class="service-btn">뱅킹</button>
+          </div>
+          <div class="bank-des">
+            <div class="bank-des-detail1">
+              <span class="bank-name">국민은행</span>
+              <span class="bank-account">012345-01-678900</span>
+            </div>
+            <div class="bank-des-detail2">
+              <span class="bank-owner">예금주</span>
+              <span class="bank-owner-name">(주)엑토</span>
+            </div>
+          </div>
+        </div>
+        <div class="delivery-return">
+          <span class="delivery-title">DELIVERY / RETURN</span>
+          <div class="delivery-menu">
+            <span class="delivery active">배송 / 택배</span>
+            <span class="return">교환 / 반품</span>
+          </div>
+          <div class="delivery-des">
+            <span class="delivery-des-detail">택배 : CJ 대한통운 : 1588-1255 <br> 월 - 금 08:00 - 18:00 토 - 13:00 / 공휴일
+              휴무</span>
+            <button>
+              <i class="fa-solid fa-truck"></i>
+              CJ 대한통운 택배 조회</button>
+          </div>
+          <div class="return-des">
+            <span class="return-des-detail">서울특별시 강남구 역삼동 826-21</span>
+            <div class="return-btns">
+              <button>
+                <i class="fa-solid fa-pen"></i>
+                상품문의</button>
+              <button>
+                <i class="fa-regular fa-circle-check"></i>
+                자주 묻는 질문들</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="company">
+      <div class="inner">
+        <div class="logo"></div>
+        <ul class="company-des1">
+          <li>회사소개</li>
+          <li>이용안내</li>
+          <li>이용약관</li>
+          <li>개인정보처리방침</li>
+          <li>CS 센터</li>
+        </ul>
+        <ul class="company-des2">
+          <li>(주)엑토</li>
+          <li>엑토몰</li>
+          <li>대표이사: NXLL</li>
+          <li>사업자등록번호: 606-12-34567</li>
+          <li>nxll@actto.com</li>
+        </ul>
+        <ul class="company-des3">
+          <li>서울특별시 강남구 역삼동 826-21 미왕빌딩</li>
+          <li>고객센터: 080-123-4567</li>
+          <li>팩스: 02-123-4567</li>
+        </ul>
+        <ul class="company-des4">
+          <li>통신판매업신고: 2022 서울강남구 00001호</li>
+          <li>서비스 가입 사실 확인</li>
+          <li>개인정보보호책임자: NXLL</li>
+        </ul>
+        <img src="./static/images/footerPayIcon.png" alt="">
+      </div>
+    </div>
+    <div class="sns-banner">
+      <div class="inner">
+        <div class="sns-item">
+          <i class="fa-brands fa-facebook-f"></i>
+          <i class="fa-brands fa-instagram"></i>
+        </div>
+        <div class="copy-right">
+          <p>상품/판매자/쇼핑 정보, 콘텐츠, UI 등에 대한 무단 복제, 전송, 배포, 스크래핑 등의 행위는 저작권법, <span>콘텐츠산업 진흥법</span>으로 금지됩니다. </p>
+          <p>COPYRIGHT(C) 2019 <span>엑토몰</span> LTD. ALL RIGHTS RESEVED. </p>
+        </div>
+        <img src="./static/images/kg-inicis.png" alt="결제 인증 마크">
+      </div>
+    </div>
+  </footer>
+  <!-- FOOTER -->
+</body>
+
+</html>

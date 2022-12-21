@@ -1,0 +1,135 @@
+// // 모든 상품 조회
+.all-products {
+
+  table {
+    text-align: center;
+  }
+
+  .product-item {
+
+    .product-wrapper{
+
+      &.delete {
+        transform: translateX(10rem);
+        opacity: 0;
+      }
+  
+      .text-wrapper {
+
+        .edit-delete-btn {  
+          
+          .delete-checkbox {
+            transform: scale(1.4);
+            margin-bottom: 12px;
+          }
+        }
+      }
+    }
+  }  
+}
+
+.editPopup {
+  position: fixed;
+  top: calc(50% + 70px);
+  left: calc(50% + 350px);
+  transform: translate(calc(-50% - 175px), calc(-50% - 35px));
+  background-color: #fff;
+  width: 800px;
+  max-height: 90vh;
+  z-index: 1;
+  display: none;
+  overflow-y: auto;
+  box-shadow: 5px 5px 7px rgba(0, 0, 0, 0.1);
+
+  &::-webkit-scrollbar {
+    width: 15px;
+  }
+  &::-webkit-scrollbar-thumb{
+    background-color: #1558b6;
+    border-radius: 10px;
+  }
+  &::-webkit-scrollbar-track {
+    background-color:aliceblue;
+  }
+
+  &.show {
+    display: block;
+  }
+}
+
+
+.edit-btn {
+  background-color: #b9c7ee;
+  width: 50px;
+  height: 25px;
+  border-radius: 15px;
+  margin-bottom: 10px;
+
+  &:hover {
+    background-color: #53619d;
+    color: #fff;
+    font-weight: normal;
+  }
+}
+
+.del-btn {
+  background-color: #ef3737;
+  color: #fff;
+  width: 50px;
+  height: 25px;
+  border-radius: 15px;
+
+  &:hover {
+    background-color: red;
+    color: #fff;
+    font-weight: normal;
+  }
+}
+
+.toast-box {
+  position: fixed;
+  z-index: 3;
+  top: calc(50% + 70px);
+  left: calc(50% + 350px);
+  transform: translate(calc(-50% - 175px), calc(-50% - 35px));
+  background-color: #9baee0;
+  border-radius: 20px;
+  box-shadow: 8px 8px 2px 1px rgba(57, 57, 102, 0.2);
+
+  .toast {
+    color: whitesmoke;
+    font-size: 20px;
+    line-height: 120px;
+    text-align: center;
+    width: 380px;
+    height: 120px;
+  }
+
+  .confirm-area{
+    background-color: blanchedalmond;
+    margin-top: -20px;
+    height: 40px;
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+
+    .confirm {
+      font-size: 18px;
+      width: 120px;
+      background-color: blanchedalmond;
+      border-radius: 20px;
+      display: block;
+    }
+    
+    .cancel {
+      font-size: 18px;
+      width: 120px;
+    }
+  }
+}
+.close-btn {
+  font-size: 20px;
+  position: absolute;
+  top: 20px;
+  right: 50px;
+}

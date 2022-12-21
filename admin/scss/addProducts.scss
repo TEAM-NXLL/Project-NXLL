@@ -1,0 +1,267 @@
+// ADMIN PAGE - ADD ITEMS / EDIT ITEMS
+
+.editPopup, .addProductPanel {
+  padding: 70px 50px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  table {  
+    tr{
+      th {
+        background-color:var(--table-th-background);
+        border-bottom: 1px solid #eaeaea;
+        text-align: center;
+        vertical-align: middle;
+        font-weight: bold;
+      }
+  
+      td {
+        border-bottom: 1px solid var(--border-color);
+        text-align: left;
+        height: 50px;
+        padding: 10px;
+  
+        &:nth-child(2n) {
+          background-color: inherit;
+        }
+  
+        input[type="text"] {
+          border: 1px solid #dfdddd;
+          padding: 5px 10px;
+          width: 100%;
+          box-sizing: border-box;
+  
+          &#edit-product-price, &#add-product-price {
+            width: 50%;
+            background-color: #fff;
+          }
+  
+          &:focus {
+            border-color: #cbc8c8;
+          }
+        }
+  
+        textarea {
+          height: 100px;
+          width: 100%;
+          border: 1px solid #dfdddd;
+          resize: none;
+          outline: none;
+          padding: 10px;
+          box-sizing: border-box;
+  
+          &:focus {
+            border-color: #cbc8c8;
+          }
+        }
+  
+        .imgBox {
+          width: 100%;
+          height: 150px;
+          max-height: 200px;
+          margin-bottom: 10px;
+          overflow: hidden;
+          position: relative;
+          border: 1px solid #dfdddd;
+          background: url("../../static/images/emptyThumbnail.jpg") no-repeat center;
+          background-size: cover;
+  
+          img {
+            position:absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+          }
+        }
+      }
+  
+      &:last-child {
+        border-bottom: 0;
+        th {
+          border-bottom: 0;
+          position: relative;
+  
+        }
+        
+        td {
+          background-color: #fff;
+          label {
+            margin-bottom: 20px;
+          }
+          span {
+            display: block;
+            padding-top: 20px;
+            box-sizing: border-box;
+            bottom: 0;
+            font-weight: normal;
+            line-height: 1.4;
+            padding: 5px;
+  
+            strong {
+              font-weight: bold;
+              color: red;
+            }
+          }
+  
+          .thumbnailUploadFile {
+            position:absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0,0,0,0);
+            border: 0;
+          }
+  
+          .thumbnailUploadBtn {
+            display: inline-block;
+            // padding:.5em .7em;
+            color: #999;
+            background-color: var(--signature-color);
+            cursor: pointer;
+            line-height: 30px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            color: #fff;
+            text-align: center;
+            width: 100%;
+  
+            &:hover {
+              background-color: #0d225c;
+            }
+          }
+  
+          .reset-btn {
+            background-color: #999;
+            text-align: center;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+  
+            &:hover {
+              background-color: #888;
+            }
+          }
+        }
+      }
+    }
+    input[type="checkbox"],
+    input[type="radio"] {
+      width: 20px;
+      scale: 1.4;
+    }
+  }
+}
+
+.addProductPanel {
+  width: 100%;
+  .table-area {
+    width: 800px;
+    margin: 0 auto
+  }
+}
+
+.soldout-area {
+  .filter {
+    display: none;
+  }
+}
+
+
+
+.edit-button-area, .add-button-area {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+  .edit-btn, .add-btn {
+    border-radius: 0;
+    margin-bottom: 0;
+    background-color: inherit;
+    width: auto;
+    height:auto;
+    border-radius:5px;
+
+    &:hover {
+      background-color: var(--signature-color);
+    }
+  }
+}
+
+// 매진 스위치
+.switch {
+  position: absolute;
+  top: 85px;
+  right: -5px;
+  transform: translate(-50%, -50%);
+  width: 110px;
+  height: 30px;
+  text-align: center;
+  background: #00bc9c;
+  transition: all 0.2s ease;
+  border-radius: 10px;
+}
+.switch span {
+  position: absolute;
+  width: 20px;
+  height: 4px;
+  top: 50%;
+  left: 50%;
+  margin: -2px 0px 0px -4px;
+  background: #fff;
+  display: block;
+  transform: rotate(-45deg);
+  transition: all 0.2s ease;
+  border-radius: 2px;
+}
+.switch span:after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 4px;
+  height: 10px;
+  margin-top: -8px;
+  background: #fff;
+  transition: all 0.2s ease;
+  border-radius: 2px;
+}
+.switch label {
+  cursor: pointer;
+  color: rgba(0,0,0,0.2);
+  width: 40px;
+  line-height: 30px;
+  vertical-align: middle;
+  transition: all 0.2s ease;
+  font-size: 13px;
+  font-weight: bold;
+}
+label[for=sell] {
+  position: absolute;
+  left: 5px;
+}
+label[for=soldout] {
+  position: absolute;
+  right: 5px;
+}
+#soldout:checked ~ .switch {
+  background: #ff3b30;
+}
+#soldout:checked ~ .switch span {
+  background: #fff;
+  margin-left: -8px;
+}
+#soldout:checked ~ .switch span:after {
+  background: #fff;
+  height: 20px;
+  margin-top: -8px;
+  margin-left: 8px;
+}
+#sell:checked ~ .switch label[for=sell] {
+  color: #fff;
+}
+#soldout:checked ~ .switch label[for=soldout] {
+  color: #fff;
+}
+
+.filter {
+  background-color: red;
+}

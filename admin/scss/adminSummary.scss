@@ -1,0 +1,74 @@
+$shadow: .3rem .3rem .6rem rgba(0, 0, 0, 0.3), 
+-.2rem -.2rem .5rem rgba(255, 255, 255, 0.1);
+
+.admin-summary {
+  display: flex;
+  flex-direction: column;
+  padding: 50px 20px;
+  box-sizing: border-box;
+  background-color: var(--signature-color);
+
+  > div {
+    box-shadow: $shadow;
+    margin-bottom: 30px;
+    border-radius: 1rem;
+    min-height: 201px;
+
+    >div {
+      color: #fff;
+      padding: 20px 10% 30px;
+
+      &.summary-bold {
+        font-weight: 600;
+        color: #fff;
+        width: 80%;
+        margin: 0 auto;
+        border-bottom: 1px solid #fff;
+        display: flex;
+        align-items: center;
+        padding: 30px 0 20px;
+
+      i {
+        font-size: 20px;
+        margin-right: 10px;
+      }
+      }
+
+      &.statusList {
+        .status-el {
+          display: flex;
+          align-items: center;
+          margin-bottom: 10px;
+          font-size: 14px;
+
+          &:last-child {
+            margin-bottom:0;
+          }
+
+          span {
+            &:first-child {
+              width: 40%;
+            }
+
+            &:nth-child(2) {
+              width: 45%;
+              text-align: right;
+            }
+
+            &:last-child {
+              width: 15%;
+              text-align: right;
+            }
+          }
+
+
+          .hilight {
+            color: #fff;
+            font-weight: bold;
+            font-size: 20px;
+          }
+        }
+      }
+    }
+  }
+}
