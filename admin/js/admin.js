@@ -3,8 +3,9 @@ import { renderAlltransacs } from './renderAlltransacs.js';
 import { deleteItem } from './delete.js';
 import { renderAdminSummary } from './adminSummary';
 import { addItem } from './addProduct.js';
-import { viewAllProduct, viewAllTransactions } from './requests.js';
+import { viewAllProduct, viewAllTransactions, adminData } from './requests.js';
 import { transacSearch } from './transacSearch.js';
+import {stateLogin} from '../../js/getdata.js'
 
 (async () => {
   const allTransac = await viewAllTransactions();
@@ -15,6 +16,25 @@ import { transacSearch } from './transacSearch.js';
   transacSearch(allTransac);
   renderAlltransacs(allTransac);
 })();
+
+// header
+async function welcomeAdmin() {
+  const authLogin = await stateLogin(localStorage.accessToken)
+  console.log(authLogin)
+  const welcomeAdmin = document.querySelector('.adminHeader')
+  const abc = /* HTML */`
+    <li>
+      <p>Welcome, Admin <strong>${authLogin.displayName}</strong></p>
+    </li>
+    <li class="logOutBtn">
+      <a href="#">로그아웃<i class="fa-solid fa-right-from-bracket"></i></a>
+    </li>
+  ` 
+
+  welcomeAdmin.innerHTML = abc
+}
+
+welcomeAdmin()
 
 
 // GNB 탭
