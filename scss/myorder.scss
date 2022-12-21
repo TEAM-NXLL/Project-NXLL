@@ -1,0 +1,229 @@
+// myorder
+.title-box[scope^="order"] {
+  position: relative;
+  padding: 5px 0;
+  margin: 0 0 13px 0;
+  width: 100%;
+  border-bottom: 3px solid #444;
+
+  .title-box__text {
+    position: relative;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 20px;
+  }
+
+  .title-box__subtext {
+    padding: 0 0 0 9px;
+    font-size: 11px;
+    margin-left: 9px;
+    color: #999;
+    position: relative;
+    top: -1px;
+
+    &::before {
+      content: '';
+      position: absolute;
+      width: 1px;
+      height: 8px;
+      left: -2px;
+      bottom: 2px;
+      background: #444;
+    }
+  }
+}
+
+.tab-menu.myorder {
+  ul {
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+  }
+
+  li {
+    position: relative;
+    display: table-cell;
+    border: 1px solid transparent;
+    border-top: 1px solid #eaeaea;
+    border-bottom: 1px solid #444;
+    border-left: 1px solid #eaeaea;
+    color: #999;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    cursor: pointer;
+
+    &:first-child {
+      border-left: 1px solid transparent;
+    }
+
+    &.selected {
+      border: 1px solid #444;
+      border-bottom: 1px solid transparent;
+      font-weight: bold;
+      color: #333;
+    }
+
+    a {
+      display: block;
+      text-align: center;
+      font-size: 15px;
+      line-height: 58px;
+    }
+  }
+}
+
+.information.myorder {
+  margin-top: 20px;
+
+  .thumbnail {
+    width: 100%;
+
+    img {
+      width: 30px;
+    }
+  }
+
+  .description {
+    flex-wrap: wrap;
+    text-align: left;
+    padding: 25px 25px 30px;
+    width: 100%;
+    border: 1px solid #f0f0f0;
+
+    &__help {
+      p {
+        position: relative;
+        line-height: 21px;
+        padding: 0 0 0 25px;
+
+        &::before {
+          content: '-';
+          position: absolute;
+          width: 14px;
+          height: 14px;
+          line-height: 14px;
+          background: #444;
+          color: #fff;
+          left: 0;
+          top: 3px;
+          font-size: 9px;
+          text-align: center;
+          font-weight: bold;
+          border-radius: 2px;
+        }
+      }
+    }
+  }
+
+  .title-box[scope^="totals"] {
+    border-bottom: none;
+  }
+}
+
+.myorder-list {
+  padding: 50px 0 150px 0;
+
+  .title-box[scope^=totals] .title-box__text::before {
+    display: none;
+  }
+
+  table {
+    margin: 10px 0 0;
+    border: 1px solid #f0f0f0;
+    line-height: 1.5em;
+    table-layout: fixed;
+    // border-collapse: separate;
+
+    caption {
+      display: none;
+    }
+
+    th {
+      padding: 11px 0 10px;
+      border-bottom: 1px solid #f0f0f0;
+      vertical-align: middle;
+      font-weight: normal;
+      color: #444;
+      background: #f9f9f9;
+      word-break: break-all;
+      word-wrap: break-word;
+      vertical-align: middle;
+    }
+
+    td {
+      padding: 8px 10px 7px;
+      text-align: center;
+      word-break: break-all;
+      word-wrap: break-word;
+      border-top: 1px solid #f0f0f0;
+      vertical-align: middle;
+
+      &.date {
+        p {
+          font-weight: bold;
+        }
+
+        a {
+          display: block;
+          display: none;
+          background: transparent;
+          font-size: 11px;
+          line-height: 21px;
+          border: 1px solid #053271;
+          letter-spacing: -0.03em;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
+          margin-top: -1px;
+          padding: 0 6px;
+
+          &:hover {
+            background: #444;
+            color: #fff;
+          }
+        }
+
+        .order-number {
+          display: block;
+          background: linear-gradient(to bottom, var(--signature-color) 0%, var(--signature-color) 100%);
+          border: 1px solid var(--signature-color);
+          border-bottom-color: var(--signature-color);
+          box-shadow: 0 0 2px rgb(0 0 0 / 20%);
+          text-shadow: 0 0 2px rgb(0 0 0 / 20%);
+          color: #eaeaea;
+
+          &:hover {
+            color: #fff;
+            background: linear-gradient(to bottom, #053271 0%, #053271 100%);
+          }
+        }
+      }
+
+      &.product {
+        text-align: left;
+        .name {
+          font-weight: bold;
+        }
+      }
+
+      &.state {
+        p {
+          font-weight: bold;
+          color: #ff6600;
+        }
+      }
+      &.decision {
+        button {
+          width: 120px;
+          height: 50px;
+        }
+      }
+    }
+    .buy-product-none {
+      height: 200px;
+      vertical-align: center;
+    }
+  }
+}
