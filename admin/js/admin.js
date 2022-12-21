@@ -10,11 +10,12 @@ import { transacSearch } from './transacSearch.js';
   const allTransac = await viewAllTransactions();
   const allProduct = await viewAllProduct();
 
-  await renderAdminSummary(allTransac, allProduct);
-  await renderAllProduct( allTransac, allProduct);
+  renderAdminSummary(allTransac, allProduct);
+  renderAllProduct(allProduct);
   transacSearch(allTransac);
-  await renderAlltransacs(allTransac);
+  renderAlltransacs(allTransac);
 })();
+
 
 // GNB 탭
 const gnb = document.querySelector('.gnb')
