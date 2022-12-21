@@ -3,7 +3,7 @@ const returnEl = document.querySelector('.return')
 const deliveryDes = document.querySelector('.delivery-des')
 const returnDes = document.querySelector('.return-des')
 
-
+// 카테고리에 호버
 function mouseenter() {
   deliveryEl.addEventListener('mouseenter', () => {
     deliveryEl.classList.add('active')
@@ -17,6 +17,7 @@ function mouseenter() {
   })
 }
 
+// 카테고리에서 마우스 아웃
 function mouseleave() {
   deliveryEl.addEventListener('mouseleave', () => {
     deliveryEl.classList.remove('active')

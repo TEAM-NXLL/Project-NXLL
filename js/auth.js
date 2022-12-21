@@ -78,7 +78,6 @@ export async function adminLogin(accessToken) {
     const authLogin = await stateLogin(accessToken)
     const toAdminPageEl = document.querySelector('.adminPage')
     if (authLogin.email ? authLogin.email.includes('admin') : false) {
-      // toAdminPageEl.add()
       toAdminPageEl.href = './admin/admin.html'
     } else {
       toAdminPageEl.closest('li').remove()

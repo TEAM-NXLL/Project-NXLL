@@ -3,6 +3,7 @@ import { cancelTransactions, confirmation } from "./getdata.js"
 // 구매 내역 렌더링
 export async function transLookUp(products) {
   const transProductEl = document.querySelector('.trans-product')
+  // 구매 내역이 없다면
   if (!products || !products.length) {
     return (
       transProductEl.innerHTML = /* html */ `
@@ -89,6 +90,7 @@ export function confirOrder() {
 // 취소 내역
 export async function cancelOrderLookUp(products) {
   const transProductEl = document.querySelector('.trans-product')
+  // 취소 내역이 없다면
   if (!products || !products.length) {
     return (
       transProductEl.innerHTML = /* html */ `
@@ -138,6 +140,7 @@ export async function cancelOrderLookUp(products) {
 // 확정 내역
 export async function confirOrderLookUp(products) {
   const transProductEl = document.querySelector('.trans-product')
+  // 확정 내역이 없다면
   if (!products || !products.length) {
     return (
       transProductEl.innerHTML = /* html */ `
