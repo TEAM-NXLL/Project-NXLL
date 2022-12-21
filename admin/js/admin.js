@@ -7,13 +7,12 @@ import { viewAllProduct, viewAllTransactions } from './requests.js';
 import { transacSearch } from './transacSearch.js';
 
 (async () => {
-  const allTransac = await viewAllTransactions();
   const allProduct = await viewAllProduct();
-
-  renderAdminSummary(allTransac, allProduct);
   renderAllProduct(allProduct);
-  transacSearch(allTransac);
+  const allTransac = await viewAllTransactions();
+  renderAdminSummary(allTransac, allProduct);
   renderAlltransacs(allTransac);
+  transacSearch(allTransac);
 })();
 
 

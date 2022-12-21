@@ -141,20 +141,19 @@ img.require {
           th {
             color: var(--text-color);
             font-weight: bold;
-            padding: 20px 10px;
+            padding: 20px 0;
             text-align: center;
             font-size: 14px;
             vertical-align: middle;
             overflow: hidden;
             text-overflow: ellipsis;
 
-
             button {
               color: var(--text-color);
               font-weight: normal;
               border-radius: 10px;
               padding: 10px;
-              font-size: 15px;
+              font-size: 15px; 
             }
           }
         }
