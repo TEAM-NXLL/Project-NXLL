@@ -73,6 +73,11 @@ header {
                 font-size: 12px;
                 animation: balloon 1.6s linear infinite;
                 font-weight: normal;
+                display: block;
+
+                &.remove{
+                  display: none;
+                }
 
                 @keyframes balloon {
                   0% {

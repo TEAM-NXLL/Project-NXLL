@@ -25,20 +25,24 @@ function startTop() {
 let prevScrollTop = 0;
 document.addEventListener('scroll', () => {
   const nav = document.querySelector('.nav-area')
-  const ballon = document.querySelector('.balloon')
+  const signUpsignIn = document.querySelector('.signUpsignIn')
+  const joinBtn = signUpsignIn.querySelector('.join')
   let nextScrollTop = window.scrollY;
 
   if(nextScrollTop > prevScrollTop) {
-    if(nextScrollTop > 41) {
-      ballon.style.display="none"
-    }
     if(nextScrollTop > 120) {
       nav.classList.add('scroll')
+      if(joinBtn) {
+        joinBtn.children[0].classList.add('remove')
+      }
     } 
-  } else if(nextScrollTop < 20) {
-    ballon.style.display="block"
-  } else if (nextScrollTop < 100) {
+  } else if (nextScrollTop < prevScrollTop) {
+    if(nextScrollTop < 100) {
       nav.classList.remove('scroll')
+      if(joinBtn) {
+        joinBtn.children[0].classList.remove('remove')
+      }
+    }
   }
 
   prevScrollTop = nextScrollTop;
@@ -359,7 +363,7 @@ async function renderUserInfo() {
   editUserInfo()
   addAbleAccountList()
   addNewAccount()
-  // choiceBank()
+  choiceBank()
   cancelBank()
 }
 
@@ -401,9 +405,9 @@ router();
     const res = await stateLogin(localStorage.accessToken);
     res.displayName ? completeLogin() : window.localStorage.clear();
   } else {
-    toAdminPageEl.remove()
+    toAdminPageEl.closest('li').remove()
     toAdminPageEl.href = '#'
   }
 })();
 
-export { loginRender, joinRender, renderMyShop, renderMyOrder, renderMain, renderUserInfo, renderDetail, renderPayment, renderMyCancelOrder, renderMyConfirOrder }
+export {loginRender, joinRender, renderMyShop, renderMyOrder, renderMain, renderUserInfo, renderDetail, renderPayment, renderMyCancelOrder, renderMyConfirOrder}
