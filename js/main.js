@@ -28,7 +28,7 @@ document.addEventListener('scroll', () => {
   const signUpsignIn = document.querySelector('.signUpsignIn')
   const joinBtn = signUpsignIn.querySelector('.join')
   let nextScrollTop = window.scrollY;
-  
+
   if(nextScrollTop > prevScrollTop) {
     if(nextScrollTop > 120) {
       nav.classList.add('scroll')
@@ -385,7 +385,7 @@ async function renderUserInfo() {
   editUserInfo()
   addAbleAccountList()
   addNewAccount()
-  choiceBank()
+  // choiceBank()
   cancelBank()
 }
 
