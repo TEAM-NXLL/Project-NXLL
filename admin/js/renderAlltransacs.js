@@ -71,34 +71,32 @@ export async function renderAlltransacs(transacs) {
 
        // 버튼 이벤트 리스너 추가
       transac.querySelector('.isCanceled-btn').addEventListener('click', (event) => {
-        console.log(event.path);
         const product_id = event.path[3].querySelector('.transacId').innerText;
         transactionStatus(product_id, true, false);
-        renderAdminSummary()
         setTimeout(() => {
           transac.querySelector('.transac-status').innerHTML = /*html*/ `
             <div class = "isCanceled">거래 취소</div>`
           }, 700)
-        const TotalIncome = document.querySelector(".total-income-num")
-        const newTotalIncome = parseInt(TotalIncome.innerText) + parseInt(event.path[3].querySelector('.price').innerText) 
-        TotalIncome.innerText = newTotalIncome.toLocaleString()
+        const cancledOrder = document.querySelector(".purchase-cancled-num")
+        cancledOrder.innerText = (parseInt(cancledOrder.textContent) + 1).toLocaleString()
       });
 
       transac.querySelector('.done-btn').addEventListener('click', (event) => {
         const product_id = event.path[3].querySelector('.transacId').innerText;
         transactionStatus(product_id, false, true);
-        renderAdminSummary()
         setTimeout(() => {
           transac.querySelector('.transac-status').innerHTML = /*html*/ `
             <div class = "done">거래 완료</div>`
           }, 700)
-        const TotalIncome = document.querySelector(".total-income-num")
-        const newTotalIncome = parseInt(TotalIncome.innerText) + parseInt(event.path[3].querySelector('.price').innerText) 
-        TotalIncome.innerText = newTotalIncome.toLocaleString()
+        const totalIncome = document.querySelector(".total-income-num")
+        const confirmedPrice = parseInt(event.path[3].querySelector('.price').innerText.slice(0,6).replaceAll(',',''))
+        const newTotalIncome = parseInt(totalIncome.innerText.replaceAll(',','')) + confirmedPrice
+        totalIncome.innerText = newTotalIncome.toLocaleString()
+        const confirmedOrder = document.querySelector(".purchase-confirmed-num")
+        confirmedOrder.innerText = (parseInt(confirmedOrder.textContent) + 1).toLocaleString()
       });
     }
 
-    const productCont = document.querySelector('.all-transac-container');
     const allTransacs = document.querySelector('.allTransacs')
     allTransacs.append(transac);
   });

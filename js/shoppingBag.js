@@ -1,4 +1,4 @@
-import { totalQuantity,showModal } from './detail.js';
+import { totalQuantity, showModal } from './detail.js';
 import { cartCountCheck } from './main.js';
 
 export function viewShoppingBag() {
@@ -40,7 +40,7 @@ export function viewShoppingBag() {
     </div>
   `
   }
-  
+
   cartList.forEach((item) => {
     const MODAL_ITEM = document.createElement('div');
     MODAL_ITEM.setAttribute('data-id', item.ID)
@@ -92,7 +92,7 @@ export function viewShoppingBag() {
     el.addEventListener('click', ({ target }) => {
       const text = target.closest('div').children[1]
       text.innerHTML = Number(text.textContent) + 1
-      
+
       const productId = target.closest('.quantity').dataset.id
       cartList.forEach((el) => {
         if (el.ID === productId) {

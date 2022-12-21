@@ -52,19 +52,19 @@ export async function addNewAccount() {
 }
 
 // 추가 계좌 은행 이름 눌렀을 때 핸들러
-export async function choiceBank() {
-  const account = document.querySelector('#add-account')
-  const accountNumberEls = document.querySelectorAll('.account-number-input')
-  account.addEventListener('change', (e) => {
-    if (e.target.value !== "004" && e.target.value !== "011") {
-      accountNumberEls[3].readOnly = true
-      accountNumberEls[3].style.backgroundColor = '#D8D8D8'
-    } else {
-      accountNumberEls[3].readOnly = false
-      accountNumberEls[3].style.backgroundColor = '#fff'
-    }
-  })
-}
+// export async function choiceBank() {
+//   const account = document.querySelector('#add-account')
+//   const accountNumberEls = document.querySelectorAll('.account-number-input')
+//   account.addEventListener('change', (e) => {
+//     if (e.target.value !== "004" && e.target.value !== "011") {
+//       accountNumberEls[3].readOnly = true
+//       accountNumberEls[3].style.backgroundColor = '#D8D8D8'
+//     } else {
+//       accountNumberEls[3].readOnly = false
+//       accountNumberEls[3].style.backgroundColor = '#fff'
+//     }
+//   })
+// }
 
 // 보유하고 있는 계좌 리스트
 export function ownAccountList(accounts) {
@@ -94,6 +94,34 @@ export async function addAbleAccountList() {
       addAccountEl.appendChild(createBankEl)
     }
   })
+  addAccountEl.addEventListener('change', () => selectedAccount(ableList))
+  selectedAccount(ableList)
+}
+
+function selectedAccount(ableList) {
+  const addAccountEl = document.querySelector('#add-account')
+  const addAccountNumEl = document.querySelector('.account-number-box')
+  if (addAccountEl.options.length === 0) {
+    addAccountEl.innerHTML = `
+    <option>계좌 등록 완료</option>
+    `
+    addAccountEl.style.color = '#999'
+    return
+  }
+  const optionValue = addAccountEl.options[addAccountEl.selectedIndex].value
+  const bankCheck = ableList.filter(e => e.code === optionValue)[0].digits
+
+  addAccountNumEl.innerHTML = ''
+
+  for (let i = 0; i < bankCheck.length; i += 1) {
+    const blank = document.createElement('input')
+    const hipen = document.createElement('span')
+    hipen.innerHTML = ' - '
+    blank.setAttribute('maxlength', bankCheck[i])
+    blank.setAttribute('onKeyup', `this.value=this.value.replace(/[^0-9]/g, '')`)
+    blank.classList.add('account-number-input')
+    addAccountNumEl.append(blank, hipen)
+  }
 }
 
 // 보유 계좌 금액 조회

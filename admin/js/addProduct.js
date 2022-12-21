@@ -103,21 +103,21 @@ function checkFileSize(target, selector) {
   const thumbnailSize = 1024 ** 2;
   const detailImgSize = 1024 ** 2 * 4;
   if (selector === thumbnailEl && file > thumbnailSize) {
-    document.querySelector('#thumbnail-preview').src = `${altImg}`; // 초기화버튼 핸들러와 내용 같음, 수정필요
+    document.querySelector('#thumbnail-preview').src = `${altImg}`;
     thumbnailEl.value = "";
-    return toast("해당 파일은 제한된 용량을 초과하였습니다.")
+    return toast("해당 파일은 제한된 용량을 초과하였습니다.", "추가")
   } else if (selector === detailImgEl && file > detailImgSize) {
     document.querySelector('#detail-preview').src = `${altImg}`;
     detailImgEl.value = "";
-    return toast("해당 파일은 제한된 용량을 초과하였습니다.")
+    return toast("해당 파일은 제한된 용량을 초과하였습니다.", "추가")
   } else if (selector === editThumbnailEl && file > thumbnailSize) {
     document.querySelector('#edit-thumbnail-preview').src = `${altImg}`;
     editThumbnailEl.value = "";
-    return toast("해당 파일은 제한된 용량을 초과하였습니다.")
+    return toast("해당 파일은 제한된 용량을 초과하였습니다.", "추가")
   }else if (selector === editDetailImgEl && file > detailImgSize) {    
     document.querySelector('#edit-detail-preview').src = `${altImg}`;
     editDetailImgEl.value = "";
-    return toast("해당 파일은 제한된 용량을 초과하였습니다.")
+    return toast("해당 파일은 제한된 용량을 초과하였습니다.", "추가")
   } else {
     previewImg(target, selector);
     imgIncoding(target, selector);
@@ -155,7 +155,6 @@ addFormEl.addEventListener('submit', async (event) => {
 
 // 제품추가 이벤트 핸들러
 export function addItem(event) {
-  console.log(event.target)
   const title = event.target[0].value;
   const price = +(event.target[1].value.replace(/[^0-9]/g, ''));
   const selectedCategory = document.querySelector('input[name="category"]:checked').value;
@@ -169,14 +168,14 @@ export function addItem(event) {
   const thumbnail = thumbnailEl.dataset.id;
   const photo = detailImgEl.dataset.id;
   if (title.length < 2 || price < 1 || description.length < 1) {
-    return toast('내용이 모두 입력되었는지 확인해 주세요');
+    return toast('내용이 모두 입력되었는지 확인해 주세요', "추가");
   }
   try {
+    toast("상품 추가가 완료되었습니다.", "추가")
     createProduct(title, price, description, tags, thumbnail, photo);
-    toast("상품 추가가 완료되었습니다.")
     resetInput()
   } catch (error) {
-    toast(`${error}, 잠시 후 다시 시도해주세요.`)
+    toast(`${error}, 잠시 후 다시 시도해주세요.`, "추가")
   }
 }
 

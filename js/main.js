@@ -7,7 +7,7 @@ import { joinForm, logInForm, myOrderForm, myShoppingForm, mainForm, productList
 import { editUserInfo, userOwnBank, addNewAccount, choiceBank, bankChargeLookUp, ownAccountList, addAbleAccountList, cancelBank } from './userInfo.js';
 import { viewAllProduct } from '../admin/js/requests.js'
 import { payAccountList, payBankLoopUp, buyProducts, lookProducts, cancelProduct, allCheckBox } from './payment.js'
-import { cancelOrder, confirOrder, transLookUp, cancelOrderLookUp, confirOrderLookUp } from './myorder.js'
+import { cancelOrder, confirOrder, transLookUp, cancelOrderLookUp, confirOrderLookUp, transProductEl } from './myorder.js'
 import { buyProduct, cart, shoppingBasket } from './detail.js'
 import { viewShoppingBag } from './shoppingBag.js';
 // import { tagArr } from '../admin/js/editProduct.js';
@@ -26,21 +26,19 @@ let prevScrollTop = 0;
 document.addEventListener('scroll', () => {
   const nav = document.querySelector('.nav-area')
   const ballon = document.querySelector('.balloon')
-  console.log(ballon)
   let nextScrollTop = window.scrollY;
-  console.log(nextScrollTop)
 
-  if(nextScrollTop > prevScrollTop) {
-    if(nextScrollTop > 41) {
-      ballon.style.display="none"
+  if (nextScrollTop > prevScrollTop) {
+    if (nextScrollTop > 41) {
+      ballon.style.display = "none"
     }
-    if(nextScrollTop > 120) {
+    if (nextScrollTop > 120) {
       nav.classList.add('scroll')
-    } 
-  } else if(nextScrollTop < 20) {
-    ballon.style.display="block"
+    }
+  } else if (nextScrollTop < 20) {
+    ballon.style.display = "block"
   } else if (nextScrollTop < 100) {
-      nav.classList.remove('scroll')
+    nav.classList.remove('scroll')
   }
 
   prevScrollTop = nextScrollTop;
@@ -310,42 +308,64 @@ async function listLookUp() {
 async function renderMyShop() {
   try {
     const { totalBalance } = await userOwnBank()
-    const { cancels, confirs } = await listLookUp()
+    const { products, cancels, confirs } = await listLookUp()
     const total = totalBalance ? totalBalance.toLocaleString() : '';
-    const transactions = await getTransactions(localStorage.accessToken)
     startTop()
-    root.innerHTML = myShoppingForm(transactions.length, total, cancels.length, confirs.length);
+    root.innerHTML = myShoppingForm(products.length, total, cancels.length, confirs.length);
   } catch {
     startTop()
-    root.innerHTML = myShoppingForm()
+    const { totalBalance } = await userOwnBank()
+    const total = totalBalance ? totalBalance.toLocaleString() : 0;
+    root.innerHTML = myShoppingForm(0, total)
   }
 }
 
 // myorder 렌더링
 async function renderMyOrder() {
-  const { products, cancels, confirs } = await listLookUp()
-  startTop()
-  root.innerHTML = myOrderForm(products.length, cancels.length, confirs.length);
-  transLookUp(products).then((res) => {
-    cancelOrder()
-    confirOrder()
-  })
+  try {
+    const { products, cancels, confirs } = await listLookUp()
+    startTop()
+    root.innerHTML = myOrderForm(products.length, cancels.length, confirs.length);
+    transLookUp(products).then((res) => {
+      cancelOrder()
+      confirOrder()
+    })
+  } catch {
+    startTop()
+    root.innerHTML = myOrderForm()
+    transLookUp().then((res) => {
+      cancelOrder()
+      confirOrder()
+    })
+  }
 }
 
 // myorder cancel 렌더링
 async function renderMyCancelOrder() {
-  const { products, cancels, confirs } = await listLookUp()
-  startTop()
-  root.innerHTML = myCancelOrderForm(products.length, cancels.length, confirs.length)
-  cancelOrderLookUp(cancels)
+  try {
+    const { products, cancels, confirs } = await listLookUp()
+    startTop()
+    root.innerHTML = myCancelOrderForm(products.length, cancels.length, confirs.length)
+    cancelOrderLookUp(cancels)
+  } catch {
+    startTop()
+    root.innerHTML = myCancelOrderForm()
+    cancelOrderLookUp()
+  }
 }
 
 // myorder confir 렌더링
 async function renderMyConfirOrder() {
-  const { products, cancels, confirs } = await listLookUp()
-  startTop()
-  root.innerHTML = myConfirOrderForm(products.length, cancels.length, confirs.length)
-  confirOrderLookUp(confirs)
+  try {
+    const { products, cancels, confirs } = await listLookUp()
+    startTop()
+    root.innerHTML = myConfirOrderForm(products.length, cancels.length, confirs.length)
+    confirOrderLookUp(confirs)
+  } catch {
+    startTop()
+    root.innerHTML = myConfirOrderForm()
+    confirOrderLookUp()
+  }
 }
 
 // userInfo 렌더링
@@ -361,7 +381,7 @@ async function renderUserInfo() {
   editUserInfo()
   addAbleAccountList()
   addNewAccount()
-  choiceBank()
+  // choiceBank()
   cancelBank()
 }
 
@@ -408,4 +428,4 @@ router();
   }
 })();
 
-export {loginRender, joinRender, renderMyShop, renderMyOrder, renderMain, renderUserInfo, renderDetail, renderPayment, renderMyCancelOrder, renderMyConfirOrder}
+export { loginRender, joinRender, renderMyShop, renderMyOrder, renderMain, renderUserInfo, renderDetail, renderPayment, renderMyCancelOrder, renderMyConfirOrder }

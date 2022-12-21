@@ -1,12 +1,13 @@
 import { cartCountCheck } from "./main.js"
 import { viewShoppingBag } from "./shoppingBag.js"
 
+const accessToken = localStorage.accessToken
+
 export function buyProduct(product) {
   const buyBtn = document.querySelector('.buy-btn')
   const selling = product.isSoldOut === true ? false : true
   buyBtn.addEventListener('click', () => {
     cart(product)
-    const accessToken = localStorage.accessToken
     if (accessToken && selling) location.hash = '#payment'
     else if (accessToken) popMessage()
     else location.hash = '#login'
@@ -65,6 +66,12 @@ export function shoppingBasket(product) {
     const scrollH = nameEl.getBoundingClientRect().top - topBanner.offsetHeight
     scrollTo({ left: 0, top: window.pageYOffset + scrollH, behavior: 'smooth' })
   })
+  // 바로 구매하기 클릭시 연결 페이지
+  const cartBtnBuy = document.querySelector('.cart-buy-btn')
+  cartBtnBuy.addEventListener('click', () => {
+    if (accessToken) location.hash = '#payment'
+    else location.hash = '#login'
+  })
 }
 
 // 품절 상품을 장바구니에 담으면 뜨는 팝업메세지
@@ -97,15 +104,9 @@ export function showModal() {
   shoppingBox.classList.remove('block')
   const cartList = JSON.parse(localStorage.getItem('cart')) || []
   const MODAL = document.querySelector('.modal-payment')
-  const MODAL_BODY = document.querySelector('.modal-payment__body')
+  const MODAL_BODY = MODAL.querySelector('.modal-payment__body')
   MODAL.classList.add('active')
   MODAL_BODY.innerHTML = /* html */ `
-    <!-- <div class="modal-payment__header">
-      <h3>장바구니 담기</h3>
-      <span>물품을 미리 확인하세요</span>
-      <button class="btn-close">닫기 버튼</button>
-    </div> -->
-    <!-- <div class="modal-payment__body"> -->
       <div class="modal-payment__title">
         <em>CART - LIST</em>
         <span class="subtext">내 장바구니 목록입니다.</span>
@@ -114,11 +115,6 @@ export function showModal() {
       <div class="modal-payment__list">
         <!-- item -->
       </div>
-    <!-- </div> -->
-    <!-- <div class="modal-payment__footer">
-      <span>* 쇼핑을 계속하시려면 이 창을 닫아주시길 바랍니다.</span>
-      <a class="cart-btn-buy"><i class="fas fa-check"></i>바로 구매하기</a>
-    </div> -->
   `
 
   const MODAL_LIST = document.querySelector('.modal-payment__list')
@@ -166,7 +162,7 @@ export function showModal() {
   // 장바구나 항목 삭제
   btnDelete.forEach(el => el.addEventListener('click', ({ target }) => {
     const deleteTarget = target.closest('.modal-payment__item')
-    const productId = target.closest('.modal-payment__item').dataset.id
+    const productId = deleteTarget.dataset.id
     let cartList = JSON.parse(localStorage.getItem('cart')) || []
     let cartFilter = []
     cartList.filter(e => {
@@ -184,7 +180,7 @@ export function showModal() {
       const text = e.target.closest('div').children[1]
       text.innerHTML = Number(text.textContent) + 1
 
-      const productId = e.target.closest('.quantity').dataset.id
+      const productId = e.target.closest('.modal-payment__item').dataset.id
       cartList.forEach((el) => {
         if (el.ID === productId) {
           el.QUANTITY += 1
@@ -202,7 +198,8 @@ export function showModal() {
     el.addEventListener('click', (e) => {
       const text = e.target.closest('div').children[1]
       text.innerHTML = Number(text.textContent) - 1
-      const productId = e.target.closest('.quantity').dataset.id
+
+      const productId = e.target.closest('.modal-payment__item').dataset.id
       cartList.forEach(el => {
         if (el.ID === productId) {
           el.QUANTITY = el.QUANTITY === 1 ? 1 : el.QUANTITY - 1
@@ -219,15 +216,6 @@ export function showModal() {
   const btnClose = document.querySelector('.btn-close')
   btnClose.addEventListener('click', () => {
     MODAL.classList.remove('active')
-  })
-
-  // 바로 구매하기 클릭시 연결 페이지
-  const cartBtnBuy = document.querySelector('.cart-buy-btn')
-  cartBtnBuy.addEventListener('click', () => {
-    console.log('작동')
-    const accessToken = localStorage.accessToken
-    if (accessToken) location.hash = '#payment'
-    else location.hash = '#login'
   })
 
   cartCountCheck()

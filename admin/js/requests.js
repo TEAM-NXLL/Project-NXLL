@@ -43,7 +43,7 @@ export async function createProduct(
     console.log(res);
     return res;
   } catch (error) {
-    toast(`${error}, 잠시 후 다시 시도해주세요.`);
+    toast(`${error}, 잠시 후 다시 시도해주세요.`, "추가");
   }
 }
 
@@ -55,7 +55,7 @@ export async function viewAllProduct() {
     // console.log(getResult);
     return getResult;
   } catch (error) {
-    toast(`${error}, 잠시 후 다시 시도해주세요.`);
+    toast(`${error}, 잠시 후 다시 시도해주세요.`, "전체");
   }
 }
 // 모든 제품 조회 결과
@@ -80,7 +80,7 @@ export async function viewAllTransactions() {
     // console.log(getResult);
     return getResult;
   } catch (error) {
-    toast(`${error}, 잠시 후 다시 시도해주세요.`);
+    toast(`${error}, 잠시 후 다시 시도해주세요.`, "거래");
   }
 }
 
@@ -94,7 +94,7 @@ export async function transactionStatus(detailId, isCanceled, done) {
     console.log('거래 내역 상태 관리');
     return res;
   } catch (error) {
-    toast(`${error}, 잠시 후 다시 시도해주세요.`);
+    toast(`${error}, 잠시 후 다시 시도해주세요.`, "거래");
   }
 }
 
@@ -112,10 +112,9 @@ export async function correctProduct(productId, title, price, description, tags,
         isSoldOut,
       }),
     );
-    console.log(res)
     return res;
   } catch (error) {
-    toast(`${error}, 잠시 후 다시 시도해주세요.`);
+    toast(`${error}, 잠시 후 다시 시도해주세요.`, "전체");
   }
 }
 
@@ -127,7 +126,7 @@ export async function delProduct(productId) {
       createRequest('DELETE'),
     );
     return res;
-  } catch (err) {
-    toast(`${error}, 잠시 후 다시 시도해주세요.`);
+  } catch (error) {
+    toast(`${error}, 잠시 후 다시 시도해주세요.`, "전체");
   }
 }

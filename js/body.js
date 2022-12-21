@@ -207,7 +207,7 @@ function productList(data) {
 
 // 카테고리 내부 메뉴
 export function renderInnerCategory(tag, count = 0) {
-  const pcTags = ["pc", "keyboard", "mouse", "mousepad",  "usbhub",  "monitorstand", "cardreader"];
+  const pcTags = ["pc", "keyboard", "mouse", "mousepad", "usbhub", "monitorstand", "cardreader"];
   const notebookTags = ["notebook", "notebookstand", "lock", "keypad"];
   const smartTags = ["smart", "adapter", "charging", "smartholder", "smart-etc"];
   const audioTags = ["audio", "ear-head", "speaker", "mic", "kids", "audiocable"];
@@ -440,13 +440,13 @@ function myShoppingForm(trans, price, cancelList, confirList) {
     <!-- ORDER-LIST -->
     <div class="order-list">
       <div class="inner">
-        <a href="${trans ? `#myorder` : `#myshop`}" class="order-list__item">
+        <a href="#myorder" class="order-list__item">
           <p class="icon order"></p>
           <p>주문 내역</p>
           <p class="price">${trans ?? 0}건</p>
           <i class="line--hover"></i>
         </a>
-        <a href="#" class="order-list__item">
+        <a class="order-list__item">
           <p class="icon mileage"></p>
           <p>계좌 잔액</p>
           <p class="price">${price ?? 0}원</p>
@@ -510,9 +510,9 @@ function myOrderForm(orderList, cancelList, confirList) {
     <div class="tab-menu myorder">
       <div class="inner">
         <ul>
-          <li class="selected"><a href="#myorder">주문 내역 조회 <span>(${orderList})</span></a></li>
-          <li><a href="#myorder/cancel">취소신청 내역 <span>(${cancelList})</span></a></li>
-          <li><a href="#myorder/confir">과거주문(확정) 내역 <span>(${confirList})</span></a></li>
+          <li class="selected"><a href="#myorder">주문 내역 조회 <span>(${orderList ?? 0})</span></a></li>
+          <li><a href="#myorder/cancel">취소신청 내역 <span>(${cancelList ?? 0})</span></a></li>
+          <li><a href="#myorder/confir">과거주문(확정) 내역 <span>(${confirList ?? 0})</span></a></li>
         </ul>
       </div>
     </div>
@@ -584,9 +584,9 @@ function myCancelOrderForm(orderList, cancelList, confirList) {
     <div class="tab-menu myorder">
       <div class="inner">
         <ul>
-          <li><a href="#myorder">주문 내역 조회 <span>(${orderList})</span></a></li>
-          <li class="selected"><a href="#myorder/cancel">취소신청 내역 <span>(${cancelList})</span></a></li>
-          <li><a href="#myorder/confir">과거주문(확정) 내역 <span>(${confirList})</span></a></li>
+          <li><a href="#myorder">주문 내역 조회 <span>(${orderList ?? 0})</span></a></li>
+          <li class="selected"><a href="#myorder/cancel">취소신청 내역 <span>(${cancelList ?? 0})</span></a></li>
+          <li><a href="#myorder/confir">과거주문(확정) 내역 <span>(${confirList ?? 0})</span></a></li>
         </ul>
       </div>
     </div>
@@ -658,9 +658,9 @@ function myConfirOrderForm(orderList, cancelList, confirList) {
     <div class="tab-menu myorder">
       <div class="inner">
         <ul>
-          <li><a href="#myorder">주문 내역 조회 <span>(${orderList})</span></a></li>
-          <li><a href="#myorder/cancel">취소신청 내역 <span>(${cancelList})</span></a></li>
-          <li class="selected"><a href="#myorder/confir">과거주문(확정) 내역 <span>(${confirList})</span></a></li>
+          <li><a href="#myorder">주문 내역 조회 <span>(${orderList ?? 0})</span></a></li>
+          <li><a href="#myorder/cancel">취소신청 내역 <span>(${cancelList ?? 0})</span></a></li>
+          <li class="selected"><a href="#myorder/confir">과거주문(확정) 내역 <span>(${confirList ?? 0})</span></a></li>
         </ul>
       </div>
     </div>
@@ -805,7 +805,7 @@ function userAccountForm(totalBalance) {
             <th>계좌 추가</th>
             <td>
               <select id="add-account">
-                <option value="default">은행 이름</option>
+                <!-- <option value="default">은행 이름</option> -->
               </select>
             </td>
           </tr>
@@ -836,7 +836,7 @@ function detailForm(product) {
   <div class="page-nav">
     <div class="inner">
       <a href="/">HOME</a>
-      <a href="#">${product.tags}</a>
+      <a>details</a>
     </div>
   </div>
   <!-- PRODUCT-DETAIL -->
