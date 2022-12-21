@@ -81,7 +81,7 @@ export async function adminLogin(accessToken) {
       // toAdminPageEl.add()
       toAdminPageEl.href = './admin/admin.html'
     } else {
-      toAdminPageEl.remove()
+      toAdminPageEl.closest('li').remove()
       toAdminPageEl.href = '#'
     }
   } else return
