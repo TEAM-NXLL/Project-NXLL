@@ -58,7 +58,7 @@
   + ID : test1@abc.com ...
   + PW : 12345678
         
-* 프로젝트를 진행하면서 작성한 기록들은 [여기서](https://www.notion.so/quokka-eating-carrots/TEAM-NXLL-63f100662e0949e7ab388868f384967b) 보실 수 있습니다.
+* 프로젝트를 진행하면서 작성한 기록들은 [여기서](https://www.notion.so/quokka-eating-carrots/TEAM-NXLL-63f100662e0949e7ab388868f384967b) 보실 수 있습니다. <img src="https://img.shields.io/badge/Notion-000000?style=flat-round&logo=Notion&logoColor=white"/>
 <br/><br/><br/>
 
 
@@ -70,12 +70,12 @@
 * <b>김상현 :</b> <사용자 페이지> 로그인, 로그아웃, 메인 페이지, 장바구니<br />
 * <b>배현수 :</b> <사용자 페이지> 마이쇼핑 페이지 퍼블리싱, 마이오더 페이지 퍼블리싱, 상세 페이지, 장바구니 <br />
 * <b>오혜성 :</b> <관리자 페이지> 제품, 구매 내역 목록 조회 페이지, 구매 내역 확정, 취소 | <사용자 페이지> 결제 페이지 <br />
-* <b>한혜림 :</b><사용자 페이지> 메인 페이지, 검색 기능 | <관리자 페이지> 디자인 | 총괄 퍼블리싱
+* <b>한혜림 :</b><사용자 페이지> 메인 페이지, 검색 기능 | <관리자 페이지> UI/UX | 총괄 퍼블리싱
 <br/><br/><br/>
 
 
 ## 🪄 기술 스택
-<img src="https://img.shields.io/badge/HTML-E34F26?style=flat-round&logo=HTML5&logoColor=white"/> <img src="https://img.shields.io/badge/SCSS-CC6699?style=flat-round&logo=Sass&logoColor=white"/> <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-round&logo=JavaScript&logoColor=white"/> <img src="https://img.shields.io/badge/Swiper-6332F6?style=flat-round&logo=Swiper&logoColor=white"/> <img src="https://img.shields.io/badge/GitHub-181717?style=flat-round&logo=GitHub&logoColor=white"/> <img src="https://img.shields.io/badge/Notion-000000?style=flat-round&logo=Notion&logoColor=white"/> 
+<img src="https://img.shields.io/badge/HTML-E34F26?style=flat-round&logo=HTML5&logoColor=white"/> <img src="https://img.shields.io/badge/SCSS-CC6699?style=flat-round&logo=Sass&logoColor=white"/> <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-round&logo=JavaScript&logoColor=white"/> <img src="https://img.shields.io/badge/Swiper-6332F6?style=flat-round&logo=Swiper&logoColor=white"/> <img src="https://img.shields.io/badge/GitHub-181717?style=flat-round&logo=GitHub&logoColor=white"/>
 <br/><br/><br/>
 
 
@@ -87,10 +87,10 @@
 ## 🖥️ 주요 구현 기능
 
 ## 인증 - 사용자
-<br/>
-
-### 1. 회원가입
+### 1. 회원 가입
 <img src="https://i.ibb.co/Dp1Rj0n/join.png" alt="join" border="0">
+
++ 회원 가입 api로 가입 정보를 보냄
 
 <br/>
 
@@ -98,15 +98,14 @@
 
 <img src="https://i.ibb.co/pbYrG21/login.png" alt="login" border="0">
 
-+ 관리자 계정으로 로그인하면 관리자페이지로 갈 수 있는 버튼이 활성화 됨
-+ 인증확인 : 24시간이 지나면 자동 로그아웃
-+ 로그아웃
++ 로그인 성공 시 : 토큰 값을 받아서 LocalStorage에 저장
++ 로그인 유지 : 토큰 값이 LocalStorage에서 삭제되지 않는 이상 계속 유지됨
++ 로그아웃 시 LocalStorage AccessToken 삭제되면서 메인 화면으로 전환  
++ 관리자 계정으로 로그인하면 관리자 페이지로 갈 수 있는 버튼이 활성화 됨
 
 <br/><br/><br/>
 
 ## 메인 홈 - 사용자
-<br/>
-
 ### 1.  홈
 
 <img src="https://i.ibb.co/KFYYs38/home.png" alt="home" border="0">
@@ -159,9 +158,6 @@
 <br/><br/><br/>
 
 ## ETC. - 사용자
-
-<br/>
-
 ### 1. 장바구니
 
 <img src="https://i.ibb.co/gTbvZc0/shopping-Bag.png" alt="shopping-Bag" border="0">
@@ -178,11 +174,9 @@
 
 <img src="https://i.ibb.co/F4LRLBM/Untitled-5.png" alt="Untitled-5" border="0">
 
-<br/><br/><br/><br/>
+<br/><br/><br/>
 
 ## 제품 - 관리자
-<br/>
-
 ### 1. 모든 제품 조회
 
 <img src="https://i.ibb.co/bL85vXv/admin-Allproduct.png" alt="admin-Allproduct" border="0">
