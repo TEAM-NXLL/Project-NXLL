@@ -59,6 +59,7 @@
   + PW : 12345678
         
 * 프로젝트를 진행하면서 작성한 기록들은 [여기서](https://www.notion.so/quokka-eating-carrots/TEAM-NXLL-63f100662e0949e7ab388868f384967b) 보실 수 있습니다. <img src="https://img.shields.io/badge/Notion-000000?style=flat-round&logo=Notion&logoColor=white"/>
+* 프로젝트 팀 레포는 [여기서](https://github.com/TEAM-NXLL/Project-NXLL) 보실 수 있습니다. <img src="https://img.shields.io/badge/GitHub-000000?style=flat-round&logo=GitHub&logoColor=white"/>
 <br/><br/><br/>
 
 
