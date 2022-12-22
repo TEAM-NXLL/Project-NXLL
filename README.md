@@ -1,63 +1,212 @@
-#  [Project-NXLL (Demo)](https://team-nxll.netlify.app/)
-
 ## 👻 팀 소개
 안녕하세요, TEAM NXLL입니다. <br />
-<a href="https://github.com/quokka-eating-carrots"><img src="https://img.shields.io/badge/조민정-B5D9AD?style=flat-round&logo=GitHub&logoColor=black"/></a>
-<a href="https://github.com/quokka-eating-carrots"><img src="https://img.shields.io/badge/강현주-6B8E23?style=flat-round&logo=GitHub&logoColor=white"/></a>
-<a href="https://github.com/quokka-eating-carrots"><img src="https://img.shields.io/badge/김상현-B0C4DE?style=flat-round&logo=GitHub&logoColor=black"/></a>
-<a href="https://github.com/quokka-eating-carrots"><img src="https://img.shields.io/badge/배현수-006400?style=flat-round&logo=GitHub&logoColor=white"/></a>
-<a href="https://github.com/quokka-eating-carrots"><img src="https://img.shields.io/badge/오혜성-606060?style=flat-round&logo=GitHub&logoColor=white"/></a>
-<a href="https://github.com/quokka-eating-carrots"><img src="https://img.shields.io/badge/한혜림-FF55B6?style=flat-round&logo=GitHub&logoColor=white"/></a>
 
-프로젝트를 진행하면서 작성한 기록들은 [여기서](https://www.notion.so/quokka-eating-carrots/TEAM-NXLL-63f100662e0949e7ab388868f384967b) 보실 수 있습니다.
+<table border>
+  <tbody>
+    <tr>
+      <td align="center" width="200px">
+        <img width="100%" src="https://avatars.githubusercontent.com/u/113992260?v=4"  alt=""/><br />
+        팀장 FE.<br/>
+        <a href="https://github.com/quokka-eating-carrots">
+          <img src="https://img.shields.io/badge/조민정-B5D9AD?style=flat-round&logo=GitHub&logoColor=black"/>
+        </a>
+      </td>
+      <td align="center" width="200px">
+        <img width="100%" src="https://avatars.githubusercontent.com/u/106734517?v=4"  alt=""/><br />
+        팀원 FE.<br/>
+        <a href="https://github.com/iziz9">
+          <img src="https://img.shields.io/badge/강현주-6B8E23?style=flat-round&logo=GitHub&logoColor=white"/>
+        </a>
+      </td>
+      <td align="center" width="200px">
+        <img width="100%" src="https://avatars.githubusercontent.com/u/82831436?v=4"  alt=""/>
+        팀원 FE.<br/>
+        <a href="https://github.com/thinkisall">
+          <img src="https://img.shields.io/badge/김상현-B0C4DE?style=flat-round&logo=GitHub&logoColor=black"/>
+        </a>
+      </td>
+      <td align="center" width="200px">
+        <img width="100%" src="https://avatars.githubusercontent.com/u/114797992?v=4"  alt=""/>
+        팀원 FE.<br/>
+        <a href="https://github.com/HyunSooBae">
+          <img src="https://img.shields.io/badge/배현수-006400?style=flat-round&logo=GitHub&logoColor=white"/>
+        </a>
+      </td>
+      <td align="center" width="200px">
+        <img width="100%" src="https://avatars.githubusercontent.com/u/48847034?v=4"  alt=""/>
+        팀원 FE.<br/>
+        <a href="https://github.com/DavidOH77">
+          <img src="https://img.shields.io/badge/오혜성-606060?style=flat-round&logo=GitHub&logoColor=white"/>
+        </a>
+      </td>
+      <td align="center" width="200px">
+        <img width="100%" src="https://avatars.githubusercontent.com/u/64674174?v=4"  alt=""/>
+        팀원 FE.<br/>
+        <a href="https://github.com/hyerimhan">
+          <img src="https://img.shields.io/badge/한혜림-FF55B6?style=flat-round&logo=GitHub&logoColor=white"/>
+        </a>
+      </td>
+     </tr>
+  </tbody>
+</table>
+
+* ## [Project-NXLL (Demo)](https://team-nxll.netlify.app/)
++ ❗관리자
+  + ID : admin@abc.com
+  + PW : 12345678
++ ❗사용자
+  + ID : test1@abc.com ...
+  + PW : 12345678
+        
+* 프로젝트를 진행하면서 작성한 기록들은 [여기서](https://www.notion.so/quokka-eating-carrots/TEAM-NXLL-63f100662e0949e7ab388868f384967b) 보실 수 있습니다. <img src="https://img.shields.io/badge/Notion-000000?style=flat-round&logo=Notion&logoColor=white"/>
+<br/><br/><br/>
+
 
 ## 📆 과제 기간 및 담당 업무
 과제 기간: 2022. 11. 28 ~ 2022. 12. 21 <br />
 
-<a href="https://github.com/quokka-eating-carrots"><img src="https://img.shields.io/badge/조민정-B5D9AD?style=flat-round&logo=GitHub&logoColor=black"/></a> 팀장 | 사용자 페이지 - FOOTER 퍼블리싱 | 계좌 연결 | 결제 페이지 | 구매 내역 페이지 <br />
-<a href="https://github.com/quokka-eating-carrots"><img src="https://img.shields.io/badge/강현주-6B8E23?style=flat-round&logo=GitHub&logoColor=white"/></a> 관리자 페이지 - 상품 추가 삭제 수정 페이지 | 사용자 페이지 - 카테고리 기능 <br />
-<a href="https://github.com/quokka-eating-carrots"><img src="https://img.shields.io/badge/김상현-B0C4DE?style=flat-round&logo=GitHub&logoColor=black"/></a> 사용자 페이지 - 로그인, 로그아웃 | 메인 페이지 | 장바구니 <br />
-<a href="https://github.com/quokka-eating-carrots"><img src="https://img.shields.io/badge/배현수-006400?style=flat-round&logo=GitHub&logoColor=white"/></a> 사용자 페이지 - 마이쇼핑 페이지 퍼블리싱 | 마이오더 페이지 퍼블리싱 | 상세 페이지 | 장바구니 <br />
-<a href="https://github.com/quokka-eating-carrots"><img src="https://img.shields.io/badge/오혜성-606060?style=flat-round&logo=GitHub&logoColor=white"/></a> 관리자 페이지 - 제품, 구매 내역 목록 조회 페이지 | 구매 내역 확정, 취소 | 사용자 페이지 - 결제 페이지 <br />
-<a href="https://github.com/quokka-eating-carrots"><img src="https://img.shields.io/badge/한혜림-FF55B6?style=flat-round&logo=GitHub&logoColor=white"/></a> 총괄 퍼블리싱 | 사용자 페이지 - 메인 페이지, 검색 기능 | 관리자 페이지 - 디자인
+* <b>조민정 :</b> <사용자 페이지> FOOTER 퍼블리싱, 계좌 연결, 결제 페이지, 구매 내역 페이지<br/>
+* <b>강현주 :</b> <관리자 페이지> 상품 추가 삭제 수정 | <사용자 페이지> 카테고리 기능<br />
+* <b>김상현 :</b> <사용자 페이지> 로그인, 로그아웃, 메인 페이지, 장바구니<br />
+* <b>배현수 :</b> <사용자 페이지> 마이쇼핑 페이지 퍼블리싱, 마이오더 페이지 퍼블리싱, 상세 페이지, 장바구니 <br />
+* <b>오혜성 :</b> <관리자 페이지> 제품, 구매 내역 목록 조회 페이지, 구매 내역 확정, 취소 | <사용자 페이지> 결제 페이지 <br />
+* <b>한혜림 :</b><사용자 페이지> 메인 페이지, 검색 기능 | <관리자 페이지> UI/UX | 총괄 퍼블리싱
+<br/><br/><br/>
+
 
 ## 🪄 기술 스택
-<img src="https://img.shields.io/badge/HTML-E34F26?style=flat-round&logo=HTML5&logoColor=white"/> <img src="https://img.shields.io/badge/SCSS-CC6699?style=flat-round&logo=Sass&logoColor=white"/> <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-round&logo=JavaScript&logoColor=white"/> <img src="https://img.shields.io/badge/swiper-6332F6?style=flat-round&logo=Swiper&logoColor=white"/> <img src="https://img.shields.io/badge/GitHub-181717?style=flat-round&logo=GitHub&logoColor=white"/> <img src="https://img.shields.io/badge/Notion-000000?style=flat-round&logo=Notion&logoColor=white"/> 
+<img src="https://img.shields.io/badge/HTML-E34F26?style=flat-round&logo=HTML5&logoColor=white"/> <img src="https://img.shields.io/badge/SCSS-CC6699?style=flat-round&logo=Sass&logoColor=white"/> <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-round&logo=JavaScript&logoColor=white"/> <img src="https://img.shields.io/badge/Swiper-6332F6?style=flat-round&logo=Swiper&logoColor=white"/> <img src="https://img.shields.io/badge/GitHub-181717?style=flat-round&logo=GitHub&logoColor=white"/>
+<br/><br/><br/>
+
 
 ## ⌨️ 레퍼런스
 기능 개발에 우선적인 초점을 두고 프로젝트를 진행하여 디자인과 판매 상품들은 [엑토몰](https://acttomall.com/)을 참고하여 진행하였습니다.
+<br/><br/><br/>
+
 
 ## 🖥️ 주요 구현 기능
-1. 사용자 페이지
-  + 회원 인증 및 회원 가입
-  ![](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/8722e3ae-b6a3-48d4-8649-33bad615074c/KakaoTalk_20221221_174124925.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221221%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221221T113443Z&X-Amz-Expires=86400&X-Amz-Signature=05972a6fb67d93e68965993e963a03af78aac754175d0dc7a7b2f20a87f9270c&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22KakaoTalk_20221221_174124925.png%22&x-id=GetObject)
-  ![](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/e1225a5b-7864-4f08-b631-92e1edc72aab/KakaoTalk_20221221_174124925_01.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221221%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221221T113505Z&X-Amz-Expires=86400&X-Amz-Signature=f6a6354c25882a7743e98ece78ed549c4c31fa1ac511b323a9aefd2ad58125d4&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22KakaoTalk_20221221_174124925_01.png%22&x-id=GetObject)
-  + 상품 검색하기
-  ![](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/3c5abefe-786e-4a25-9a7f-3bec9ffe1648/KakaoTalk_20221221_174124925_03.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221221%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221221T113540Z&X-Amz-Expires=86400&X-Amz-Signature=c88b9c9c1ed9c6418596bd5ddec8b682e906fdd6fa8747d733f76cf55d0720fd&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22KakaoTalk_20221221_174124925_03.png%22&x-id=GetObject)
-  + 상품 구매하기
-  ![](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/6d65db3e-3f19-4f77-bb5f-da6440aa4130/KakaoTalk_20221221_174124925_05.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221221%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221221T113715Z&X-Amz-Expires=86400&X-Amz-Signature=458810f9583d237c0b1f65095cb03a0ad98290919661325197ba5002c1e5ad0f&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22KakaoTalk_20221221_174124925_05.png%22&x-id=GetObject)
-  ![](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/383eae21-5706-45e9-aaa7-e625ee16c09f/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221221%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221221T114110Z&X-Amz-Expires=86400&X-Amz-Signature=c03fd7d85bf88810612ec497ad55d561fc23f742a3f2c6a2602ee95ca0951bc8&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22Untitled.png%22&x-id=GetObject)
-  + 회원 정보 수정 및 계좌 등록
-  ![](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/3bc1f518-75be-43c0-a79a-3f9653b68b61/KakaoTalk_20221221_174124925_02.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221221%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221221T114132Z&X-Amz-Expires=86400&X-Amz-Signature=dad09865e8ad60c2143e8ef0d852052a600c7586dac05bdb41d639694f7f7958&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22KakaoTalk_20221221_174124925_02.png%22&x-id=GetObject)
-  ![](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/9f31d0e0-54c6-44b6-840d-9ccc7a844047/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221221%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221221T114911Z&X-Amz-Expires=86400&X-Amz-Signature=ee9692ce048f281c2cdfa667f92dec856b492e44513272c84302ca999f25d3c9&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22Untitled.png%22&x-id=GetObject)
-  + 회원 구매 내역 보기
-  ![](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/09c6a89d-9e2f-445c-84b9-a1e044d80cf2/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221221%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221221T115004Z&X-Amz-Expires=86400&X-Amz-Signature=100e683b2c4ba01790a2fab4737a78ec5d21d89ec9473664994f2cfa14061630&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22Untitled.png%22&x-id=GetObject)
 
-2. 관리자 페이지
-  + 상품 추가, 삭제, 수정
-  ![](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/aec23fa7-7292-4264-bad1-217ba4ab0a17/KakaoTalk_20221221_174124925_06.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221221%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221221T115028Z&X-Amz-Expires=86400&X-Amz-Signature=931221952daf1a7968377654c3dd2ae2e38aff106afa9a099b8d65129bc8e21a&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22KakaoTalk_20221221_174124925_06.png%22&x-id=GetObject)
-  ![](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/bba961d6-6ca6-4108-9564-b362e971f37c/KakaoTalk_20221221_174124925_04.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221221%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221221T115311Z&X-Amz-Expires=86400&X-Amz-Signature=063d20f208686c4d85b102c5b61c71241aa986d140a245aec51c23d1f3dbbdb5&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22KakaoTalk_20221221_174124925_04.png%22&x-id=GetObject)
-  + 전체 상품 보기
-  ![](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/c38c7817-aa46-4f7c-af16-1ee4cddec6c1/KakaoTalk_20221221_174124925_07.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221221%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221221T115254Z&X-Amz-Expires=86400&X-Amz-Signature=d5e96c49fab988ab78675315750df58a2c085f0f6d7aa26bf56c06d7b4212d38&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22KakaoTalk_20221221_174124925_07.png%22&x-id=GetObject)
-  + 전체 거래 내역 보기
-  ![](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/94e2dae2-612a-4e92-8c73-06eecd96dfd1/KakaoTalk_20221221_174124925_08.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221221%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221221T115324Z&X-Amz-Expires=86400&X-Amz-Signature=dc5b9904f91364ae737d9d0d2d52d7a32e6ed5cc044f815d5d545936649cd889&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22KakaoTalk_20221221_174124925_08.png%22&x-id=GetObject)
-  + 거래 내역 취소, 확정
+## 인증 - 사용자
+### 1. 회원 가입
+<img src="https://i.ibb.co/Dp1Rj0n/join.png" alt="join" border="0">
+
++ 회원 가입 api로 가입 정보를 보냄
+
+<br/>
+
+### 2. 로그인
+
+<img src="https://i.ibb.co/pbYrG21/login.png" alt="login" border="0">
+
++ 로그인 성공 시 : 토큰 값을 받아서 LocalStorage에 저장
++ 로그인 유지 : 토큰 값이 LocalStorage에서 삭제되지 않는 이상 계속 유지됨
++ 로그아웃 시 LocalStorage AccessToken 삭제되면서 메인 화면으로 전환  
++ 관리자 계정으로 로그인하면 관리자 페이지로 갈 수 있는 버튼이 활성화 됨
+
+<br/><br/><br/>
+
+## 메인 홈 - 사용자
+### 1.  홈
+
+<img src="https://i.ibb.co/KFYYs38/home.png" alt="home" border="0">
+
++ keyboard, mouse, new Item 별로 메인 상품 출력
++ 각 섹션별로 등록된 제품이 없을 때 '상품준비중' 배너 구현
++ 매진된 제품은 제품 가격 대신 'sold out' 아이콘으로 대체
++ 상품 검색 가능
++ nav 탭을 누르면 해당 종류별로 품목 출력
++ 장바구니 페이지로 넘어가지 않고 바로 확인 가능
++ 스크롤에 반응하는 nav영역
+
+<br/>
+
+### 2. 결제 - 제품 거래 (구매) 신청
+
+<img src="https://i.ibb.co/ckjswLH/localhost-1234-1.png" alt="localhost-1234-1" border="0">
+
+<br/>
+
+### 3. MY-SHOP (내정보)
+
+<img src="https://i.ibb.co/b6BYvy0/my-Shopping.png" alt="my-Shopping" border="0">
+
++ 사용자 정보 수정 (회원 정보 → 조회)
+  + 사용자 정보 수정
+  <img src="https://i.ibb.co/BNfVV9Y/Untitled-2.png" alt="Untitled-2" border="0">
+        
+  + 계좌
+    + 선택가능한 은행 목록 조회
+    + 계좌 목록 및 잔액 조회
+    + 계좌 연결
+    + 계좌 해지
+    <img src="https://i.ibb.co/YT6QbgG/Untitled-3.png" alt="Untitled-3" border="0">
+    <img src="https://i.ibb.co/Pg34gRb/Untitled-4.png" alt="Untitled-4" border="0">
+        
+  + 주문내역 조회 (주문내역 조회 → 조회) 
+    + 제품 전체 거래 (구매) 내역
+      - 주문 취소 - 제품 거래 (구매) 취소
+      + 주문 확정 - 제품 거래 (구매) 확정
+      <img src="https://i.ibb.co/tYkLxfC/localhost-1234.png" alt="localhost-1234" border="0">        
+<br/>
+
+### 4. 제품검색
+
+<img src="https://i.ibb.co/zNNsgKV/product-Search.png" alt="product-Search" border="0">
+
++ 품명으로 상품 검색
++ 검색 내용이 없을 때 검색결과 없음 화면 출력
+<br/><br/><br/>
+
+## ETC. - 사용자
+### 1. 장바구니
+
+<img src="https://i.ibb.co/gTbvZc0/shopping-Bag.png" alt="shopping-Bag" border="0">
+
+<br/>
+
+### 2. 상품 탭  ex)홀리데이 특가
+
+<img src="https://i.ibb.co/88YM1CT/holiday-Sale-Tab.png" alt="holiday-Sale-Tab" border="0">
+
+<br/>
+
+### 3. 제품 상세 보기
+
+<img src="https://i.ibb.co/F4LRLBM/Untitled-5.png" alt="Untitled-5" border="0">
+
+<br/><br/><br/>
+
+## 제품 - 관리자
+### 1. 모든 제품 조회
+
+<img src="https://i.ibb.co/bL85vXv/admin-Allproduct.png" alt="admin-Allproduct" border="0">
+
++ 제품수정, 제품 삭제
+  + 제품수정 (모든 제품 조회 → 수정)
+  + 제품삭제 (모든 제품 조회 → 삭제)
+  <img src="https://i.ibb.co/nrw0dRK/admin-Edit-Product.png" alt="admin-Edit-Product" border="0">
+    
+<br/>
+
+### 2. 전체 거래 내역
+
+<img src="https://i.ibb.co/fQVYjZF/admin-Transac.png" alt="admin-Transac" border="0">
+
++  거래(판매) 내역 완료/취소 및 해제
+
+<br/>
+
+### 3. 제품 추가
+
+<img src="https://i.ibb.co/Z61jpjL/admin-Add-Product.png" alt="admin-Add-Product" border="0">
+<br/><br/><br/>
 
 ## 📚 개발 문서
 1. [코드 문서](https://docs.google.com/spreadsheets/d/1leaXcP6FK4dbTtn1qYrFU5xB5U1O0rGjB4G7o2-VSMk/edit#gid=0) <br />
 html을 작성하면서 생긴 선택자명을 공유하기 위해서 작성하였고, 테스트 하면서 사용되는 ID/PW를 공유하였습니다. SPA 방식으로 프로젝트를 진행하면서 저희는 Hash Change 이벤트를 사용하여 페이지 전화를 하였는데 이때 hash값을 공유하였습니다.
 2. [에러 핸들링 문서](https://quokka-eating-carrots.notion.site/730fd8b296cb451b98a896b9100ab4ce) <br />
 과제를 진행하면서 막혔던 부분들을 공유하고 해결한 기록들입니다.
+<br/><br/><br/>
 
 ## 🔔 어려웠던 점 및 부족한 점
 1. 아직 DOM 요소로 렌더되기 전이라서 존재하지 않는 div를 쿼리셀렉터로 선택하고 싶을 때, 이벤트 위임 외에 어떤 방법이 있는지 궁금합니다. 이벤트 위임으로 처리하니 원하는 기능으로 구현되지 않았습니다. 여러 번 반복적으로 이벤트가 실행되기도 하였습니다.
