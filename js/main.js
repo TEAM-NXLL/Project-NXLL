@@ -10,7 +10,6 @@ import { payAccountList, payBankLoopUp, buyProducts, lookProducts, cancelProduct
 import { cancelOrder, confirOrder, transLookUp, cancelOrderLookUp, confirOrderLookUp } from './myorder.js'
 import { buyProduct, cart, shoppingBasket } from './detail.js'
 import { viewShoppingBag } from './shoppingBag.js';
-// import { tagArr } from '../admin/js/editProduct.js';
 
 // 변수
 const root = document.querySelector('main');
@@ -44,7 +43,6 @@ document.addEventListener('scroll', () => {
       }
     }
   }
-
   prevScrollTop = nextScrollTop;
 })
 
@@ -92,12 +90,6 @@ async function renderMain() {
   }
 
   data.forEach((e) => {
-    // if(e.isSoldOut) {
-    //   const priceBox = document.querySelector('.priceBox')
-    //   priceBox.innerHTML = /*HTML*/ `
-    //     <span>매진</span>
-    //   `
-    // }
     if (e['tags'].includes('keyboard')) {
       keyboard.push(e);
       keyboardList.innerHTML = productList(keyboard);
@@ -251,12 +243,6 @@ async function productSearch(e) {
         rootInner.classList.add('block4')
         rootInner.style.margin = '140px auto 100px'
         data.forEach(e => {
-          // 상품종류로 검색
-          // if (e['tags'].includes(searchText)) {
-          //   searchTags.push(e)
-          //   rootInner.innerHTML = productList(searchTags)
-          // }
-
           // 상품명으로 검색
           if (e.title.includes(searchText)) {
             searchTitle.push(e);
@@ -385,7 +371,6 @@ async function renderUserInfo() {
   editUserInfo()
   addAbleAccountList()
   addNewAccount()
-  // choiceBank()
   cancelBank()
 }
 

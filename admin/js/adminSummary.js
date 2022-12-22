@@ -4,7 +4,7 @@ import { viewAllTransactions } from './requests.js';
 export async function renderAdminSummary(allTransac, allProduct) {
 
   const adminSummary = document.querySelector('.admin-summary');
-  
+
   // 삽입 생성자 함수
   function Status(selector, html) {
     adminSummary.querySelector(selector).innerHTML = html;
@@ -14,10 +14,10 @@ export async function renderAdminSummary(allTransac, allProduct) {
   const date = new Date();
   const today =
     date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
-    
+
 
   const newOrder = allTransac.filter((el) => {
-    return el.timePaid.slice(0,10)  === today;
+    return el.timePaid.slice(0, 10) === today;
   });
 
   const purchaseConfirmed = allTransac.filter((el) => {

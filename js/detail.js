@@ -3,6 +3,7 @@ import { viewShoppingBag } from "./shoppingBag.js"
 
 const accessToken = localStorage.accessToken
 
+// 바로 구매하기 버튼
 export function buyProduct(product) {
   const buyBtn = document.querySelector('.buy-btn')
   const selling = product.isSoldOut === true ? false : true
@@ -14,6 +15,7 @@ export function buyProduct(product) {
   })
 }
 
+// 장바구니 버튼
 export async function cart(product) {
   const cartList = JSON.parse(localStorage.getItem('cart')) || []
   const selling = product.isSoldOut === true ? false : true
@@ -46,6 +48,7 @@ export async function cart(product) {
     localStorage.setItem('cart', JSON.stringify(cartList));
   }
 }
+
 
 export function shoppingBasket(product) {
   const cartBtn = document.querySelector('.cart-btn')

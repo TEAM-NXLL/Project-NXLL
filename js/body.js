@@ -87,7 +87,6 @@ function mainForm() {
   `)
 
   for (let i = 1; i <= 10; i++) {
-
     mainBody.push( /* HTML */ `
       <li>
       <a href="#">
@@ -128,7 +127,6 @@ function productList(data) {
   const mainBody = []
 
   for (let i = 0; i < data.length; i++) {
-
     mainBody.push(/* HTML */`
       <li>
         <a href="#details/${data[i].id}">
@@ -167,6 +165,7 @@ function productList(data) {
         </div>
         <div class="colorBox">
       `)
+
       for (let j = 0; j < colorChart.length; j += 1) {
         if (data[i].tags.includes(colorChart[j])) {
           mainBody.push(/* HTML */`
@@ -321,8 +320,6 @@ export function renderInnerCategory(tag, count = 0) {
   }
 }
 
-
-
 // 회원가입 페이지
 function joinForm() {
   return /* html */`
@@ -427,6 +424,8 @@ function myShoppingForm(trans, price, cancelList, confirList) {
       </div>
     </div>
   `
+
+  // 로그인 안 했을 시 로그인 페이지로 이동하게끔
   const goToLogin = (link) => {
     return localStorage.accessToken ? link : '#login'
   }
@@ -805,7 +804,6 @@ function userAccountForm(totalBalance) {
             <th>계좌 추가</th>
             <td>
               <select id="add-account">
-                <!-- <option value="default">은행 이름</option> -->
               </select>
             </td>
           </tr>

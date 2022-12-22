@@ -1,8 +1,6 @@
-import { viewAllProduct } from './requests.js';
-
 export function renderAllProduct(products) {
 
-  products.forEach((el) =>  {
+  products.forEach((el) => {
     const id = el.id;
     const title = el.title;
     const price = el.price;
@@ -10,7 +8,7 @@ export function renderAllProduct(products) {
     const tag = el.tags;
     const isSold = el.isSoldOut ? 'X' : 'O';
     const thumbnail = el.thumbnail;
-    
+
     const allProducts = document.querySelector('.allProducts')
     const product = document.createElement('tr');
     product.classList.add('product-item');
@@ -23,7 +21,7 @@ export function renderAllProduct(products) {
       <td class="thumbnail"><img src="${thumbnail}" alt="thumbnail"></td>
       <td class="id">${id}</td>
       <td class="title">${title}</td>
-      <td class="price">${price.toLocaleString()+'원'}</td>
+      <td class="price">${price.toLocaleString() + '원'}</td>
       <td class="tags">${tag}</td>
       <td class="is-sold-out">${(isSold)}</td>
       <td class="descript">${description}</td>
@@ -31,12 +29,12 @@ export function renderAllProduct(products) {
         <a href="#edit-products/${id}" data-link><button class="edit-btn" data-id="${id}">수정</button></a>
         <button class="del-btn" data-id="${id}">삭제</button>
       </td>
-    `; 
+    `;
 
     product.innerHTML = innerHTMLContents;
-    
+
     const productCont = document.querySelector('.products-container');
-    productCont.append(product);    
+    productCont.append(product);
     allProducts.append(product)
-  })  
+  })
 }

@@ -1,11 +1,11 @@
 import { renderAllProduct } from './renderAllProducts.js';
 import { renderAlltransacs } from './renderAlltransacs.js';
 import { deleteItem } from './delete.js';
-import { renderAdminSummary } from './adminSummary';
+import { renderAdminSummary } from './adminSummary.js';
 import { addItem } from './addProduct.js';
 import { viewAllProduct, viewAllTransactions, adminData } from './requests.js';
 import { transacSearch } from './transacSearch.js';
-import {stateLogin} from '../../js/getdata.js'
+import { stateLogin } from '../../js/getdata.js'
 
 (async () => {
   const allProduct = await viewAllProduct();
@@ -28,7 +28,7 @@ async function welcomeAdmin() {
     <li class="logOutBtn">
       <a href="#">로그아웃<i class="fa-solid fa-right-from-bracket"></i></a>
     </li>
-  ` 
+  `
 
   welcomeAdmin.innerHTML = abc
 }
@@ -48,13 +48,13 @@ gnbTabs.forEach((tab) => {
 
     const panels = document.querySelectorAll('.panels')
 
-    for(let i = 0; i < panels.length; i++) {
+    for (let i = 0; i < panels.length; i++) {
       const tabTarget = e.target.hash.substr(1)
 
-      if(tabTarget === panels[i].id) {
+      if (tabTarget === panels[i].id) {
         panels[i].classList.add('here')
-        
-        if(editPopup.classList.contains('show')) {
+
+        if (editPopup.classList.contains('show')) {
           editPopup.classList.remove('show')
         }
       } else {
@@ -65,8 +65,8 @@ gnbTabs.forEach((tab) => {
 })
 
 function clickItem(tab) {
-  if(activeTab == tab) return
-  if(activeTab) {
+  if (activeTab == tab) return
+  if (activeTab) {
     activeTab.classList.remove('active')
   }
 

@@ -51,21 +51,6 @@ export async function addNewAccount() {
   })
 }
 
-// 추가 계좌 은행 이름 눌렀을 때 핸들러
-// export async function choiceBank() {
-//   const account = document.querySelector('#add-account')
-//   const accountNumberEls = document.querySelectorAll('.account-number-input')
-//   account.addEventListener('change', (e) => {
-//     if (e.target.value !== "004" && e.target.value !== "011") {
-//       accountNumberEls[3].readOnly = true
-//       accountNumberEls[3].style.backgroundColor = '#D8D8D8'
-//     } else {
-//       accountNumberEls[3].readOnly = false
-//       accountNumberEls[3].style.backgroundColor = '#fff'
-//     }
-//   })
-// }
-
 // 보유하고 있는 계좌 리스트
 export function ownAccountList(accounts) {
   if (accounts.length > 0) {
@@ -98,6 +83,7 @@ export async function addAbleAccountList() {
   selectedAccount(ableList)
 }
 
+// 계좌 등록하기
 function selectedAccount(ableList) {
   const addAccountEl = document.querySelector('#add-account')
   const addAccountNumEl = document.querySelector('.account-number-box')
