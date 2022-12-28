@@ -1,13 +1,11 @@
 import { store } from "./store.js"
-import dotenv from 'dotenv'
 
 // 회원가입 데이터
 export async function getData(email, password, id, profile = null) {
   const res = await fetch(store.url + '/auth/signup', {
     method: 'POST',
     headers: {
-      ...store.headers,
-      "apikey": process.env.API_KEY
+      ...store.headers
     },
     body: JSON.stringify({
       "email": email,
@@ -30,7 +28,6 @@ export async function getLogin(email, password) {
     method: 'POST',
     headers: {
       ...store.headers,
-      "apikey": process.env.API_KEY
     },
     body: JSON.stringify({
       "email": email,
@@ -51,7 +48,6 @@ export async function getLogOut(accessToken) {
     method: 'POST',
     headers: {
       ...store.headers,
-      "apikey": process.env.API_KEY,
       "Authorization": `Bearer ${accessToken}`,
     }
   })
@@ -65,7 +61,6 @@ export async function stateLogin(accessToken) {
     method: 'POST',
     headers: {
       ...store.headers,
-      "apikey": process.env.API_KEY,
       "Authorization": `Bearer ${accessToken}`,
     }
   })
@@ -79,7 +74,6 @@ export async function editUser(accessToken, displayName, oldPassword, newPasswor
     method: 'PUT',
     headers: {
       ...store.headers,
-      "apikey": process.env.API_KEY,
       "Authorization": `Bearer ${accessToken}`,
     },
     body: JSON.stringify({
@@ -102,7 +96,6 @@ export async function accountLookUp(accessToken) {
     method: 'GET',
     headers: {
       ...store.headers,
-      "apikey": process.env.API_KEY,
       "Authorization": `Bearer ${accessToken}`,
     }
   })
@@ -116,7 +109,6 @@ export async function accountCharge(accessToken) {
     method: 'GET',
     headers: {
       ...store.headers,
-      "apikey": process.env.API_KEY,
       "Authorization": `Bearer ${accessToken}`,
     }
   })
@@ -130,7 +122,6 @@ export async function addAccount(accessToken, bankCode, accountNumber, phoneNumb
     method: 'POST',
     headers: {
       ...store.headers,
-      "apikey": process.env.API_KEY,
       "Authorization": `Bearer ${accessToken}`,
     },
     body: JSON.stringify({
@@ -154,7 +145,6 @@ export async function cancelAccount(accessToken, accountId) {
     method: 'DELETE',
     headers: {
       ...store.headers,
-      "apikey": process.env.API_KEY,
       "Authorization": `Bearer ${accessToken}`,
     },
     body: JSON.stringify({
@@ -172,7 +162,6 @@ export async function getProductDetail(productId) {
     method: 'GET',
     headers: {
       ...store.headers,
-      "apikey": process.env.API_KEY
     }
   })
   const json = await res.json()
@@ -185,7 +174,6 @@ export async function getBuy(accessToken, productId, accountId) {
     method: 'POST',
     headers: {
       ...store.headers,
-      "apikey": process.env.API_KEY,
       "Authorization": `Bearer ${accessToken}`,
     },
     body: JSON.stringify({
@@ -207,7 +195,6 @@ export async function getTransactions(accessToken) {
     method: 'GET',
     headers: {
       ...store.headers,
-      "apikey": process.env.API_KEY,
       "Authorization": `Bearer ${accessToken}`,
     }
   })
@@ -221,7 +208,6 @@ export async function cancelTransactions(accessToken, productId) {
     method: 'POST',
     headers: {
       ...store.headers,
-      "apikey": process.env.API_KEY,
       "Authorization": `Bearer ${accessToken}`,
     },
     body: JSON.stringify({
@@ -238,7 +224,6 @@ export async function confirmation(accessToken, productId) {
     method: 'POST',
     headers: {
       ...store.headers,
-      "apikey": process.env.API_KEY,
       "Authorization": `Bearer ${accessToken}`,
     },
     body: JSON.stringify({
@@ -255,7 +240,6 @@ export async function postSearch(searchText, searchTags,) {
     method: 'POST',
     headers: {
       ...store.headers,
-      "apikey": process.env.API_KEY,
     },
     body: JSON.stringify({
       searchText,

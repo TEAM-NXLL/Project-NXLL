@@ -163,7 +163,7 @@ export async function renderCategory(tag) {
   renderSubCategory(rootInner, dataArr)
 
   // 서브카테고리 안에서 메인카테고리 다시 클릭 시
-  const category = document.querySelector(`a[href="#${tag}"]`)
+  const category = store.selector(`a[href="#${tag}"]`)
   category.addEventListener('click', event => {
     root.innerHTML = renderInnerCategory(tag, dataArr.length);
 
