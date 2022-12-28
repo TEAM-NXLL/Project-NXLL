@@ -17,14 +17,11 @@ export async function getData(email, password, id, profile = null) {
     })
   })
   const json = await res.json()
-  if (json === '유효한 정보를 제공하세요.') {
-    alert('유효한 정보를 제공하세요.')
-  } else if (json === '유효한 이메일이 아닙니다.') {
-    alert('유효한 이메일이 아닙니다.')
-  } else if (json === '이미 존재하는 사용자입니다.') {
-    alert('이미 존재하는 사용자입니다.')
+  if (res.ok) {
+    return json
+  } else {
+    alert(json)
   }
-  return json
 }
 
 // 로그인 데이터
@@ -41,10 +38,11 @@ export async function getLogin(email, password) {
     })
   })
   const json = await res.json()
-  if (json === '유효한 사용자가 아닙니다.') {
-    alert('유효한 사용자가 아닙니다.')
+  if (res.ok) {
+    return json
+  } else {
+    alert(json)
   }
-  return json
 }
 
 // 로그아웃 데이터
@@ -91,7 +89,11 @@ export async function editUser(accessToken, displayName, oldPassword, newPasswor
     })
   })
   const json = await res.json()
-  return json
+  if (res.ok) {
+    return json
+  } else {
+    alert(json)
+  }
 }
 
 // 선택 가능한 은행 목록 조회 데이터
@@ -139,7 +141,11 @@ export async function addAccount(accessToken, bankCode, accountNumber, phoneNumb
     })
   })
   const json = await res.json()
-  return json
+  if (res.ok) {
+    return json
+  } else {
+    alert(json)
+  }
 }
 
 // 계좌 해지 데이터
@@ -188,8 +194,11 @@ export async function getBuy(accessToken, productId, accountId) {
     })
   })
   const json = await res.json()
-  console.log(json)
-  return json
+  if (res.ok) {
+    return json
+  } else {
+    alert(json)
+  }
 }
 
 // 사용자 거래 내역 데이터

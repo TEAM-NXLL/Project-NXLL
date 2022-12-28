@@ -12,19 +12,22 @@ export function editUserInfo() {
     }
     const oldPwValue = store.selector('.old-pw-input').value
     const newPwValue = store.selector('.new-pw-input').value
-    const res = await editUser(localStorage.accessToken, nameValue, oldPwValue, newPwValue)
+    const res = await editUser(store.token, nameValue, oldPwValue, newPwValue)
+
     if (res.displayName) {
       alert('회원 정보가 수정되었습니다')
+      localStorage.setItem('userName', res.displayName)
       location.hash = '#myshop'
-    } else {
-      alert('정보를 다시 확인해 주세요')
+      location.reload()
+    } else if (!res) {
+      return
     }
   })
 }
 
 // 보유 계좌 조회
 export async function userOwnBank() {
-  const { totalBalance, accounts } = await accountCharge(localStorage.accessToken)
+  const { totalBalance, accounts } = await accountCharge(store.token)
   return {
     totalBalance, accounts
   }
@@ -42,7 +45,7 @@ export async function addNewAccount() {
     let account = ''
     phoneNumbers.forEach(number => phone += number.value)
     accountNumbers.forEach(number => account += number.value)
-    const res = await addAccount(localStorage.accessToken, bankName.value, account, phone)
+    const res = await addAccount(store.token, bankName.value, account, phone)
     if (res.id) {
       alert("계좌가 추가되었습니다.")
       location.hash = '#myshop'
@@ -70,7 +73,7 @@ export function ownAccountList(accounts) {
 
 // 추가 가능한 계좌 리스트
 export async function addAbleAccountList() {
-  const ableList = await accountLookUp(localStorage.accessToken)
+  const ableList = await accountLookUp(store.token)
   const addAccountEl = store.selector('#add-account')
   ableList.forEach(el => {
     if (el.disabled === false) {
@@ -142,7 +145,7 @@ export function cancelBank() {
     const dataResult = e.target[e.target.selectedIndex]
     const bankId = dataResult.dataset.id
     cancelBtn.addEventListener('click', async () => {
-      await cancelAccount(localStorage.accessToken, bankId)
+      await cancelAccount(store.token, bankId)
       alert("계좌가 삭제되었습니다.")
       location.hash = '#myshop'
     })
