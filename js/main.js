@@ -278,14 +278,17 @@ function joinRender() {
 }
 
 // 관리자 로그인인지 확인
-adminLogin(localStorage.accessToken)
+adminLogin(store.token)
 adminPage()
 
 // myorder 렌더링 공통 사항
 async function listLookUp() {
   try {
-    const products = await getTransactions(localStorage.accessToken)
+    const products = await getTransactions(store.token)
     if (products !== '구매 내역이 존재하지 않습니다.') {
+      products.sort((a, b) => {
+        return a.timePaid < b.timePaid ? -1 : a.timePaid > b.timePaid ? 1 : 0
+      })
       const cancels = products.filter(product => product.isCanceled === true)
       const confirs = products.filter(product => product.done === true)
       return { products, cancels, confirs }
@@ -361,7 +364,7 @@ async function renderMyConfirOrder() {
 
 // userInfo 렌더링
 async function renderUserInfo() {
-  const res = await stateLogin(localStorage.accessToken)
+  const res = await stateLogin(store.token)
   startTop()
   root.innerHTML = userInfoForm(res.email, res.displayName)
   const { totalBalance, accounts } = await userOwnBank()
@@ -409,8 +412,8 @@ router();
 // 로그인 로그아웃 확인
 (async () => {
   const toAdminPageEl = document.querySelector('.adminPage')
-  if (localStorage.accessToken) {
-    const res = await stateLogin(localStorage.accessToken);
+  if (store.token) {
+    const res = await stateLogin(store.token);
     res.displayName ? completeLogin() : window.localStorage.clear();
   } else {
     toAdminPageEl.closest('li').remove()

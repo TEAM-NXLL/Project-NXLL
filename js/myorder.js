@@ -16,9 +16,6 @@ export async function transLookUp(products) {
     `
     )
   }
-  products.sort((a, b) => {
-    return a.timePaid < b.timePaid ? -1 : a.timePaid > b.timePaid ? 1 : 0
-  })
   products.forEach(product => {
     const decisionBtn = /* html */ `
     <button data-id=${product.detailId} class="hover-navy cancel-btn">주문 취소</button>
@@ -103,9 +100,6 @@ export async function cancelOrderLookUp(products) {
     `
     )
   }
-  products.sort((a, b) => {
-    return a.timePaid < b.timePaid ? -1 : a.timePaid > b.timePaid ? 1 : 0
-  })
   products.forEach(cancel => {
     transProductEl.innerHTML += /* html */ `
     <tr class="buy-product">
@@ -153,9 +147,6 @@ export async function confirOrderLookUp(products) {
     `
     )
   } else {
-    products.sort((a, b) => {
-      return a.timePaid < b.timePaid ? -1 : a.timePaid > b.timePaid ? 1 : 0
-    })
     products.forEach(confir => {
       transProductEl.innerHTML += /* html */ `
       <tr class="buy-product">
