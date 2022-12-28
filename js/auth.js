@@ -1,4 +1,4 @@
-import { getLogin, getLogOut, getData, stateLogin } from "./getdata.js";
+import { login, logout, signUp, keepLogin } from "./getdata.js";
 import { logInForm } from './body.js'
 import { store } from './store.js'
 
@@ -14,7 +14,7 @@ export function sendSignUp() {
     const pwValue = store.selector('.pw-input').value;
     const nameValue = store.selector('.name-input').value;
 
-    const res = await getData(idValue, pwValue, nameValue, null);
+    const res = await signUp(idValue, pwValue, nameValue, null);
     if (res.user.email) {
       document.cookie = `accessToken=${res.accessToken}; max-age=60`;
       return (root.innerHTML = logInForm());
@@ -30,7 +30,7 @@ export function sendLogin() {
     e.preventDefault();
     const idValue = store.selector('.signin-id-input').value;
     const pwValue = store.selector('.signin-pw-input').value;
-    const res = await getLogin(idValue, pwValue);
+    const res = await login(idValue, pwValue);
     if (res.user.email) {
       const userName = res.user.displayName;
       const accessToken = res.accessToken;
@@ -49,7 +49,7 @@ export function logOut() {
   logOutBtn.addEventListener('click', async () => {
     const accessToken = localStorage.getItem('accessToken');
     console.log(accessToken);
-    const res = await getLogOut(accessToken);
+    const res = await logout(accessToken);
     if (res) {
       localStorage.removeItem('accessToken'),
         localStorage.removeItem('userName');
@@ -72,7 +72,7 @@ export function completeLogin() {
 // 관리자 확인
 export async function adminLogin(accessToken) {
   if (accessToken) {
-    const authLogin = await stateLogin(accessToken)
+    const authLogin = await keepLogin(accessToken)
     const toAdminPageEl = store.selector('.adminPage')
     if (authLogin.email ? authLogin.email.includes('admin') : false) {
       toAdminPageEl.href = './admin/admin.html'

@@ -1,5 +1,5 @@
 import { doc } from 'prettier';
-import { getData, getLogin, getLogOut, stateLogin, postSearch, getTransactions, getProductDetail } from './getdata.js';
+import { stateLogin, postSearch, getTransactions, getProductDetail } from './getdata.js';
 import { router } from './route.js';
 import { sendSignUp, sendLogin, adminLogin, completeLogin, adminPage } from './auth.js';
 import { deliveryEl, returnEl, deliveryDes, returnDes, mouseenter, mouseleave } from './footer.js';
@@ -163,7 +163,7 @@ export async function renderCategory(tag) {
   renderSubCategory(rootInner, dataArr)
 
   // 서브카테고리 안에서 메인카테고리 다시 클릭 시
-  const category = document.querySelector(`a[href="#${tag}"]`)
+  const category = store.selector(`a[href="#${tag}"]`)
   category.addEventListener('click', event => {
     root.innerHTML = renderInnerCategory(tag, dataArr.length);
 
