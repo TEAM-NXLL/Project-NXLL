@@ -1,9 +1,10 @@
 import { viewAllProduct } from './requests.js';
 import { viewAllTransactions } from './requests.js';
+import { store } from '../../js/store.js'
 
 export async function renderAdminSummary(allTransac, allProduct) {
 
-  const adminSummary = document.querySelector('.admin-summary');
+  const adminSummary = store.selector('.admin-summary');
 
   // 삽입 생성자 함수
   function Status(selector, html) {

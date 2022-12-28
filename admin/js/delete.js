@@ -1,9 +1,10 @@
 import { delProduct } from "./requests.js";
 import { toast } from "./toast.js";
 import { editItem, editPopup } from './editProduct.js';
+import { store } from '../../js/store.js'
 
-const productContainer = document.querySelector('.products-container');
-const CheckedBtnEl = document.querySelector('.delete-checked');
+const productContainer = store.selector('.products-container');
+const CheckedBtnEl = store.selector('.delete-checked');
 
 CheckedBtnEl.addEventListener('click', (event) => {
   const checkedItems = document.querySelectorAll('.delete-checkbox:checked');
@@ -36,7 +37,7 @@ productContainer.addEventListener('click', (event) => {
   }
   else if (event.target.classList.contains('edit-btn')) {
     editPopup.classList.add('show')
-    editItem(event) 
+    editItem(event)
   }
 })
 

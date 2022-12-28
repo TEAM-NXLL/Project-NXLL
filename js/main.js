@@ -10,10 +10,11 @@ import { payAccountList, payBankLoopUp, buyProducts, lookProducts, cancelProduct
 import { cancelOrder, confirOrder, transLookUp, cancelOrderLookUp, confirOrderLookUp } from './myorder.js'
 import { buyProduct, cart, shoppingBasket } from './detail.js'
 import { viewShoppingBag } from './shoppingBag.js';
+import { store } from './store.js'
 
 // 변수
-const root = document.querySelector('main');
-const shoppingBag = document.querySelector('.shopping-btn');
+const root = store.selector('main')
+const shoppingBag = store.selector('.shopping-btn')
 
 // 페이지 새로 렌더하면 스크롤 맨 위로 이동하기
 function startTop() {
@@ -23,8 +24,8 @@ function startTop() {
 // 헤더 스크롤 고정
 let prevScrollTop = 0;
 document.addEventListener('scroll', () => {
-  const nav = document.querySelector('.nav-area')
-  const signUpsignIn = document.querySelector('.signUpsignIn')
+  const nav = store.selector('.nav-area')
+  const signUpsignIn = store.selector('.signUpsignIn')
   const joinBtn = signUpsignIn.querySelector('.join')
   let nextScrollTop = window.scrollY;
 
@@ -48,7 +49,7 @@ document.addEventListener('scroll', () => {
 
 // 장바구니에 담긴 상품 개수 확인
 export function cartCountCheck() {
-  const cartCount = document.querySelector('.shopping-btn .item-count')
+  const cartCount = store.selector('.shopping-btn .item-count')
   const cartList = JSON.parse(localStorage.getItem('cart')) || []
   let total = 0
   if (cartList.length === 0) {
@@ -68,9 +69,9 @@ async function renderMain() {
   const data = await viewAllProduct();
   root.innerHTML = mainForm();
 
-  const keyboardList = document.querySelector('.keyboard > .inner');
-  const mouseList = document.querySelector('.mouse > .inner');
-  const newItemList = document.querySelector('.newItem > .inner');
+  const keyboardList = store.selector('.keyboard > .inner');
+  const mouseList = store.selector('.mouse > .inner');
+  const newItemList = store.selector('.newItem > .inner');
 
   const keyboard = [];
   const mouse = [];
@@ -200,7 +201,7 @@ function renderSubCategory(rootInner, dataArr) {
 
 // 제품 검색
 async function productSearch(e) {
-  const keyword = document.querySelector('#keyword');
+  const keyword = store.selector('#keyword');
 
   if (e.key === 'Enter') {
     startTop()
@@ -257,7 +258,7 @@ async function productSearch(e) {
 
 keyword.addEventListener('keyup', productSearch);
 shoppingBag.addEventListener('click', () => {
-  const box = document.querySelector('.shopping-box');
+  const box = store.selector('.shopping-box');
   box.classList.toggle('block');
   viewShoppingBag();
 });
@@ -299,7 +300,7 @@ async function renderMyShop() {
   try {
     const { totalBalance } = await userOwnBank()
     const { products, cancels, confirs } = await listLookUp()
-    const total = totalBalance ? totalBalance.toLocaleString() : '';
+    const total = totalBalance ? totalBalance.toLocaleString() : 0;
     startTop()
     root.innerHTML = myShoppingForm(products.length, total, cancels.length, confirs.length);
   } catch {

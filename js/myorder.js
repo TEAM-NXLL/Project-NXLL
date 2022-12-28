@@ -1,4 +1,5 @@
 import { cancelTransactions, confirmation } from "./getdata.js"
+import { store } from './store.js'
 
 // 구매 내역 렌더링
 export async function transLookUp(products) {
@@ -89,7 +90,7 @@ export function confirOrder() {
 
 // 취소 내역
 export async function cancelOrderLookUp(products) {
-  const transProductEl = document.querySelector('.trans-product')
+  const transProductEl = store.selector('.trans-product')
   // 취소 내역이 없다면
   if (!products || !products.length) {
     return (
@@ -139,7 +140,7 @@ export async function cancelOrderLookUp(products) {
 
 // 확정 내역
 export async function confirOrderLookUp(products) {
-  const transProductEl = document.querySelector('.trans-product')
+  const transProductEl = store.selector('.trans-product')
   // 확정 내역이 없다면
   if (!products || !products.length) {
     return (

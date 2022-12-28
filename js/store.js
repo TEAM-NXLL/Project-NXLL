@@ -5,6 +5,9 @@ const store = {
     username: 'KDT3_TEAM_NXLL',
     masterkey: false,
   },
+  selector: function $(selector) {
+    return document.querySelector(selector)
+  }
 };
 
 export { store };
