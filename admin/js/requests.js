@@ -38,7 +38,6 @@ export async function createProduct(
         photoBase64,
       }),
     );
-    console.log(res);
     return res;
   } catch (error) {
     toast(`${error}, 잠시 후 다시 시도해주세요.`, "추가");

@@ -7,7 +7,8 @@ const store = {
   },
   selector: function $(selector) {
     return document.querySelector(selector)
-  }
+  },
+  token: localStorage.accessToken
 };
 
 export { store };

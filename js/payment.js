@@ -56,7 +56,6 @@ export function priceCheck(product) {
 
 // 제품 전체 선택 및 해제
 export function allCheckBox() {
-
   const allCheckBox = store.selector('tr input[type=checkbox]')
   allCheckBox.addEventListener('change', event => {
     event.preventDefault()

@@ -15,11 +15,9 @@ export function sendSignUp() {
     const nameValue = store.selector('.name-input').value;
 
     const res = await getData(idValue, pwValue, nameValue, null);
-    document.cookie = `accessToken=${res.accessToken}; max-age=60`;
     if (res.user.email) {
+      document.cookie = `accessToken=${res.accessToken}; max-age=60`;
       return (root.innerHTML = logInForm());
-    } else {
-      alert('정보를 다시 입력해 주세요');
     }
     e.stopPropagation();
   });
@@ -40,8 +38,6 @@ export function sendLogin() {
       localStorage.setItem('userName', userName);
       completeLogin();
       location.href = '/';
-    } else {
-      alert('로그인 정보를 확인해 주세요.');
     }
     e.stopPropagation();
   });
