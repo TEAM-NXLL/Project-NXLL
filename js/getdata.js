@@ -1,7 +1,7 @@
 import { store } from "./store.js"
 
 // 회원가입 데이터
-export async function getData(email, password, id, profile = null) {
+export async function signUp(email, password, id, profile = null) {
   const res = await fetch(store.url + '/auth/signup', {
     method: 'POST',
     headers: {
@@ -23,7 +23,7 @@ export async function getData(email, password, id, profile = null) {
 }
 
 // 로그인 데이터
-export async function getLogin(email, password) {
+export async function login(email, password) {
   const res = await fetch(store.url + '/auth/login', {
     method: 'POST',
     headers: {
@@ -43,7 +43,7 @@ export async function getLogin(email, password) {
 }
 
 // 로그아웃 데이터
-export async function getLogOut(accessToken) {
+export async function logout(accessToken) {
   const res = await fetch(store.url + '/auth/logout', {
     method: 'POST',
     headers: {
@@ -56,7 +56,7 @@ export async function getLogOut(accessToken) {
 }
 
 // 로그인 유지 데이터
-export async function stateLogin(accessToken) {
+export async function keepLogin(accessToken) {
   const res = await fetch(store.url + '/auth/me', {
     method: 'POST',
     headers: {

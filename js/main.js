@@ -1,5 +1,5 @@
 import { doc } from 'prettier';
-import { getData, getLogin, getLogOut, stateLogin, postSearch, getTransactions, getProductDetail } from './getdata.js';
+import { stateLogin, postSearch, getTransactions, getProductDetail } from './getdata.js';
 import { router } from './route.js';
 import { sendSignUp, sendLogin, adminLogin, completeLogin, adminPage } from './auth.js';
 import { deliveryEl, returnEl, deliveryDes, returnDes, mouseenter, mouseleave } from './footer.js';
