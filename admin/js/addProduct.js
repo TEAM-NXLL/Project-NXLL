@@ -1,15 +1,16 @@
 import { createProduct } from './requests.js';
 import { toast } from './toast.js';
+import { store } from '../../js/store.js'
 
-const addFormEl = document.querySelector('.add-form')
-const thumbnailEl = document.querySelector('.add-thumbnail')
-const detailImgEl = document.querySelector('.add-detail')
-const priceInputEl = document.querySelector('#add-product-price')
-const addFileArea = document.querySelector(".add-file-upload-area")
-const editFileArea = document.querySelector(".edit-file-upload-area")
-const editDetailImgEl = document.querySelector('.edit-detail')
-const editThumbnailEl = document.querySelector('.edit-thumbnail')
-const editPriceInputEl = document.querySelector('#edit-product-price')
+const addFormEl = store.selector('.add-form')
+const thumbnailEl = store.selector('.add-thumbnail')
+const detailImgEl = store.selector('.add-detail')
+const priceInputEl = store.selector('#add-product-price')
+const addFileArea = store.selector(".add-file-upload-area")
+const editFileArea = store.selector(".edit-file-upload-area")
+const editDetailImgEl = store.selector('.edit-detail')
+const editThumbnailEl = store.selector('.edit-thumbnail')
+const editPriceInputEl = store.selector('#edit-product-price')
 const altImg = "https://static.vecteezy.com/system/resources/thumbnails/004/141/669/small/no-photo-or-blank-image-icon-loading-images-or-missing-image-mark-image-not-available-or-image-coming-soon-sign-simple-nature-silhouette-in-frame-isolated-illustration-vector.jpg"
 
 // 가격 입력 input칸에 통화단위 적용
@@ -62,20 +63,20 @@ function checkFileExtension(target, location, selector) {
 addFileArea.addEventListener('click', event => {
   const { target } = event;
   if (target.matches('.detail-reset')) {
-    document.querySelector('#detail-preview').src = altImg;
+    store.selector('#detail-preview').src = altImg;
     detailImgEl.value = "";
   } else if (target.matches('.thumbnail-reset')) {
-    document.querySelector('#thumbnail-preview').src = altImg;
+    store.selector('#thumbnail-preview').src = altImg;
     thumbnailEl.value = "";
   }
 })
 editFileArea.addEventListener('click', event => {
   const { target } = event;
   if (target.matches('.edit-detail-reset')) {
-    document.querySelector('#edit-detail-preview').src = altImg;
+    store.selector('#edit-detail-preview').src = altImg;
     editDetailImgEl.value = "";
   } else if (target.matches('.edit-thumbnail-reset')) {
-    document.querySelector('#edit-thumbnail-preview').src = altImg;
+    store.selector('#edit-thumbnail-preview').src = altImg;
     editThumbnailEl.value = "";
   }
 })
@@ -87,29 +88,29 @@ function previewImg(input, selector) {
   const reader = new FileReader();
   if (input.files && selector === thumbnailEl) {
     reader.onload = event => {
-      document.querySelector('#thumbnail-preview').src = event.target.result;
+      store.selector('#thumbnail-preview').src = event.target.result;
     };
     reader.readAsDataURL(input.files[0]);
   } else if (input.files && selector === detailImgEl) {
     reader.onload = event => {
-      document.querySelector('#detail-preview').src = event.target.result;
+      store.selector('#detail-preview').src = event.target.result;
     };
     reader.readAsDataURL(input.files[0]);
   } else if (input.files && selector === editDetailImgEl) {
     reader.onload = event => {
-      document.querySelector('#edit-detail-preview').src = event.target.result;
+      store.selector('#edit-detail-preview').src = event.target.result;
     };
     reader.readAsDataURL(input.files[0]);
   } else if (input.files && selector === editThumbnailEl) {
     reader.onload = event => {
-      document.querySelector('#edit-thumbnail-preview').src = event.target.result;
+      store.selector('#edit-thumbnail-preview').src = event.target.result;
     };
     reader.readAsDataURL(input.files[0]);
   } else {
-    document.querySelector('#thumbnail-preview').src = "";
-    document.querySelector('#detail-preview').src = "";
-    document.querySelector('#edit-thumbnail-preview').src = "";
-    document.querySelector('#edit-detail-preview').src = "";
+    store.selector('#thumbnail-preview').src = "";
+    store.selector('#detail-preview').src = "";
+    store.selector('#edit-thumbnail-preview').src = "";
+    store.selector('#edit-detail-preview').src = "";
   };
 }
 
@@ -119,20 +120,20 @@ function checkFileSize(target, selector) {
   const thumbnailSize = 1024 ** 2;
   const detailImgSize = 1024 ** 2 * 4;
   if (selector === thumbnailEl && file > thumbnailSize) {
-    document.querySelector('#thumbnail-preview').src = altImg;
+    store.selector('#thumbnail-preview').src = altImg;
     thumbnailEl.value = "";
     return toast("해당 파일은 제한된 용량을 초과하였습니다.", "추가")
   } else if (selector === detailImgEl && file > detailImgSize) {
-    document.querySelector('#detail-preview').src = altImg;
+    store.selector('#detail-preview').src = altImg;
     detailImgEl.value = "";
     return toast("해당 파일은 제한된 용량을 초과하였습니다.", "추가")
   } else if (selector === editThumbnailEl && file > thumbnailSize) {
-    document.querySelector('#edit-thumbnail-preview').src = altImg;
+    store.selector('#edit-thumbnail-preview').src = altImg;
     editThumbnailEl.value = "";
     console.log("안됨")
     return toast("해당 파일은 제한된 용량을 초과하였습니다.", "전체")
   } else if (selector === editDetailImgEl && file > detailImgSize) {
-    document.querySelector('#edit-detail-preview').src = altImg;
+    store.selector('#edit-detail-preview').src = altImg;
     editDetailImgEl.value = "";
     console.log("안됨")
     return toast("해당 파일은 제한된 용량을 초과하였습니다.", "전체")
@@ -175,14 +176,14 @@ addFormEl.addEventListener('submit', async (event) => {
 export function addItem(event) {
   const title = event.target[0].value;
   const price = +(event.target[1].value.replace(/[^0-9]/g, ''));
-  const selectedCategory = document.querySelector('input[name="category"]:checked').value;
+  const selectedCategory = store.selector('input[name="category"]:checked').value;
   const selectedTags = document.querySelectorAll('input[name="check"]:checked');
   const tags = [];
   tags.push(selectedCategory);
   selectedTags.forEach(tag => {
     tags.push(tag.value)
   });
-  const description = document.querySelector('.add-product-description').value;
+  const description = store.selector('.add-product-description').value;
   const thumbnail = thumbnailEl.dataset.id;
   const photo = detailImgEl.dataset.id;
   if (title.length < 2 || price < 1 || description.length < 1) {
@@ -207,7 +208,7 @@ function resetInput() {
   for (let i = 0; i < reset.length; i++) {
     reset[i].value = '';
   }
-  document.querySelector('#check21').checked = true;
-  document.querySelector('#detail-preview').src = "";
-  document.querySelector('#thumbnail-preview').src = "";
+  store.selector('#check21').checked = true;
+  store.selector('#detail-preview').src = "";
+  store.selector('#thumbnail-preview').src = "";
 }

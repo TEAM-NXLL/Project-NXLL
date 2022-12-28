@@ -1,10 +1,11 @@
 import { getBuy, getProductDetail } from './getdata.js';
 import { userOwnBank } from './userInfo.js';
 import { renderPayment } from './main.js';
+import { store } from './store.js'
 
 // 주문 상품 정보 조회
 export function lookProducts() {
-  const tbodyEl = document.querySelector('.products');
+  const tbodyEl = store.selector('.products');
   const cart = JSON.parse(localStorage.cart);
   if (cart.length > 0) {
     cart.forEach(async (e) => {
@@ -56,7 +57,7 @@ export function priceCheck(product) {
 // 제품 전체 선택 및 해제
 export function allCheckBox() {
 
-  const allCheckBox = document.querySelector('tr input[type=checkbox]')
+  const allCheckBox = store.selector('tr input[type=checkbox]')
   allCheckBox.addEventListener('change', event => {
     event.preventDefault()
     const eachCheckBoxs = document.querySelectorAll('.product-checkbox')
@@ -71,7 +72,7 @@ export function allCheckBox() {
 
 // 삭제하기 버튼 클릭
 export function cancelProduct() {
-  const productDeleteBtn = document.querySelector('.product-delete-btn');
+  const productDeleteBtn = store.selector('.product-delete-btn');
   const productCheckBox = document.querySelectorAll('.product-checkbox');
 
   productDeleteBtn.addEventListener('click', (event) => {
@@ -96,8 +97,8 @@ export function cancelProduct() {
 // 보유 계좌 불러오기
 export function payAccountList(accounts) {
   if (accounts.length > 0) {
-    const payAccountEl = document.querySelector('#pay-account');
-    const noBankEl = document.querySelector('.no-bank');
+    const payAccountEl = store.selector('#pay-account');
+    const noBankEl = store.selector('.no-bank');
     noBankEl.remove();
     accounts.forEach((account) => {
       const createBankList = document.createElement('option');
@@ -112,8 +113,8 @@ export function payAccountList(accounts) {
 // 보유 계좌 잔액 확인
 export async function payBankLoopUp() {
   const { accounts } = await userOwnBank();
-  const payAccountEl = document.querySelector('#pay-account');
-  const charge = document.querySelector('.charge');
+  const payAccountEl = store.selector('#pay-account');
+  const charge = store.selector('.charge');
   payAccountEl.addEventListener('change', (e) => {
     accounts.forEach((account) => {
       if (account.bankCode === e.target.value) {
@@ -145,9 +146,9 @@ function checkProducts(productQuantity, productIds) {
 
 // 결제하기
 export async function buyProducts() {
-  const paymentBtn = document.querySelector('.payment-btn')
+  const paymentBtn = store.selector('.payment-btn')
   paymentBtn.addEventListener('click', async () => {
-    const payAccount = document.querySelector('#pay-account')
+    const payAccount = store.selector('#pay-account')
     const dataResult = payAccount.options[payAccount.selectedIndex]
     const accountId = dataResult.dataset.id
     const productQuantity = JSON.parse(localStorage.cart)

@@ -1,17 +1,18 @@
 import { getLogin, getLogOut, getData, stateLogin } from "./getdata.js";
 import { logInForm } from './body.js'
+import { store } from './store.js'
 
-const root = document.querySelector('main')
+const root = store.selector('main')
 
 // 회원가입 처리 핸들러
 export function sendSignUp() {
-  const formTag = document.querySelector('#form-tag');
+  const formTag = store.selector('#form-tag');
 
   formTag.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const idValue = document.querySelector('.id-input').value;
-    const pwValue = document.querySelector('.pw-input').value;
-    const nameValue = document.querySelector('.name-input').value;
+    const idValue = store.selector('.id-input').value;
+    const pwValue = store.selector('.pw-input').value;
+    const nameValue = store.selector('.name-input').value;
 
     const res = await getData(idValue, pwValue, nameValue, null);
     document.cookie = `accessToken=${res.accessToken}; max-age=60`;
@@ -26,11 +27,11 @@ export function sendSignUp() {
 
 // 로그인 요청 핸들러
 export function sendLogin() {
-  const loginForm = document.querySelector('#login-form');
+  const loginForm = store.selector('#login-form');
   loginForm.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const idValue = document.querySelector('.signin-id-input').value;
-    const pwValue = document.querySelector('.signin-pw-input').value;
+    const idValue = store.selector('.signin-id-input').value;
+    const pwValue = store.selector('.signin-pw-input').value;
     const res = await getLogin(idValue, pwValue);
     if (res.user.email) {
       const userName = res.user.displayName;
@@ -48,7 +49,7 @@ export function sendLogin() {
 
 // 로그아웃 핸들러
 export function logOut() {
-  const logOutBtn = document.querySelector('.logOutBtn');
+  const logOutBtn = store.selector('.logOutBtn');
   logOutBtn.addEventListener('click', async () => {
     const accessToken = localStorage.getItem('accessToken');
     console.log(accessToken);
@@ -63,7 +64,7 @@ export function logOut() {
 
 // 로그인 유지 핸들러
 export function completeLogin() {
-  const li = document.querySelector('.signUpsignIn');
+  const li = store.selector('.signUpsignIn');
   const userName = localStorage.getItem('userName');
   li.innerHTML = /*HTML*/ `
     <p><strong>${userName}</strong>님, 환영합니다.</p>
@@ -76,7 +77,7 @@ export function completeLogin() {
 export async function adminLogin(accessToken) {
   if (accessToken) {
     const authLogin = await stateLogin(accessToken)
-    const toAdminPageEl = document.querySelector('.adminPage')
+    const toAdminPageEl = store.selector('.adminPage')
     if (authLogin.email ? authLogin.email.includes('admin') : false) {
       toAdminPageEl.href = './admin/admin.html'
     } else {
@@ -88,7 +89,7 @@ export async function adminLogin(accessToken) {
 
 // 관리자 페이지 접근
 export function adminPage() {
-  const toAdminPageEl = document.querySelector('.adminPage')
+  const toAdminPageEl = store.selector('.adminPage')
   toAdminPageEl.addEventListener('click', () => {
     if (toAdminPageEl.href.includes('#')) {
       alert('잘못된 접근입니다.')
