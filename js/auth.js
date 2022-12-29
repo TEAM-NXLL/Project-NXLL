@@ -15,9 +15,11 @@ export function sendSignUp() {
     const nameValue = store.selector('.name-input').value;
 
     const res = await signUp(idValue, pwValue, nameValue, null);
-    if (res.user.email) {
+    try {
       document.cookie = `accessToken=${res.accessToken}; max-age=60`;
       return (root.innerHTML = logInForm());
+    } catch (err) {
+      console.log('회원가입 실패')
     }
     e.stopPropagation();
   });
@@ -31,13 +33,15 @@ export function sendLogin() {
     const idValue = store.selector('.signin-id-input').value;
     const pwValue = store.selector('.signin-pw-input').value;
     const res = await login(idValue, pwValue);
-    if (res.user.email) {
+    try {
       const userName = res.user.displayName;
       const accessToken = res.accessToken;
       localStorage.setItem('accessToken', accessToken);
       localStorage.setItem('userName', userName);
       completeLogin();
       location.href = '/';
+    } catch (err) {
+      console.log('로그인 실패')
     }
     e.stopPropagation();
   });
@@ -50,11 +54,13 @@ export function logOut() {
     const accessToken = localStorage.getItem('accessToken');
     console.log(accessToken);
     const res = await logout(accessToken);
-    if (res) {
+    try {
       localStorage.removeItem('accessToken'),
-        localStorage.removeItem('userName');
+      localStorage.removeItem('userName');
+      location.href = '/';
+    } catch (err) {
+      console.log('로그아웃 실패')
     }
-    location.href = '/';
   });
 }
 
