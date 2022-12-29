@@ -1,5 +1,5 @@
 import { doc } from 'prettier';
-import { stateLogin, postSearch, getTransactions, getProductDetail } from './getdata.js';
+import { keepLogin, postSearch, getTransactions, getProductDetail } from './requests.js';
 import { router } from './route.js';
 import { sendSignUp, sendLogin, adminLogin, completeLogin, adminPage } from './auth.js';
 import { deliveryEl, returnEl, deliveryDes, returnDes, mouseenter, mouseleave } from './footer.js';
@@ -413,7 +413,7 @@ router();
 (async () => {
   const toAdminPageEl = document.querySelector('.adminPage')
   if (store.token) {
-    const res = await stateLogin(store.token);
+    const res = await keepLogin(store.token);
     res.displayName ? completeLogin() : window.localStorage.clear();
   } else {
     toAdminPageEl.closest('li').remove()

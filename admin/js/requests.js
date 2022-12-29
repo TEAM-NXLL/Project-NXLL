@@ -1,12 +1,11 @@
 import { store } from '../../js/store.js';
 import { toast } from './toast.js';
-const API_KEY = process.env;
 
 // JSON Request 양식 만들기
 export function createRequest(type, data) {
   const res = {
     method: type,
-    headers: { ...store.headers, apikey: API_KEY },
+    headers: { ...store.headers },
   };
   if (res.headers.masterKey === false) {
     res.headers.masterKey = true;

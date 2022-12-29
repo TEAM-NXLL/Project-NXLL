@@ -1,4 +1,4 @@
-import { cancelTransactions, confirmation } from "./getdata.js"
+import { cancelTransactions, confirmation } from "./requests.js"
 import { store } from './store.js'
 
 // 구매 내역 렌더링

@@ -1,4 +1,4 @@
-import { login, logout, signUp, keepLogin } from "./getdata.js";
+import { login, logout, signUp, keepLogin } from "./requests.js";
 import { logInForm } from './body.js'
 import { store } from './store.js'
 

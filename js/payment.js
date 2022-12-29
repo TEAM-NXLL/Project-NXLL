@@ -1,4 +1,4 @@
-import { getBuy, getProductDetail } from './getdata.js';
+import { getBuy, getProductDetail } from './requests.js';
 import { userOwnBank } from './userInfo.js';
 import { renderPayment } from './main.js';
 import { store } from './store.js'

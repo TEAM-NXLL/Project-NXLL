@@ -1,4 +1,4 @@
-import { accountLookUp, addAccount, editUser, accountCharge, cancelAccount } from "./getdata.js";
+import { accountLookUp, addAccount, editUser, accountCharge, cancelAccount } from "./requests.js";
 import { store } from './store.js'
 
 // 회원 정보 수정 핸들러

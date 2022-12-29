@@ -5,7 +5,7 @@ import { renderAdminSummary } from './adminSummary.js';
 import { addItem } from './addProduct.js';
 import { viewAllProduct, viewAllTransactions, adminData } from './requests.js';
 import { transacSearch } from './transacSearch.js';
-import { stateLogin } from '../../js/getdata.js'
+import { keepLogin } from '../../js/requests.js'
 import { store } from '../../js/store.js'
 
 (async () => {
@@ -19,8 +19,7 @@ import { store } from '../../js/store.js'
 
 // header
 async function welcomeAdmin() {
-  const authLogin = await stateLogin(localStorage.accessToken)
-  console.log(authLogin)
+  const authLogin = await keepLogin(localStorage.accessToken)
   const welcomeAdmin = store.selector('.adminHeader')
   const abc = /* HTML */`
     <li>

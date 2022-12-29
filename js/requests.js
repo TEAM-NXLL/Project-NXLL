@@ -1,26 +1,51 @@
 import { store } from "./store.js"
 
-// 회원가입 데이터
+// JSON Request 양식 만들기
+export function createRequest(type, data) {
+  const res = {
+    method: type,
+    headers: { ...store.headers }
+  }
+  if (data) {
+    res.body = JSON.stringify(data)
+  }
+  return res
+}
+
 export async function signUp(email, password, id, profile = null) {
-  const res = await fetch(store.url + '/auth/signup', {
-    method: 'POST',
-    headers: {
-      ...store.headers
-    },
-    body: JSON.stringify({
-      "email": email,
-      "password": password,
-      "displayName": id,
-      "profileImgBase64": profile
-    })
-  })
-  const json = await res.json()
-  if (res.ok) {
+  try {
+    const res = await fetch(
+      store.url + '/auth/signup',
+      createRequest('POST', { email, password, id, profile })
+    )
+    const json = await res.json()
     return json
-  } else {
-    alert(json)
+  } catch (error) {
+    alert(error)
   }
 }
+
+// 회원가입 데이터
+// export async function signUp(email, password, id, profile = null) {
+//   const res = await fetch(store.url + '/auth/signup', {
+//     method: 'POST',
+//     headers: {
+//       ...store.headers
+//     },
+//     body: JSON.stringify({
+//       "email": email,
+//       "password": password,
+//       "displayName": id,
+//       "profileImgBase64": profile
+//     })
+//   })
+//   const json = await res.json()
+//   if (res.ok) {
+//     return json
+//   } else {
+//     alert(json)
+//   }
+// }
 
 // 로그인 데이터
 export async function login(email, password) {
