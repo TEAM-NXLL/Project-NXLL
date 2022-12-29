@@ -93,14 +93,28 @@ modalCloseBtn.addEventListener('click', () => {
 // 모든제품조회에 변경사항 넣기
 function setChangedData(productId, title, price, description, tags, isSoldOut) {
   const lists = document.querySelectorAll('tr.product-item')
+  let imgNode = '';
+  let titleNode = '';
+  let priceNode = '';
+  let tagsNode = '';
+  let soldoutNode = '';
+  let descriptNode = '';
+
   lists.forEach(list => {
     if (productId === list.dataset.id) {
-      list.querySelector('img').src = store.selector('#edit-thumbnail-preview').src
-      list.querySelector('.title').textContent = title;
-      list.querySelector('.price').textContent = price;
-      list.querySelector('.tags').textContent = tags;
-      list.querySelector('.is-sold-out').textContent = isSoldOut ? "X" : "O";
-      list.querySelector('.descript').textContent = description;
+      imgNode = list.querySelector('img')
+      titleNode = list.querySelector('.title')
+      priceNode = list.querySelector('.price')
+      tagsNode =  list.querySelector('.tags')
+      soldoutNode = list.querySelector('.is-sold-out')
+      descriptNode = list.querySelector('.descript')
     }
   })
+  imgNode.src = store.selector('#edit-thumbnail-preview').src
+  titleNode.textContent = title;
+  priceNode.textContent = price;
+  tagsNode.textContent =  tags;
+  soldoutNode.textContent = isSoldOut ? "X" : "O";
+  descriptNode.textContent = description;
 }
+
