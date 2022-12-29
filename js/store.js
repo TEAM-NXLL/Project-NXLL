@@ -6,7 +6,7 @@ const store = {
     'content-type': 'application/json',
     'username': 'KDT3_TEAM_NXLL',
     'apikey': process.env.API_KEY,
-    'masterkey': false,
+    'masterKey': false,
   },
   selector: function $(selector) {
     return document.querySelector(selector)
