@@ -15,45 +15,46 @@ const altImg = "https://static.vecteezy.com/system/resources/thumbnails/004/141/
 
 // 가격 입력 input칸에 통화단위 적용
 priceInputEl.addEventListener('input', event => {
-  let price = event.target.value;
-  price = Number(price.replace(/[^0-9]/g, '')).toLocaleString('ko-KR');
-  priceInputEl.value = price;
+  priceInputHandler(event, priceInputEl)
 });
 editPriceInputEl.addEventListener('input', event => {
+  priceInputHandler(event, editPriceInputEl)
+});
+function priceInputHandler(event, selector){
   let price = event.target.value;
   price = Number(price.replace(/[^0-9]/g, '')).toLocaleString('ko-KR');
-  editPriceInputEl.value = price;
-});
+  selector.value = price;
+}
 
 // 이미지파일 업로드 이벤트
 editFileArea.addEventListener('change', event => {
   const { target } = event;
-  if (target.matches('.edit-thumbnail')) {
-    checkFileSize(event.target, editThumbnailEl)
-    checkFileExtension(event.target, "전체", editThumbnailEl)
-  } else if (target.matches('.edit-detail')) {
-    checkFileSize(event.target, editDetailImgEl)
-    checkFileExtension(event.target, "전체", editDetailImgEl)
-  }
+  checkFileSize(event.target, target)
+  checkFileExtension(event.target, "전체", target)
 })
 addFileArea.addEventListener('change', event => {
   const { target } = event;
-  if (target.matches('.add-thumbnail')) {
-    checkFileSize(event.target, thumbnailEl)
-    checkFileExtension(event.target, "추가", thumbnailEl)
-  } else if (target.matches('.add-detail')) {
-    checkFileSize(event.target, detailImgEl)
-    checkFileExtension(event.target, "추가", detailImgEl)
-  }
+  checkFileSize(event.target, target)
+  checkFileExtension(event.target, "추가", target)
 })
 
 // 파일 확장자 유효성검사
 function checkFileExtension(target, location, selector) {
+  let fileEl = '';
+  if (selector.matches('.edit-thumbnail')) {
+    fileEl = editThumbnailEl
+  } else if (selector.matches('.edit-detail')) {
+    fileEl = editDetailImgEl
+  } else if (selector.matches('.add-thumbnail')) {
+    fileEl = thumbnailEl
+  } else if (selector.matches('.add-detail')) {
+    fileEl = detailImgEl
+  }
   const file = target.files[0].name.split('.').pop()
   const extensions = ['jpg', 'jpeg', 'webp', 'png', 'gif', 'svg'];
   if (!extensions.includes(file)) {
-    selector.closest('td').childNodes[1].children[0].src = altImg
-    selector.closest('td').childNodes[5].value = '';
+    fileEl.closest('td').childNodes[1].children[0].src = altImg
+    fileEl.closest('td').childNodes[5].value = '';
     toast("지원하는 파일 형식이 아닙니다.", location)
     return
   }
@@ -61,25 +62,28 @@ function checkFileExtension(target, location, selector) {
 
 // 이미지파일 업로드 초기화버튼 클릭이벤트
 addFileArea.addEventListener('click', event => {
-  const { target } = event;
-  if (target.matches('.detail-reset')) {
-    store.selector('#detail-preview').src = altImg;
-    detailImgEl.value = "";
-  } else if (target.matches('.thumbnail-reset')) {
-    store.selector('#thumbnail-preview').src = altImg;
-    thumbnailEl.value = "";
-  }
+  fileResetHandler(event)
 })
 editFileArea.addEventListener('click', event => {
+  fileResetHandler(event)
+})
+
+function fileResetHandler(event){
   const { target } = event;
-  if (target.matches('.edit-detail-reset')) {
-    store.selector('#edit-detail-preview').src = altImg;
+  if (target.matches('.detail-reset')) {
+    event.path[1].children[0].children[0].src = altImg;
+    detailImgEl.value = "";
+  } else if (target.matches('.thumbnail-reset')) {
+    event.path[1].children[0].children[0].src = altImg;
+    thumbnailEl.value = "";
+  } else if (target.matches('.edit-detail-reset')) {
+    event.path[1].children[0].children[0].src = altImg;
     editDetailImgEl.value = "";
   } else if (target.matches('.edit-thumbnail-reset')) {
-    store.selector('#edit-thumbnail-preview').src = altImg;
+    event.path[1].children[0].children[0].src = altImg;
     editThumbnailEl.value = "";
   }
-})
+}
 
 
 // 이미지파일 업로드 시 미리보기
@@ -116,30 +120,38 @@ function previewImg(input, selector) {
 
 // 업로드 이미지 파일 크기 체크 후 인코딩실행
 function checkFileSize(target, selector) {
+  let fileEl = '';
+  if (selector.matches('.edit-thumbnail')) {
+    fileEl = editThumbnailEl
+  } else if (selector.matches('.edit-detail')) {
+    fileEl = editDetailImgEl
+  } else if (selector.matches('.add-thumbnail')) {
+    fileEl = thumbnailEl
+  } else if (selector.matches('.add-detail')) {
+    fileEl = detailImgEl
+  }
   const file = target.files[0].size;
   const thumbnailSize = 1024 ** 2;
   const detailImgSize = 1024 ** 2 * 4;
-  if (selector === thumbnailEl && file > thumbnailSize) {
+  if (fileEl === thumbnailEl && file > thumbnailSize) {
     store.selector('#thumbnail-preview').src = altImg;
     thumbnailEl.value = "";
     return toast("해당 파일은 제한된 용량을 초과하였습니다.", "추가")
-  } else if (selector === detailImgEl && file > detailImgSize) {
+  } else if (fileEl === detailImgEl && file > detailImgSize) {
     store.selector('#detail-preview').src = altImg;
     detailImgEl.value = "";
     return toast("해당 파일은 제한된 용량을 초과하였습니다.", "추가")
-  } else if (selector === editThumbnailEl && file > thumbnailSize) {
+  } else if (fileEl === editThumbnailEl && file > thumbnailSize) {
     store.selector('#edit-thumbnail-preview').src = altImg;
     editThumbnailEl.value = "";
-    console.log("안됨")
     return toast("해당 파일은 제한된 용량을 초과하였습니다.", "전체")
-  } else if (selector === editDetailImgEl && file > detailImgSize) {
+  } else if (fileEl === editDetailImgEl && file > detailImgSize) {
     store.selector('#edit-detail-preview').src = altImg;
     editDetailImgEl.value = "";
-    console.log("안됨")
     return toast("해당 파일은 제한된 용량을 초과하였습니다.", "전체")
   } else {
-    previewImg(target, selector);
-    imgIncoding(target, selector);
+    previewImg(target, fileEl);
+    imgIncoding(target, fileEl);
   }
 }
 
@@ -192,23 +204,22 @@ export function addItem(event) {
   try {
     toast("상품 추가가 완료되었습니다.", "추가")
     createProduct(title, price, description, tags, thumbnail, photo);
-    resetInput()
+    resetInput(event)
   } catch (error) {
     toast(`${error}, 잠시 후 다시 시도해주세요.`, "추가")
   }
 }
 
 // 제품추가 후 input창 초기화
-function resetInput() {
-  const reset = document.querySelectorAll('.reset');
-  const resetCheckbox = document.querySelectorAll('.check');
-  for (let i = 0; i < resetCheckbox.length; i += 1) {
-    resetCheckbox[i].checked = false;
+function resetInput(event) {
+  const target = event.target
+  for (let i = 0; i < target.length; i += 1) {
+    (i < 2 || i === target.length - 4) 
+      ? target[i].value = ''   
+      : target[i].checked = false;
+
+    if ( i === 35 || i === 36) {
+      target[i].closest('td').childNodes[1].children[0].src='';
+    }
   }
-  for (let i = 0; i < reset.length; i++) {
-    reset[i].value = '';
-  }
-  store.selector('#check21').checked = true;
-  store.selector('#detail-preview').src = "";
-  store.selector('#thumbnail-preview').src = "";
 }
