@@ -5,7 +5,8 @@ import { renderAdminSummary } from './adminSummary.js';
 import { addItem } from './addProduct.js';
 import { viewAllProduct, viewAllTransactions, adminData } from './requests.js';
 import { transacSearch } from './transacSearch.js';
-import { stateLogin } from '../../js/getdata.js'
+import { keepLogin } from '../../js/requests.js'
+import { store } from '../../js/store.js'
 
 (async () => {
   const allProduct = await viewAllProduct();
@@ -18,9 +19,8 @@ import { stateLogin } from '../../js/getdata.js'
 
 // header
 async function welcomeAdmin() {
-  const authLogin = await stateLogin(localStorage.accessToken)
-  console.log(authLogin)
-  const welcomeAdmin = document.querySelector('.adminHeader')
+  const authLogin = await keepLogin(localStorage.accessToken)
+  const welcomeAdmin = store.selector('.adminHeader')
   const abc = /* HTML */`
     <li>
       <p>Welcome, Admin <strong>${authLogin.displayName}</strong></p>
@@ -37,10 +37,10 @@ welcomeAdmin()
 
 
 // GNB 탭
-const gnb = document.querySelector('.gnb')
+const gnb = store.selector('.gnb')
 const gnbTabs = gnb.querySelectorAll('li')
 let activeTab = gnb.querySelector('.active')
-const editPopup = document.querySelector('.editPopup')
+const editPopup = store.selector('.editPopup')
 
 gnbTabs.forEach((tab) => {
   tab.addEventListener('click', (e) => {
