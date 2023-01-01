@@ -14,7 +14,7 @@ function mainForm() {
 
   for (let i = 1; i <= 7; i++) {
     mainBody.push( /* HTML */ `
-      <li class="swiper-slide"><a href="#"><img src="../images/slide1-banner${i}.jpg" alt=""></a></li>
+      <li class="swiper-slide"><a href="#"><img src="./images/slide1-banner${i}.jpg" alt=""></a></li>
     `)
   }
 
