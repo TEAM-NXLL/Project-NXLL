@@ -19,7 +19,7 @@ export function createRequest(type, masterKey = true, data, accessToken) {
   if (accessToken) {
     res.headers.Authorization = `Bearer ${accessToken}` 
   }
-  return res;
+  return res
 }
 
 // 제품 추가
