@@ -2,11 +2,10 @@ import { viewAllProduct } from './requests.js';
 import { viewAllTransactions } from './requests.js';
 
 export async function renderAdminSummary(allTransac, allProduct) {
-
   const adminSummary = document.querySelector('.admin-summary');
-  
+
   // 삽입 생성자 함수
-  function Status(selector, html) {
+  function renderOfStatus(selector, html) {
     adminSummary.querySelector(selector).innerHTML = html;
   }
 
@@ -14,10 +13,9 @@ export async function renderAdminSummary(allTransac, allProduct) {
   const date = new Date();
   const today =
     date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
-    
 
   const newOrder = allTransac.filter((el) => {
-    return el.timePaid.slice(0,10)  === today;
+    return el.timePaid.slice(0, 10) === today;
   });
 
   const purchaseConfirmed = allTransac.filter((el) => {
@@ -28,7 +26,7 @@ export async function renderAdminSummary(allTransac, allProduct) {
     return el.isCanceled === true;
   });
 
-  new Status(
+  renderOfStatus(
     '.new-order',
     /*html*/ `
     <span class="new-order-text">신규 주문</span>
@@ -36,7 +34,7 @@ export async function renderAdminSummary(allTransac, allProduct) {
     <span class="num-text">건</span>
   `,
   );
-  new Status(
+  renderOfStatus(
     '.purchase-confirmed',
     /*html*/ `
     <span class="purchase-confirmed-text">구매 확정</span>
@@ -44,7 +42,7 @@ export async function renderAdminSummary(allTransac, allProduct) {
     <span class="num-text">건</span>
   `,
   );
-  new Status(
+  renderOfStatus(
     '.purchase-cancled',
     /*html*/ `
     <span class="purchase-cancled-text">거래 취소</span>
@@ -62,7 +60,7 @@ export async function renderAdminSummary(allTransac, allProduct) {
     }
   });
 
-  new Status(
+  renderOfStatus(
     '.total-products-num',
     /*html*/ `
     <span class="total-products-num-text">전체 상품수</span>
@@ -70,7 +68,7 @@ export async function renderAdminSummary(allTransac, allProduct) {
     <span class="num-text">개</span>
   `,
   );
-  new Status(
+  renderOfStatus(
     '.total-income',
     /*html*/ `
     <span class="total-income-text">전체 판매액</span>
@@ -78,7 +76,7 @@ export async function renderAdminSummary(allTransac, allProduct) {
     <span class="num-text">원</span>
   `,
   );
-  new Status(
+  renderOfStatus(
     '.total-transac-num',
     /*html*/ `
     <span class="total-transac-num-text">전체 거래수</span>
