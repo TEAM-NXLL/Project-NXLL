@@ -1018,7 +1018,7 @@ function paymentForm() {
             <td>
               <select id="pay-account">
                 <option value="default">은행 이름</option>
-                <option value="null" class="no-bank">계좌 없음</option>
+                <option value="" class="no-bank">계좌 없음</option>
               </select>
               <span class="charge"></span>
             </td>

@@ -1,4 +1,5 @@
-import { cancelTransactions, confirmation } from "./getdata.js"
+import { cancelTransactions, confirmation } from "./requests.js"
+import { store } from './store.js'
 
 // 구매 내역 렌더링
 export async function transLookUp(products) {
@@ -15,9 +16,6 @@ export async function transLookUp(products) {
     `
     )
   }
-  products.sort((a, b) => {
-    return a.timePaid < b.timePaid ? -1 : a.timePaid > b.timePaid ? 1 : 0
-  })
   products.forEach(product => {
     const decisionBtn = /* html */ `
     <button data-id=${product.detailId} class="hover-navy cancel-btn">주문 취소</button>
@@ -89,7 +87,7 @@ export function confirOrder() {
 
 // 취소 내역
 export async function cancelOrderLookUp(products) {
-  const transProductEl = document.querySelector('.trans-product')
+  const transProductEl = store.selector('.trans-product')
   // 취소 내역이 없다면
   if (!products || !products.length) {
     return (
@@ -102,9 +100,6 @@ export async function cancelOrderLookUp(products) {
     `
     )
   }
-  products.sort((a, b) => {
-    return a.timePaid < b.timePaid ? -1 : a.timePaid > b.timePaid ? 1 : 0
-  })
   products.forEach(cancel => {
     transProductEl.innerHTML += /* html */ `
     <tr class="buy-product">
@@ -139,7 +134,7 @@ export async function cancelOrderLookUp(products) {
 
 // 확정 내역
 export async function confirOrderLookUp(products) {
-  const transProductEl = document.querySelector('.trans-product')
+  const transProductEl = store.selector('.trans-product')
   // 확정 내역이 없다면
   if (!products || !products.length) {
     return (
@@ -152,9 +147,6 @@ export async function confirOrderLookUp(products) {
     `
     )
   } else {
-    products.sort((a, b) => {
-      return a.timePaid < b.timePaid ? -1 : a.timePaid > b.timePaid ? 1 : 0
-    })
     products.forEach(confir => {
       transProductEl.innerHTML += /* html */ `
       <tr class="buy-product">

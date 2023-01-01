@@ -1,7 +1,9 @@
-const deliveryEl = document.querySelector('.delivery')
-const returnEl = document.querySelector('.return')
-const deliveryDes = document.querySelector('.delivery-des')
-const returnDes = document.querySelector('.return-des')
+import { store } from './store.js'
+
+const deliveryEl = store.selector('.delivery')
+const returnEl = store.selector('.return')
+const deliveryDes = store.selector('.delivery-des')
+const returnDes = store.selector('.return-des')
 
 // 카테고리에 호버
 function mouseenter() {

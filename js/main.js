@@ -1,5 +1,5 @@
 import { doc } from 'prettier';
-import { getData, getLogin, getLogOut, stateLogin, postSearch, getTransactions, getProductDetail } from './getdata.js';
+import { keepLogin, postSearch, getTransactions, getProductDetail } from './requests.js';
 import { router } from './route.js';
 import { sendSignUp, sendLogin, adminLogin, completeLogin, adminPage } from './auth.js';
 import { deliveryEl, returnEl, deliveryDes, returnDes, mouseenter, mouseleave } from './footer.js';
@@ -10,10 +10,11 @@ import { payAccountList, payBankLoopUp, buyProducts, lookProducts, cancelProduct
 import { cancelOrder, confirOrder, transLookUp, cancelOrderLookUp, confirOrderLookUp } from './myorder.js'
 import { buyProduct, cart, shoppingBasket } from './detail.js'
 import { viewShoppingBag } from './shoppingBag.js';
+import { store } from './store.js'
 
 // 변수
-const root = document.querySelector('main');
-const shoppingBag = document.querySelector('.shopping-btn');
+const root = store.selector('main')
+const shoppingBag = store.selector('.shopping-btn')
 
 // 페이지 새로 렌더하면 스크롤 맨 위로 이동하기
 function startTop() {
@@ -23,8 +24,8 @@ function startTop() {
 // 헤더 스크롤 고정
 let prevScrollTop = 0;
 document.addEventListener('scroll', () => {
-  const nav = document.querySelector('.nav-area')
-  const signUpsignIn = document.querySelector('.signUpsignIn')
+  const nav = store.selector('.nav-area')
+  const signUpsignIn = store.selector('.signUpsignIn')
   const joinBtn = signUpsignIn.querySelector('.join')
   let nextScrollTop = window.scrollY;
 
@@ -48,7 +49,7 @@ document.addEventListener('scroll', () => {
 
 // 장바구니에 담긴 상품 개수 확인
 export function cartCountCheck() {
-  const cartCount = document.querySelector('.shopping-btn .item-count')
+  const cartCount = store.selector('.shopping-btn .item-count')
   const cartList = JSON.parse(localStorage.getItem('cart')) || []
   let total = 0
   if (cartList.length === 0) {
@@ -68,9 +69,9 @@ async function renderMain() {
   const data = await viewAllProduct();
   root.innerHTML = mainForm();
 
-  const keyboardList = document.querySelector('.keyboard > .inner');
-  const mouseList = document.querySelector('.mouse > .inner');
-  const newItemList = document.querySelector('.newItem > .inner');
+  const keyboardList = store.selector('.keyboard > .inner');
+  const mouseList = store.selector('.mouse > .inner');
+  const newItemList = store.selector('.newItem > .inner');
 
   const keyboard = [];
   const mouse = [];
@@ -162,7 +163,7 @@ export async function renderCategory(tag) {
   renderSubCategory(rootInner, dataArr)
 
   // 서브카테고리 안에서 메인카테고리 다시 클릭 시
-  const category = document.querySelector(`a[href="#${tag}"]`)
+  const category = store.selector(`a[href="#${tag}"]`)
   category.addEventListener('click', event => {
     root.innerHTML = renderInnerCategory(tag, dataArr.length);
 
@@ -200,7 +201,7 @@ function renderSubCategory(rootInner, dataArr) {
 
 // 제품 검색
 async function productSearch(e) {
-  const keyword = document.querySelector('#keyword');
+  const keyword = store.selector('#keyword');
 
   if (e.key === 'Enter') {
     startTop()
@@ -257,7 +258,7 @@ async function productSearch(e) {
 
 keyword.addEventListener('keyup', productSearch);
 shoppingBag.addEventListener('click', () => {
-  const box = document.querySelector('.shopping-box');
+  const box = store.selector('.shopping-box');
   box.classList.toggle('block');
   viewShoppingBag();
 });
@@ -277,14 +278,17 @@ function joinRender() {
 }
 
 // 관리자 로그인인지 확인
-adminLogin(localStorage.accessToken)
+adminLogin(store.token)
 adminPage()
 
 // myorder 렌더링 공통 사항
 async function listLookUp() {
   try {
-    const products = await getTransactions(localStorage.accessToken)
+    const products = await getTransactions(store.token)
     if (products !== '구매 내역이 존재하지 않습니다.') {
+      products.sort((a, b) => {
+        return a.timePaid < b.timePaid ? -1 : a.timePaid > b.timePaid ? 1 : 0
+      })
       const cancels = products.filter(product => product.isCanceled === true)
       const confirs = products.filter(product => product.done === true)
       return { products, cancels, confirs }
@@ -299,7 +303,7 @@ async function renderMyShop() {
   try {
     const { totalBalance } = await userOwnBank()
     const { products, cancels, confirs } = await listLookUp()
-    const total = totalBalance ? totalBalance.toLocaleString() : '';
+    const total = totalBalance ? totalBalance.toLocaleString() : 0;
     startTop()
     root.innerHTML = myShoppingForm(products.length, total, cancels.length, confirs.length);
   } catch {
@@ -360,7 +364,7 @@ async function renderMyConfirOrder() {
 
 // userInfo 렌더링
 async function renderUserInfo() {
-  const res = await stateLogin(localStorage.accessToken)
+  const res = await stateLogin(store.token)
   startTop()
   root.innerHTML = userInfoForm(res.email, res.displayName)
   const { totalBalance, accounts } = await userOwnBank()
@@ -408,8 +412,8 @@ router();
 // 로그인 로그아웃 확인
 (async () => {
   const toAdminPageEl = document.querySelector('.adminPage')
-  if (localStorage.accessToken) {
-    const res = await stateLogin(localStorage.accessToken);
+  if (store.token) {
+    const res = await keepLogin(store.token);
     res.displayName ? completeLogin() : window.localStorage.clear();
   } else {
     toAdminPageEl.closest('li').remove()
