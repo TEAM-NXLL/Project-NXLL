@@ -16,7 +16,6 @@ export function sendSignUp() {
 
     const res = await signUp(idValue, pwValue, nameValue, null);
     try {
-      document.cookie = `accessToken=${res.accessToken}; max-age=60`;
       return (root.innerHTML = logInForm());
     } catch (err) {
       console.log('회원가입 실패')
@@ -56,7 +55,7 @@ export function logOut() {
     const res = await logout(accessToken);
     try {
       localStorage.removeItem('accessToken'),
-      localStorage.removeItem('userName');
+        localStorage.removeItem('userName');
       location.href = '/';
     } catch (err) {
       console.log('로그아웃 실패')
