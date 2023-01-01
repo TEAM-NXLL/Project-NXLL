@@ -1,16 +1,14 @@
-import { createProduct } from './requests.js';
 import { toast } from './toast.js';
 import { store } from '../../js/store.js'
 
-const addFormEl = store.selector('.add-form')
-const thumbnailEl = store.selector('.add-thumbnail')
-const detailImgEl = store.selector('.add-detail')
-const priceInputEl = store.selector('#add-product-price')
+export const thumbnailEl = store.selector('.add-thumbnail')
+export const detailImgEl = store.selector('.add-detail')
+export const priceInputEl = store.selector('#add-product-price')
 const addFileArea = store.selector(".add-file-upload-area")
 const editFileArea = store.selector(".edit-file-upload-area")
-const editDetailImgEl = store.selector('.edit-detail')
-const editThumbnailEl = store.selector('.edit-thumbnail')
-const editPriceInputEl = store.selector('#edit-product-price')
+export const editDetailImgEl = store.selector('.edit-detail')
+export const editThumbnailEl = store.selector('.edit-thumbnail')
+export const editPriceInputEl = store.selector('#edit-product-price')
 const altImg = "https://static.vecteezy.com/system/resources/thumbnails/004/141/669/small/no-photo-or-blank-image-icon-loading-images-or-missing-image-mark-image-not-available-or-image-coming-soon-sign-simple-nature-silhouette-in-frame-isolated-illustration-vector.jpg"
 
 // 가격 입력 input칸에 통화단위 적용
@@ -178,40 +176,8 @@ function imgIncoding(target, selector) {
   }
 }
 
-// 제품추가 - submit 버튼클릭이벤트
-addFormEl.addEventListener('submit', async (event) => {
-  event.preventDefault();
-  addItem(event);
-});
-
-// 제품추가 이벤트 핸들러
-export function addItem(event) {
-  const title = event.target[0].value;
-  const price = +(event.target[1].value.replace(/[^0-9]/g, ''));
-  const selectedCategory = store.selector('input[name="category"]:checked').value;
-  const selectedTags = document.querySelectorAll('input[name="check"]:checked');
-  const tags = [];
-  tags.push(selectedCategory);
-  selectedTags.forEach(tag => {
-    tags.push(tag.value)
-  });
-  const description = store.selector('.add-product-description').value;
-  const thumbnail = thumbnailEl.dataset.id;
-  const photo = detailImgEl.dataset.id;
-  if (title.length < 2 || price < 1 || description.length < 1) {
-    return toast('내용이 모두 입력되었는지 확인해 주세요', "추가");
-  }
-  try {
-    toast("상품 추가가 완료되었습니다.", "추가")
-    createProduct(title, price, description, tags, thumbnail, photo);
-    resetInput(event)
-  } catch (error) {
-    toast(`${error}, 잠시 후 다시 시도해주세요.`, "추가")
-  }
-}
-
 // 제품추가 후 input창 초기화
-function resetInput(event) {
+export function resetInput(event) {
   const target = event.target
   for (let i = 0; i < target.length; i += 1) {
     (i < 2 || i === target.length - 4) 
