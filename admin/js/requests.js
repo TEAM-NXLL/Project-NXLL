@@ -1,12 +1,14 @@
 import { store } from '../../js/store.js';
 import { toast } from './toast.js';
+const URL = store.url + '/products';
+// products';
 
 // JSON Request 양식 만들기
 export function createRequest(type, masterKey = true, data, accessToken) {
   const res = {
     method: type,
-    headers: { ...store.headers }
-  }
+    headers: { ...store.headers },
+  };
 
   if (masterKey) {
     res.headers.masterKey = true;
@@ -17,9 +19,9 @@ export function createRequest(type, masterKey = true, data, accessToken) {
   }
 
   if (accessToken) {
-    res.headers.Authorization = `Bearer ${accessToken}` 
+    res.headers.Authorization = `Bearer ${accessToken}`;
   }
-  return res
+  return res;
 }
 
 // 제품 추가
@@ -33,7 +35,7 @@ export async function createProduct(
 ) {
   try {
     const res = await fetch(
-      store.url + '/products',
+      URL,
       createRequest('POST', true, {
         title,
         price,
@@ -45,18 +47,18 @@ export async function createProduct(
     );
     return res;
   } catch (error) {
-    toast(`${error}, 잠시 후 다시 시도해주세요.`, "추가");
+    toast(`${error}, 잠시 후 다시 시도해주세요.`, '추가');
   }
 }
 
 // 모든 제품 조회
 export async function viewAllProduct() {
   try {
-    const res = await fetch(store.url + '/products', createRequest('GET', true));
+    const res = await fetch(URL, createRequest('GET', true));
     const getResult = await res.json();
     return getResult;
   } catch (error) {
-    toast(`${error}, 잠시 후 다시 시도해주세요.`, "전체");
+    toast(`${error}, 잠시 후 다시 시도해주세요.`, '전체');
   }
 }
 
@@ -64,13 +66,13 @@ export async function viewAllProduct() {
 export async function viewAllTransactions() {
   try {
     const res = await fetch(
-      store.url + '/products/transactions/all',
+      URL + '/transactions/all',
       createRequest('GET', true),
     );
     const getResult = await res.json();
     return getResult;
   } catch (error) {
-    toast(`${error}, 잠시 후 다시 시도해주세요.`, "거래");
+    toast(`${error}, 잠시 후 다시 시도해주세요.`, '거래');
   }
 }
 
@@ -78,20 +80,30 @@ export async function viewAllTransactions() {
 export async function transactionStatus(detailId, isCanceled, done) {
   try {
     const res = await fetch(
-      store.url + `/products/transactions/${detailId}`,
+      URL + `/transactions/${detailId}`,
       createRequest('PUT', true, { isCanceled, done }),
     );
-    toast("거래 상태가 변경되었습니다.")
+    toast('거래 상태가 변경되었습니다.');
     return res;
   } catch (error) {
-    toast(`${error}, 잠시 후 다시 시도해주세요.`, "거래");
+    toast(`${error}, 잠시 후 다시 시도해주세요.`, '거래');
   }
 }
 
 // 제품 수정
-export async function correctProduct(productId, title, price, description, tags, thumbnailBase64, photoBase64, isSoldOut) {
+export async function correctProduct(
+  productId,
+  title,
+  price,
+  description,
+  tags,
+  thumbnailBase64,
+  photoBase64,
+  isSoldOut,
+) {
   try {
-    const res = await fetch(store.url + `/products/${productId}`,
+    const res = await fetch(
+      URL + `/${productId}`,
       createRequest('PUT', true, {
         title,
         price,
@@ -104,7 +116,7 @@ export async function correctProduct(productId, title, price, description, tags,
     );
     return res;
   } catch (error) {
-    toast(`${error}, 잠시 후 다시 시도해주세요.`, "전체");
+    toast(`${error}, 잠시 후 다시 시도해주세요.`, '전체');
   }
 }
 
@@ -112,11 +124,11 @@ export async function correctProduct(productId, title, price, description, tags,
 export async function delProduct(productId) {
   try {
     const res = await fetch(
-      store.url + `/products/${productId}`,
+      URL + `/${productId}`,
       createRequest('DELETE', true),
     );
     return res;
   } catch (error) {
-    toast(`${error}, 잠시 후 다시 시도해주세요.`, "전체");
+    toast(`${error}, 잠시 후 다시 시도해주세요.`, '전체');
   }
 }
