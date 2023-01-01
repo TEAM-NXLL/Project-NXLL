@@ -1,9 +1,11 @@
-import { cancelTransactions, confirmation } from "./getdata.js"
+import { cancelTransactions, confirmation } from "./requests.js"
+import { store } from './store.js'
 
 // 구매 내역 렌더링
 export async function transLookUp(products) {
   const transProductEl = document.querySelector('.trans-product')
-  if (!products) {
+  // 구매 내역이 없다면
+  if (!products || !products.length) {
     return (
       transProductEl.innerHTML = /* html */ `
     <tr class="buy-product-none">
@@ -14,9 +16,6 @@ export async function transLookUp(products) {
     `
     )
   }
-  products.sort((a, b) => {
-    return a.timePaid < b.timePaid ? -1 : a.timePaid > b.timePaid ? 1 : 0
-  })
   products.forEach(product => {
     const decisionBtn = /* html */ `
     <button data-id=${product.detailId} class="hover-navy cancel-btn">주문 취소</button>
@@ -68,6 +67,7 @@ export function cancelOrder() {
       const id = e.target.dataset.id
       await cancelTransactions(localStorage.accessToken, id)
       alert('구매가 취소되었습니다.')
+      location.reload()
     })
   })
 }
@@ -80,14 +80,16 @@ export function confirOrder() {
       const id = e.target.dataset.id
       await confirmation(localStorage.accessToken, id)
       alert('구매가 확정되었습니다.')
+      location.reload()
     })
   })
 }
 
 // 취소 내역
 export async function cancelOrderLookUp(products) {
-  const transProductEl = document.querySelector('.trans-product')
-  if (!products) {
+  const transProductEl = store.selector('.trans-product')
+  // 취소 내역이 없다면
+  if (!products || !products.length) {
     return (
       transProductEl.innerHTML = /* html */ `
     <tr class="buy-product-none">
@@ -98,11 +100,7 @@ export async function cancelOrderLookUp(products) {
     `
     )
   }
-  const cancels = products.filter(product => product.isCanceled === true)
-  cancels.sort((a, b) => {
-    return a.timePaid < b.timePaid ? -1 : a.timePaid > b.timePaid ? 1 : 0
-  })
-  cancels.forEach(cancel => {
+  products.forEach(cancel => {
     transProductEl.innerHTML += /* html */ `
     <tr class="buy-product">
       <td class="date">
@@ -136,8 +134,9 @@ export async function cancelOrderLookUp(products) {
 
 // 확정 내역
 export async function confirOrderLookUp(products) {
-  const transProductEl = document.querySelector('.trans-product')
-  if (!products) {
+  const transProductEl = store.selector('.trans-product')
+  // 확정 내역이 없다면
+  if (!products || !products.length) {
     return (
       transProductEl.innerHTML = /* html */ `
     <tr class="buy-product-none">
@@ -147,39 +146,36 @@ export async function confirOrderLookUp(products) {
     </tr>
     `
     )
+  } else {
+    products.forEach(confir => {
+      transProductEl.innerHTML += /* html */ `
+      <tr class="buy-product">
+        <td class="date">
+          <p>${confir.timePaid.slice(0, 10)}</p>
+          <p class="order-number">${confir.detailId}</p>
+        </td>
+        <td class="thumb">
+          <a href="#detail/${confir.product.productId}">
+            <img src=${confir.product.thumbnail}
+              alt="상품 사진">
+          </a>
+        </td>
+        <td class="product">
+          <strong class="name">
+            ${confir.product.title}
+          </strong> <br />
+          <span>${confir.product.description}</span>
+        </td>
+        <td class="quantity">1</td>
+        <td class="price">${confir.product.price.toLocaleString()}원</td>
+        <td class="state">
+          <p>주문 확정</p>
+        </td>
+        <td class="decision">
+          -
+        </td>
+      </tr>
+      `
+    })
   }
-  const confirs = products.filter(product => product.done === true)
-  confirs.sort((a, b) => {
-    return a.timePaid < b.timePaid ? -1 : a.timePaid > b.timePaid ? 1 : 0
-  })
-  confirs.forEach(confir => {
-    transProductEl.innerHTML += /* html */ `
-    <tr class="buy-product">
-      <td class="date">
-        <p>${confir.timePaid.slice(0, 10)}</p>
-        <p class="order-number">${confir.detailId}</p>
-      </td>
-      <td class="thumb">
-        <a href="#detail/${confir.product.productId}">
-          <img src=${confir.product.thumbnail}
-            alt="상품 사진">
-        </a>
-      </td>
-      <td class="product">
-        <strong class="name">
-          ${confir.product.title}
-        </strong> <br />
-        <span>${confir.product.description}</span>
-      </td>
-      <td class="quantity">1</td>
-      <td class="price">${confir.product.price.toLocaleString()}원</td>
-      <td class="state">
-        <p>주문 확정</p>
-      </td>
-      <td class="decision">
-        -
-      </td>
-    </tr>
-    `
-  })
 }

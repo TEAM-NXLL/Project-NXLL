@@ -1,29 +1,33 @@
-import { accountLookUp, addAccount, editUser, accountCharge, cancelAccount } from "./getdata.js";
+import { accountLookUp, addAccount, editUser, accountCharge, cancelAccount } from "./requests.js";
+import { store } from './store.js'
 
 // 회원 정보 수정 핸들러
 export function editUserInfo() {
-  const editBtn = document.querySelector('.editBtn')
+  const editBtn = store.selector('.editBtn')
   editBtn.addEventListener('click', async (e) => {
     e.preventDefault()
-    const nameValue = document.querySelector('.user-name').value
+    const nameValue = store.selector('.user-name').value
     if (nameValue) {
       localStorage.setItem('userName', nameValue)
     }
-    const oldPwValue = document.querySelector('.old-pw-input').value
-    const newPwValue = document.querySelector('.new-pw-input').value
-    const res = await editUser(localStorage.accessToken, nameValue, oldPwValue, newPwValue)
+    const oldPwValue = store.selector('.old-pw-input').value
+    const newPwValue = store.selector('.new-pw-input').value
+    const res = await editUser(store.token, nameValue, oldPwValue, newPwValue)
+
     if (res.displayName) {
       alert('회원 정보가 수정되었습니다')
+      localStorage.setItem('userName', res.displayName)
       location.hash = '#myshop'
-    } else {
-      alert('정보를 다시 확인해 주세요')
+      location.reload()
+    } else if (!res) {
+      return
     }
   })
 }
 
 // 보유 계좌 조회
 export async function userOwnBank() {
-  const { totalBalance, accounts } = await accountCharge(localStorage.accessToken)
+  const { totalBalance, accounts } = await accountCharge(store.token)
   return {
     totalBalance, accounts
   }
@@ -31,17 +35,17 @@ export async function userOwnBank() {
 
 // 계좌 추가
 export async function addNewAccount() {
-  const accountBtn = document.querySelector('.accountBtn')
+  const accountBtn = store.selector('.accountBtn')
   accountBtn.addEventListener('click', async (e) => {
     e.preventDefault()
-    const bankName = document.querySelector('#add-account')
+    const bankName = store.selector('#add-account')
     const phoneNumbers = document.querySelectorAll('.phone-number-input')
     const accountNumbers = document.querySelectorAll('.account-number-input')
     let phone = ''
     let account = ''
     phoneNumbers.forEach(number => phone += number.value)
     accountNumbers.forEach(number => account += number.value)
-    const res = await addAccount(localStorage.accessToken, bankName.value, account, phone)
+    const res = await addAccount(store.token, bankName.value, account, phone)
     if (res.id) {
       alert("계좌가 추가되었습니다.")
       location.hash = '#myshop'
@@ -51,26 +55,11 @@ export async function addNewAccount() {
   })
 }
 
-// 추가 계좌 은행 이름 눌렀을 때 핸들러
-// export async function choiceBank() {
-//   const account = document.querySelector('#add-account')
-//   const accountNumberEls = document.querySelectorAll('.account-number-input')
-//   account.addEventListener('change', (e) => {
-//     if (e.target.value !== "004" && e.target.value !== "011") {
-//       accountNumberEls[3].readOnly = true
-//       accountNumberEls[3].style.backgroundColor = '#D8D8D8'
-//     } else {
-//       accountNumberEls[3].readOnly = false
-//       accountNumberEls[3].style.backgroundColor = '#fff'
-//     }
-//   })
-// }
-
 // 보유하고 있는 계좌 리스트
 export function ownAccountList(accounts) {
   if (accounts.length > 0) {
-    const bankNameEl = document.querySelector('#bank-name')
-    const noBankEl = document.querySelector('.no-bank')
+    const bankNameEl = store.selector('#bank-name')
+    const noBankEl = store.selector('.no-bank')
     noBankEl.remove()
     accounts.forEach(account => {
       const createBankList = document.createElement('option')
@@ -84,8 +73,8 @@ export function ownAccountList(accounts) {
 
 // 추가 가능한 계좌 리스트
 export async function addAbleAccountList() {
-  const ableList = await accountLookUp(localStorage.accessToken)
-  const addAccountEl = document.querySelector('#add-account')
+  const ableList = await accountLookUp(store.token)
+  const addAccountEl = store.selector('#add-account')
   ableList.forEach(el => {
     if (el.disabled === false) {
       const createBankEl = document.createElement('option')
@@ -98,9 +87,10 @@ export async function addAbleAccountList() {
   selectedAccount(ableList)
 }
 
+// 계좌 등록하기
 function selectedAccount(ableList) {
-  const addAccountEl = document.querySelector('#add-account')
-  const addAccountNumEl = document.querySelector('.account-number-box')
+  const addAccountEl = store.selector('#add-account')
+  const addAccountNumEl = store.selector('.account-number-box')
   if (addAccountEl.options.length === 0) {
     addAccountEl.innerHTML = `
     <option>계좌 등록 완료</option>
@@ -127,10 +117,10 @@ function selectedAccount(ableList) {
 // 보유 계좌 금액 조회
 export async function bankChargeLookUp() {
   const { accounts } = await userOwnBank()
-  const bankNameEl = document.querySelector('#bank-name')
-  const bankChargeEl = document.querySelector('.bank-charge')
-  const charge = document.querySelector('.charge')
-  const cancelBtn = document.querySelector('.cancel-account')
+  const bankNameEl = store.selector('#bank-name')
+  const bankChargeEl = store.selector('.bank-charge')
+  const charge = store.selector('.charge')
+  const cancelBtn = store.selector('.cancel-account')
   bankNameEl.addEventListener('change', (e) => {
     accounts.forEach(account => {
       if (account.bankCode === e.target.value) {
@@ -139,7 +129,7 @@ export async function bankChargeLookUp() {
         `
         bankChargeEl.appendChild(charge)
         cancelBtn.classList.remove('hidden')
-      } else if (e.target.value === 'default' || e.target.value === 'null') {
+      } else if (e.target.value === 'default' || e.target.value === null) {
         cancelBtn.classList.add('hidden')
         charge.innerHTML = ''
       }
@@ -149,13 +139,13 @@ export async function bankChargeLookUp() {
 
 // 계좌 해지 버튼 핸들러
 export function cancelBank() {
-  const cancelBtn = document.querySelector('.cancel-account')
-  const bankName = document.querySelector('#bank-name')
+  const cancelBtn = store.selector('.cancel-account')
+  const bankName = store.selector('#bank-name')
   bankName.addEventListener('change', (e) => {
     const dataResult = e.target[e.target.selectedIndex]
     const bankId = dataResult.dataset.id
     cancelBtn.addEventListener('click', async () => {
-      await cancelAccount(localStorage.accessToken, bankId)
+      await cancelAccount(store.token, bankId)
       alert("계좌가 삭제되었습니다.")
       location.hash = '#myshop'
     })

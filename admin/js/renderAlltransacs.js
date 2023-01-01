@@ -1,5 +1,6 @@
 import { renderAdminSummary } from './adminSummary.js';
 import { viewAllTransactions, transactionStatus } from './requests.js';
+import { store } from '../../js/store.js';
 
 export async function renderAlltransacs(transacs) {
   transacs.forEach((el) => {
@@ -87,7 +88,7 @@ function transacCancleBtn(btn, isCancled, isDone) {
       transac.querySelector('.transac-status').innerHTML = /*html*/ `
         <div class = "isCanceled">거래 취소</div>`;
     }, 700);
-    const cancledOrder = document.querySelector('.purchase-cancled-num');
+    const cancledOrder = store.selector('.purchase-cancled-num');
     cancledOrder.innerText = (
       parseInt(cancledOrder.textContent) + 1
     ).toLocaleString();
@@ -102,7 +103,7 @@ function transacCompleteBtn(btn, isCancled, isDone) {
       transac.querySelector('.transac-status').innerHTML = /*html*/ `
         <div class = "done">거래 완료</div>`;
     }, 700);
-    const totalIncome = document.querySelector('.total-income-num');
+    const totalIncome = store.selector('.total-income-num');
     const confirmedPrice = parseInt(
       event.path[3]
         .querySelector('.price')
@@ -112,7 +113,7 @@ function transacCompleteBtn(btn, isCancled, isDone) {
     const newTotalIncome =
       parseInt(totalIncome.innerText.replaceAll(',', '')) + confirmedPrice;
     totalIncome.innerText = newTotalIncome.toLocaleString();
-    const confirmedOrder = document.querySelector('.purchase-confirmed-num');
+    const confirmedOrder = store.selector('.purchase-confirmed-num');
     confirmedOrder.innerText = (
       parseInt(confirmedOrder.textContent) + 1
     ).toLocaleString();

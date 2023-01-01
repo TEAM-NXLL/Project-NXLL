@@ -1,10 +1,12 @@
 import { cartCountCheck } from "./main.js"
 import { viewShoppingBag } from "./shoppingBag.js"
+import { store } from './store.js'
 
 const accessToken = localStorage.accessToken
 
+// 바로 구매하기 버튼
 export function buyProduct(product) {
-  const buyBtn = document.querySelector('.buy-btn')
+  const buyBtn = store.selector('.buy-btn')
   const selling = product.isSoldOut === true ? false : true
   buyBtn.addEventListener('click', () => {
     cart(product)
@@ -14,6 +16,7 @@ export function buyProduct(product) {
   })
 }
 
+// 장바구니 버튼
 export async function cart(product) {
   const cartList = JSON.parse(localStorage.getItem('cart')) || []
   const selling = product.isSoldOut === true ? false : true
@@ -47,10 +50,11 @@ export async function cart(product) {
   }
 }
 
+
 export function shoppingBasket(product) {
-  const cartBtn = document.querySelector('.cart-btn')
-  const tabMenu = document.querySelector('.tab-menu')
-  const modalPayment = document.querySelector('.modal-payment')
+  const cartBtn = store.selector('.cart-btn')
+  const tabMenu = store.selector('.tab-menu')
+  const modalPayment = store.selector('.modal-payment')
   const selling = product.isSoldOut === true ? false : true
   cartBtn.addEventListener('click', () => {
     if (modalPayment.classList.contains('active')) return
@@ -60,14 +64,14 @@ export function shoppingBasket(product) {
   })
   // 탭메뉴 클릭시 해당 위치로 스크롤 이동
   tabMenu.addEventListener('click', ({ target }) => {
-    const topBanner = document.querySelector('.top-banner')
+    const topBanner = store.selector('.top-banner')
     const el = target['name']
-    const nameEl = document.querySelector(`.${el}`)
+    const nameEl = store.selector(`.${el}`)
     const scrollH = nameEl.getBoundingClientRect().top - topBanner.offsetHeight
     scrollTo({ left: 0, top: window.pageYOffset + scrollH, behavior: 'smooth' })
   })
   // 바로 구매하기 클릭시 연결 페이지
-  const cartBtnBuy = document.querySelector('.cart-buy-btn')
+  const cartBtnBuy = store.selector('.cart-buy-btn')
   cartBtnBuy.addEventListener('click', () => {
     if (accessToken) location.hash = '#payment'
     else location.hash = '#login'
@@ -76,7 +80,7 @@ export function shoppingBasket(product) {
 
 // 품절 상품을 장바구니에 담으면 뜨는 팝업메세지
 function popMessage() {
-  const main = document.querySelector('main')
+  const main = store.selector('main')
   const popUp = document.createElement('div')
   popUp.classList.add('pop-message', 'active')
   popUp.innerHTML = /* html */ `
@@ -100,10 +104,10 @@ export function totalQuantity() {
 
 // 장바구니 모달창
 export function showModal() {
-  const shoppingBox = document.querySelector('.shopping-box')
+  const shoppingBox = store.selector('.shopping-box')
   shoppingBox.classList.remove('block')
   const cartList = JSON.parse(localStorage.getItem('cart')) || []
-  const MODAL = document.querySelector('.modal-payment')
+  const MODAL = store.selector('.modal-payment')
   const MODAL_BODY = MODAL.querySelector('.modal-payment__body')
   MODAL.classList.add('active')
   MODAL_BODY.innerHTML = /* html */ `
@@ -117,7 +121,7 @@ export function showModal() {
       </div>
   `
 
-  const MODAL_LIST = document.querySelector('.modal-payment__list')
+  const MODAL_LIST = store.selector('.modal-payment__list')
   // 카트 비었을 때 대체 텍스트 보여주기
   if (cartList.length === 0) {
     MODAL_LIST.innerHTML = /* html */`
@@ -213,7 +217,7 @@ export function showModal() {
   )
 
   // 장바구니 모달창 닫기
-  const btnClose = document.querySelector('.btn-close')
+  const btnClose = store.selector('.btn-close')
   btnClose.addEventListener('click', () => {
     MODAL.classList.remove('active')
   })

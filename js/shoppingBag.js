@@ -1,14 +1,16 @@
 import { totalQuantity, showModal } from './detail.js';
 import { cartCountCheck } from './main.js';
+import { store } from './store.js'
 
+// 메인 화면 장바구니
 export function viewShoppingBag() {
-  const shoppingBox = document.querySelector('.shopping-box')
-  const CENTER_MODAL = document.querySelector('.modal-payment')
+  const shoppingBox = store.selector('.shopping-box')
+  const CENTER_MODAL = store.selector('.modal-payment')
   if (location.hash.includes('#detail') && shoppingBox.classList.contains('block')) {
     CENTER_MODAL.classList.remove('active')
   }
   const cartList = JSON.parse(localStorage.getItem('cart')) || []
-  const MODAL = document.querySelector('.shopping-box')
+  const MODAL = store.selector('.shopping-box')
   MODAL.innerHTML = /* html */ `
       <div class="bag-payment__header">
         <h3>장바구니</h3>
@@ -29,7 +31,7 @@ export function viewShoppingBag() {
       </div>
     `
 
-  const MODAL_LIST = document.querySelector('.bag-payment__list');
+  const MODAL_LIST = store.selector('.bag-payment__list');
 
   if (cartList.length === 0) {
     MODAL_LIST.innerHTML = /* html */`
@@ -68,7 +70,7 @@ export function viewShoppingBag() {
 
   const btnPlus = document.querySelectorAll('.btn-plus')
   const btnMinus = document.querySelectorAll('.btn-minus')
-  const btnBuy = document.querySelector('.bag-btn-buy')
+  const btnBuy = store.selector('.bag-btn-buy')
   const btnDelete = document.querySelectorAll('.btn-delete')
 
 
@@ -124,7 +126,7 @@ export function viewShoppingBag() {
     })
   )
 
-  const btnClose = document.querySelector('.bag-close')
+  const btnClose = store.selector('.bag-close')
   btnClose.addEventListener('click', () => {
     MODAL.classList.remove('block')
   })

@@ -1,10 +1,11 @@
-import { getBuy, getProductDetail } from './getdata.js';
+import { getBuy, getProductDetail } from './requests.js';
 import { userOwnBank } from './userInfo.js';
 import { renderPayment } from './main.js';
+import { store } from './store.js'
 
 // 주문 상품 정보 조회
 export function lookProducts() {
-  const tbodyEl = document.querySelector('.products');
+  const tbodyEl = store.selector('.products');
   const cart = JSON.parse(localStorage.cart);
   if (cart.length > 0) {
     cart.forEach(async (e) => {
@@ -55,8 +56,7 @@ export function priceCheck(product) {
 
 // 제품 전체 선택 및 해제
 export function allCheckBox() {
-
-  const allCheckBox = document.querySelector('tr input[type=checkbox]')
+  const allCheckBox = store.selector('tr input[type=checkbox]')
   allCheckBox.addEventListener('change', event => {
     event.preventDefault()
     const eachCheckBoxs = document.querySelectorAll('.product-checkbox')
@@ -71,7 +71,7 @@ export function allCheckBox() {
 
 // 삭제하기 버튼 클릭
 export function cancelProduct() {
-  const productDeleteBtn = document.querySelector('.product-delete-btn');
+  const productDeleteBtn = store.selector('.product-delete-btn');
   const productCheckBox = document.querySelectorAll('.product-checkbox');
 
   productDeleteBtn.addEventListener('click', (event) => {
@@ -96,8 +96,8 @@ export function cancelProduct() {
 // 보유 계좌 불러오기
 export function payAccountList(accounts) {
   if (accounts.length > 0) {
-    const payAccountEl = document.querySelector('#pay-account');
-    const noBankEl = document.querySelector('.no-bank');
+    const payAccountEl = store.selector('#pay-account');
+    const noBankEl = store.selector('.no-bank');
     noBankEl.remove();
     accounts.forEach((account) => {
       const createBankList = document.createElement('option');
@@ -112,8 +112,8 @@ export function payAccountList(accounts) {
 // 보유 계좌 잔액 확인
 export async function payBankLoopUp() {
   const { accounts } = await userOwnBank();
-  const payAccountEl = document.querySelector('#pay-account');
-  const charge = document.querySelector('.charge');
+  const payAccountEl = store.selector('#pay-account');
+  const charge = store.selector('.charge');
   payAccountEl.addEventListener('change', (e) => {
     accounts.forEach((account) => {
       if (account.bankCode === e.target.value) {
@@ -127,44 +127,46 @@ export async function payBankLoopUp() {
   });
 }
 
-// 결제하기
-export async function buyProducts() {
-  const paymentBtn = document.querySelector('.payment-btn')
-  const payAccountEl = document.querySelector('#pay-account')
-  const productQuantity = JSON.parse(localStorage.cart)
-  payAccountEl.addEventListener('change', (e) => {
-    const dataResult = e.target[e.target.selectedIndex];
-    const accountId = dataResult.dataset.id;
-    paymentBtn.addEventListener('click', async () => {
-      const checkBoxs = document.querySelectorAll('.product-checkbox');
-      let productIds = []
-      checkBoxs.forEach(el => {
-        if (el.checked) {
-          productQuantity.forEach(product => {
-            if (el.dataset.id === product.ID) {
-              for (let i = 1; i <= product.QUANTITY; i += 1) {
-                productIds.push(el.dataset.id)
-              }
-            }
-          })
-        }
-      })
-      console.log(productIds)
-      if (productIds.length !== 0) {
-        async () => {
-          for (const productId of productIds) {
-            try {
-              await getBuy(localStorage.accessToken, productId, accountId)
-            } catch (err) {
-              alert('정보를 다시 확인해 주세요.')
-            }
+// 구매 물품 확인하기
+function checkProducts(productQuantity, productIds) {
+  const checkBoxs = document.querySelectorAll('.product-checkbox');
+  checkBoxs.forEach(el => {
+    if (el.checked) {
+      productQuantity.forEach(product => {
+        if (el.dataset.id === product.ID) {
+          for (let i = 1; i <= product.QUANTITY; i += 1) {
+            productIds.push(el.dataset.id)
           }
         }
-        // 결제 완료시 로컬 스토리지 카트 삭제
-        localStorage.cart = JSON.stringify([]);
-        alert('거래가 완료되었습니다.');
-        location.hash = '#myorder';
-      } else { alert("정보를 다시 확인해 주세요") }
-    })
+      })
+    }
+  })
+}
+
+// 결제하기
+export async function buyProducts() {
+  const paymentBtn = store.selector('.payment-btn')
+  paymentBtn.addEventListener('click', async () => {
+    const payAccount = store.selector('#pay-account')
+    const dataResult = payAccount.options[payAccount.selectedIndex]
+    const accountId = dataResult.dataset.id
+    const productQuantity = JSON.parse(localStorage.cart)
+    let productIds = []
+    checkProducts(productQuantity, productIds)
+    if (!productIds.length) {
+      return alert('제품을 선택해 주세요.')
+    }
+    if (!accountId) {
+      return alert('계좌를 선택해 주세요.')
+    }
+    const pay = async () => {
+      for (const productId of productIds) {
+        await getBuy(localStorage.accessToken, productId, accountId)
+      }
+      localStorage.cart = JSON.stringify([])
+      alert('거래 완료!')
+      location.hash = '#myorder'
+    }
+    pay()
   })
 }

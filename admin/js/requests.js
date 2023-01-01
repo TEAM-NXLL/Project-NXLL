@@ -1,20 +1,25 @@
 import { store } from '../../js/store.js';
 import { toast } from './toast.js';
-const API_KEY = process.env;
 const URL = store.url + '/products';
 // products';
 
 // JSON Request 양식 만들기
-export function createRequest(type, data) {
+export function createRequest(type, masterKey = true, data, accessToken) {
   const res = {
     method: type,
-    headers: { ...store.headers, apikey: API_KEY },
+    headers: { ...store.headers },
   };
-  if (res.headers.masterKey === false) {
+
+  if (masterKey) {
     res.headers.masterKey = true;
   }
+
   if (data) {
     res.body = JSON.stringify(data);
+  }
+
+  if (accessToken) {
+    res.headers.Authorization = `Bearer ${accessToken}`;
   }
   return res;
 }
@@ -31,7 +36,7 @@ export async function createProduct(
   try {
     const res = await fetch(
       URL,
-      createRequest('POST', {
+      createRequest('POST', true, {
         title,
         price,
         description,
@@ -40,7 +45,6 @@ export async function createProduct(
         photoBase64,
       }),
     );
-
     return res;
   } catch (error) {
     toast(`${error}, 잠시 후 다시 시도해주세요.`, '추가');
@@ -50,31 +54,22 @@ export async function createProduct(
 // 모든 제품 조회
 export async function viewAllProduct() {
   try {
-    const res = await fetch(URL, createRequest('GET'));
+    const res = await fetch(URL, createRequest('GET', true));
     const getResult = await res.json();
-    // console.log(getResult);
     return getResult;
   } catch (error) {
     toast(`${error}, 잠시 후 다시 시도해주세요.`, '전체');
   }
 }
-// 모든 제품 조회 결과
-// Product { // 제품 정보
-//   id: string // 제품 ID
-//   title: string // 제품 이름
-//   price: number // 제품 가격
-//   description: string // 제품 설명(최대 100자)
-//   tags: string[] // 제품 태그
-//   thumbnail: string | null // 제품 썸네일 이미지(URL)
-//   isSoldOut: boolean // 제품 매진 여부
-// }
 
 // 전체 거래 내역
 export async function viewAllTransactions() {
   try {
-    const res = await fetch(URL + '/transactions/all', createRequest('GET'));
+    const res = await fetch(
+      URL + '/transactions/all',
+      createRequest('GET', true),
+    );
     const getResult = await res.json();
-    // console.log(getResult);
     return getResult;
   } catch (error) {
     toast(`${error}, 잠시 후 다시 시도해주세요.`, '거래');
@@ -86,7 +81,7 @@ export async function transactionStatus(detailId, isCanceled, done) {
   try {
     const res = await fetch(
       URL + `/transactions/${detailId}`,
-      createRequest('PUT', { isCanceled, done }),
+      createRequest('PUT', true, { isCanceled, done }),
     );
     toast('거래 상태가 변경되었습니다.');
     return res;
@@ -109,7 +104,7 @@ export async function correctProduct(
   try {
     const res = await fetch(
       URL + `/${productId}`,
-      createRequest('PUT', {
+      createRequest('PUT', true, {
         title,
         price,
         description,
@@ -128,7 +123,10 @@ export async function correctProduct(
 //제품 삭제
 export async function delProduct(productId) {
   try {
-    const res = await fetch(URL + `/${productId}`, createRequest('DELETE'));
+    const res = await fetch(
+      URL + `/${productId}`,
+      createRequest('DELETE', true),
+    );
     return res;
   } catch (error) {
     toast(`${error}, 잠시 후 다시 시도해주세요.`, '전체');

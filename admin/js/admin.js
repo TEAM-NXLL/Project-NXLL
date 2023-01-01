@@ -1,10 +1,13 @@
 import { renderAllProduct } from './renderAllProducts.js';
 import { renderAlltransacs } from './renderAlltransacs.js';
 import { deleteItem } from './delete.js';
-import { renderAdminSummary } from './adminSummary';
-import { addItem } from './addProduct.js';
-import { viewAllProduct, viewAllTransactions } from './requests.js';
+import { renderAdminSummary } from './adminSummary.js';
+import { addItem } from './inputUtils.js';
+import { submitForm } from './submitUtil.js';
+import { viewAllProduct, viewAllTransactions, adminData } from './requests.js';
 import { transacSearch } from './transacSearch.js';
+import { keepLogin } from '../../js/requests.js';
+import { store } from '../../js/store.js';
 
 (async () => {
   const allProduct = await viewAllProduct();
@@ -32,11 +35,29 @@ import { transacSearch } from './transacSearch.js';
   }
 })();
 
+// header
+async function welcomeAdmin() {
+  const authLogin = await keepLogin(localStorage.accessToken);
+  const welcomeAdmin = store.selector('.adminHeader');
+  const abc = /* HTML */ `
+    <li>
+      <p>Welcome, Admin <strong>${authLogin.displayName}</strong></p>
+    </li>
+    <li class="logOutBtn">
+      <a href="#">로그아웃<i class="fa-solid fa-right-from-bracket"></i></a>
+    </li>
+  `;
+
+  welcomeAdmin.innerHTML = abc;
+}
+
+welcomeAdmin();
+
 // GNB 탭
-const gnb = document.querySelector('.gnb');
+const gnb = store.selector('.gnb');
 const gnbTabs = gnb.querySelectorAll('li');
 let activeTab = gnb.querySelector('.active');
-const editPopup = document.querySelector('.editPopup');
+const editPopup = store.selector('.editPopup');
 
 gnbTabs.forEach((tab) => {
   tab.addEventListener('click', (e) => {
