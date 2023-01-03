@@ -14,13 +14,13 @@ export function sendSignUp() {
     const pwValue = store.selector('.pw-input').value;
     const nameValue = store.selector('.name-input').value;
 
-    const res = await signUp(idValue, pwValue, nameValue, null);
     try {
+      const res = await signUp(idValue, pwValue, nameValue, null);
       return (root.innerHTML = logInForm());
     } catch (err) {
       console.log('회원가입 실패')
     }
-    e.stopPropagation();
+    // e.stopPropagation();
   });
 }
 

@@ -65,7 +65,7 @@ export function cartCountCheck() {
 }
 
 // 메인 페이지
-async function renderMain() {
+export async function renderMain() {
   const data = await viewAllProduct();
   root.innerHTML = mainForm();
 
@@ -178,7 +178,7 @@ export async function renderCategory(tag) {
 }
 
 // 서브카테고리 클릭 시 렌더링
-function renderSubCategory(rootInner, dataArr) {
+export function renderSubCategory(rootInner, dataArr) {
   const menu = root.querySelectorAll('.category-menu-area>ul>li')
 
   menu.forEach(title => {
@@ -264,14 +264,14 @@ shoppingBag.addEventListener('click', () => {
 });
 
 // 로그인 페이지 해시 값 + 화면 변경
-function loginRender() {
+export function loginRender() {
   startTop()
   root.innerHTML = logInForm()
   sendLogin()
 }
 
 // 회원가입 페이지 해시 값 + 화면 변경
-function joinRender() {
+export function joinRender() {
   startTop()
   root.innerHTML = joinForm();
   sendSignUp();
@@ -282,7 +282,7 @@ adminLogin(store.token)
 adminPage()
 
 // myorder 렌더링 공통 사항
-async function listLookUp() {
+export async function listLookUp() {
   try {
     const products = await getTransactions(store.token)
     if (products !== '구매 내역이 존재하지 않습니다.') {
@@ -299,7 +299,7 @@ async function listLookUp() {
 }
 
 // myshop 렌더링
-async function renderMyShop() {
+export async function renderMyShop() {
   try {
     const { totalBalance } = await userOwnBank()
     const { products, cancels, confirs } = await listLookUp()
@@ -315,7 +315,7 @@ async function renderMyShop() {
 }
 
 // myorder 렌더링
-async function renderMyOrder() {
+export async function renderMyOrder() {
   try {
     const { products, cancels, confirs } = await listLookUp()
     startTop()
@@ -335,7 +335,7 @@ async function renderMyOrder() {
 }
 
 // myorder cancel 렌더링
-async function renderMyCancelOrder() {
+export async function renderMyCancelOrder() {
   try {
     const { products, cancels, confirs } = await listLookUp()
     startTop()
@@ -349,7 +349,7 @@ async function renderMyCancelOrder() {
 }
 
 // myorder confir 렌더링
-async function renderMyConfirOrder() {
+export async function renderMyConfirOrder() {
   try {
     const { products, cancels, confirs } = await listLookUp()
     startTop()
@@ -363,7 +363,7 @@ async function renderMyConfirOrder() {
 }
 
 // userInfo 렌더링
-async function renderUserInfo() {
+export async function renderUserInfo() {
   const res = await stateLogin(store.token)
   startTop()
   root.innerHTML = userInfoForm(res.email, res.displayName)
@@ -379,7 +379,7 @@ async function renderUserInfo() {
 }
 
 // detail 렌더링
-async function renderDetail() {
+export async function renderDetail() {
   const productId = location.hash.split('/')[1]
   const res = await getProductDetail(productId)
   startTop()
@@ -389,7 +389,7 @@ async function renderDetail() {
 }
 
 // payment 렌더링
-async function renderPayment() {
+export async function renderPayment() {
   startTop()
   root.innerHTML = paymentForm()
   lookProducts()
@@ -420,5 +420,3 @@ router();
     toAdminPageEl.href = '#'
   }
 })();
-
-export { loginRender, joinRender, renderMyShop, renderMyOrder, renderMain, renderUserInfo, renderDetail, renderPayment, renderMyCancelOrder, renderMyConfirOrder }

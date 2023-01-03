@@ -2,15 +2,16 @@ import { store } from "./store.js"
 import { createRequest } from "../admin/js/requests.js"
 
 // 회원가입 데이터
-export async function signUp(email, password, id, profile = null) {
+export async function signUp(email, password, displayName, profileImgBase64 = null) {
   const res = await fetch(
     store.url + '/auth/signup',
-    createRequest('POST', false, { email, password, id, profile })
+    createRequest('POST', false, { email, password, displayName, profileImgBase64 })
   )
   const json = await res.json()
   if (res.ok) {
     return json
   } else {
+    console.log(res)
     alert(json)
   }
 }
@@ -52,7 +53,7 @@ export async function keepLogin(accessToken) {
 // 사용자 정보 수정 데이터
 export async function editUser(accessToken, displayName, oldPassword, newPassword) {
   const res = await fetch(
-    store.url + '/auth/user', 
+    store.url + '/auth/user',
     createRequest('PUT', false, { displayName, oldPassword, newPassword }, accessToken)
   )
   const json = await res.json()
@@ -77,7 +78,7 @@ export async function accountLookUp(accessToken) {
 export async function accountCharge(accessToken) {
   const res = await fetch(
     store.url + '/account',
-    createRequest('GET', false, null, accessToken)  
+    createRequest('GET', false, null, accessToken)
   )
   const json = await res.json()
   return json
@@ -101,7 +102,7 @@ export async function addAccount(accessToken, bankCode, accountNumber, phoneNumb
 export async function cancelAccount(accessToken, accountId) {
   const res = await fetch(
     store.url + '/account',
-    createRequest('DELETE', false, {accountId, signature: true}, accessToken)  
+    createRequest('DELETE', false, { accountId, signature: true }, accessToken)
   )
   const json = await res.json()
   return json
@@ -135,7 +136,7 @@ export async function getBuy(accessToken, productId, accountId) {
 export async function getTransactions(accessToken) {
   const res = await fetch(
     store.url + '/products/transactions/details',
-    createRequest('GET', false, null, accessToken)  
+    createRequest('GET', false, null, accessToken)
   )
   const json = await res.json()
   return json
@@ -145,7 +146,7 @@ export async function getTransactions(accessToken) {
 export async function cancelTransactions(accessToken, detailId) {
   const res = await fetch(
     store.url + '/products/cancel',
-    createRequest('POST', false, {detailId}, accessToken) 
+    createRequest('POST', false, { detailId }, accessToken)
   )
   const json = await res.json()
   return json
@@ -155,7 +156,7 @@ export async function cancelTransactions(accessToken, detailId) {
 export async function confirmation(accessToken, detailId) {
   const res = await fetch(
     store.url + '/products/ok',
-    createRequest('POST', false, {detailId}, accessToken)
+    createRequest('POST', false, { detailId }, accessToken)
   )
   const json = await res.json()
   return json
@@ -165,7 +166,7 @@ export async function confirmation(accessToken, detailId) {
 export async function postSearch(searchText, searchTags,) {
   const res = await fetch(
     store.url + '/products/search',
-    createRequest('POST', false, {searchText, searchTags})
+    createRequest('POST', false, { searchText, searchTags })
   )
   const json = await res.json()
   return json

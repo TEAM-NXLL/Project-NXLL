@@ -7,9 +7,6 @@ export function editUserInfo() {
   editBtn.addEventListener('click', async (e) => {
     e.preventDefault()
     const nameValue = store.selector('.user-name').value
-    if (nameValue) {
-      localStorage.setItem('userName', nameValue)
-    }
     const oldPwValue = store.selector('.old-pw-input').value
     const newPwValue = store.selector('.new-pw-input').value
     const res = await editUser(store.token, nameValue, oldPwValue, newPwValue)

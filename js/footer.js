@@ -1,12 +1,12 @@
 import { store } from './store.js'
 
-const deliveryEl = store.selector('.delivery')
-const returnEl = store.selector('.return')
-const deliveryDes = store.selector('.delivery-des')
-const returnDes = store.selector('.return-des')
+export const deliveryEl = store.selector('.delivery')
+export const returnEl = store.selector('.return')
+export const deliveryDes = store.selector('.delivery-des')
+export const returnDes = store.selector('.return-des')
 
 // 카테고리에 호버
-function mouseenter() {
+export function mouseenter() {
   deliveryEl.addEventListener('mouseenter', () => {
     deliveryEl.classList.add('active')
     deliveryDes.style.display = 'flex'
@@ -20,7 +20,7 @@ function mouseenter() {
 }
 
 // 카테고리에서 마우스 아웃
-function mouseleave() {
+export function mouseleave() {
   deliveryEl.addEventListener('mouseleave', () => {
     deliveryEl.classList.remove('active')
     deliveryDes.style.display = 'none'
@@ -32,5 +32,3 @@ function mouseleave() {
     deliveryDes.style.display = 'flex'
   })
 }
-
-export { deliveryEl, returnEl, deliveryDes, returnDes, mouseenter, mouseleave }
