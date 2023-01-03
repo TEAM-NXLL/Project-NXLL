@@ -1,6 +1,6 @@
 import dotenv from 'dotenv'
 
-const store = {
+export const store = {
   url: 'https://asia-northeast3-heropy-api.cloudfunctions.net/api',
   headers: {
     'content-type': 'application/json',
@@ -12,6 +12,4 @@ const store = {
     return document.querySelector(selector)
   },
   token: localStorage.accessToken
-};
-
-export { store };
+}

@@ -1,7 +1,6 @@
 import { store } from '../../js/store.js';
 import { toast } from './toast.js';
 const URL = store.url + '/products';
-// products';
 
 // JSON Request 양식 만들기
 export function createRequest(type, masterKey = true, data, accessToken) {
