@@ -11,6 +11,7 @@ export async function signUp(email, password, displayName, profileImgBase64 = nu
   if (res.ok) {
     return json
   } else {
+    console.log(res)
     alert(json)
   }
 }

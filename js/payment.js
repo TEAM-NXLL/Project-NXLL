@@ -120,7 +120,7 @@ export async function payBankLoopUp() {
         charge.innerHTML = /* html */ `
         잔액: ${account.balance.toLocaleString()} 원
         `;
-      } else if (e.target.value === 'default' || e.target.value === 'null') {
+      } else if (e.target.value === 'default' || e.target.value === null) {
         charge.innerHTML = '';
       }
     });

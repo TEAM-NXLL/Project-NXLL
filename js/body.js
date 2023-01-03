@@ -1,5 +1,5 @@
 // main
-function mainForm() {
+export function mainForm() {
   const mainBody = [];
   const swiperArrowBtn = /* HTML */ `
     <div class="swiper-button-prev"></div>
@@ -122,7 +122,7 @@ function mainForm() {
 }
 
 // 상품 목록
-function productList(data) {
+export function productList(data) {
   const colorChart = ["beige", "mint", "pink", "white", "blue", "black", "green", "gray"]
   const mainBody = []
 
@@ -321,7 +321,7 @@ export function renderInnerCategory(tag, count = 0) {
 }
 
 // 회원가입 페이지
-function joinForm() {
+export function joinForm() {
   return /* html */`
     <form id="form-tag">
       <ul class="table-area">
@@ -371,7 +371,7 @@ function joinForm() {
 }
 
 // 로그인 페이지
-function logInForm() {
+export function logInForm() {
   return /* html */`
     <form id="login-form">
       <ul class="logIn-area">
@@ -396,7 +396,7 @@ function logInForm() {
 }
 
 // 마이쇼핑 페이지
-function myShoppingForm(trans, price, cancelList, confirList) {
+export function myShoppingForm(trans, price, cancelList, confirList) {
   const information = /* html */`
     <div class="information">
       <div class="inner">
@@ -500,7 +500,7 @@ function myShoppingForm(trans, price, cancelList, confirList) {
 }
 
 // 구매 내역 페이지
-function myOrderForm(orderList, cancelList, confirList) {
+export function myOrderForm(orderList, cancelList, confirList) {
   return /* html */ `
     <div class="title-box" scope="sub">
       <p class="title-box__text">MY-ORDER</p>
@@ -574,7 +574,7 @@ function myOrderForm(orderList, cancelList, confirList) {
 }
 
 // 구매 취소 내역 페이지
-function myCancelOrderForm(orderList, cancelList, confirList) {
+export function myCancelOrderForm(orderList, cancelList, confirList) {
   return /* html */ `
     <div class="title-box" scope="sub">
       <p class="title-box__text">MY-ORDER</p>
@@ -648,7 +648,7 @@ function myCancelOrderForm(orderList, cancelList, confirList) {
 }
 
 // 구매 확정 내역 페이지
-function myConfirOrderForm(orderList, cancelList, confirList) {
+export function myConfirOrderForm(orderList, cancelList, confirList) {
   return /* html */ `
     <div class="title-box" scope="sub">
       <p class="title-box__text">MY-ORDER</p>
@@ -722,7 +722,7 @@ function myConfirOrderForm(orderList, cancelList, confirList) {
 }
 
 // 회원 정보 관리 페이지
-function userInfoForm(userId, userName) {
+export function userInfoForm(userId, userName) {
   return /* html */`
   <form>
     <ul class="table-area">
@@ -770,7 +770,7 @@ function userInfoForm(userId, userName) {
 }
 
 // 회원 정보 관리 계좌
-function userAccountForm(totalBalance) {
+export function userAccountForm(totalBalance) {
   return /* html */ `
   <form>
     <ul class="table-area">
@@ -829,7 +829,7 @@ function userAccountForm(totalBalance) {
 }
 
 // 상품 상세페이지
-function detailForm(product) {
+export function detailForm(product) {
   return /* html */`
   <div class="page-nav">
     <div class="inner">
@@ -903,7 +903,7 @@ function detailForm(product) {
 }
 
 // 결제 페이지
-function paymentForm() {
+export function paymentForm() {
   return /* html */ `
    <div class="title-box" scope="sub">
       <p class="title-box__text">ORDER - FORM</p>
@@ -1030,5 +1030,3 @@ function paymentForm() {
     </ul>
   `
 }
-
-export { joinForm, logInForm, myShoppingForm, myOrderForm, mainForm, productList, userInfoForm, userAccountForm, detailForm, paymentForm, myCancelOrderForm, myConfirOrderForm }
