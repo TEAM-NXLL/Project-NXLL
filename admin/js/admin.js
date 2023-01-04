@@ -8,6 +8,7 @@ import { viewAllProduct, viewAllTransactions, adminData } from './requests.js';
 import { transacSearch } from './transacSearch.js';
 import { keepLogin } from '../../js/requests.js';
 import { store } from '../../js/store.js';
+import { router } from './route.js';
 
 (async () => {
   const allProduct = await viewAllProduct();
@@ -16,7 +17,6 @@ import { store } from '../../js/store.js';
   } catch {
     console.log('전체 목록 조회 실패');
   }
-
   const allTransac = await viewAllTransactions();
   try {
     renderAdminSummary(allTransac, allProduct);
@@ -54,13 +54,15 @@ async function welcomeAdmin() {
 welcomeAdmin();
 
 // GNB 탭
+// window.addEventListener('hashchange', router);
+// router();
 const gnb = store.selector('.gnb');
 const gnbTabs = gnb.querySelectorAll('li');
 let activeTab = gnb.querySelector('.active');
 const editPopup = store.selector('.editPopup');
 
 gnbTabs.forEach((tab) => {
-  tab.addEventListener('click', (e) => {
+  tab.onclick = (e) => {
     clickItem(tab);
 
     const panels = document.querySelectorAll('.panels');
@@ -78,7 +80,7 @@ gnbTabs.forEach((tab) => {
         panels[i].classList.remove('here');
       }
     }
-  });
+  };
 });
 
 function clickItem(tab) {

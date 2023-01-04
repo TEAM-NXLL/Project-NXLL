@@ -1,7 +1,7 @@
-import { store } from '../../js/store.js'
+import { store } from '../../js/store.js';
+import { viewAllProduct, viewAllTransactions, adminData } from './requests.js';
 
-export function renderAllProduct(products) {
-
+export async function renderAllProduct(products) {
   products.forEach((el) => {
     const id = el.id;
     const title = el.title;
@@ -11,10 +11,10 @@ export function renderAllProduct(products) {
     const isSold = el.isSoldOut ? 'X' : 'O';
     const thumbnail = el.thumbnail;
 
-    const allProducts = store.selector('.allProducts')
+    const allProducts = store.selector('.allProducts');
     const product = document.createElement('tr');
     product.classList.add('product-item');
-    product.dataset.id = id
+    product.dataset.id = id;
 
     const innerHTMLContents = /*html*/ `
       <td class="edit-delete-btn">
@@ -25,7 +25,7 @@ export function renderAllProduct(products) {
       <td class="title">${title}</td>
       <td class="price">${price.toLocaleString() + '원'}</td>
       <td class="tags">${tag}</td>
-      <td class="is-sold-out">${(isSold)}</td>
+      <td class="is-sold-out">${isSold}</td>
       <td class="descript">${description}</td>
       <td class="">
         <a href="#edit-products/${id}" data-link><button class="edit-btn" data-id="${id}">수정</button></a>
@@ -37,6 +37,6 @@ export function renderAllProduct(products) {
 
     const productCont = store.selector('.products-container');
     productCont.append(product);
-    allProducts.append(product)
-  })
+    allProducts.append(product);
+  });
 }
