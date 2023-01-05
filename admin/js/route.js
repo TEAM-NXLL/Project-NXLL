@@ -37,6 +37,8 @@ export async function router() {
         panel.classList.add('here');
       } else if (panelId === routePath) {
         panel.classList.add('here');
+      } else if (panelId.includes('#edit-products')) {
+        panel.classList.add('here');
       } else {
         panel.classList.remove('here');
       }
