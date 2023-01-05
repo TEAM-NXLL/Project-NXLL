@@ -46,6 +46,7 @@ async function editInputPlaceholder(productId) {
 // 수정 모달 닫기
 modalCloseBtn.addEventListener('click', () => {
   editPopup.classList.remove('show');
+  location.hash = "#all-products"
 });
 
 
@@ -64,7 +65,7 @@ export function setChangedData(productId, title, price, description, tags, isSol
       imgNode = list.querySelector('img')
       titleNode = list.querySelector('.title')
       priceNode = list.querySelector('.price')
-      tagsNode =  list.querySelector('.tags')
+      tagsNode = list.querySelector('.tags')
       soldoutNode = list.querySelector('.is-sold-out')
       descriptNode = list.querySelector('.descript')
     }
@@ -72,7 +73,7 @@ export function setChangedData(productId, title, price, description, tags, isSol
   imgNode.src = store.selector('#edit-thumbnail-preview').src
   titleNode.textContent = title;
   priceNode.textContent = price;
-  tagsNode.textContent =  tags;
+  tagsNode.textContent = tags;
   soldoutNode.textContent = isSoldOut ? "X" : "O";
   descriptNode.textContent = description;
 }
