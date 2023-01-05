@@ -54,41 +54,63 @@ async function welcomeAdmin() {
 welcomeAdmin();
 
 // GNB 탭
-// window.addEventListener('hashchange', router);
-// router();
-const gnb = store.selector('.gnb');
-const gnbTabs = gnb.querySelectorAll('li');
-let activeTab = gnb.querySelector('.active');
-const editPopup = store.selector('.editPopup');
+window.addEventListener('hashchange', router);
+router();
+// const gnb = store.selector('.gnb');
+// const gnbTabs = gnb.querySelectorAll('li');
+// let activeTab = gnb.querySelector('.active');
+// const editPopup = store.selector('.editPopup');
 
-gnbTabs.forEach((tab) => {
-  tab.onclick = (e) => {
-    clickItem(tab);
+// gnbTabs.forEach((tab) => {
+//   tab.addEventListener('click', (e) => {
+//     clickItem(tab);
 
-    const panels = document.querySelectorAll('.panels');
+//     const panels = document.querySelectorAll('.panels');
 
-    for (let i = 0; i < panels.length; i++) {
-      const tabTarget = e.target.hash.substr(1);
+//     for (let i = 0; i < panels.length; i++) {
+//       const tabTarget = e.target.hash.substr(1);
 
-      if (tabTarget === panels[i].id) {
-        panels[i].classList.add('here');
+//       if (tabTarget === panels[i].id) {
+//         panels[i].classList.add('here');
 
-        if (editPopup.classList.contains('show')) {
-          editPopup.classList.remove('show');
-        }
-      } else {
-        panels[i].classList.remove('here');
-      }
-    }
-  };
-});
+//         if (editPopup.classList.contains('show')) {
+//           editPopup.classList.remove('show');
+//         }
+//       } else {
+//         panels[i].classList.remove('here');
+//       }
+//     }
+//   });
+// });
 
-function clickItem(tab) {
-  if (activeTab == tab) return;
-  if (activeTab) {
-    activeTab.classList.remove('active');
-  }
+// function clickItem(tab) {
+//   if (activeTab == tab) return;
+//   if (activeTab) {
+//     activeTab.classList.remove('active');
+//   }
 
-  tab.classList.add('active');
-  activeTab = tab;
-}
+//   tab.classList.add('active');
+//   activeTab = tab;
+// }
+
+// router 이벤트
+// window.addEventListener('hashchange', router())
+// function router() {
+//   const routePath = location.hash
+//   const allProducts = store.selector('.all-products')
+//   const addProducts = store.selector('.add-products')
+//   const allTransacs = store.selector('.all-transace')
+//   if (routePath === '#all-products') {
+//     allProducts.classList.add('active')
+//     addProducts.classList.remove('active')
+//     allTransacs.classList.remove('active')
+//   } else if (routePath === '#add-products') {
+//     addProducts.classList.add('active')
+//     allProducts.classList.remove('active')
+//     allTransacs.classList.remove('active')
+//   } else if (routePath === '#all-transacs') {
+//     allTransacs.classList.add('active')
+//     addProducts.classList.remove('active')
+//     allProducts.classList.remove('active')
+//   }
+// }
