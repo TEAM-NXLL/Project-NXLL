@@ -44,6 +44,7 @@ export async function createProduct(
         photoBase64,
       }),
     );
+    toast("상품 추가가 완료되었습니다.", "추가")
     return res;
   } catch (error) {
     toast(`${error}, 잠시 후 다시 시도해주세요.`, '추가');
@@ -82,7 +83,7 @@ export async function transactionStatus(detailId, isCanceled, done) {
       URL + `/transactions/${detailId}`,
       createRequest('PUT', true, { isCanceled, done }),
     );
-    toast('거래 상태가 변경되었습니다.');
+    toast('거래 상태가 변경되었습니다.', '거래');
     return res;
   } catch (error) {
     toast(`${error}, 잠시 후 다시 시도해주세요.`, '거래');
@@ -113,6 +114,7 @@ export async function correctProduct(
         isSoldOut,
       }),
     );
+    toast('상품 수정이 완료되었습니다.', "전체");
     return res;
   } catch (error) {
     toast(`${error}, 잠시 후 다시 시도해주세요.`, '전체');
@@ -126,6 +128,7 @@ export async function delProduct(productId) {
       URL + `/${productId}`,
       createRequest('DELETE', true),
     );
+    toast("상품이 삭제되었습니다.", "전체");
     return res;
   } catch (error) {
     toast(`${error}, 잠시 후 다시 시도해주세요.`, '전체');
