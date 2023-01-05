@@ -1,6 +1,7 @@
 import { store } from '../../js/store.js';
 import { createRequest } from './requests.js';
 import { submitUtil } from './submitUtil.js';
+import { getProductDetail } from '../../js/requests.js';
 
 export const tagArr = ['mouse', 'keyboard', 'mousepad', 'usbhub', 'monitorstand', 'cardreader', 'notebookstand', 'lock', 'keypad', 'ear-head', 'speaker', 'mic', 'kids', 'audiocable', 'adapter', 'charging', 'smartholder', 'smart-etc', 'new-item', 'discount', 'pc', 'notebook', 'audio', 'smart', 'beige', 'mint', 'pink', 'white', 'blue', 'black', 'green', 'gray'];
 export const editFormEl = store.selector('.edit-form');
@@ -16,12 +17,7 @@ export function editItem(event) {
 
 // 수정페이지 input에 기존 데이터 채워넣기
 async function editInputPlaceholder(productId) {
-  const res = await fetch(
-    store.url + `/products/${productId}`,
-    createRequest('GET')
-  );
-  const getResult = await res.json();
-
+  const getResult = getProductDetail(productId)
   getResult.isSoldOut
     ? (store.selector('#soldout').checked = true)
     : (store.selector('#sell').checked = true);

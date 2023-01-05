@@ -1,6 +1,6 @@
-import { toast } from "../admin/js/toast";
+// import { toast } from "../admin/js/toast";
 
-export async function requestTool({ type, endpoint, page, data, accessToken }) {
+export async function requestAPI({ type, endpoint, page, data, accessToken }) {
   try {
     const res = await fetch(
       'https://asia-northeast3-heropy-api.cloudfunctions.net/api' + endpoint,
@@ -22,6 +22,7 @@ export async function requestTool({ type, endpoint, page, data, accessToken }) {
     }
 
     const requestResult = await res.json();
+    console.log('잘됨')
     return requestResult;
 
   } catch (error) {

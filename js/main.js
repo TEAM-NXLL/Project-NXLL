@@ -1,15 +1,15 @@
-import { doc } from 'prettier';
-import { keepLogin, postSearch, getTransactions, getProductDetail } from './requests.js';
-import { router } from './route.js';
-import { sendSignUp, sendLogin, adminLogin, completeLogin, adminPage } from './auth.js';
-import { deliveryEl, returnEl, deliveryDes, returnDes, mouseenter, mouseleave } from './footer.js';
+import { doc } from 'prettier'
+import { keepLogin, postSearch, getTransactions, getProductDetail } from './requests.js'
+import { router } from './route.js'
+import { sendSignUp, sendLogin, adminLogin, completeLogin, adminPage } from './auth.js'
+import { deliveryEl, returnEl, deliveryDes, returnDes, mouseenter, mouseleave } from './footer.js'
 import { joinForm, logInForm, myOrderForm, myShoppingForm, mainForm, productList, userInfoForm, userAccountForm, detailForm, paymentForm, myCancelOrderForm, myConfirOrderForm, renderInnerCategory } from './body.js'
-import { editUserInfo, userOwnBank, addNewAccount, choiceBank, bankChargeLookUp, ownAccountList, addAbleAccountList, cancelBank } from './userInfo.js';
+import { editUserInfo, userOwnBank, addNewAccount, bankChargeLookUp, ownAccountList, addAbleAccountList, cancelBank } from './userInfo.js';
 import { viewAllProduct } from '../admin/js/requests.js'
 import { payAccountList, payBankLoopUp, buyProducts, lookProducts, cancelProduct, allCheckBox } from './payment.js'
 import { cancelOrder, confirOrder, transLookUp, cancelOrderLookUp, confirOrderLookUp } from './myorder.js'
 import { buyProduct, cart, shoppingBasket } from './detail.js'
-import { viewShoppingBag } from './shoppingBag.js';
+import { viewShoppingBag } from './shoppingBag.js'
 import { store } from './store.js'
 
 // 변수
@@ -284,7 +284,7 @@ adminPage()
 // myorder 렌더링 공통 사항
 export async function listLookUp() {
   try {
-    const products = await getTransactions(store.token)
+    const products = await getTransactions()
     if (products !== '구매 내역이 존재하지 않습니다.') {
       products.sort((a, b) => {
         return a.timePaid < b.timePaid ? -1 : a.timePaid > b.timePaid ? 1 : 0
@@ -364,7 +364,7 @@ export async function renderMyConfirOrder() {
 
 // userInfo 렌더링
 export async function renderUserInfo() {
-  const res = await stateLogin(store.token)
+  const res = await stateLogin()
   startTop()
   root.innerHTML = userInfoForm(res.email, res.displayName)
   const { totalBalance, accounts } = await userOwnBank()
@@ -413,7 +413,7 @@ router();
 (async () => {
   const toAdminPageEl = document.querySelector('.adminPage')
   if (store.token) {
-    const res = await keepLogin(store.token);
+    const res = await keepLogin();
     res.displayName ? completeLogin() : window.localStorage.clear();
   } else {
     toAdminPageEl.closest('li').remove()

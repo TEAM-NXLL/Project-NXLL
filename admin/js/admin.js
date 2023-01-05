@@ -38,11 +38,11 @@ import { router } from './route.js';
 
 // header
 async function welcomeAdmin() {
-  const authLogin = await keepLogin(localStorage.accessToken);
+  const authLogin = await keepLogin();
   const welcomeAdmin = store.selector('.adminHeader');
   const abc = /* HTML */ `
     <li>
-      <p>Welcome, Admin <strong>${authLogin.displayName}</strong></p>
+      <!-- <p>Welcome, Admin <strong>${authLogin.displayName}</strong></p> -->
     </li>
     <li class="logOutBtn">
       <a href="#">로그아웃<i class="fa-solid fa-right-from-bracket"></i></a>
@@ -55,44 +55,44 @@ async function welcomeAdmin() {
 welcomeAdmin();
 
 // GNB 탭
-window.addEventListener('hashchange', router);
-router();
-// const gnb = store.selector('.gnb');
-// const gnbTabs = gnb.querySelectorAll('li');
-// let activeTab = gnb.querySelector('.active');
-// const editPopup = store.selector('.editPopup');
+// window.addEventListener('hashchange', router);
+// router();
+const gnb = store.selector('.gnb');
+const gnbTabs = gnb.querySelectorAll('li');
+let activeTab = gnb.querySelector('.active');
+const editPopup = store.selector('.editPopup');
 
-// gnbTabs.forEach((tab) => {
-//   tab.addEventListener('click', (e) => {
-//     clickItem(tab);
+gnbTabs.forEach((tab) => {
+  tab.addEventListener('click', (e) => {
+    clickItem(tab);
 
-//     const panels = document.querySelectorAll('.panels');
+    const panels = document.querySelectorAll('.panels');
 
-//     for (let i = 0; i < panels.length; i++) {
-//       const tabTarget = e.target.hash.substr(1);
+    for (let i = 0; i < panels.length; i++) {
+      const tabTarget = e.target.hash.substr(1);
 
-//       if (tabTarget === panels[i].id) {
-//         panels[i].classList.add('here');
+      if (tabTarget === panels[i].id) {
+        panels[i].classList.add('here');
 
-//         if (editPopup.classList.contains('show')) {
-//           editPopup.classList.remove('show');
-//         }
-//       } else {
-//         panels[i].classList.remove('here');
-//       }
-//     }
-//   });
-// });
+        if (editPopup.classList.contains('show')) {
+          editPopup.classList.remove('show');
+        }
+      } else {
+        panels[i].classList.remove('here');
+      }
+    }
+  });
+});
 
-// function clickItem(tab) {
-//   if (activeTab == tab) return;
-//   if (activeTab) {
-//     activeTab.classList.remove('active');
-//   }
+function clickItem(tab) {
+  if (activeTab == tab) return;
+  if (activeTab) {
+    activeTab.classList.remove('active');
+  }
 
-//   tab.classList.add('active');
-//   activeTab = tab;
-// }
+  tab.classList.add('active');
+  activeTab = tab;
+}
 
 // router 이벤트
 // window.addEventListener('hashchange', router())
