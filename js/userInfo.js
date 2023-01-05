@@ -9,7 +9,7 @@ export function editUserInfo() {
     const nameValue = store.selector('.user-name').value
     const oldPwValue = store.selector('.old-pw-input').value
     const newPwValue = store.selector('.new-pw-input').value
-    const res = await editUser(store.token, nameValue, oldPwValue, newPwValue)
+    const res = await editUser(nameValue, oldPwValue, newPwValue)
 
     if (res.displayName) {
       alert('회원 정보가 수정되었습니다')
@@ -24,7 +24,7 @@ export function editUserInfo() {
 
 // 보유 계좌 조회
 export async function userOwnBank() {
-  const { totalBalance, accounts } = await accountCharge(store.token)
+  const { totalBalance, accounts } = await accountCharge()
   return {
     totalBalance, accounts
   }
@@ -42,7 +42,7 @@ export async function addNewAccount() {
     let account = ''
     phoneNumbers.forEach(number => phone += number.value)
     accountNumbers.forEach(number => account += number.value)
-    const res = await addAccount(store.token, bankName.value, account, phone)
+    const res = await addAccount(bankName.value, account, phone)
     if (res.id) {
       alert("계좌가 추가되었습니다.")
       location.hash = '#myshop'
@@ -70,7 +70,7 @@ export function ownAccountList(accounts) {
 
 // 추가 가능한 계좌 리스트
 export async function addAbleAccountList() {
-  const ableList = await accountLookUp(store.token)
+  const ableList = await accountLookUp()
   const addAccountEl = store.selector('#add-account')
   ableList.forEach(el => {
     if (el.disabled === false) {
@@ -142,7 +142,7 @@ export function cancelBank() {
     const dataResult = e.target[e.target.selectedIndex]
     const bankId = dataResult.dataset.id
     cancelBtn.addEventListener('click', async () => {
-      await cancelAccount(store.token, bankId)
+      await cancelAccount(bankId)
       alert("계좌가 삭제되었습니다.")
       location.hash = '#myshop'
     })
