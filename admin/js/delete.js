@@ -41,6 +41,7 @@ productContainer.addEventListener('click', (event) => {
   }
 })
 
+
 // 제품 개별 삭제
 export function deleteItem(target) {
   const itemId = target.dataset.id;
@@ -51,6 +52,7 @@ export function deleteItem(target) {
       item.remove();
     }
   })
+
   delProduct(itemId);
   toast("상품이 삭제되었습니다.", "전체")
 }

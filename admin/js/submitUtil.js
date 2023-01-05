@@ -3,19 +3,19 @@ import { createProduct, correctProduct } from './requests.js';
 import { setChangedData, editFormEl } from './editProduct.js';
 import { resetInput, thumbnailEl, detailImgEl, priceInputEl, editDetailImgEl, editThumbnailEl, editPriceInputEl } from './inputUtils.js';
 import { store } from '../../js/store.js';
-
 const addFormEl = store.selector('.add-form')
+
 
 // 추가, 수정 submit 유틸
 export function submitUtil(selector) {
   selector.addEventListener('submit', (event) => {
     event.preventDefault();
-    
+
     let isSoldOut = false;
     const tags = [];
     let titleSelector, categorySelector, tagSelector, descriptionSelector, price, thumbnail, photo = ''
 
-    if (selector ===  editFormEl) {
+    if (selector === editFormEl) {
       titleSelector = '.edit-product-name';
       categorySelector = 'input[name="edit-category"]:checked';
       tagSelector = 'input[name="edit-check"]:checked';
@@ -23,7 +23,7 @@ export function submitUtil(selector) {
       price = Number(editPriceInputEl.value.replace(/[^0-9]/g, ''));
       thumbnail = editThumbnailEl.dataset.id;
       photo = editDetailImgEl.dataset.id;
-    } 
+    }
     else if (selector === addFormEl) {
       titleSelector = '.add-product-name';
       categorySelector = 'input[name="category"]:checked';
@@ -35,7 +35,7 @@ export function submitUtil(selector) {
     }
 
     if (store.selector('input[name="filter"]:checked').value === 'true') {
-    isSoldOut = true;
+      isSoldOut = true;
     }
     const productId = editFormEl.querySelector('.edit-product-id').textContent
     const title = store.selector(titleSelector).value;
@@ -46,9 +46,9 @@ export function submitUtil(selector) {
       tags.push(tag.value);
     });
     const description = store.selector(descriptionSelector).value;
-  
+
     if (title.length < 2 || price < 1 || description.length < 1) {
-      selector === editFormEl 
+      selector === editFormEl
         ? toast('내용이 모두 입력되었는지 확인해 주세요', "전체")
         : toast('내용이 모두 입력되었는지 확인해 주세요', "추가");
     }

@@ -1,5 +1,5 @@
 import { store } from "./store.js"
-import { createRequest } from "../admin/js/requests.js"
+import { requestTool } from "../util/requestTool.js"
 
 // 회원가입 데이터
 export async function signUp(email, password, displayName, profileImgBase64 = null) {
@@ -42,12 +42,19 @@ export async function logout(accessToken) {
 
 // 로그인 유지 데이터
 export async function keepLogin(accessToken) {
-  const res = await fetch(
-    store.url + '/auth/me',
-    createRequest('POST', false, null, accessToken)
-  )
-  const json = await res.json()
-  return json
+  try {
+    const res = await fetch(
+      store.url + '/auth/me',
+      createRequest('POST', false, null, accessToken)
+    )
+    if (!res.ok) {
+      throw new Error('통신 오류')
+    }
+    const json = await res.json()
+    return json
+  } catch (error) {
+    return
+  }
 }
 
 // 사용자 정보 수정 데이터
