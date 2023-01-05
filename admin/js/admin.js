@@ -72,7 +72,6 @@ router();
 
 //       if (tabTarget === panels[i].id) {
 //         panels[i].classList.add('here');
-
 //         if (editPopup.classList.contains('show')) {
 //           editPopup.classList.remove('show');
 //         }
