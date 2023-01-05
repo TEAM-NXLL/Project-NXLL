@@ -38,18 +38,18 @@ import { router } from './route.js';
 
 // header
 async function welcomeAdmin() {
-  const authLogin = await keepLogin();
+  // const authLogin = await keepLogin();
   const welcomeAdmin = store.selector('.adminHeader');
-  const abc = /* HTML */ `
-    <li>
-      <!-- <p>Welcome, Admin <strong>${authLogin.displayName}</strong></p> -->
-    </li>
-    <li class="logOutBtn">
-      <a href="#">로그아웃<i class="fa-solid fa-right-from-bracket"></i></a>
-    </li>
-  `;
+  // const abc = /* HTML */ `
+  //   <li>
+  //     <!-- <p>Welcome, Admin <strong>${authLogin.displayName}</strong></p> -->
+  //   </li>
+  //   <li class="logOutBtn">
+  //     <a href="#">로그아웃<i class="fa-solid fa-right-from-bracket"></i></a>
+  //   </li>
+  // `;
 
-  welcomeAdmin.innerHTML = abc;
+  // welcomeAdmin.innerHTML = abc;
 }
 
 welcomeAdmin();
