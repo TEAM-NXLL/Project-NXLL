@@ -57,7 +57,7 @@ export function submitUtil(selector) {
       try {
         correctProduct({ productId, title, price, description, tags, thumbnail, photo, isSoldOut });
         setChangedData(productId, title, price, description, tags, isSoldOut)
-        toast('상품 수정이 완료되었습니다.', "전체");
+        // toast('상품 수정이 완료되었습니다.', "전체");
       } catch (error) {
         toast(error, '잠시 후 다시 시도해주세요', "전체");
       }

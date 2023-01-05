@@ -54,5 +54,5 @@ export function deleteItem(target) {
   })
 
   delProduct(itemId);
-  toast("상품이 삭제되었습니다.", "전체")
+  // toast("상품이 삭제되었습니다.", "전체")
 }
