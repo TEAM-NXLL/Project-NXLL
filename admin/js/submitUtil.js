@@ -8,7 +8,7 @@ const addFormEl = store.selector('.add-form')
 
 // 추가, 수정 submit 유틸
 export function submitUtil(selector) {
-  selector.addEventListener('submit', (event) => {
+  selector.onsubmit = function submitUtilHandler(event) {
     event.preventDefault();
 
     let isSoldOut = false;
@@ -71,7 +71,6 @@ export function submitUtil(selector) {
       }
     }
   }
-  );
 }
 
 submitUtil(addFormEl);

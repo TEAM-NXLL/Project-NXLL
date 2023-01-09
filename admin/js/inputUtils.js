@@ -12,29 +12,29 @@ export const editPriceInputEl = store.selector('#edit-product-price')
 const altImg = "https://static.vecteezy.com/system/resources/thumbnails/004/141/669/small/no-photo-or-blank-image-icon-loading-images-or-missing-image-mark-image-not-available-or-image-coming-soon-sign-simple-nature-silhouette-in-frame-isolated-illustration-vector.jpg"
 
 // 가격 입력 input칸에 통화단위 적용
-priceInputEl.addEventListener('input', event => {
+priceInputEl.oninput = (event) => {
   priceInputHandler(event, priceInputEl)
-});
-editPriceInputEl.addEventListener('input', event => {
+}
+editPriceInputEl.oninput = (event) => {
   priceInputHandler(event, editPriceInputEl)
-});
-function priceInputHandler(event, selector){
+}
+function priceInputHandler(event, selector) {
   let price = event.target.value;
   price = Number(price.replace(/[^0-9]/g, '')).toLocaleString('ko-KR');
   selector.value = price;
 }
 
 // 이미지파일 업로드 이벤트
-editFileArea.addEventListener('change', event => {
+editFileArea.onchange = (event) => {
   const { target } = event;
   checkFileSize(event.target, target)
   checkFileExtension(event.target, "전체", target)
-})
-addFileArea.addEventListener('change', event => {
+}
+addFileArea.onchange = (event) => {
   const { target } = event;
   checkFileSize(event.target, target)
   checkFileExtension(event.target, "추가", target)
-})
+}
 
 // 파일 확장자 유효성검사
 function checkFileExtension(target, location, selector) {
@@ -59,14 +59,10 @@ function checkFileExtension(target, location, selector) {
 }
 
 // 이미지파일 업로드 초기화버튼 클릭이벤트
-addFileArea.addEventListener('click', event => {
-  fileResetHandler(event)
-})
-editFileArea.addEventListener('click', event => {
-  fileResetHandler(event)
-})
+addFileArea.onclick = (event) => fileResetHandler(event)
+editFileArea.onclick = (event) => fileResetHandler(event)
 
-function fileResetHandler(event){
+function fileResetHandler(event) {
   const { target } = event;
   if (target.matches('.detail-reset')) {
     event.path[1].children[0].children[0].src = altImg;
@@ -161,8 +157,8 @@ function imgIncoding(target, selector) {
     const file = files[i]
     const reader = new FileReader()
     reader.readAsDataURL(file)
-    reader.addEventListener('load', e => {
-      base64 = e.target.result
+    reader.onload = function imgLoadHandler(event) {
+      base64 = event.target.result
       if (selector === thumbnailEl) {
         thumbnailEl.dataset.id = base64
       } else if (selector === detailImgEl) {
@@ -172,7 +168,7 @@ function imgIncoding(target, selector) {
       } else {
         editDetailImgEl.dataset.id = base64
       }
-    })
+    }
   }
 }
 
@@ -180,12 +176,12 @@ function imgIncoding(target, selector) {
 export function resetInput(event) {
   const target = event.target
   for (let i = 0; i < target.length; i += 1) {
-    (i < 2 || i === target.length - 4) 
-      ? target[i].value = ''   
+    (i < 2 || i === target.length - 4)
+      ? target[i].value = ''
       : target[i].checked = false;
 
-    if ( i === 35 || i === 36) {
-      target[i].closest('td').childNodes[1].children[0].src='';
+    if (i === 35 || i === 36) {
+      target[i].closest('td').childNodes[1].children[0].src = '';
     }
   }
 }
