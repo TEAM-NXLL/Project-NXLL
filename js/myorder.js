@@ -65,7 +65,7 @@ export function cancelOrder() {
   cancelBtn.forEach(cancel => {
     cancel.addEventListener('click', async (e) => {
       const id = e.target.dataset.id
-      await cancelTransactions(localStorage.accessToken, id)
+      await cancelTransactions(id)
       alert('구매가 취소되었습니다.')
       location.reload()
     })
@@ -78,7 +78,7 @@ export function confirOrder() {
   confirBtn.forEach(confir => {
     confir.addEventListener('click', async (e) => {
       const id = e.target.dataset.id
-      await confirmation(localStorage.accessToken, id)
+      await confirmation(id)
       alert('구매가 확정되었습니다.')
       location.reload()
     })

@@ -77,7 +77,7 @@ export function completeLogin() {
 // 관리자 확인
 export async function adminLogin(accessToken) {
   if (accessToken) {
-    const authLogin = await keepLogin(accessToken)
+    const authLogin = await keepLogin()
     const toAdminPageEl = store.selector('.adminPage')
     if (authLogin.email ? authLogin.email.includes('admin') : false) {
       toAdminPageEl.href = './admin/admin.html'

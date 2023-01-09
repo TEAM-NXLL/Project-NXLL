@@ -161,7 +161,7 @@ export async function buyProducts() {
     }
     const pay = async () => {
       for (const productId of productIds) {
-        await getBuy(localStorage.accessToken, productId, accountId)
+        await getBuy(productId, accountId)
       }
       localStorage.cart = JSON.stringify([])
       alert('거래 완료!')
