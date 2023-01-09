@@ -43,8 +43,8 @@ function confirmToastCreator(main, toastBox) {
   confirmArea.appendChild(cancelBtn);
   toastBox.appendChild(confirmArea);
   main.appendChild(toastBox);
-  
-  confirmArea.addEventListener("click", event => {
+
+  confirmArea.onclick = function confirmToastHandler(event) {
     const { target } = event;
     if (target.matches('.confirm')) {
       const editPopup = store.selector('.editPopup');
@@ -53,5 +53,5 @@ function confirmToastCreator(main, toastBox) {
     } else if (target.matches('.cancel')) {
       toastBox.remove()
     }
-  })
+  }
 }

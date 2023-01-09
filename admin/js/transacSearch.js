@@ -5,16 +5,13 @@ export async function transacSearch(allTransac) {
   const searchBar = store.selector('.transac-search-bar');
   const searchBtn = store.selector('.transac-search-btn');
 
-  searchBar.addEventListener('keydown', (event) => {
+  searchBar.onkeydown = function enterKeyHandler(event) {
     if (event.key === 'Enter') {
-      event.preventDefault();
       searchBtn.click();
     }
-  });
-
-  searchBtn.addEventListener('click', (event) => {
+  }
+  searchBtn.onclick = function searchBtnHandler() {
     const title = searchBar.value;
-
     const searchTransac = allTransac.filter((el) => {
       return el.product.title.includes(title) === true;
     });
@@ -34,5 +31,8 @@ export async function transacSearch(allTransac) {
         </div>
       `;
     }
-  });
+  }
 }
+
+
+

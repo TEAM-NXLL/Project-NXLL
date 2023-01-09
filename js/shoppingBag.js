@@ -74,68 +74,79 @@ export function viewShoppingBag() {
   const btnDelete = document.querySelectorAll('.btn-delete')
 
 
-  btnDelete.forEach(el => el.addEventListener('click', ({ target }) => {
-    const deleteTarget = target.closest('.bag-payment__item')
-    const productId = deleteTarget.dataset.id
-    let cartList = JSON.parse(localStorage.getItem('cart')) || []
-    let cartFilter = []
-    cartList.filter(e => {
-      if (e.ID !== productId) {
-        cartFilter.push(e)
-      }
-    })
-    deleteTarget.remove()
-    localStorage.setItem('cart', JSON.stringify(cartFilter))
-    viewShoppingBag()
-  }))
+  btnDelete.forEach(el => { el.onclick = (event) => { cartDeleteHandler(event) } })
 
-  // 수량 ++
-  btnPlus.forEach((el) =>
-    el.addEventListener('click', ({ target }) => {
-      const text = target.closest('div').children[1]
-      text.innerHTML = Number(text.textContent) + 1
-
-      const productId = target.closest('.quantity').dataset.id
-      cartList.forEach((el) => {
-        if (el.ID === productId) {
-          el.QUANTITY += 1;
-          el.PRICE = el.ORIGIN_PRICE * el.QUANTITY;
-        }
-      })
-
-      localStorage.setItem('cart', JSON.stringify(cartList))
-      viewShoppingBag()
-    })
-  )
-  // 수량--
-  btnMinus.forEach((el) =>
-    el.addEventListener('click', ({ target }) => {
-      const text = target.closest('div').children[1]
-      text.innerHTML = Number(text.textContent) - 1
-
-      const productId = target.closest('.quantity').dataset.id
-      cartList.forEach((el) => {
-        if (el.ID === productId) {
-          el.QUANTITY = el.QUANTITY === 1 ? 1 : el.QUANTITY - 1
-          el.PRICE = el.ORIGIN_PRICE * el.QUANTITY
-        }
-      })
-
-      localStorage.setItem('cart', JSON.stringify(cartList))
-      viewShoppingBag()
-    })
-  )
-
-  const btnClose = store.selector('.bag-close')
-  btnClose.addEventListener('click', () => {
-    MODAL.classList.remove('block')
-  })
-
-  btnBuy.addEventListener('click', function () {
-    MODAL.classList.remove('block');
-    const accessToken = localStorage.accessToken
-    if (accessToken) location.hash = '#payment'
-    else location.hash = '#login'
-  })
-  cartCountCheck()
+  // function  (event) {
+  //   console.log(event)
+  // const deleteTarget = event.target.closest('.bag-payment__item')
+  // const productId = deleteTarget.dataset.id
+  // let cartList = JSON.parse(localStorage.getItem('cart')) || []
+  // let cartFilter = []
+  // cartList.filter(e => {
+  //   if (e.ID !== productId) {
+  //     cartFilter.push(e)
+  //   }
+  // })
+  // deleteTarget.remove()
+  // localStorage.setItem('cart', JSON.stringify(cartFilter))
+  // viewShoppingBag()
 }
+
+// 수량 ++
+btnPlus.forEach((el) => { el.onclick = (event) => cartAddHandler(event) }
+)
+
+function cartAddHandler(event) {
+  const text = event.target.closest('div').children[1]
+  text.innerHTML = Number(text.textContent) + 1
+
+  const productId = event.target.closest('.quantity').dataset.id
+  cartList.forEach((el) => {
+    if (el.ID === productId) {
+      el.QUANTITY += 1;
+      el.PRICE = el.ORIGIN_PRICE * el.QUANTITY;
+    }
+  })
+
+  localStorage.setItem('cart', JSON.stringify(cartList))
+  viewShoppingBag()
+}
+
+// 수량--
+btnMinus.forEach((el) => {
+  el.onclick = (event) => {
+    console.log(event)
+    cartRemoveHandler(event)
+  }
+})
+
+function cartRemoveHandler(event) {
+  // const text = event.target.closeeventchildren[1]
+  console.log(event)
+  const text = event.target.closest('div').children[1]
+  text.innerHTML = Number(text.textContent) - 1
+  const productId = event.target.closest('.quantity').dataset.id
+  cartList.forEach((el) => {
+    if (el.ID === productId) {
+      el.QUANTITY = el.QUANTITY === 1 ? 1 : el.QUANTITY - 1
+      el.PRICE = el.ORIGIN_PRICE * el.QUANTITY
+    }
+  })
+
+  localStorage.setItem('cart', JSON.stringify(cartList))
+  viewShoppingBag()
+}
+
+const btnClose = store.selector('.bag-close')
+btnClose.onclick = function btnCloseHandler() {
+  MODAL.classList.remove('block')
+}
+
+btnBuy.onclick = function btnBuyHandler() {
+  MODAL.classList.remove('block');
+  const accessToken = localStorage.accessToken
+  if (accessToken) location.hash = '#payment'
+  else location.hash = '#login'
+}
+cartCountCheck()
+

@@ -63,27 +63,55 @@ export async function transLookUp(products) {
 export function cancelOrder() {
   const cancelBtn = document.querySelectorAll('.cancel-btn')
   cancelBtn.forEach(cancel => {
-    cancel.addEventListener('click', async (e) => {
-      const id = e.target.dataset.id
-      await cancelTransactions(id)
-      alert('구매가 취소되었습니다.')
-      location.reload()
-    })
+    cancel.onclick = (event) => cancelOrderHandler(event)
   })
 }
+
+async function cancelOrderHandler(event) {
+  const id = event.target.dataset.id
+  await cancelTransactions(id)
+  alert("구매가 취소되었습니다.")
+  location.reload()
+}
+
+// export function cancelOrder() {
+//   const cancelBtn = document.querySelectorAll('.cancel-btn')
+//   cancelBtn.forEach(cancel => {
+//     cancel.addEventListener('click', async (e) => {
+//       const id = e.target.dataset.id
+//       await cancelTransactions(id)
+//       alert('구매가 취소되었습니다.')
+//       location.reload()
+//     })
+//   })
+// }
 
 // 구매 확정
 export function confirOrder() {
   const confirBtn = document.querySelectorAll('.confir-btn')
   confirBtn.forEach(confir => {
-    confir.addEventListener('click', async (e) => {
-      const id = e.target.dataset.id
-      await confirmation(id)
-      alert('구매가 확정되었습니다.')
-      location.reload()
-    })
+    confir.onclick = (event) => confirOrderHandler(event)
   })
 }
+
+async function confirOrderHandler(event) {
+  const id = event.target.dataset.id
+  await confirmation(id)
+  alert("구매가 확정되었습니다.")
+  location.reload()
+}
+
+// export function confirOrder() {
+//   const confirBtn = document.querySelectorAll('.confir-btn')
+//   confirBtn.forEach(confir => {
+//     confir.addEventListener('click', async (e) => {
+//       const id = e.target.dataset.id
+//       await confirmation(id)
+//       alert('구매가 확정되었습니다.')
+//       location.reload()
+//     })
+//   })
+// }
 
 // 취소 내역
 export async function cancelOrderLookUp(products) {

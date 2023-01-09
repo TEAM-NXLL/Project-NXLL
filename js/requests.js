@@ -48,7 +48,7 @@ export async function addAccount(bankCode, accountNumber, phoneNumber) {
 // 계좌 해지 데이터
 export async function cancelAccount(accountId) {
   let data = { accountId, signature: true }
-  return await requestAPI({ type: "DELETE", endpoint: "/accout", data, accessToken: store.token })
+  return await requestAPI({ type: "DELETE", endpoint: "/account", data, accessToken: store.token })
 }
 
 // 단일 제품 상세 조회 데이터

@@ -1,10 +1,10 @@
 import { doc } from 'prettier'
-import { keepLogin, postSearch, getTransactions, getProductDetail } from './requests.js'
+import { keepLogin, postSearch, getTransactions, getProductDetail, accountLookUp } from './requests.js'
 import { router } from './route.js'
 import { sendSignUp, sendLogin, adminLogin, completeLogin, adminPage } from './auth.js'
 import { deliveryEl, returnEl, deliveryDes, returnDes, mouseenter, mouseleave } from './footer.js'
 import { joinForm, logInForm, myOrderForm, myShoppingForm, mainForm, productList, userInfoForm, userAccountForm, detailForm, paymentForm, myCancelOrderForm, myConfirOrderForm, renderInnerCategory } from './body.js'
-import { editUserInfo, userOwnBank, addNewAccount, bankChargeLookUp, ownAccountList, addAbleAccountList, cancelBank } from './userInfo.js';
+import { editUserInfo, userOwnBank, addNewAccount, bankChargeLookUp, ownAccountList, addAbleAccountList, cancelBank, selectedAccount } from './userInfo.js';
 import { viewAllProduct } from '../admin/js/requests.js'
 import { payAccountList, payBankLoopUp, buyProducts, lookProducts, cancelProduct, allCheckBox } from './payment.js'
 import { cancelOrder, confirOrder, transLookUp, cancelOrderLookUp, confirOrderLookUp } from './myorder.js'
@@ -200,7 +200,7 @@ export function renderSubCategory(rootInner, dataArr) {
 }
 
 // 제품 검색
-async function productSearch(e) {
+export async function productSearch(e) {
   const keyword = store.selector('#keyword');
 
   if (e.key === 'Enter') {
@@ -279,7 +279,7 @@ export function joinRender() {
 
 // 관리자 로그인인지 확인
 adminLogin(store.token)
-adminPage()
+// adminPage()
 
 // myorder 렌더링 공통 사항
 export async function listLookUp() {
@@ -364,12 +364,13 @@ export async function renderMyConfirOrder() {
 
 // userInfo 렌더링
 export async function renderUserInfo() {
-  const res = await stateLogin()
+  const res = await keepLogin()
   startTop()
   root.innerHTML = userInfoForm(res.email, res.displayName)
   const { totalBalance, accounts } = await userOwnBank()
   const total = totalBalance.toLocaleString()
   root.innerHTML += userAccountForm(total)
+  selectedAccount(accounts)
   bankChargeLookUp()
   ownAccountList(accounts)
   editUserInfo()

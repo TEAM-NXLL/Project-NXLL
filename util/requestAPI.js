@@ -28,9 +28,11 @@ export async function requestAPI({ type, endpoint, page, data, accessToken }) {
   } catch (error) {
     if (page === 'admin') {
       // toast('잠시 후 다시 시도해 주세요.', `${page}`)
-      alert('잠시 후 다시 시도해 주세요.')
+      // alert('잠시 후 다시 시도해 주세요.')
+      console.log(error, '관리자페이지 에러')
     } else {
-      alert(error, '잠시 후 다시 시도해 주세요.')
+      // alert(error, '잠시 후 다시 시도해 주세요.')
+      console.log(error, '사용자페이지 에러')
     }
   }
 }
