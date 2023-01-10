@@ -1,4 +1,4 @@
-import { store } from "./store.js"
+import { store } from "../util/store.js"
 import { requestAPI } from "../util/requestAPI.js"
 
 // 회원가입 데이터

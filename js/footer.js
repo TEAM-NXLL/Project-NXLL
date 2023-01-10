@@ -1,4 +1,4 @@
-import { store } from './store.js'
+import { store } from '../util/store.js'
 
 export const deliveryEl = store.selector('.delivery')
 export const returnEl = store.selector('.return')

@@ -1,5 +1,5 @@
 import { renderAlltransacs } from './renderAlltransacs.js';
-import { store } from '../../js/store.js';
+import { store } from '../../util/store.js';
 
 export async function transacSearch(allTransac) {
   const searchBar = store.selector('.transac-search-bar');

@@ -1,5 +1,5 @@
 import { toast } from './toast.js';
-import { store } from '../../js/store.js'
+import { store } from '../../util/store.js';
 
 export const thumbnailEl = store.selector('.add-thumbnail')
 export const detailImgEl = store.selector('.add-detail')

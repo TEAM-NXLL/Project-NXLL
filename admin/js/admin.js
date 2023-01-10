@@ -7,7 +7,7 @@ import { submitForm } from './submitUtil.js';
 import { viewAllProduct, viewAllTransactions, adminData } from './requests.js';
 import { transacSearch } from './transacSearch.js';
 import { keepLogin } from '../../js/requests.js';
-import { store } from '../../js/store.js';
+import { store } from '../../util/store.js';
 import { router } from './route.js';
 
 (async () => {

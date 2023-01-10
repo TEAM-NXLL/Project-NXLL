@@ -1,6 +1,6 @@
 import { viewAllProduct } from './requests.js';
 import { viewAllTransactions } from './requests.js';
-import { store } from '../../js/store.js';
+import { store } from '../../util/store.js';
 
 export async function renderAdminSummary(allTransac, allProduct) {
   const adminSummary = store.selector('.admin-summary');

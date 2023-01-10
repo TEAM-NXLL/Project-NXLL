@@ -1,6 +1,6 @@
 import { renderAdminSummary } from './adminSummary.js';
 import { viewAllTransactions, transactionStatus } from './requests.js';
-import { store } from '../../js/store.js';
+import { store } from '../../util/store.js';
 
 export async function renderAlltransacs(transacs) {
   transacs.forEach((el) => {

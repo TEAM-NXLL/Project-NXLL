@@ -1,4 +1,4 @@
-import { store } from '../../js/store.js';
+import { store } from '../../util/store.js';
 import { viewAllProduct, viewAllTransactions } from './requests.js';
 import { renderAdminSummary } from './adminSummary.js';
 import { renderAllProduct } from './renderAllProducts.js';

@@ -1,6 +1,6 @@
 import { cartCountCheck } from "./main.js"
 import { viewShoppingBag } from "./shoppingBag.js"
-import { store } from './store.js'
+import { store } from '../util/store.js'
 
 const accessToken = localStorage.accessToken
 

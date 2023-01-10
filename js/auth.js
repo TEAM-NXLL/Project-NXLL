@@ -1,6 +1,6 @@
 import { login, logout, signUp, keepLogin } from "./requests.js";
 import { logInForm } from './body.js'
-import { store } from './store.js'
+import { store } from '../util/store.js'
 
 const root = store.selector('main')
 

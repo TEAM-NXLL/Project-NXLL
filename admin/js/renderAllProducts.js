@@ -1,5 +1,4 @@
-import { store } from '../../js/store.js'
-
+import { store } from '../../util/store.js';
 export function renderAllProduct(products) {
 
   products.forEach((el) => {

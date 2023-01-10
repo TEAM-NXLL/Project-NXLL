@@ -1,7 +1,7 @@
 import { getBuy, getProductDetail } from './requests.js';
 import { userOwnBank } from './userInfo.js';
 import { renderPayment } from './main.js';
-import { store } from './store.js'
+import { store } from '../util/store.js'
 
 // 주문 상품 정보 조회
 export function lookProducts() {

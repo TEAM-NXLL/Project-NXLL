@@ -1,6 +1,6 @@
 import { totalQuantity, showModal } from './detail.js';
 import { cartCountCheck } from './main.js';
-import { store } from './store.js'
+import { store } from '../util/store.js'
 
 // 메인 화면 장바구니
 export function viewShoppingBag() {

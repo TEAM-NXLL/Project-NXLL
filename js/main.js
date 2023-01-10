@@ -10,7 +10,7 @@ import { payAccountList, payBankLoopUp, buyProducts, lookProducts, cancelProduct
 import { cancelOrder, confirOrder, transLookUp, cancelOrderLookUp, confirOrderLookUp } from './myorder.js'
 import { buyProduct, cart, shoppingBasket } from './detail.js'
 import { viewShoppingBag } from './shoppingBag.js'
-import { store } from './store.js'
+import { store } from '../util/store.js'
 
 // 변수
 const root = store.selector('main')

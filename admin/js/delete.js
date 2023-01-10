@@ -1,7 +1,7 @@
 import { delProduct } from "./requests.js";
 import { toast } from "./toast.js";
 import { editItem, editPopup } from './editProduct.js';
-import { store } from '../../js/store.js'
+import { store } from '../../util/store.js';
 
 const productContainer = store.selector('.products-container');
 const checkedItemDelBtn = store.selector('.delete-checked');

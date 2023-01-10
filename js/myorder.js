@@ -1,5 +1,5 @@
 import { cancelTransactions, confirmation } from "./requests.js"
-import { store } from './store.js'
+import { store } from '../util/store.js'
 
 // 구매 내역 렌더링
 export async function transLookUp(products) {

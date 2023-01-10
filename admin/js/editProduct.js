@@ -1,4 +1,4 @@
-import { store } from '../../js/store.js';
+import { store } from '../../util/store.js';
 import { createRequest } from './requests.js';
 import { submitUtil } from './submitUtil.js';
 import { getProductDetail } from '../../js/requests.js';

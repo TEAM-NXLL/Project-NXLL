@@ -2,7 +2,7 @@ import { toast } from './toast.js';
 import { createProduct, correctProduct } from './requests.js';
 import { setChangedData, editFormEl } from './editProduct.js';
 import { resetInput, thumbnailEl, detailImgEl, priceInputEl, editDetailImgEl, editThumbnailEl, editPriceInputEl } from './inputUtils.js';
-import { store } from '../../js/store.js';
+import { store } from '../../util/store.js';
 const addFormEl = store.selector('.add-form')
 
 
