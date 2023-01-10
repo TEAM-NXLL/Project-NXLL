@@ -1,4 +1,3 @@
-import { store } from '../../js/store.js';
 import { toast } from './toast.js';
 import { requestAPI } from '../../util/requestAPI.js';
 

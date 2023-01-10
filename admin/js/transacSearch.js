@@ -1,9 +1,9 @@
 import { renderAlltransacs } from './renderAlltransacs.js';
-import { store } from '../../js/store.js';
+import { $ } from '../../util/store.js';
 
 export async function transacSearch(allTransac) {
-  const searchBar = store.selector('.transac-search-bar');
-  const searchBtn = store.selector('.transac-search-btn');
+  const searchBar = $('.transac-search-bar');
+  const searchBtn = $('.transac-search-btn');
 
   searchBar.onkeydown = function enterKeyHandler(event) {
     if (event.key === 'Enter') {
@@ -17,7 +17,7 @@ export async function transacSearch(allTransac) {
     });
 
     searchBar.value = '';
-    const productCont = store.selector('.all-transac-container');
+    const productCont = $('.all-transac-container');
     const allTransacs = productCont.querySelector('.allTransacs');
 
     if (searchTransac.length > 0 && allTransacs) {

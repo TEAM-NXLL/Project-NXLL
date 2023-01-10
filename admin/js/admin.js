@@ -7,7 +7,7 @@ import { submitForm } from './submitUtil.js';
 import { viewAllProduct, viewAllTransactions, adminData } from './requests.js';
 import { transacSearch } from './transacSearch.js';
 import { keepLogin } from '../../js/requests.js';
-import { store } from '../../js/store.js';
+import { $ } from '../../util/store.js';
 import { router } from './route.js';
 
 (async () => {
@@ -57,16 +57,16 @@ import { router } from './route.js';
 // GNB 탭
 // window.addEventListener('hashchange', router);
 // router();
-const gnb = store.selector('.gnb');
-const gnbTabs = gnb.querySelectorAll('li');
-let activeTab = gnb.querySelector('.active');
-const editPopup = store.selector('.editPopup');
+const gnb = $('.gnb');
+const gnbTabs = $('li', gnb, true);
+let activeTab = $('.active', gnb);
+const editPopup = $('.editPopup');
 
 gnbTabs.forEach((tab) => {
   tab.onclick = (event) => {
     clickItem(tab);
 
-    const panels = document.querySelectorAll('.panels');
+    const panels = $('.panels', document, true);
 
     for (let i = 0; i < panels.length; i++) {
       const tabTarget = event.target.hash.substr(1);

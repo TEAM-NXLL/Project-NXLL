@@ -1,13 +1,13 @@
 import { delProduct } from "./requests.js";
 import { toast } from "./toast.js";
 import { editItem, editPopup } from './editProduct.js';
-import { store } from '../../js/store.js'
+import { $ } from '../../util/store.js';
 
-const productContainer = store.selector('.products-container');
-const checkedItemDelBtn = store.selector('.delete-checked');
+const productContainer = $('.products-container');
+const checkedItemDelBtn = $('.delete-checked');
 
 checkedItemDelBtn.onclick = function checkedItemDelHandler() {
-  const checkedItems = document.querySelectorAll('.delete-checkbox:checked');
+  const checkedItems = $('.delete-checkbox:checked', document, true);
   deleteCheckedItems(checkedItems)
 }
 
@@ -57,7 +57,7 @@ productContainer.onclick = function productStateChangeHandler(event) {
 // 제품 개별 삭제
 export function deleteItem(target) {
   const itemId = target.dataset.id;
-  const items = document.querySelectorAll('.product-item');
+  const items = $('.product-item', document, true);
   items.forEach(item => {
     if (item.dataset.id === itemId) {
       item.classList.add('delete');

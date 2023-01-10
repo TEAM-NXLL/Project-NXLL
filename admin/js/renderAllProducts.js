@@ -1,5 +1,4 @@
-import { store } from '../../js/store.js'
-
+import { $ } from '../../util/store.js';
 export function renderAllProduct(products) {
 
   products.forEach((el) => {
@@ -11,7 +10,7 @@ export function renderAllProduct(products) {
     const isSold = el.isSoldOut ? 'X' : 'O';
     const thumbnail = el.thumbnail;
 
-    const allProducts = store.selector('.allProducts')
+    const allProducts = $('.allProducts')
     const product = document.createElement('tr');
     product.classList.add('product-item');
     product.dataset.id = id
@@ -35,7 +34,7 @@ export function renderAllProduct(products) {
 
     product.innerHTML = innerHTMLContents;
 
-    const productCont = store.selector('.products-container');
+    const productCont = $('.products-container');
     productCont.append(product);
     allProducts.append(product)
   })

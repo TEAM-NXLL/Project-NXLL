@@ -1,6 +1,6 @@
 import { renderAdminSummary } from './adminSummary.js';
 import { viewAllTransactions, transactionStatus } from './requests.js';
-import { store } from '../../js/store.js';
+import { $ } from '../../util/store.js';
 
 export async function renderAlltransacs(transacs) {
   transacs.forEach((el) => {
@@ -55,15 +55,15 @@ export async function renderAlltransacs(transacs) {
     transac.innerHTML = innerHTMLContents;
 
     if (isCanceled) {
-      transac.querySelector('.transac-status').innerHTML = /*html*/ `
+      $('.transac-status', transac).innerHTML = /*html*/ `
         <div class = "isCanceled">거래 취소</div>
       `;
     } else if (done) {
-      transac.querySelector('.transac-status').innerHTML = /*html*/ `
+      $('.transac-status', transac).innerHTML = /*html*/ `
       <div class = "done">거래 완료</div>
     `;
     } else if (!done && !isCanceled) {
-      transac.querySelector('.transac-status').innerHTML = /*html*/ `
+      $('.transac-status', transac).innerHTML = /*html*/ `
       <div class = "transacting">거래중</div>
       <div class = "btn-wrapper">
         <button class = "isCanceled-btn">거래 취소</button>
@@ -75,20 +75,20 @@ export async function renderAlltransacs(transacs) {
       transacCompleteBtn(transac, '.done-btn', false, true);
     }
 
-    const allTransacs = document.querySelector('.allTransacs');
+    const allTransacs = $('.allTransacs');
     allTransacs.append(transac);
   });
 }
 
 function transacCancleBtn(transac, btn, isCancled, isDone) {
-  transac.querySelector(btn).onclick = function transacCancleHandler(event) {
-    const product_id = event.path[3].querySelector('.transacId').innerText;
+  $(btn, transac).onclick = function transacCancleHandler (event) {
+    const product_id = $('.transacId', event.path[3]).innerText;
     transactionStatus(product_id, isCancled, isDone);
     setTimeout(() => {
-      transac.querySelector('.transac-status').innerHTML = /*html*/ `
+      $('.transac-status', transac).innerHTML = /*html*/ `
         <div class = "isCanceled">거래 취소</div>`;
     }, 700);
-    const cancledOrder = store.selector('.purchase-cancled-num');
+    const cancledOrder = $('.purchase-cancled-num');
     cancledOrder.innerText = (
       parseInt(cancledOrder.textContent) + 1
     ).toLocaleString();
@@ -96,24 +96,19 @@ function transacCancleBtn(transac, btn, isCancled, isDone) {
 }
 
 function transacCompleteBtn(transac, btn, isCancled, isDone) {
-  transac.querySelector(btn).onclick = function transacCompleteHandler(event) {
-    const product_id = event.path[3].querySelector('.transacId').innerText;
+  $(btn, transac).onclick = function transacCompleteHandler (event) {
+    const product_id = $('.transacId', event.path[3]).innerText;
     transactionStatus(product_id, isCancled, isDone);
     setTimeout(() => {
-      transac.querySelector('.transac-status').innerHTML = /*html*/ `
+      $('.transac-status', transac).innerHTML = /*html*/ `
         <div class = "done">거래 완료</div>`;
     }, 700);
-    const totalIncome = store.selector('.total-income-num');
-    const confirmedPrice = parseInt(
-      event.path[3]
-        .querySelector('.price')
-        .innerText.slice(0, 6)
-        .replaceAll(',', ''),
-    );
+    const totalIncome = $('.total-income-num');
+    const confirmedPrice = parseInt($('.price', event.path[3]).innerText.slice(0, 6).replaceAll(',', ''));
     const newTotalIncome =
       parseInt(totalIncome.innerText.replaceAll(',', '')) + confirmedPrice;
     totalIncome.innerText = newTotalIncome.toLocaleString();
-    const confirmedOrder = store.selector('.purchase-confirmed-num');
+    const confirmedOrder = $('.purchase-confirmed-num');
     confirmedOrder.innerText = (
       parseInt(confirmedOrder.textContent) + 1
     ).toLocaleString();

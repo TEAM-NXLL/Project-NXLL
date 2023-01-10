@@ -28,7 +28,7 @@ export function mainForm() {
     <!-- 키보드 상품목록 -->
     <section class="keyboard mt70">
       <h1>KEYBOARD</h1>
-      <ul class="inner block3">
+      <ul class="inner block3 keyboard-inner">
   `)
 
   mainBody.push( /* HTML */ `
@@ -53,7 +53,7 @@ export function mainForm() {
     <!-- 마우스 상품목록 -->
     <section class="mouse mt70">
       <h1>MOUSE</h1>
-      <ul class="inner block3">
+      <ul class="inner block3 mouse-inner">
       </ul>
     </section><!-- 마우스 상품목록 -->
 
@@ -76,7 +76,7 @@ export function mainForm() {
     <!-- 뉴아이템 상품목록 -->
     <section class="newItem mt70">
       <h1>NEW ITEM</h1>
-      <ul class="inner block3">
+      <ul class="inner block3 newItem-inner">
       </ul>
     </section><!-- 뉴아이템 상품목록 -->
 
