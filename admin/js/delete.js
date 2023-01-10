@@ -4,12 +4,12 @@ import { editItem, editPopup } from './editProduct.js';
 import { store } from '../../js/store.js'
 
 const productContainer = store.selector('.products-container');
-const CheckedBtnEl = store.selector('.delete-checked');
+const checkedItemDelBtn = store.selector('.delete-checked');
 
-CheckedBtnEl.addEventListener('click', (event) => {
+checkedItemDelBtn.onclick = function checkedItemDelHandler() {
   const checkedItems = document.querySelectorAll('.delete-checkbox:checked');
   deleteCheckedItems(checkedItems)
-})
+}
 
 // 선택항목 삭제 핸들러
 export async function deleteCheckedItems(checkedItems) {
@@ -29,7 +29,19 @@ export async function deleteCheckedItems(checkedItems) {
 }
 
 // 개별 삭제 / 수정버튼 클릭 이벤트
-productContainer.addEventListener('click', (event) => {
+// productContainer.addEventListener('click', (event) => {
+//   if (event.target.classList.contains('del-btn')) {
+//     window.confirm("1개의 아이템을 삭제하시겠습니까?")
+//       ? deleteItem(event.target)
+//       : toast("아이템 삭제를 취소합니다.", "전체")
+//   }
+//   else if (event.target.classList.contains('edit-btn')) {
+//     editPopup.classList.add('show')
+//     editItem(event)
+//   }
+// })
+
+productContainer.onclick = function productStateChangeHandler(event) {
   if (event.target.classList.contains('del-btn')) {
     window.confirm("1개의 아이템을 삭제하시겠습니까?")
       ? deleteItem(event.target)
@@ -39,7 +51,7 @@ productContainer.addEventListener('click', (event) => {
     editPopup.classList.add('show')
     editItem(event)
   }
-})
+}
 
 
 // 제품 개별 삭제

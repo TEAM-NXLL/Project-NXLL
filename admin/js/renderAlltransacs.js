@@ -71,8 +71,8 @@ export async function renderAlltransacs(transacs) {
       </div>`;
 
       // 버튼 이벤트 리스너 추가
-      transacCancleBtn('.isCanceled-btn', true, false);
-      transacCompleteBtn('.done-btn', false, true);
+      transacCancleBtn(transac, '.isCanceled-btn', true, false);
+      transacCompleteBtn(transac, '.done-btn', false, true);
     }
 
     const allTransacs = document.querySelector('.allTransacs');
@@ -80,8 +80,8 @@ export async function renderAlltransacs(transacs) {
   });
 }
 
-function transacCancleBtn(btn, isCancled, isDone) {
-  transac.querySelector(btn).addEventListener('click', (event) => {
+function transacCancleBtn(transac, btn, isCancled, isDone) {
+  transac.querySelector(btn).onclick = function transacCancleHandler(event) {
     const product_id = event.path[3].querySelector('.transacId').innerText;
     transactionStatus(product_id, isCancled, isDone);
     setTimeout(() => {
@@ -92,11 +92,11 @@ function transacCancleBtn(btn, isCancled, isDone) {
     cancledOrder.innerText = (
       parseInt(cancledOrder.textContent) + 1
     ).toLocaleString();
-  });
+  }
 }
 
-function transacCompleteBtn(btn, isCancled, isDone) {
-  transac.querySelector(btn).addEventListener('click', (event) => {
+function transacCompleteBtn(transac, btn, isCancled, isDone) {
+  transac.querySelector(btn).onclick = function transacCompleteHandler(event) {
     const product_id = event.path[3].querySelector('.transacId').innerText;
     transactionStatus(product_id, isCancled, isDone);
     setTimeout(() => {
@@ -117,5 +117,5 @@ function transacCompleteBtn(btn, isCancled, isDone) {
     confirmedOrder.innerText = (
       parseInt(confirmedOrder.textContent) + 1
     ).toLocaleString();
-  });
+  }
 }

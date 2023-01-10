@@ -51,14 +51,13 @@ function renderTotalPrice() {
 // 선택 박스 상태 변화에 따라 가격 렌더링 변화
 export function priceCheck(product) {
   const checkBox = product.querySelector('.product-checkbox')
-  checkBox.addEventListener('change', () => renderTotalPrice())
+  checkBox.onchange = renderTotalPrice
 }
 
-// 제품 전체 선택 및 해제
+// 제품 전체 선택 및 해제 
 export function allCheckBox() {
   const allCheckBox = store.selector('tr input[type=checkbox]')
-  allCheckBox.addEventListener('change', event => {
-    event.preventDefault()
+  allCheckBox.onchange = function allCheckBoxHandler() {
     const eachCheckBoxs = document.querySelectorAll('.product-checkbox')
     if (allCheckBox.checked) {
       eachCheckBoxs.forEach(el => el.checked = true)
@@ -66,7 +65,7 @@ export function allCheckBox() {
       eachCheckBoxs.forEach(el => el.checked = false)
     }
     renderTotalPrice()
-  })
+  }
 }
 
 // 삭제하기 버튼 클릭
@@ -74,23 +73,23 @@ export function cancelProduct() {
   const productDeleteBtn = store.selector('.product-delete-btn');
   const productCheckBox = document.querySelectorAll('.product-checkbox');
 
-  productDeleteBtn.addEventListener('click', (event) => {
-    event.preventDefault;
-    productCheckBox.forEach((el) => {
-      const isChecked = el.checked;
-      try {
-        if (isChecked) {
-          const id = el.dataset.id;
-          const cart = JSON.parse(localStorage.cart);
-          const AfterCart = cart.filter((el) => el.ID !== id);
-          localStorage.cart = JSON.stringify(AfterCart);
+  productDeleteBtn.onclick =
+    function cancelProductHandler() {
+      productCheckBox.forEach((el) => {
+        const isChecked = el.checked;
+        try {
+          if (isChecked) {
+            const id = el.dataset.id;
+            const cart = JSON.parse(localStorage.cart);
+            const AfterCart = cart.filter((el) => el.ID !== id);
+            localStorage.cart = JSON.stringify(AfterCart);
+          }
+        } catch {
+          console.log('삭제 오류');
         }
-      } catch {
-        console.log('삭제 오류');
-      }
-    });
-    renderPayment()
-  });
+      });
+      renderPayment()
+    }
 }
 
 // 보유 계좌 불러오기
@@ -114,16 +113,18 @@ export async function payBankLoopUp() {
   const { accounts } = await userOwnBank();
   const payAccountEl = store.selector('#pay-account');
   const charge = store.selector('.charge');
-  payAccountEl.addEventListener('change', (e) => {
-    accounts.forEach((account) => {
-      if (account.bankCode === e.target.value) {
-        charge.innerHTML = /* html */ `
-        잔액: ${account.balance.toLocaleString()} 원
-        `;
-      } else if (e.target.value === 'default' || e.target.value === null) {
-        charge.innerHTML = '';
-      }
-    });
+  payAccountEl.onchange = (event) => payBankLookUpHandler(event)
+}
+
+function payBankLookUpHandler(event) {
+  accounts.forEach((account) => {
+    if (account.bankCode === event.target.value) {
+      charge.innerHTML = /* html */ `
+      잔액: ${account.balance.toLocaleString()} 원
+      `;
+    } else if (event.target.value === 'default' || event.target.value === null) {
+      charge.innerHTML = '';
+    }
   });
 }
 
@@ -146,7 +147,7 @@ function checkProducts(productQuantity, productIds) {
 // 결제하기
 export async function buyProducts() {
   const paymentBtn = store.selector('.payment-btn')
-  paymentBtn.addEventListener('click', async () => {
+  paymentBtn.onclick = async function buyProductsHandler() {
     const payAccount = store.selector('#pay-account')
     const dataResult = payAccount.options[payAccount.selectedIndex]
     const accountId = dataResult.dataset.id
@@ -168,5 +169,5 @@ export async function buyProducts() {
       location.hash = '#myorder'
     }
     pay()
-  })
+  }
 }

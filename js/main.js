@@ -1,10 +1,10 @@
 import { doc } from 'prettier'
-import { keepLogin, postSearch, getTransactions, getProductDetail } from './requests.js'
+import { keepLogin, postSearch, getTransactions, getProductDetail, accountLookUp } from './requests.js'
 import { router } from './route.js'
 import { sendSignUp, sendLogin, adminLogin, completeLogin, adminPage } from './auth.js'
 import { deliveryEl, returnEl, deliveryDes, returnDes, mouseenter, mouseleave } from './footer.js'
 import { joinForm, logInForm, myOrderForm, myShoppingForm, mainForm, productList, userInfoForm, userAccountForm, detailForm, paymentForm, myCancelOrderForm, myConfirOrderForm, renderInnerCategory } from './body.js'
-import { editUserInfo, userOwnBank, addNewAccount, bankChargeLookUp, ownAccountList, addAbleAccountList, cancelBank } from './userInfo.js';
+import { editUserInfo, userOwnBank, addNewAccount, bankChargeLookUp, ownAccountList, addAbleAccountList, cancelBank, selectedAccount } from './userInfo.js';
 import { viewAllProduct } from '../admin/js/requests.js'
 import { payAccountList, payBankLoopUp, buyProducts, lookProducts, cancelProduct, allCheckBox } from './payment.js'
 import { cancelOrder, confirOrder, transLookUp, cancelOrderLookUp, confirOrderLookUp } from './myorder.js'
@@ -200,7 +200,7 @@ function renderSubCategory(rootInner, dataArr) {
 }
 
 // 제품 검색
-async function productSearch(e) {
+export async function productSearch(e) {
   const keyword = store.selector('#keyword');
 
   if (e.key === 'Enter') {
@@ -278,8 +278,8 @@ function joinRender() {
 }
 
 // 관리자 로그인인지 확인
-adminLogin(store.token);
-adminPage();
+adminLogin(store.token)
+// adminPage()
 
 // myorder 렌더링 공통 사항
 async function listLookUp() {
@@ -380,19 +380,13 @@ async function renderMyConfirOrder() {
 }
 
 // userInfo 렌더링
-async function renderUserInfo() {
-  const res = await stateLogin()
+export async function renderDetail() {
+  const productId = location.hash.split('/')[1]
+  const res = await getProductDetail(productId)
   startTop()
-  root.innerHTML = userInfoForm(res.email, res.displayName)
-  const { totalBalance, accounts } = await userOwnBank()
-  const total = totalBalance.toLocaleString()
-  root.innerHTML += userAccountForm(total)
-  bankChargeLookUp()
-  ownAccountList(accounts)
-  editUserInfo()
-  addAbleAccountList()
-  addNewAccount()
-  cancelBank()
+  root.innerHTML = detailForm(res)
+  shoppingBasket(res)
+  buyProduct(res)
 }
 
 // detail 렌더링

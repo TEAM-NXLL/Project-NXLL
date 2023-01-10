@@ -17,7 +17,7 @@ export function editItem(event) {
 
 // 수정페이지 input에 기존 데이터 채워넣기
 async function editInputPlaceholder(productId) {
-  const getResult = getProductDetail(productId)
+  const getResult = await getProductDetail(productId)
   getResult.isSoldOut
     ? (store.selector('#soldout').checked = true)
     : (store.selector('#sell').checked = true);
@@ -27,6 +27,7 @@ async function editInputPlaceholder(productId) {
   store.selector('#edit-product-price').value = getResult.price;
 
   const selectedTags = getResult.tags;
+  console.log(selectedTags)
 
   for (let i = 0; i < tagArr.length; i += 1) {
     selectedTags.includes(`${tagArr[i]}`)
@@ -40,10 +41,10 @@ async function editInputPlaceholder(productId) {
 }
 
 // 수정 모달 닫기
-modalCloseBtn.addEventListener('click', () => {
+modalCloseBtn.onclick = function handleCloseModal() {
   editPopup.classList.remove('show');
   location.hash = "#all-products"
-});
+}
 
 
 // 모든제품조회에 변경사항 넣기

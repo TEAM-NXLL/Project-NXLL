@@ -36,22 +36,22 @@ import { router } from './route.js';
 })();
 
 // header
-async function welcomeAdmin() {
-  // const authLogin = await keepLogin();
-  const welcomeAdmin = store.selector('.adminHeader');
-  // const abc = /* HTML */ `
-  //   <li>
-  //     <!-- <p>Welcome, Admin <strong>${authLogin.displayName}</strong></p> -->
-  //   </li>
-  //   <li class="logOutBtn">
-  //     <a href="#">로그아웃<i class="fa-solid fa-right-from-bracket"></i></a>
-  //   </li>
-  // `;
+// async function welcomeAdmin() {
+//   // const authLogin = await keepLogin();
+//   const welcomeAdmin = store.selector('.adminHeader');
+//   const abc = /* HTML */ `
+//     <li>
+//       <p>Welcome, Admin <strong>${authLogin.displayName}</strong></p>
+//     </li>
+//     <li class="logOutBtn">
+//       <a href="#">로그아웃<i class="fa-solid fa-right-from-bracket"></i></a>
+//     </li>
+//   `;
 
-  // welcomeAdmin.innerHTML = abc;
-}
+//   welcomeAdmin.innerHTML = abc;
+// }
 
-welcomeAdmin();
+// welcomeAdmin();
 
 // GNB 탭
 // window.addEventListener('hashchange', router);
@@ -62,13 +62,14 @@ let activeTab = gnb.querySelector('.active');
 const editPopup = store.selector('.editPopup');
 
 gnbTabs.forEach((tab) => {
-  tab.addEventListener('click', (e) => {
+  tab.onclick = (event) => {
     clickItem(tab);
 
     const panels = document.querySelectorAll('.panels');
 
     for (let i = 0; i < panels.length; i++) {
-      const tabTarget = e.target.hash.substr(1);
+      const tabTarget = event.target.hash.substr(1);
+
       if (tabTarget === panels[i].id) {
         panels[i].classList.add('here');
 
@@ -79,7 +80,7 @@ gnbTabs.forEach((tab) => {
         panels[i].classList.remove('here');
       }
     }
-  });
+  };
 });
 
 function clickItem(tab) {
