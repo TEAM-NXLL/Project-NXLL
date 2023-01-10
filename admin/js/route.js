@@ -5,7 +5,7 @@ import { renderAllProduct } from './renderAllProducts.js';
 import { renderAlltransacs } from './renderAlltransacs.js';
 import { transacSearch } from './transacSearch.js';
 import { submitUtil } from './submitUtil.js';
-const addFormEl = store.selector('.add-form');
+const addFormEl = store.selector('.add-form')
 
 export async function router() {
   const gnb = store.selector('.gnb');
@@ -47,6 +47,7 @@ export async function router() {
 
   if (routePath === '' || routePath === '#all-products') {
     renderAllProduct(allProduct);
+
   } else if (routePath === '#add-products') {
     submitUtil(addFormEl);
   } else if (routePath === '#all-transacs') {

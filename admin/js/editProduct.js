@@ -74,4 +74,3 @@ export function setChangedData(productId, title, price, description, tags, isSol
   soldoutNode.textContent = isSoldOut ? "X" : "O";
   descriptNode.textContent = description;
 }
-

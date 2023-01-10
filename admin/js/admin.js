@@ -17,6 +17,7 @@ import { router } from './route.js';
   } catch {
     console.log('전체 목록 조회 실패');
   }
+
   const allTransac = await viewAllTransactions();
   try {
     renderAdminSummary(allTransac, allProduct);
@@ -80,7 +81,7 @@ gnbTabs.forEach((tab) => {
         panels[i].classList.remove('here');
       }
     }
-  };
+  }
 });
 
 function clickItem(tab) {

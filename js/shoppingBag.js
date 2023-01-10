@@ -149,4 +149,3 @@ btnBuy.onclick = function btnBuyHandler() {
   else location.hash = '#login'
 }
 cartCountCheck()
-
