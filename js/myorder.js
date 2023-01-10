@@ -1,9 +1,9 @@
 import { cancelTransactions, confirmation } from "./requests.js"
-import { store } from '../util/store.js'
+import { $ } from '../util/store.js'
 
 // 구매 내역 렌더링
 export async function transLookUp(products) {
-  const transProductEl = document.querySelector('.trans-product')
+  const transProductEl = $('.trans-product')
   // 구매 내역이 없다면
   if (!products || !products.length) {
     return (
@@ -61,7 +61,7 @@ export async function transLookUp(products) {
 
 // 구매 취소
 export function cancelOrder() {
-  const cancelBtn = document.querySelectorAll('.cancel-btn')
+  const cancelBtn = $('.cancel-btn', document, true)
   cancelBtn.forEach(cancel => {
     cancel.onclick = (event) => cancelOrderHandler(event)
   })
@@ -74,21 +74,9 @@ async function cancelOrderHandler(event) {
   location.reload()
 }
 
-// export function cancelOrder() {
-//   const cancelBtn = document.querySelectorAll('.cancel-btn')
-//   cancelBtn.forEach(cancel => {
-//     cancel.addEventListener('click', async (e) => {
-//       const id = e.target.dataset.id
-//       await cancelTransactions(id)
-//       alert('구매가 취소되었습니다.')
-//       location.reload()
-//     })
-//   })
-// }
-
 // 구매 확정
 export function confirOrder() {
-  const confirBtn = document.querySelectorAll('.confir-btn')
+  const confirBtn = $('.confir-btn', document, true)
   confirBtn.forEach(confir => {
     confir.onclick = (event) => confirOrderHandler(event)
   })
@@ -101,21 +89,9 @@ async function confirOrderHandler(event) {
   location.reload()
 }
 
-// export function confirOrder() {
-//   const confirBtn = document.querySelectorAll('.confir-btn')
-//   confirBtn.forEach(confir => {
-//     confir.addEventListener('click', async (e) => {
-//       const id = e.target.dataset.id
-//       await confirmation(id)
-//       alert('구매가 확정되었습니다.')
-//       location.reload()
-//     })
-//   })
-// }
-
 // 취소 내역
 export async function cancelOrderLookUp(products) {
-  const transProductEl = store.selector('.trans-product')
+  const transProductEl = $('.trans-product')
   // 취소 내역이 없다면
   if (!products || !products.length) {
     return (
@@ -162,7 +138,7 @@ export async function cancelOrderLookUp(products) {
 
 // 확정 내역
 export async function confirOrderLookUp(products) {
-  const transProductEl = store.selector('.trans-product')
+  const transProductEl = $('.trans-product')
   // 확정 내역이 없다면
   if (!products || !products.length) {
     return (

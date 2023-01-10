@@ -1,18 +1,18 @@
-import { store } from '../../util/store.js';
+import { $ } from '../../util/store.js';
 import { viewAllProduct, viewAllTransactions } from './requests.js';
 import { renderAdminSummary } from './adminSummary.js';
 import { renderAllProduct } from './renderAllProducts.js';
 import { renderAlltransacs } from './renderAlltransacs.js';
 import { transacSearch } from './transacSearch.js';
 import { submitUtil } from './submitUtil.js';
-const addFormEl = store.selector('.add-form')
+const addFormEl = $('.add-form')
 
 export async function router() {
-  const gnb = store.selector('.gnb');
-  const gnbTabs = gnb.querySelectorAll('li');
-  let activeTab = gnb.querySelector('.active');
+  const gnb = $('.gnb');
+  const gnbTabs = $('li', gnb, true);
+  let activeTab = $('.active', gnb);
+  const panels = $('.panels', document, true);
   const routePath = location.hash;
-  const panels = document.querySelectorAll('.panels');
   const allProduct = await viewAllProduct();
   const allTransac = await viewAllTransactions();
 

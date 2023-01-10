@@ -10,11 +10,10 @@ import { payAccountList, payBankLoopUp, buyProducts, lookProducts, cancelProduct
 import { cancelOrder, confirOrder, transLookUp, cancelOrderLookUp, confirOrderLookUp } from './myorder.js'
 import { buyProduct, cart, shoppingBasket } from './detail.js'
 import { viewShoppingBag } from './shoppingBag.js'
-import { store } from '../util/store.js'
+import { token, $, root } from '../util/store.js'
 
 // 변수
-const root = store.selector('main')
-const shoppingBag = store.selector('.shopping-btn')
+const shoppingBag = $('.shopping-btn')
 
 // 페이지 새로 렌더하면 스크롤 맨 위로 이동하기
 function startTop() {
@@ -23,10 +22,10 @@ function startTop() {
 
 // 헤더 스크롤 고정
 let prevScrollTop = 0;
-document.addEventListener('scroll', () => {
-  const nav = store.selector('.nav-area')
-  const signUpsignIn = store.selector('.signUpsignIn')
-  const joinBtn = signUpsignIn.querySelector('.join')
+document.onscroll= ()=> {  
+  const nav = $('.nav-area')
+  const signUpsignIn = $('.signUpsignIn')
+  const joinBtn = $('.join', signUpsignIn)
   let nextScrollTop = window.scrollY;
 
   if (nextScrollTop > prevScrollTop) {
@@ -45,11 +44,12 @@ document.addEventListener('scroll', () => {
     }
   }
   prevScrollTop = nextScrollTop;
-})
+}
 
 // 장바구니에 담긴 상품 개수 확인
 export function cartCountCheck() {
-  const cartCount = store.selector('.shopping-btn .item-count')
+  const shoppingBtn = $('.shopping-btn')
+  const cartCount = shoppingBtn.children[0]
   const cartList = JSON.parse(localStorage.getItem('cart')) || []
   let total = 0
   if (cartList.length === 0) {
@@ -68,10 +68,10 @@ export function cartCountCheck() {
 export async function renderMain() {
   const data = await viewAllProduct();
   root.innerHTML = mainForm();
-
-  const keyboardList = store.selector('.keyboard > .inner');
-  const mouseList = store.selector('.mouse > .inner');
-  const newItemList = store.selector('.newItem > .inner');
+  
+  const keyboardList = $('.keyboard-inner');
+  const mouseList = $('.mouse-inner');
+  const newItemList = $('.newItem-inner');
 
   const keyboard = [];
   const mouse = [];
@@ -163,8 +163,8 @@ export async function renderCategory(tag) {
   renderSubCategory(rootInner, dataArr)
 
   // 서브카테고리 안에서 메인카테고리 다시 클릭 시
-  const category = store.selector(`a[href="#${tag}"]`)
-  category.addEventListener('click', event => {
+  const category = $(`a[href="#${tag}"]`)
+  category.onclick = function renderMainAgain() {
     root.innerHTML = renderInnerCategory(tag, dataArr.length);
 
     let rootInner = document.createElement('ul');
@@ -174,15 +174,15 @@ export async function renderCategory(tag) {
 
     rootInner.innerHTML += productList(dataArr);
     root.append(rootInner)
-  })
+  }
 }
 
 // 서브카테고리 클릭 시 렌더링
 export function renderSubCategory(rootInner, dataArr) {
-  const menu = root.querySelectorAll('.category-menu-area>ul>li')
+  const menu = $('.category-menu-area>ul>li', root, true)
 
   menu.forEach(title => {
-    title.addEventListener('click', (event) => {
+    title.onclick= (event) => {
       const { target } = event;
       const subCategory = target.classList.value.slice(4)
       const subDataArr = [];
@@ -195,13 +195,13 @@ export function renderSubCategory(rootInner, dataArr) {
 
       rootInner.innerHTML = productList(subDataArr);
       root.append(rootInner);
-    })
+    }
   })
 }
 
 // 제품 검색
 export async function productSearch(e) {
-  const keyword = store.selector('#keyword');
+  const keyword = $('#keyword');
 
   if (e.key === 'Enter') {
     startTop()
@@ -256,12 +256,15 @@ export async function productSearch(e) {
   }
 }
 
-keyword.addEventListener('keyup', productSearch);
-shoppingBag.addEventListener('click', () => {
-  const box = store.selector('.shopping-box');
+keyword.onKeyup= (event) => {
+  productSearch(event) 
+}
+
+shoppingBag.onclick = () => {
+  const box = $('.shopping-box');
   box.classList.toggle('block');
   viewShoppingBag();
-});
+}
 
 // 로그인 페이지 해시 값 + 화면 변경
 export function loginRender() {
@@ -278,7 +281,7 @@ export function joinRender() {
 }
 
 // 관리자 로그인인지 확인
-adminLogin(store.token)
+adminLogin(token)
 // adminPage()
 
 // myorder 렌더링 공통 사항
@@ -407,13 +410,13 @@ mouseenter();
 mouseleave();
 
 // router
-window.addEventListener('hashchange', router);
+window.onhashchange = () => router;
 router();
 
 // 로그인 로그아웃 확인
 (async () => {
-  const toAdminPageEl = document.querySelector('.adminPage')
-  if (store.token) {
+  const toAdminPageEl = $('.adminPage')
+  if (token) {
     const res = await keepLogin();
     res.displayName ? completeLogin() : window.localStorage.clear();
   } else {

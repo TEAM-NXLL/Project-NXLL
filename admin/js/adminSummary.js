@@ -1,13 +1,14 @@
 import { viewAllProduct } from './requests.js';
 import { viewAllTransactions } from './requests.js';
-import { store } from '../../util/store.js';
+import { $ } from '../../util/store.js';
 
 export async function renderAdminSummary(allTransac, allProduct) {
-  const adminSummary = store.selector('.admin-summary');
+  const adminSummary = $('.admin-summary');
 
   // 삽입 생성자 함수
   function renderOfStatus(selector, html) {
-    adminSummary.querySelector(selector).innerHTML = html;
+    // console.log(adminSummary[0])
+    $(selector, adminSummary).innerHTML = html;
   }
 
   // 주문 현황
