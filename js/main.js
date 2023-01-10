@@ -380,7 +380,7 @@ async function renderMyConfirOrder() {
 }
 
 // userInfo 렌더링
-export async function renderUserInfo() {
+async function renderUserInfo() {
   const res = await stateLogin()
   startTop()
   root.innerHTML = userInfoForm(res.email, res.displayName)
