@@ -118,6 +118,24 @@ export function mainForm() {
   `
   )
 
+  mainBody.push(/* HTML */`
+        <!-- MODAL-PAYMENT -->
+    <div class="modal-payment shopping-bag">
+      <div class="modal-payment__header">
+        <h3>장바구니 담기</h3>
+        <span>물품을 미리 확인하세요</span>
+        <button class="btn-close">닫기 버튼</button>
+      </div>
+      <div class="modal-payment__body"></div>
+
+      <div class="modal-payment__footer">
+        <span>* 쇼핑을 계속하시려면 이 창을 닫아주시길 바랍니다.</span>
+        <a class="cart-buy-btn"><i class="fas fa-check"></i>바로 구매하기</a>
+      </div>
+    </div><!-- MODAL-PAYMENT -->
+  `
+  )
+
   return mainBody.join('')
 }
 
@@ -198,9 +216,7 @@ export function productList(data) {
         `)
       }
     }
-
   }
-
   return mainBody.join('');
 }
 
@@ -244,12 +260,12 @@ export function renderInnerCategory(tag, count = 0) {
         </div>
         <div class="category-menu-area">
           <ul>
-            <li class="tab-keyboard">키보드</li>
-            <li class="tab-mouse">마우스</li>
-            <li class="tab-mousepad">마우스패드</li>
-            <li class="tab-usbhub">USB허브</li>
-            <li class="tab-monitorstand">모니터 스탠드</li>
-            <li class="tab-cardreader">카드 리더기</li>
+            <li class="tab-keyboard"><a href="#keyboard">키보드</a></li>
+            <li class="tab-mouse"><a href="#mouse">마우스</a></li>
+            <li class="tab-mousepad"><a href="#mousepad">마우스패드</a></li>
+            <li class="tab-usbhub"><a href="#usbhub">USB허브</a></li>
+            <li class="tab-monitorstand"><a href="#monitorstand">모니터 스탠드</a></li>
+            <li class="tab-cardreader"><a href="#cardreader">카드 리더기</a></li>
           </ul>
         </div>
       </div>
@@ -264,9 +280,9 @@ export function renderInnerCategory(tag, count = 0) {
         </div>
         <div class="category-menu-area">
           <ul>
-            <li class="tab-notebookstand">노트북 스탠드</li>
-            <li class="tab-lock">노트북 잠금장치</li>
-            <li class="tab-keypad">노트북 키패드</li>
+            <li class="tab-notebookstand"><a href="#notebookstand">노트북 스탠드</a></li>
+            <li class="tab-lock"><a href="#lock">노트북 잠금장치</a></li>
+            <li class="tab-keypad"><a href="#keypad">노트북 키패드</a></li>
         </div>     
       </div>
       `
@@ -280,10 +296,10 @@ export function renderInnerCategory(tag, count = 0) {
         </div>
         <div class="category-menu-area">
           <ul>
-            <li class="tab-adapter">어댑터</li>
-            <li class="tab-charging">충전기</li>
-            <li class="tab-holder">스마트 거치대</li>
-            <li class="tab-smart-etc">기타 스마트기기</li>
+            <li class="tab-adapter"><a href="#adapter">어댑터</a></li>
+            <li class="tab-charging"><a href="#charging">충전기</a></li>
+            <li class="tab-holder"><a href="#smartholder">스마트 거치대</a></li>
+            <li class="tab-smart-etc"><a href="#smart-etc">기타 스마트기기</a></li>
           </ul>
         </div>   
       </div>
@@ -298,11 +314,21 @@ export function renderInnerCategory(tag, count = 0) {
         </div>
         <div class="category-menu-area">
           <ul>
-            <li class="tab-ear-head">이어폰&헤드폰</li>
-            <li class="tab-speaker">스피커</li>
-            <li class="tab-mic">마이크</li>
-            <li class="tab-kids">키즈헤드폰</li>
-            <li class="tab-audiocable">음향케이블 & 기타</li>
+            <li class="tab-ear-head">
+              <a href="#ear-head">이어폰&헤드폰</a>
+            </li>
+            <li class="tab-speaker">
+              <a href="#speaker">스피커</a>
+            </li>
+            <li class="tab-mic">
+              <a href="#mic">마이크</a>
+            </li>
+            <li class="tab-kids">
+              <a href="#kids">키즈헤드폰</a>  
+            </li>
+            <li class="tab-audiocable">
+              <a href="#audiocable">음향케이블 & 기타</a>
+            </li>
           </ul>
         </div>
       </div>
@@ -318,6 +344,13 @@ export function renderInnerCategory(tag, count = 0) {
     </div>
     `
   }
+}
+
+export function test111() {
+  const modalEl = document.createElement('div')
+  modalEl.classList.add('asdf')
+
+
 }
 
 // 회원가입 페이지

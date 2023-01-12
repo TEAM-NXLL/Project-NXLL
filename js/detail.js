@@ -1,5 +1,4 @@
 import { cartCountCheck } from "./main.js"
-import { viewShoppingBag } from "./shoppingBag.js"
 import { token, $, root } from '../util/store.js'
 
 // 바로 구매하기 버튼
@@ -47,7 +46,6 @@ export async function cart(product) {
     localStorage.setItem('cart', JSON.stringify(cartList));
   }
 }
-
 
 export function shoppingBasket(product) {
   const cartBtn = $('.cart-btn')
@@ -101,10 +99,12 @@ export function totalQuantity() {
 
 // 장바구니 모달창
 export function showModal() {
+  console.log('detail showModal 작동')
   const shoppingBox = $('.shopping-box')
-  shoppingBox.classList.remove('block')
+  // shoppingBox.classList.remove('block')
   const cartList = JSON.parse(localStorage.getItem('cart')) || []
   const MODAL = $('.modal-payment')
+  console.log('??', MODAL)
   const MODAL_BODY = $('.modal-payment__body', MODAL)
   MODAL.classList.add('active')
   MODAL_BODY.innerHTML = /* html */ `
@@ -156,7 +156,8 @@ export function showModal() {
     MODAL_LIST.append(MODAL_ITEM)
   })
 
-  // const btnPlus = $('.btn-plus', document, true)
+  const btnPlus = $('.btn-plus', document, true)
+  console.log(btnPlus)
   const btnMinus = $('.btn-minus', document, true)
   const btnDelete = $('.btn-delete', document, true)
 
@@ -176,24 +177,25 @@ export function showModal() {
   })
 
   // 수량 증가
-  // btnPlus.forEach(el =>
-  //   el.onclick = (e) => {
-  //     const text = e.target.closest('div').children[1]
-  //     text.innerHTML = Number(text.textContent) + 1
+  btnPlus.forEach(el =>
+    el.onclick = (e) => {
+      console.log('detail btnPlus 작동')
+      const text = e.target.closest('div').children[1]
+      text.innerHTML = Number(text.textContent) + 1
 
-  //     const productId = e.target.closest('.modal-payment__item').dataset.id
-  //     cartList.forEach((el) => {
-  //       if (el.ID === productId) {
-  //         el.QUANTITY += 1
-  //         el.PRICE = el.ORIGIN_PRICE * el.QUANTITY
-  //       }
-  //     })
+      const productId = e.target.closest('.modal-payment__item').dataset.id
+      cartList.forEach((el) => {
+        if (el.ID === productId) {
+          el.QUANTITY += 1
+          el.PRICE = el.ORIGIN_PRICE * el.QUANTITY
+        }
+      })
 
-  //     localStorage.setItem('cart', JSON.stringify(cartList))
-  //     showModal()
-  //     viewShoppingBag()
-  //   }
-  // )
+      localStorage.setItem('cart', JSON.stringify(cartList))
+      showModal()
+      viewShoppingBag()
+    }
+  )
 
   // 수량 감소
   btnMinus.forEach(el =>

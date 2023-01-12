@@ -37,15 +37,15 @@ addFileArea.onchange = (event) => {
 }
 
 // 파일 확장자 유효성검사
-function checkFileExtension(target, location, selector) {
+function checkFileExtension(target, location, element) {
   let fileEl = '';
-  if (selector.matches('.edit-thumbnail')) {
+  if (element.matches('.edit-thumbnail')) {
     fileEl = editThumbnailEl
-  } else if (selector.matches('.edit-detail')) {
+  } else if (element.matches('.edit-detail')) {
     fileEl = editDetailImgEl
-  } else if (selector.matches('.add-thumbnail')) {
+  } else if (element.matches('.add-thumbnail')) {
     fileEl = thumbnailEl
-  } else if (selector.matches('.add-detail')) {
+  } else if (element.matches('.add-detail')) {
     fileEl = detailImgEl
   }
   const file = target.files[0].name.split('.').pop()
