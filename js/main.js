@@ -9,8 +9,8 @@ import { viewAllProduct } from '../admin/js/requests.js'
 import { payAccountList, payBankLoopUp, buyProducts, lookProducts, cancelProduct, allCheckBox } from './payment.js'
 import { cancelOrder, confirOrder, transLookUp, cancelOrderLookUp, confirOrderLookUp } from './myorder.js'
 import { buyProduct, cart, shoppingBasket } from './detail.js'
-import { viewShoppingBag } from './shoppingBag.js'
 import { token, $, root } from '../util/store.js'
+import { showModal } from './detail.js'
 
 // 변수
 const shoppingBag = $('.shopping-btn')
@@ -22,7 +22,7 @@ function startTop() {
 
 // 헤더 스크롤 고정
 let prevScrollTop = 0;
-document.onscroll= ()=> {  
+document.onscroll = () => {
   const nav = $('.nav-area')
   const signUpsignIn = $('.signUpsignIn')
   const joinBtn = $('.join', signUpsignIn)
@@ -68,7 +68,8 @@ export function cartCountCheck() {
 export async function renderMain() {
   const data = await viewAllProduct();
   root.innerHTML = mainForm();
-  
+  root.append()
+
   const keyboardList = $('.keyboard-inner');
   const mouseList = $('.mouse-inner');
   const newItemList = $('.newItem-inner');
@@ -158,45 +159,6 @@ export async function renderCategory(tag) {
 
   rootInner.innerHTML += productList(dataArr);
   root.append(rootInner)
-
-  // 서브카테고리 클릭 시 해당 제품만 나오게
-  renderSubCategory(rootInner, dataArr)
-
-  // 서브카테고리 안에서 메인카테고리 다시 클릭 시
-  const category = $(`a[href="#${tag}"]`)
-  category.onclick = function renderMainAgain() {
-    root.innerHTML = renderInnerCategory(tag, dataArr.length);
-
-    let rootInner = document.createElement('ul');
-    rootInner.classList.add('inner');
-    rootInner.classList.add('block4');
-    rootInner.style.margin = '140px auto 100px';
-
-    rootInner.innerHTML += productList(dataArr);
-    root.append(rootInner)
-  }
-}
-
-// 서브카테고리 클릭 시 렌더링
-export function renderSubCategory(rootInner, dataArr) {
-  const menu = $('.category-menu-area>ul>li', root, true)
-
-  menu.forEach(title => {
-    title.onclick= (event) => {
-      const { target } = event;
-      const subCategory = target.classList.value.slice(4)
-      const subDataArr = [];
-
-      for (let data of dataArr) {
-        if (data.tags.includes(`${subCategory}`)) {
-          subDataArr.push(data)
-        }
-      }
-
-      rootInner.innerHTML = productList(subDataArr);
-      root.append(rootInner);
-    }
-  })
 }
 
 // 제품 검색
@@ -256,14 +218,22 @@ export async function productSearch(e) {
   }
 }
 
-keyword.onKeyup= (event) => {
-  productSearch(event) 
+keyword.onKeyup = (event) => {
+  productSearch(event)
+}
+
+// detail 렌더링
+export async function renderDetail() {
+  const productId = location.hash.split('/')[1]
+  const res = await getProductDetail(productId)
+  startTop()
+  root.innerHTML = detailForm(res)
+  shoppingBasket(res)
+  buyProduct(res)
 }
 
 shoppingBag.onclick = () => {
-  const box = $('.shopping-box');
-  box.classList.toggle('block');
-  viewShoppingBag();
+  showModal()
 }
 
 // 로그인 페이지 해시 값 + 화면 변경
@@ -382,15 +352,15 @@ export async function renderUserInfo() {
   cancelBank()
 }
 
-// detail 렌더링
-export async function renderDetail() {
-  const productId = location.hash.split('/')[1]
-  const res = await getProductDetail(productId)
-  startTop()
-  root.innerHTML = detailForm(res)
-  shoppingBasket(res)
-  buyProduct(res)
-}
+// // detail 렌더링
+// export async function renderDetail() {
+//   const productId = location.hash.split('/')[1]
+//   const res = await getProductDetail(productId)
+//   startTop()
+//   root.innerHTML = detailForm(res)
+//   shoppingBasket(res)
+//   buyProduct(res)
+// }
 
 // payment 렌더링
 export async function renderPayment() {
@@ -410,7 +380,7 @@ mouseenter();
 mouseleave();
 
 // router
-window.onhashchange = () => router;
+window.onhashchange = router
 router();
 
 // 로그인 로그아웃 확인

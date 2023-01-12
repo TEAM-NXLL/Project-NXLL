@@ -1,6 +1,5 @@
 import { $ } from '../../util/store.js';
 import { viewAllProduct, viewAllTransactions } from './requests.js';
-import { renderAdminSummary } from './adminSummary.js';
 import { renderAllProduct } from './renderAllProducts.js';
 import { renderAlltransacs } from './renderAlltransacs.js';
 import { transacSearch } from './transacSearch.js';
@@ -13,15 +12,8 @@ export async function router() {
   let activeTab = $('.active', gnb);
   const panels = $('.panels', document, true);
   const routePath = location.hash;
-  const allProduct = await viewAllProduct();
-  const allTransac = await viewAllTransactions();
 
-  try {
-    renderAdminSummary(allTransac, allProduct);
-  } catch {
-    console.log('관리자 페이지 요약 실패');
-  }
-
+  // 탭 focus
   gnbTabs.forEach((tab) => {
     tab.onclick = () => {
       if (activeTab === tab) return;
@@ -32,32 +24,35 @@ export async function router() {
       activeTab = tab;
     };
 
-    for (const panel of panels) {
-      const panelId = `#${panel.id}`;
-      console.log(panelId);
-      if (panelId === '') {
-        panel.classList.add('here');
-      } else if (panelId === routePath) {
-        panel.classList.add('here');
-      } else {
-        panel.classList.remove('here');
-      }
-    }
+    // 거짓말
+    // 탭에 따라 해당 내용을 보여주는 로직 -> 이거 필요 없지 않나요 이제
+    // 걍 활성 탭 CSS 바꿔주는 거 말하는 거죠?ㅇㅇ ㅇㅋ 아 그러면 이건 없에도 되겠네요
+    // gnb는 클릭하면 focus되는 효과 라우터로하면 없어도 되겠죵? ㅇㅋ gg
+    // for (const panel of panels) {
+    //   const panelId = `#${panel.id}`;
+    //   if (panelId === '') {
+    //     panel.classList.add('here');
+    //   } else if (panelId === routePath) { 
+    //     panel.classList.add('here');
+    //   } else {
+    //     panel.classList.remove('here');
+    //   }
+    // }
   });
 
+  // 관리자페이지 라우터
   if (routePath === '' || routePath === '#all-products') {
     renderAllProduct(allProduct);
-
   } else if (routePath === '#add-products') {
     submitUtil(addFormEl);
   } else if (routePath === '#all-transacs') {
     try {
-      renderAlltransacs(allTransac);
+      await renderAlltransacs(allTransac);
     } catch {
       console.log('전체 거래 내역 실패');
     }
     try {
-      transacSearch(allTransac);
+      await transacSearch(allTransac);
     } catch {
       console.log('전체 거래 내역 검색 실패');
     }
