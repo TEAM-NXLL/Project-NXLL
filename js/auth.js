@@ -32,7 +32,6 @@ async function sendLoginHandler(event) {
   const idValue = $(".signin-id-input").value
   const pwValue = $(".signin-pw-input").value
   const res = await login(idValue, pwValue)
-  console.log(res)
   if (res.user.displayName) {
     const userName = res.user.displayName
     const accessToken = res.accessToken
@@ -48,7 +47,6 @@ async function sendLoginHandler(event) {
 // 로그아웃 핸들러
 export function logOut() {
   const logOutBtn = $('.logOutBtn');
-  // logOutBtn.addEventListener('click', handleSendLogOut)
   logOutBtn.onclick = sendLogOutHandler
 }
 
