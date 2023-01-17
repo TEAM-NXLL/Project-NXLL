@@ -27,5 +27,5 @@ import { router } from './route.js';
 
   // router
   window.onhashchange = router
-  router()
+  router();
 })();

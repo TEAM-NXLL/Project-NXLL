@@ -49,7 +49,7 @@ modalCloseBtn.onclick = function handleCloseModal() {
 
 // 모든제품조회에 변경사항 넣기
 export function setChangedData(productId, title, price, description, tags, isSoldOut) {
-  const lists = $('tr.product-item', document , true)
+  const lists = $('tr.product-item', document, true)
   let imgNode = '';
   let titleNode = '';
   let priceNode = '';

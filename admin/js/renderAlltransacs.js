@@ -81,7 +81,7 @@ export async function renderAlltransacs(transacs) {
 }
 
 function transacCancleBtn(transac, btn, isCancled, isDone) {
-  $(btn, transac).onclick = function transacCancleHandler (event) {
+  $(btn, transac).onclick = function transacCancleHandler(event) {
     const product_id = $('.transacId', event.path[3]).innerText;
     transactionStatus(product_id, isCancled, isDone);
     setTimeout(() => {
@@ -96,7 +96,7 @@ function transacCancleBtn(transac, btn, isCancled, isDone) {
 }
 
 function transacCompleteBtn(transac, btn, isCancled, isDone) {
-  $(btn, transac).onclick = function transacCompleteHandler (event) {
+  $(btn, transac).onclick = function transacCompleteHandler(event) {
     const product_id = $('.transacId', event.path[3]).innerText;
     transactionStatus(product_id, isCancled, isDone);
     setTimeout(() => {

@@ -1,4 +1,5 @@
 import { $ } from '../../util/store.js';
+
 export function renderAllProduct(products) {
 
   products.forEach((el) => {
@@ -16,9 +17,6 @@ export function renderAllProduct(products) {
     product.dataset.id = id
 
     const innerHTMLContents = /*html*/ `
-      <td class="edit-delete-btn">
-        <input type="checkbox" name="checkbox" class="delete-checkbox" data-id="${id}">
-      </td>
       <td class="thumbnail"><img src="${thumbnail}" alt="thumbnail"></td>
       <td class="id">${id}</td>
       <td class="title">${title}</td>

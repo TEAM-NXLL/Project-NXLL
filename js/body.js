@@ -430,6 +430,11 @@ export function logInForm() {
 
 // 마이쇼핑 페이지
 export function myShoppingForm(trans, price, cancelList, confirList) {
+  // 로그인 안 했을 시 로그인 페이지로 이동하게끔
+  const goToLogin = (link) => {
+    return localStorage.accessToken ? link : '#login'
+  }
+
   const information = /* html */`
     <div class="information">
       <div class="inner">
@@ -458,17 +463,7 @@ export function myShoppingForm(trans, price, cancelList, confirList) {
     </div>
   `
 
-  // 로그인 안 했을 시 로그인 페이지로 이동하게끔
-  const goToLogin = (link) => {
-    return localStorage.accessToken ? link : '#login'
-  }
-
-  return /* html */ `
-  <div class="title-box" scope="sub">
-      <h2 class="title-box__text">MY-SHOP</h2>
-      <p class="title-box__subtext">나의 쇼핑내역을 한눈에 확인하세요.</p>
-  </div>
-  ${localStorage.accessToken ? '' : information}
+  const orderList = /* html */ `
     <!-- ORDER-LIST -->
     <div class="order-list">
       <div class="inner">
@@ -530,6 +525,15 @@ export function myShoppingForm(trans, price, cancelList, confirList) {
       </div>
     </div>
   `
+
+  return /* html */ `
+  <div class="title-box" scope="sub">
+      <h2 class="title-box__text">MY-SHOP</h2>
+      <p class="title-box__subtext">나의 쇼핑내역을 한눈에 확인하세요.</p>
+    </div>
+    ${localStorage.accessToken ? orderList : information}
+  `
+
 }
 
 // 구매 내역 페이지

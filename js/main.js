@@ -66,7 +66,7 @@ export function cartCountCheck() {
 
 // 메인 페이지
 export async function renderMain() {
-  const data = await viewAllProduct();
+  const data = await viewAllProduct('');
   root.innerHTML = mainForm();
   root.append()
 
@@ -140,7 +140,7 @@ export async function renderMain() {
 
 // 카테고리별 제품조회
 export async function renderCategory(tag) {
-  const datas = await viewAllProduct();
+  const datas = await viewAllProduct('');
   const dataArr = [];
 
   for (let data of datas) {
@@ -281,9 +281,7 @@ export async function renderMyShop() {
     root.innerHTML = myShoppingForm(products.length, total, cancels.length, confirs.length);
   } catch {
     startTop()
-    const { totalBalance } = await userOwnBank()
-    const total = totalBalance ? totalBalance.toLocaleString() : 0;
-    root.innerHTML = myShoppingForm(0, total)
+    root.innerHTML = myShoppingForm(0)
   }
 }
 

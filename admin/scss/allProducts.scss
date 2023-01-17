@@ -1,6 +1,7 @@
 // // 모든 상품 조회
 .all-products {
-
+  min-width: 1000px;
+  white-space: nowrap;
   table {
     text-align: center;
   }

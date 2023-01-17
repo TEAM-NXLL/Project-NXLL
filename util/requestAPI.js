@@ -1,6 +1,13 @@
 // import { toast } from "../admin/js/toast";
 
-export async function requestAPI({ type, endpoint, page, data, accessToken }) {
+function checkHash() {
+  const hash = location.hash
+  if (hash === "#login" || hash === "#join" || hash === "#userinfo") {
+    return true
+  }
+}
+
+export async function requestAPI({ type, endpoint, page, data, accessToken, state }) {
   try {
     const res = await fetch(
       'https://asia-northeast3-heropy-api.cloudfunctions.net/api' + endpoint,
@@ -17,7 +24,11 @@ export async function requestAPI({ type, endpoint, page, data, accessToken }) {
       }
     )
 
-    if (!res.ok) {
+    if (!res.ok && checkHash()) {
+      const requestError = await res.json()
+      alert(requestError)
+      throw new Error('request 에러 발생')
+    } else if (!res.ok) {
       throw new Error('request 에러 발생')
     }
 
@@ -26,12 +37,10 @@ export async function requestAPI({ type, endpoint, page, data, accessToken }) {
     return requestResult;
 
   } catch (error) {
-    if (page === 'admin') {
-      // toast('잠시 후 다시 시도해 주세요.', `${page}`)
-      // alert('잠시 후 다시 시도해 주세요.')
+    if (page === 'admin' && state) {
+      toast('잠시 후 다시 시도해 주세요.', `${state}`)
       console.log(error, '관리자페이지 에러')
     } else {
-      // alert(error, '잠시 후 다시 시도해 주세요.')
       console.log(error, '사용자페이지 에러')
     }
   }
