@@ -14,14 +14,14 @@ const innerFrame = /*html*/`
           <h2>모든 제품 조회<span>엑토의 모든 제품을 조회할 수 있습니다.</span></h2>
           <table class="products-container">
             <colgroup>
-              <col width="10%" />
+              <col width="100px" />
               <col width="10%" />
               <col width="20%" />
               <col width="10%" />
               <col width="10%" />
               <col width="7%" />
               <col width="28%" />
-              <col width="5%" />
+              <col width="80px" />
             </colgroup>
             <thead class="product-item item-head">
               <tr class="product-wrapper">
