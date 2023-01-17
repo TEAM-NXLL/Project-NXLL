@@ -9,12 +9,11 @@ import { viewAllProduct } from '../admin/js/requests.js'
 import { payAccountList, payBankLoopUp, buyProducts, lookProducts, cancelProduct, allCheckBox } from './payment.js'
 import { cancelOrder, confirOrder, transLookUp, cancelOrderLookUp, confirOrderLookUp } from './myorder.js'
 import { buyProduct, cart, shoppingBasket } from './detail.js'
-import { viewShoppingBag } from './shoppingBag.js'
-import { store } from './store.js'
+import { token, $, root } from '../util/store.js'
+import { showModal } from './detail.js'
 
 // 변수
-const root = store.selector('main')
-const shoppingBag = store.selector('.shopping-btn')
+const shoppingBag = $('.shopping-btn')
 
 // 페이지 새로 렌더하면 스크롤 맨 위로 이동하기
 function startTop() {
@@ -23,10 +22,10 @@ function startTop() {
 
 // 헤더 스크롤 고정
 let prevScrollTop = 0;
-document.addEventListener('scroll', () => {
-  const nav = store.selector('.nav-area')
-  const signUpsignIn = store.selector('.signUpsignIn')
-  const joinBtn = signUpsignIn.querySelector('.join')
+document.onscroll = () => {
+  const nav = $('.nav-area')
+  const signUpsignIn = $('.signUpsignIn')
+  const joinBtn = $('.join', signUpsignIn)
   let nextScrollTop = window.scrollY;
 
   if (nextScrollTop > prevScrollTop) {
@@ -45,11 +44,12 @@ document.addEventListener('scroll', () => {
     }
   }
   prevScrollTop = nextScrollTop;
-})
+}
 
 // 장바구니에 담긴 상품 개수 확인
 export function cartCountCheck() {
-  const cartCount = store.selector('.shopping-btn .item-count')
+  const shoppingBtn = $('.shopping-btn')
+  const cartCount = shoppingBtn.children[0]
   const cartList = JSON.parse(localStorage.getItem('cart')) || []
   let total = 0
   if (cartList.length === 0) {
@@ -66,12 +66,13 @@ export function cartCountCheck() {
 
 // 메인 페이지
 export async function renderMain() {
-  const data = await viewAllProduct();
+  const data = await viewAllProduct('');
   root.innerHTML = mainForm();
+  root.append()
 
-  const keyboardList = store.selector('.keyboard > .inner');
-  const mouseList = store.selector('.mouse > .inner');
-  const newItemList = store.selector('.newItem > .inner');
+  const keyboardList = $('.keyboard-inner');
+  const mouseList = $('.mouse-inner');
+  const newItemList = $('.newItem-inner');
 
   const keyboard = [];
   const mouse = [];
@@ -139,7 +140,7 @@ export async function renderMain() {
 
 // 카테고리별 제품조회
 export async function renderCategory(tag) {
-  const datas = await viewAllProduct();
+  const datas = await viewAllProduct('');
   const dataArr = [];
 
   for (let data of datas) {
@@ -158,50 +159,11 @@ export async function renderCategory(tag) {
 
   rootInner.innerHTML += productList(dataArr);
   root.append(rootInner)
-
-  // 서브카테고리 클릭 시 해당 제품만 나오게
-  renderSubCategory(rootInner, dataArr)
-
-  // 서브카테고리 안에서 메인카테고리 다시 클릭 시
-  const category = store.selector(`a[href="#${tag}"]`)
-  category.addEventListener('click', event => {
-    root.innerHTML = renderInnerCategory(tag, dataArr.length);
-
-    let rootInner = document.createElement('ul');
-    rootInner.classList.add('inner');
-    rootInner.classList.add('block4');
-    rootInner.style.margin = '140px auto 100px';
-
-    rootInner.innerHTML += productList(dataArr);
-    root.append(rootInner)
-  })
-}
-
-// 서브카테고리 클릭 시 렌더링
-export function renderSubCategory(rootInner, dataArr) {
-  const menu = root.querySelectorAll('.category-menu-area>ul>li')
-
-  menu.forEach(title => {
-    title.addEventListener('click', (event) => {
-      const { target } = event;
-      const subCategory = target.classList.value.slice(4)
-      const subDataArr = [];
-
-      for (let data of dataArr) {
-        if (data.tags.includes(`${subCategory}`)) {
-          subDataArr.push(data)
-        }
-      }
-
-      rootInner.innerHTML = productList(subDataArr);
-      root.append(rootInner);
-    })
-  })
 }
 
 // 제품 검색
 export async function productSearch(e) {
-  const keyword = store.selector('#keyword');
+  const keyword = $('#keyword');
 
   if (e.key === 'Enter') {
     startTop()
@@ -256,12 +218,23 @@ export async function productSearch(e) {
   }
 }
 
-keyword.addEventListener('keyup', productSearch);
-shoppingBag.addEventListener('click', () => {
-  const box = store.selector('.shopping-box');
-  box.classList.toggle('block');
-  viewShoppingBag();
-});
+keyword.onKeyup = (event) => {
+  productSearch(event)
+}
+
+// detail 렌더링
+export async function renderDetail() {
+  const productId = location.hash.split('/')[1]
+  const res = await getProductDetail(productId)
+  startTop()
+  root.innerHTML = detailForm(res)
+  shoppingBasket(res)
+  buyProduct(res)
+}
+
+shoppingBag.onclick = () => {
+  showModal()
+}
 
 // 로그인 페이지 해시 값 + 화면 변경
 export function loginRender() {
@@ -278,7 +251,7 @@ export function joinRender() {
 }
 
 // 관리자 로그인인지 확인
-adminLogin(store.token)
+adminLogin(token)
 // adminPage()
 
 // myorder 렌더링 공통 사항
@@ -308,9 +281,7 @@ export async function renderMyShop() {
     root.innerHTML = myShoppingForm(products.length, total, cancels.length, confirs.length);
   } catch {
     startTop()
-    const { totalBalance } = await userOwnBank()
-    const total = totalBalance ? totalBalance.toLocaleString() : 0;
-    root.innerHTML = myShoppingForm(0, total)
+    root.innerHTML = myShoppingForm(0)
   }
 }
 
@@ -379,15 +350,15 @@ export async function renderUserInfo() {
   cancelBank()
 }
 
-// detail 렌더링
-export async function renderDetail() {
-  const productId = location.hash.split('/')[1]
-  const res = await getProductDetail(productId)
-  startTop()
-  root.innerHTML = detailForm(res)
-  shoppingBasket(res)
-  buyProduct(res)
-}
+// // detail 렌더링
+// export async function renderDetail() {
+//   const productId = location.hash.split('/')[1]
+//   const res = await getProductDetail(productId)
+//   startTop()
+//   root.innerHTML = detailForm(res)
+//   shoppingBasket(res)
+//   buyProduct(res)
+// }
 
 // payment 렌더링
 export async function renderPayment() {
@@ -407,13 +378,13 @@ mouseenter();
 mouseleave();
 
 // router
-window.addEventListener('hashchange', router);
+window.onhashchange = router
 router();
 
 // 로그인 로그아웃 확인
 (async () => {
-  const toAdminPageEl = document.querySelector('.adminPage')
-  if (store.token) {
+  const toAdminPageEl = $('.adminPage')
+  if (token) {
     const res = await keepLogin();
     res.displayName ? completeLogin() : window.localStorage.clear();
   } else {

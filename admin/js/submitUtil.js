@@ -2,8 +2,8 @@ import { toast } from './toast.js';
 import { createProduct, correctProduct } from './requests.js';
 import { setChangedData, editFormEl } from './editProduct.js';
 import { resetInput, thumbnailEl, detailImgEl, priceInputEl, editDetailImgEl, editThumbnailEl, editPriceInputEl } from './inputUtils.js';
-import { store } from '../../js/store.js';
-const addFormEl = store.selector('.add-form')
+import { $ } from '../../util/store.js';
+const addFormEl = $('.add-form')
 
 
 // 추가, 수정 submit 유틸
@@ -34,18 +34,18 @@ export function submitUtil(selector) {
       photo = detailImgEl.dataset.id;
     }
 
-    if (store.selector('input[name="filter"]:checked').value === 'true') {
+    if ($('input[name="filter"]:checked').value === 'true') {
       isSoldOut = true;
     }
     const productId = editFormEl.querySelector('.edit-product-id').textContent
-    const title = store.selector(titleSelector).value;
-    const selectedCategory = store.selector(categorySelector).value;
+    const title = $(titleSelector).value;
+    const selectedCategory = $(categorySelector).value;
     const selectedTags = document.querySelectorAll(tagSelector);
     tags.push(selectedCategory);
     selectedTags.forEach((tag) => {
       tags.push(tag.value);
     });
-    const description = store.selector(descriptionSelector).value;
+    const description = $(descriptionSelector).value;
 
     if (title.length < 2 || price < 1 || description.length < 1) {
       selector === editFormEl

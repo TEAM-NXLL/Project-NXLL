@@ -1,12 +1,12 @@
-import { store } from '../../js/store.js';
+import { $ } from '../../util/store.js';
 import { createRequest } from './requests.js';
 import { submitUtil } from './submitUtil.js';
 import { getProductDetail } from '../../js/requests.js';
 
 export const tagArr = ['mouse', 'keyboard', 'mousepad', 'usbhub', 'monitorstand', 'cardreader', 'notebookstand', 'lock', 'keypad', 'ear-head', 'speaker', 'mic', 'kids', 'audiocable', 'adapter', 'charging', 'smartholder', 'smart-etc', 'new-item', 'discount', 'pc', 'notebook', 'audio', 'smart', 'beige', 'mint', 'pink', 'white', 'blue', 'black', 'green', 'gray'];
-export const editFormEl = store.selector('.edit-form');
-export const editPopup = store.selector('.editPopup');
-export const modalCloseBtn = store.selector('.close-btn'); //수정모달 close버튼
+export const editFormEl = $('.edit-form');
+export const editPopup = $('.editPopup');
+export const modalCloseBtn = $('.close-btn'); //수정모달 close버튼
 
 // 모든제품조회에서 수정버튼 클릭 이벤트 핸들러
 export function editItem(event) {
@@ -19,25 +19,25 @@ export function editItem(event) {
 async function editInputPlaceholder(productId) {
   const getResult = await getProductDetail(productId)
   getResult.isSoldOut
-    ? (store.selector('#soldout').checked = true)
-    : (store.selector('#sell').checked = true);
+    ? ($('#soldout').checked = true)
+    : ($('#sell').checked = true);
 
-  store.selector('.edit-product-id').textContent = getResult.id;
-  store.selector('.edit-product-name').value = getResult.title;
-  store.selector('#edit-product-price').value = getResult.price;
+  $('.edit-product-id').textContent = getResult.id;
+  $('.edit-product-name').value = getResult.title;
+  $('#edit-product-price').value = getResult.price;
 
   const selectedTags = getResult.tags;
   console.log(selectedTags)
 
   for (let i = 0; i < tagArr.length; i += 1) {
     selectedTags.includes(`${tagArr[i]}`)
-      ? (store.selector(`#${tagArr[i]}`).checked = true)
-      : (store.selector(`#${tagArr[i]}`).checked = false);
+      ? ($(`#${tagArr[i]}`).checked = true)
+      : ($(`#${tagArr[i]}`).checked = false);
   }
 
-  store.selector('.edit-product-description').value = getResult.description
-  store.selector('.edit-tumbnail-img').src = getResult.thumbnail;
-  store.selector('.edit-detail-img').src = getResult.photo;
+  $('.edit-product-description').value = getResult.description
+  $('.edit-tumbnail-img').src = getResult.thumbnail;
+  $('.edit-detail-img').src = getResult.photo;
 }
 
 // 수정 모달 닫기
@@ -49,7 +49,7 @@ modalCloseBtn.onclick = function handleCloseModal() {
 
 // 모든제품조회에 변경사항 넣기
 export function setChangedData(productId, title, price, description, tags, isSoldOut) {
-  const lists = document.querySelectorAll('tr.product-item')
+  const lists = $('tr.product-item', document, true)
   let imgNode = '';
   let titleNode = '';
   let priceNode = '';
@@ -59,15 +59,15 @@ export function setChangedData(productId, title, price, description, tags, isSol
 
   lists.forEach(list => {
     if (productId === list.dataset.id) {
-      imgNode = list.querySelector('img')
-      titleNode = list.querySelector('.title')
-      priceNode = list.querySelector('.price')
-      tagsNode = list.querySelector('.tags')
-      soldoutNode = list.querySelector('.is-sold-out')
-      descriptNode = list.querySelector('.descript')
+      imgNode = $('img', list)
+      titleNode = $('.title', list)
+      priceNode = $('.price', list)
+      tagsNode = $('.tags', list)
+      soldoutNode = $('.is-sold-out', list)
+      descriptNode = $('.descript', list)
     }
   })
-  imgNode.src = store.selector('#edit-thumbnail-preview').src
+  imgNode.src = $('#edit-thumbnail-preview').src
   titleNode.textContent = title;
   priceNode.textContent = price;
   tagsNode.textContent = tags;

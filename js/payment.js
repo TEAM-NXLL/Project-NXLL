@@ -1,11 +1,11 @@
 import { getBuy, getProductDetail } from './requests.js';
 import { userOwnBank } from './userInfo.js';
 import { renderPayment } from './main.js';
-import { store } from './store.js'
+import { $ } from '../util/store.js'
 
 // 주문 상품 정보 조회
 export function lookProducts() {
-  const tbodyEl = store.selector('.products');
+  const tbodyEl = $('.products');
   const cart = JSON.parse(localStorage.cart);
   if (cart.length > 0) {
     cart.forEach(async (e) => {
@@ -35,12 +35,12 @@ export function lookProducts() {
 
 // 가격 렌더링 
 function renderTotalPrice() {
-  const totalPriceEl = document.querySelectorAll('.total-price');
-  const products = document.querySelectorAll('.products tr');
+  const totalPriceEl = $('.total-price', document, true);
+  const products = $('.products tr', document, true);
   let totalPrice = 0;
   products.forEach(el => {
-    if (el.querySelector('.product-checkbox').checked) {
-      totalPrice += parseInt(el.querySelector('td:last-child').textContent.slice(0, -1).replace(',', '')); // 로케일 문자를 숫자로 변환
+    if ($('.product-checkbox', el).checked) {
+      totalPrice += parseInt($('td:last-child', el).textContent.slice(0, -1).replace(',', '')); // 로케일 문자를 숫자로 변환
     }
   })
   totalPriceEl.forEach(el => {
@@ -50,15 +50,15 @@ function renderTotalPrice() {
 
 // 선택 박스 상태 변화에 따라 가격 렌더링 변화
 export function priceCheck(product) {
-  const checkBox = product.querySelector('.product-checkbox')
+  const checkBox = $('.product-checkbox', product)
   checkBox.onchange = renderTotalPrice
 }
 
 // 제품 전체 선택 및 해제 
 export function allCheckBox() {
-  const allCheckBox = store.selector('tr input[type=checkbox]')
+  const allCheckBox = $('tr input[type=checkbox]')
   allCheckBox.onchange = function allCheckBoxHandler() {
-    const eachCheckBoxs = document.querySelectorAll('.product-checkbox')
+    const eachCheckBoxs = $('.product-checkbox', document, true)
     if (allCheckBox.checked) {
       eachCheckBoxs.forEach(el => el.checked = true)
     } else {
@@ -70,8 +70,8 @@ export function allCheckBox() {
 
 // 삭제하기 버튼 클릭
 export function cancelProduct() {
-  const productDeleteBtn = store.selector('.product-delete-btn');
-  const productCheckBox = document.querySelectorAll('.product-checkbox');
+  const productDeleteBtn = $('.product-delete-btn');
+  const productCheckBox = $('.product-checkbox', document, true);
 
   productDeleteBtn.onclick =
     function cancelProductHandler() {
@@ -95,8 +95,8 @@ export function cancelProduct() {
 // 보유 계좌 불러오기
 export function payAccountList(accounts) {
   if (accounts.length > 0) {
-    const payAccountEl = store.selector('#pay-account');
-    const noBankEl = store.selector('.no-bank');
+    const payAccountEl = $('#pay-account');
+    const noBankEl = $('.no-bank');
     noBankEl.remove();
     accounts.forEach((account) => {
       const createBankList = document.createElement('option');
@@ -111,8 +111,8 @@ export function payAccountList(accounts) {
 // 보유 계좌 잔액 확인
 export async function payBankLoopUp() {
   const { accounts } = await userOwnBank();
-  const payAccountEl = store.selector('#pay-account');
-  const charge = store.selector('.charge');
+  const payAccountEl = $('#pay-account');
+  const charge = $('.charge');
   payAccountEl.onchange = (event) => payBankLookUpHandler(event)
 }
 
@@ -130,7 +130,7 @@ function payBankLookUpHandler(event) {
 
 // 구매 물품 확인하기
 function checkProducts(productQuantity, productIds) {
-  const checkBoxs = document.querySelectorAll('.product-checkbox');
+  const checkBoxs = $('.product-checkbox', document, true);
   checkBoxs.forEach(el => {
     if (el.checked) {
       productQuantity.forEach(product => {
@@ -146,9 +146,9 @@ function checkProducts(productQuantity, productIds) {
 
 // 결제하기
 export async function buyProducts() {
-  const paymentBtn = store.selector('.payment-btn')
+  const paymentBtn = $('.payment-btn')
   paymentBtn.onclick = async function buyProductsHandler() {
-    const payAccount = store.selector('#pay-account')
+    const payAccount = $('#pay-account')
     const dataResult = payAccount.options[payAccount.selectedIndex]
     const accountId = dataResult.dataset.id
     const productQuantity = JSON.parse(localStorage.cart)

@@ -159,7 +159,7 @@ main {
 
   .contents {
     width: calc(100% - 350px);
-    overflow-y: auto;
+    overflow: auto;
     box-sizing: border-box;
     position: relative;
 
