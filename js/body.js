@@ -6,11 +6,10 @@ export function mainForm() {
     <div class="swiper-button-next"></div>
   `;
 
-  mainBody.push(/* HTML */ `
+  mainBody.push(`
     <!-- 메인 스와이퍼 -->
     <div class="swiper mainSwiper">
-      <ul class="swiper-wrapper"></ul>
-    </div>
+      <ul class="swiper-wrapper">
   `);
 
   for (let i = 1; i <= 7; i++) {
