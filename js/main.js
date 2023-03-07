@@ -422,16 +422,6 @@ export async function renderUserInfo() {
   cancelBank();
 }
 
-// // detail 렌더링
-// export async function renderDetail() {
-//   const productId = location.hash.split('/')[1]
-//   const res = await getProductDetail(productId)
-//   startTop()
-//   root.innerHTML = detailForm(res)
-//   shoppingBasket(res)
-//   buyProduct(res)
-// }
-
 // payment 렌더링
 export async function renderPayment() {
   // startTop()
