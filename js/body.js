@@ -161,10 +161,10 @@ export function productList(data) {
   const mainBody = [];
 
   for (let i = 0; i < data.length; i++) {
-    mainBody.push(/* HTML */ `
+    mainBody.push(`
       <li>
-        <a href="#details/${data[i].id}"> </a>
-      </li>
+        <a href="#details/${data[i].id}">
+
     `);
 
     if (data[i].thumbnail === null || data[i].thumbnail === undefined) {
