@@ -1,36 +1,42 @@
-import { store } from './store.js'
+import { $ } from '../util/store.js'
 
-const deliveryEl = store.selector('.delivery')
-const returnEl = store.selector('.return')
-const deliveryDes = store.selector('.delivery-des')
-const returnDes = store.selector('.return-des')
+export const deliveryEl = $(".delivery")
+export const returnEl = $(".return")
+export const deliveryDes = $(".delivery-des")
+export const returnDes = $(".return-des")
 
 // 카테고리에 호버
-function mouseenter() {
-  deliveryEl.addEventListener('mouseenter', () => {
-    deliveryEl.classList.add('active')
-    deliveryDes.style.display = 'flex'
-    returnDes.style.display = 'none'
-  })
-  returnEl.addEventListener('mouseenter', () => {
-    returnEl.classList.add('active')
-    returnDes.style.display = 'flex'
-    deliveryDes.style.display = 'none'
-  })
+export function mouseenter() {
+  deliveryEl.onmouseenter = deliveryEnterHandler
+  returnEl.onmouseenter = returnEnterHanlder
+}
+
+function deliveryEnterHandler() {
+  deliveryEl.classList.add('active')
+  deliveryDes.style.display = 'flex'
+  returnDes.style.display = 'none'
+}
+
+function returnEnterHanlder() {
+  returnEl.classList.add('active')
+  returnDes.style.display = 'flex'
+  deliveryDes.style.display = 'none'
 }
 
 // 카테고리에서 마우스 아웃
-function mouseleave() {
-  deliveryEl.addEventListener('mouseleave', () => {
-    deliveryEl.classList.remove('active')
-    deliveryDes.style.display = 'none'
-    returnDes.style.display = 'flex'
-  })
-  returnEl.addEventListener('mouseleave', () => {
-    returnEl.classList.remove('active')
-    returnDes.style.display = 'none'
-    deliveryDes.style.display = 'flex'
-  })
+export function mouseleave() {
+  deliveryEl.onmouseout = deliveryOutHandler
+  returnEl.onmouseout = returnOutHandler
 }
 
-export { deliveryEl, returnEl, deliveryDes, returnDes, mouseenter, mouseleave }
+function deliveryOutHandler() {
+  deliveryEl.classList.remove('active')
+  deliveryDes.style.display = 'none'
+  returnDes.style.display = 'flex'
+}
+
+function returnOutHandler() {
+  returnEl.classList.remove('active')
+  returnDes.style.display = 'none'
+  deliveryDes.style.display = 'flex'
+}

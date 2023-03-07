@@ -1,26 +1,23 @@
 import { renderAlltransacs } from './renderAlltransacs.js';
-import { store } from '../../js/store.js';
+import { $ } from '../../util/store.js';
 
 export async function transacSearch(allTransac) {
-  const searchBar = store.selector('.transac-search-bar');
-  const searchBtn = store.selector('.transac-search-btn');
+  const searchBar = $('.transac-search-bar');
+  const searchBtn = $('.transac-search-btn');
 
-  searchBar.addEventListener('keydown', (event) => {
+  searchBar.onkeydown = function enterKeyHandler(event) {
     if (event.key === 'Enter') {
-      event.preventDefault();
       searchBtn.click();
     }
-  });
-
-  searchBtn.addEventListener('click', (event) => {
+  }
+  searchBtn.onclick = function searchBtnHandler() {
     const title = searchBar.value;
-
     const searchTransac = allTransac.filter((el) => {
       return el.product.title.includes(title) === true;
     });
 
     searchBar.value = '';
-    const productCont = store.selector('.all-transac-container');
+    const productCont = $('.all-transac-container');
     const allTransacs = productCont.querySelector('.allTransacs');
 
     if (searchTransac.length > 0 && allTransacs) {
@@ -34,5 +31,7 @@ export async function transacSearch(allTransac) {
         </div>
       `;
     }
-  });
+  }
 }
+
+
