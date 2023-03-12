@@ -1,10 +1,8 @@
-import { doc } from 'prettier';
 import {
   keepLogin,
   postSearch,
   getTransactions,
   getProductDetail,
-  accountLookUp,
 } from './requests.js';
 import { router } from './route.js';
 import {
@@ -66,9 +64,11 @@ import {
 import { buyProduct, cart, shoppingBasket } from './detail.js';
 import { token, $, root } from '../util/store.js';
 import { showModal } from './detail.js';
+import { viewShoppingBag } from './shoppingBag.js';
 
 // 변수
 const shoppingBag = $('.shopping-btn');
+shoppingBag.onclick = viewShoppingBag;
 
 // 페이지 새로 렌더하면 스크롤 맨 위로 이동하기
 function startTop() {
@@ -279,6 +279,7 @@ keyword.onKeyup = (event) => {
 
 // detail 렌더링
 export async function renderDetail() {
+  startTop();
   const productId = location.hash.split('/')[1];
   const res = await getProductDetail(productId);
   history.scrollRestoration = 'manual';
@@ -307,7 +308,6 @@ export function joinRender() {
 
 // 관리자 로그인인지 확인
 adminLogin(token);
-// adminPage()
 
 // myorder 렌더링 공통 사항
 export async function listLookUp() {
@@ -424,8 +424,7 @@ export async function renderUserInfo() {
 
 // payment 렌더링
 export async function renderPayment() {
-  // startTop()
-  history.scrollRestoration = 'manual';
+  startTop();
   root.innerHTML = paymentForm();
   lookProducts();
   allCheckBox();
@@ -448,8 +447,12 @@ router();
 (async () => {
   const toAdminPageEl = $('.adminPage');
   if (token) {
-    const res = await keepLogin();
-    res.displayName ? completeLogin() : window.localStorage.clear();
+    try {
+      await keepLogin();
+      completeLogin();
+    } catch (error) {
+      localStorage.clear();
+    }
   } else {
     toAdminPageEl.closest('li').remove();
     toAdminPageEl.href = '#';
