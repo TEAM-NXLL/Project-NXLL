@@ -37,13 +37,16 @@ export function lookProducts() {
 
 // 가격 렌더링
 function renderTotalPrice() {
-  const totalPriceEl = $('.total-price', document, true);
-  const products = $('.products tr', document, true);
+  const totalPriceEl = document.querySelectorAll('.total-price');
+  const products = document.querySelectorAll('.products tr');
   let totalPrice = 0;
   products.forEach((el) => {
-    if ($('.product-checkbox', el).checked) {
+    if (el.querySelector('.product-checkbox').checked) {
       totalPrice += parseInt(
-        $('td:last-child', el).textContent.slice(0, -1).replace(',', ''),
+        el
+          .querySelector('td:last-child')
+          .textContent.slice(0, -1)
+          .replace(',', ''),
       ); // 로케일 문자를 숫자로 변환
     }
   });
