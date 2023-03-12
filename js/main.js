@@ -1,10 +1,8 @@
-import { doc } from 'prettier';
 import {
   keepLogin,
   postSearch,
   getTransactions,
   getProductDetail,
-  accountLookUp,
 } from './requests.js';
 import { router } from './route.js';
 import {
@@ -307,7 +305,6 @@ export function joinRender() {
 
 // 관리자 로그인인지 확인
 adminLogin(token);
-// adminPage()
 
 // myorder 렌더링 공통 사항
 export async function listLookUp() {
@@ -424,7 +421,7 @@ export async function renderUserInfo() {
 
 // payment 렌더링
 export async function renderPayment() {
-  // startTop()
+  // startTop();
   history.scrollRestoration = 'manual';
   root.innerHTML = paymentForm();
   lookProducts();
@@ -448,8 +445,12 @@ router();
 (async () => {
   const toAdminPageEl = $('.adminPage');
   if (token) {
-    const res = await keepLogin();
-    res.displayName ? completeLogin() : window.localStorage.clear();
+    try {
+      await keepLogin();
+      completeLogin();
+    } catch (error) {
+      localStorage.clear();
+    }
   } else {
     toAdminPageEl.closest('li').remove();
     toAdminPageEl.href = '#';

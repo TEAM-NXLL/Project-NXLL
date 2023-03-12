@@ -90,6 +90,12 @@ export function viewShoppingBag() {
   // deleteTarget.remove()
   // localStorage.setItem('cart', JSON.stringify(cartFilter))
   // viewShoppingBag()
+  btnBuy.onclick = function btnBuyHandler() {
+    MODAL.classList.remove('block');
+    const accessToken = localStorage.accessToken;
+    if (accessToken) location.hash = '#payment';
+    else location.hash = '#login';
+  };
 }
 
 // 수량 ++
@@ -142,10 +148,5 @@ btnClose.onclick = function btnCloseHandler() {
   MODAL.classList.remove('block')
 }
 
-btnBuy.onclick = function btnBuyHandler() {
-  MODAL.classList.remove('block');
-  const accessToken = localStorage.accessToken
-  if (accessToken) location.hash = '#payment'
-  else location.hash = '#login'
-}
+
 cartCountCheck()
