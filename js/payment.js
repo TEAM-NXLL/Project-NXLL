@@ -63,7 +63,6 @@ export function priceCheck(product) {
 
 // 제품 전체 선택 및 해제
 export function allCheckBox() {
-  // const allCheckBox = $('th input[type=checkbox]');
   const allCheckBox = document.querySelector('tr input[type=checkbox]');
   const allCheckBoxHandler = () => {
     const eachCheckBoxs = $('.product-checkbox', document, true);
@@ -123,21 +122,20 @@ export async function payBankLoopUp() {
   const payAccountEl = $('#pay-account');
   const charge = $('.charge');
   payAccountEl.onchange = (event) => payBankLookUpHandler(event);
-}
-
-function payBankLookUpHandler(event) {
-  accounts.forEach((account) => {
-    if (account.bankCode === event.target.value) {
-      charge.innerHTML = /* html */ `
-      잔액: ${account.balance.toLocaleString()} 원
-      `;
-    } else if (
-      event.target.value === 'default' ||
-      event.target.value === null
-    ) {
-      charge.innerHTML = '';
-    }
-  });
+  function payBankLookUpHandler(event) {
+    accounts.forEach((account) => {
+      if (account.bankCode === event.target.value) {
+        charge.innerHTML = /* html */ `
+        잔액: ${account.balance.toLocaleString()} 원
+        `;
+      } else if (
+        event.target.value === 'default' ||
+        event.target.value === null
+      ) {
+        charge.innerHTML = '';
+      }
+    });
+  }
 }
 
 // 구매 물품 확인하기
