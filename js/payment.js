@@ -60,8 +60,8 @@ export function priceCheck(product) {
 
 // 제품 전체 선택 및 해제
 export function allCheckBox() {
-  const allCheckBox = $('tr input[type=checkbox]');
-  console.log(allCheckBox);
+  // const allCheckBox = $('th input[type=checkbox]');
+  const allCheckBox = document.querySelector('tr input[type=checkbox]');
   const allCheckBoxHandler = () => {
     const eachCheckBoxs = $('.product-checkbox', document, true);
     if (allCheckBox.checked) {
@@ -71,14 +71,13 @@ export function allCheckBox() {
     }
     renderTotalPrice();
   };
-  allCheckBox.onchange = allCheckBoxHandler;
+  allCheckBox.onclick = allCheckBoxHandler;
 }
 
 // 삭제하기 버튼 클릭
 export function cancelProduct() {
   const productDeleteBtn = $('.product-delete-btn');
   const productCheckBox = $('.product-checkbox', document, true);
-  console.log(productCheckBox);
   const cancelProductHandler = () => {
     productCheckBox.forEach((el) => {
       const isChecked = el.checked;

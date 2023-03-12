@@ -70,6 +70,7 @@ export function shoppingBasket(product) {
       behavior: 'smooth',
     });
   };
+
   // 바로 구매하기 클릭시 연결 페이지
   const cartBtnBuy = $('.cart-buy-btn');
   cartBtnBuy.onclick = () => {
@@ -103,8 +104,6 @@ export function totalQuantity() {
 
 // 장바구니 모달창
 export function showModal() {
-  const shoppingBox = $('.shopping-box');
-  // shoppingBox.classList.remove('block')
   const cartList = JSON.parse(localStorage.getItem('cart')) || [];
   const MODAL = $('.modal-payment');
   const MODAL_BODY = $('.modal-payment__body', MODAL);

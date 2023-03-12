@@ -1,16 +1,19 @@
 import { totalQuantity, showModal } from './detail.js';
 import { cartCountCheck } from './main.js';
-import { store } from './store.js'
+import { store } from './store.js';
 
 // 메인 화면 장바구니
 export function viewShoppingBag() {
-  const shoppingBox = store.selector('.shopping-box')
-  const CENTER_MODAL = store.selector('.modal-payment')
-  if (location.hash.includes('#detail') && shoppingBox.classList.contains('block')) {
-    CENTER_MODAL.classList.remove('active')
+  const shoppingBox = store.selector('.shopping-box');
+  const CENTER_MODAL = store.selector('.modal-payment');
+  if (
+    location.hash.includes('#detail') &&
+    shoppingBox.classList.contains('block')
+  ) {
+    CENTER_MODAL.classList.remove('active');
   }
-  const cartList = JSON.parse(localStorage.getItem('cart')) || []
-  const MODAL = store.selector('.shopping-box')
+  const cartList = JSON.parse(localStorage.getItem('cart')) || [];
+  const MODAL = store.selector('.shopping-box');
   MODAL.innerHTML = /* html */ `
       <div class="bag-payment__header">
         <h3>장바구니</h3>
@@ -29,27 +32,29 @@ export function viewShoppingBag() {
       <div class="bag-payment__footer">
         <a class="bag-btn-buy"><i class="fas fa-check"></i>바로 구매하기</a>
       </div>
-    `
+    `;
 
   const MODAL_LIST = store.selector('.bag-payment__list');
 
   if (cartList.length === 0) {
-    MODAL_LIST.innerHTML = /* html */`
+    MODAL_LIST.innerHTML = /* html */ `
     <div class="text--empty">
       <p>장바구니가 비어있어요.
         <span>상품을 담아보세요.</span>
       </p>
     </div>
-  `
+  `;
   }
 
   cartList.forEach((item) => {
     const MODAL_ITEM = document.createElement('div');
-    MODAL_ITEM.setAttribute('data-id', item.ID)
+    MODAL_ITEM.setAttribute('data-id', item.ID);
     MODAL_ITEM.classList.add('bag-payment__item');
     MODAL_ITEM.innerHTML = /* html */ `
         <div class="thumb">
-          <img src="${item.THUMB ?? './images/preparingProduct.jpg'}" alt="상품 대표이미지">
+          <img src="${
+            item.THUMB ?? './images/preparingProduct.jpg'
+          }" alt="상품 대표이미지">
         </div>
         <div class="description">
           <p class="name">${item.TITLE}</p>
@@ -64,89 +69,77 @@ export function viewShoppingBag() {
           <p>${item.PRICE} 원</p>
         </div>
         <button class="btn-delete"><i class="fa-solid fa-xmark"></i></button>
-      `
+      `;
     MODAL_LIST.append(MODAL_ITEM);
-  })
+  });
 
-  const btnPlus = document.querySelectorAll('.btn-plus')
-  const btnMinus = document.querySelectorAll('.btn-minus')
-  const btnBuy = store.selector('.bag-btn-buy')
-  const btnDelete = document.querySelectorAll('.btn-delete')
+  const btnPlus = document.querySelectorAll('.btn-plus');
+  const btnMinus = document.querySelectorAll('.btn-minus');
+  const btnBuy = store.selector('.bag-btn-buy');
+  const btnDelete = document.querySelectorAll('.btn-delete');
 
+  btnDelete.forEach((el) => {
+    el.onclick = (event) => {
+      cartDeleteHandler(event);
+    };
+  });
 
-  btnDelete.forEach(el => { el.onclick = (event) => { cartDeleteHandler(event) } })
-
-  // function  (event) {
-  //   console.log(event)
-  // const deleteTarget = event.target.closest('.bag-payment__item')
-  // const productId = deleteTarget.dataset.id
-  // let cartList = JSON.parse(localStorage.getItem('cart')) || []
-  // let cartFilter = []
-  // cartList.filter(e => {
-  //   if (e.ID !== productId) {
-  //     cartFilter.push(e)
-  //   }
-  // })
-  // deleteTarget.remove()
-  // localStorage.setItem('cart', JSON.stringify(cartFilter))
-  // viewShoppingBag()
   btnBuy.onclick = function btnBuyHandler() {
     MODAL.classList.remove('block');
     const accessToken = localStorage.accessToken;
     if (accessToken) location.hash = '#payment';
     else location.hash = '#login';
   };
-}
+  // 수량 ++
+  btnPlus.forEach((el) => {
+    el.onclick = (event) => cartAddHandler(event);
+  });
 
-// 수량 ++
-btnPlus.forEach((el) => { el.onclick = (event) => cartAddHandler(event) }
-)
+  function cartAddHandler(event) {
+    const text = event.target.closest('div').children[1];
+    text.innerHTML = Number(text.textContent) + 1;
 
-function cartAddHandler(event) {
-  const text = event.target.closest('div').children[1]
-  text.innerHTML = Number(text.textContent) + 1
+    const productId = event.target.closest('.quantity').dataset.id;
+    cartList.forEach((el) => {
+      if (el.ID === productId) {
+        el.QUANTITY += 1;
+        el.PRICE = el.ORIGIN_PRICE * el.QUANTITY;
+      }
+    });
 
-  const productId = event.target.closest('.quantity').dataset.id
-  cartList.forEach((el) => {
-    if (el.ID === productId) {
-      el.QUANTITY += 1;
-      el.PRICE = el.ORIGIN_PRICE * el.QUANTITY;
-    }
-  })
-
-  localStorage.setItem('cart', JSON.stringify(cartList))
-  viewShoppingBag()
-}
-
-// 수량--
-btnMinus.forEach((el) => {
-  el.onclick = (event) => {
-    console.log(event)
-    cartRemoveHandler(event)
+    localStorage.setItem('cart', JSON.stringify(cartList));
+    viewShoppingBag();
   }
-})
 
-function cartRemoveHandler(event) {
-  // const text = event.target.closeeventchildren[1]
-  console.log(event)
-  const text = event.target.closest('div').children[1]
-  text.innerHTML = Number(text.textContent) - 1
-  const productId = event.target.closest('.quantity').dataset.id
-  cartList.forEach((el) => {
-    if (el.ID === productId) {
-      el.QUANTITY = el.QUANTITY === 1 ? 1 : el.QUANTITY - 1
-      el.PRICE = el.ORIGIN_PRICE * el.QUANTITY
-    }
-  })
+  // 수량--
+  btnMinus.forEach((el) => {
+    el.onclick = (event) => {
+      console.log(event);
+      cartRemoveHandler(event);
+    };
+  });
 
-  localStorage.setItem('cart', JSON.stringify(cartList))
-  viewShoppingBag()
+  function cartRemoveHandler(event) {
+    // const text = event.target.closeeventchildren[1]
+    console.log(event);
+    const text = event.target.closest('div').children[1];
+    text.innerHTML = Number(text.textContent) - 1;
+    const productId = event.target.closest('.quantity').dataset.id;
+    cartList.forEach((el) => {
+      if (el.ID === productId) {
+        el.QUANTITY = el.QUANTITY === 1 ? 1 : el.QUANTITY - 1;
+        el.PRICE = el.ORIGIN_PRICE * el.QUANTITY;
+      }
+    });
+
+    localStorage.setItem('cart', JSON.stringify(cartList));
+    viewShoppingBag();
+  }
+
+  const btnClose = store.selector('.bag-close');
+  btnClose.onclick = function btnCloseHandler() {
+    MODAL.classList.remove('block');
+  };
+
+  cartCountCheck();
 }
-
-const btnClose = store.selector('.bag-close')
-btnClose.onclick = function btnCloseHandler() {
-  MODAL.classList.remove('block')
-}
-
-
-cartCountCheck()
