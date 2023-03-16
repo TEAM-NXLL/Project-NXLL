@@ -959,7 +959,7 @@ export function detailForm(product) {
         <div class="product-order">
           <div class="product-summary">
             <div class="product-summary__title">
-              <span>${product.description}</span>
+              <span>${product.tags[0]}</span>
               <p>${product.title}</p>
               <div class="priceBox">
                 <span class="price">${product.price.toLocaleString()}원</span>
