@@ -92,7 +92,7 @@ function transacCancleBtn(transac, btn, isCancled, isDone) {
     cancledOrder.innerText = (
       parseInt(cancledOrder.textContent) + 1
     ).toLocaleString();
-  }
+  };
 }
 
 function transacCompleteBtn(transac, btn, isCancled, isDone) {
@@ -104,7 +104,9 @@ function transacCompleteBtn(transac, btn, isCancled, isDone) {
         <div class = "done">거래 완료</div>`;
     }, 700);
     const totalIncome = $('.total-income-num');
-    const confirmedPrice = parseInt($('.price', event.path[3]).innerText.slice(0, 6).replaceAll(',', ''));
+    const confirmedPrice = parseInt(
+      $('.price', event.path[3]).innerText.slice(0, 6).replaceAll(',', ''),
+    );
     const newTotalIncome =
       parseInt(totalIncome.innerText.replaceAll(',', '')) + confirmedPrice;
     totalIncome.innerText = newTotalIncome.toLocaleString();
@@ -112,5 +114,5 @@ function transacCompleteBtn(transac, btn, isCancled, isDone) {
     confirmedOrder.innerText = (
       parseInt(confirmedOrder.textContent) + 1
     ).toLocaleString();
-  }
+  };
 }
