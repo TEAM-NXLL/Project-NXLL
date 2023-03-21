@@ -61,14 +61,12 @@ import {
   cancelOrderLookUp,
   confirOrderLookUp,
 } from './myorder.js';
-import { buyProduct, cart, shoppingBasket } from './detail.js';
+import { buyProduct, shoppingBasket } from './detail.js';
 import { token, $, root } from '../util/store.js';
 import { showModal } from './detail.js';
-import { viewShoppingBag } from './shoppingBag.js';
 
 // 변수
 const shoppingBag = $('.shopping-btn');
-shoppingBag.onclick = viewShoppingBag;
 
 // 페이지 새로 렌더하면 스크롤 맨 위로 이동하기
 function startTop() {
@@ -117,6 +115,12 @@ export function cartCountCheck() {
   });
   cartCount.innerHTML = total;
   cartCount.style.backgroundColor = 'red';
+}
+
+// 페이지 이동하면 모달창 닫기
+export function closeModal() {
+  const MODAL = $('.modal-payment');
+  MODAL.classList.remove('active');
 }
 
 // 메인 페이지
@@ -289,7 +293,7 @@ export async function renderDetail() {
 }
 
 shoppingBag.onclick = () => {
-  showModal();
+  showModal('fullModal');
 };
 
 // 로그인 페이지 해시 값 + 화면 변경

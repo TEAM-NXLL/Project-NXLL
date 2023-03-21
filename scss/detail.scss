@@ -43,7 +43,6 @@
     }
 
     .product-summary {
-
       &__title {
         span {
           padding-bottom: 5px;
@@ -149,7 +148,11 @@
         }
 
         .buy-btn {
-          background: linear-gradient(to bottom, var(--signature-color) 0%, var(--signature-color) 100%);
+          background: linear-gradient(
+            to bottom,
+            var(--signature-color) 0%,
+            var(--signature-color) 100%
+          );
 
           &:hover {
             background: linear-gradient(to bottom, #053271 0%, #053271 100%);
@@ -181,7 +184,8 @@
             margin: 3px;
             width: 14px;
             height: 14px;
-            background: transparent url('https://acttomall.com/_sp/_image/svg/exclamation.svg');
+            background: transparent
+              url('https://acttomall.com/_sp/_image/svg/exclamation.svg');
             vertical-align: middle;
           }
 
@@ -205,7 +209,6 @@
       border-bottom: 1px solid rgb(239, 239, 239);
 
       li {
-
         a {
           display: inline-block;
           line-height: 60px;
@@ -219,14 +222,11 @@
             height: 10px;
             background: rgba(0, 0, 0, 0.1);
           }
-
         }
 
         &:first-child a::before {
           display: none;
         }
-
-
       }
     }
   }
@@ -288,7 +288,8 @@
       font-size: 0;
       width: 54px;
       height: 54px;
-      background: transparent url('https://acttomall.com/_sp/_image/svg/close.svg');
+      background: transparent
+        url('https://acttomall.com/_sp/_image/svg/close.svg');
       background-size: 11px 11px;
       background-repeat: no-repeat;
       background-position: center;
@@ -471,7 +472,7 @@
       color: var(--signature-color);
       background-color: #fff;
       font-size: 13px;
-      transition: .3s;
+      transition: 0.3s;
 
       &:hover {
         border-color: var(--signature-color);
@@ -486,7 +487,6 @@
   }
 
   .pagination {
-
     display: flex;
     justify-content: center;
     align-items: center;
@@ -502,7 +502,6 @@
       // padding: 0 10px;
       font-weight: bolder;
       font-size: 12px;
-
 
       ul {
         display: flex;
@@ -541,16 +540,16 @@
     position: fixed;
     width: 500px;
     max-height: 100%;
-    left:initial;
+    left: initial;
     right: 0;
-    top:0;
+    top: 0;
     bottom: 0;
-    transition: 0.8s;
+    // transition: 0.8s;
     // height: 100%;
     background-color: white;
     z-index: 100;
-    transform:translate(0%, 0%);
-    box-shadow: -10px -10px 20px rgba(0,0,0,.1);
+    transform: translate(0%, 0%);
+    box-shadow: -10px -10px 20px rgba(0, 0, 0, 0.1);
     .modal-payment__body {
       height: calc(100% - 57px - 71px);
       box-sizing: border-box;
@@ -568,5 +567,5 @@
   border-top: 2px solid #000;
   font-size: 14px;
   font-weight: bold;
-  box-shadow: 0 10px 10px rgba(0, 0, 0, .1);
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
 }

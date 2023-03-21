@@ -49,10 +49,11 @@ export async function cart(product) {
 
 export function shoppingBasket(product) {
   const cartBtn = $('.cart-btn');
+  const shoppingBtn = $('.shopping-btn');
   const tabMenu = $('.tab-menu');
   const modalPayment = $('.modal-payment');
   const selling = product.isSoldOut === true ? false : true;
-  cartBtn.onclick = () => {
+  cartBtn.onclick = (e) => {
     if (modalPayment.classList.contains('active')) return;
     cart(product);
     if (selling) showModal(product);
@@ -103,9 +104,17 @@ export function totalQuantity() {
 }
 
 // 장바구니 모달창
-export function showModal() {
+export function showModal(type) {
   const cartList = JSON.parse(localStorage.getItem('cart')) || [];
-  const MODAL = $('.modal-payment');
+  function getCartList() {
+    const cartList = JSON.parse(localStorage.getItem('cart')) || [];
+    return cartList;
+  }
+  const MODAL = $(`.modal-payment`);
+  if (MODAL.classList.contains('active')) return;
+  type === 'fullModal'
+    ? MODAL.classList.add('shopping-bag')
+    : MODAL.classList.remove('shopping-bag');
   const MODAL_BODY = $('.modal-payment__body', MODAL);
   MODAL.classList.add('active');
   MODAL_BODY.innerHTML = /* html */ `
@@ -130,11 +139,13 @@ export function showModal() {
     </div>
   `;
   }
+
   // 상품 항목 만들어서 목록에 넣기
   cartList.forEach((item) => {
     const MODAL_ITEM = document.createElement('div');
     MODAL_ITEM.setAttribute('data-id', item.ID);
     MODAL_ITEM.classList.add('modal-payment__item');
+    let quantity = Number(item.QUANTITY);
 
     MODAL_ITEM.innerHTML = /* html */ `
       <div class="thumb">
@@ -147,19 +158,20 @@ export function showModal() {
         <p class="delivery-fee">배송비 무료</p>
       </div>
       <div class="quantity" data-id="${item.ID}">
-        <button class="btn-minus"><i class="fa-solid fa-minus"></i></button>
+        <button type="button" class="btn-minus"><i class="fa-solid fa-minus"></i></button>
         <span>${item.QUANTITY}</span>
-        <button class="btn-plus"><i class="fa-solid fa-plus"></i></button>
+        <button type="button" class="btn-plus"><i class="fa-solid fa-plus"></i></button>
       </div>
       <div class="price">
         <p>${item.PRICE} 원</p>
       </div>
-      <button class="btn-delete"><i class="fa-solid fa-xmark"></i></button>
+      <button type='button' class="btn-delete"><i class="fa-solid fa-xmark"></i></button>
     `;
     MODAL_LIST.append(MODAL_ITEM);
   });
 
   const btnPlus = $('.btn-plus', document, true);
+  // const btnPlus = document.querySelectorAll('.btn-plus');
   const btnMinus = $('.btn-minus', document, true);
   const btnDelete = $('.btn-delete', document, true);
 
@@ -176,8 +188,6 @@ export function showModal() {
         });
         deleteTarget.remove();
         localStorage.setItem('cart', JSON.stringify(cartFilter));
-        showModal();
-        viewShoppingBag();
       }),
   );
 
@@ -185,7 +195,6 @@ export function showModal() {
   btnPlus.forEach(
     (el) =>
       (el.onclick = (e) => {
-        console.log('detail btnPlus 작동');
         const text = e.target.closest('div').children[1];
         text.innerHTML = Number(text.textContent) + 1;
 
@@ -198,8 +207,7 @@ export function showModal() {
         });
 
         localStorage.setItem('cart', JSON.stringify(cartList));
-        showModal();
-        viewShoppingBag();
+        return false;
       }),
   );
 
@@ -208,7 +216,8 @@ export function showModal() {
     (el) =>
       (el.onclick = (e) => {
         const text = e.target.closest('div').children[1];
-        text.innerHTML = Number(text.textContent) - 1;
+        text.innerHTML =
+          Number(text.textContent) === 1 ? 1 : Number(text.textContent) - 1;
 
         const productId = e.target.closest('.modal-payment__item').dataset.id;
         cartList.forEach((el) => {
@@ -218,8 +227,6 @@ export function showModal() {
           }
         });
         localStorage.setItem('cart', JSON.stringify(cartList));
-        showModal();
-        viewShoppingBag();
       }),
   );
 
