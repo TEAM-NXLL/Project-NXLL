@@ -1,10 +1,8 @@
-import { doc } from 'prettier';
 import {
   keepLogin,
   postSearch,
   getTransactions,
   getProductDetail,
-  accountLookUp,
 } from './requests.js';
 import { router } from './route.js';
 import {
@@ -63,7 +61,7 @@ import {
   cancelOrderLookUp,
   confirOrderLookUp,
 } from './myorder.js';
-import { buyProduct, cart, shoppingBasket } from './detail.js';
+import { buyProduct, shoppingBasket } from './detail.js';
 import { token, $, root } from '../util/store.js';
 import { showModal } from './detail.js';
 
@@ -117,6 +115,12 @@ export function cartCountCheck() {
   });
   cartCount.innerHTML = total;
   cartCount.style.backgroundColor = 'red';
+}
+
+// 페이지 이동하면 모달창 닫기
+export function closeModal() {
+  const MODAL = $('.modal-payment');
+  MODAL.classList.remove('active');
 }
 
 // 메인 페이지
@@ -279,6 +283,7 @@ keyword.onKeyup = (event) => {
 
 // detail 렌더링
 export async function renderDetail() {
+  startTop();
   const productId = location.hash.split('/')[1];
   const res = await getProductDetail(productId);
   history.scrollRestoration = 'manual';
@@ -288,7 +293,7 @@ export async function renderDetail() {
 }
 
 shoppingBag.onclick = () => {
-  showModal();
+  showModal('fullModal');
 };
 
 // 로그인 페이지 해시 값 + 화면 변경
@@ -307,7 +312,6 @@ export function joinRender() {
 
 // 관리자 로그인인지 확인
 adminLogin(token);
-// adminPage()
 
 // myorder 렌더링 공통 사항
 export async function listLookUp() {
@@ -424,8 +428,7 @@ export async function renderUserInfo() {
 
 // payment 렌더링
 export async function renderPayment() {
-  // startTop()
-  history.scrollRestoration = 'manual';
+  startTop();
   root.innerHTML = paymentForm();
   lookProducts();
   allCheckBox();
@@ -448,8 +451,12 @@ router();
 (async () => {
   const toAdminPageEl = $('.adminPage');
   if (token) {
-    const res = await keepLogin();
-    res.displayName ? completeLogin() : window.localStorage.clear();
+    try {
+      await keepLogin();
+      completeLogin();
+    } catch (error) {
+      localStorage.clear();
+    }
   } else {
     toAdminPageEl.closest('li').remove();
     toAdminPageEl.href = '#';

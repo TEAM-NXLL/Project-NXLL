@@ -125,24 +125,6 @@ export function mainForm() {
     </section><!-- 리뷰 영역 -->
   `);
 
-  mainBody.push(/* HTML */ `
-    <!-- MODAL-PAYMENT -->
-    <div class="modal-payment shopping-bag">
-      <div class="modal-payment__header">
-        <h3>장바구니 담기</h3>
-        <span>물품을 미리 확인하세요</span>
-        <button class="btn-close">닫기 버튼</button>
-      </div>
-      <div class="modal-payment__body"></div>
-
-      <div class="modal-payment__footer">
-        <span>* 쇼핑을 계속하시려면 이 창을 닫아주시길 바랍니다.</span>
-        <a class="cart-buy-btn"><i class="fas fa-check"></i>바로 구매하기</a>
-      </div>
-    </div>
-    <!-- MODAL-PAYMENT -->
-  `);
-
   return mainBody.join('');
 }
 
@@ -959,7 +941,7 @@ export function detailForm(product) {
         <div class="product-order">
           <div class="product-summary">
             <div class="product-summary__title">
-              <span>${product.description}</span>
+              <span>${product.tags[0]}</span>
               <p>${product.title}</p>
               <div class="priceBox">
                 <span class="price">${product.price.toLocaleString()}원</span>
@@ -1000,21 +982,7 @@ export function detailForm(product) {
         </div>
       </div>
     </div>
-  </div><!-- PRODUCT-DETAIL -->  
-  <!-- MODAL-PAYMENT -->
-  <div class="modal-payment">
-    <div class="modal-payment__header">
-      <h3>장바구니 담기</h3>
-      <span>물품을 미리 확인하세요</span>
-      <button class="btn-close">닫기 버튼</button>
-    </div>
-    <div class="modal-payment__body"></div>
-    
-    <div class="modal-payment__footer">
-      <span>* 쇼핑을 계속하시려면 이 창을 닫아주시길 바랍니다.</span>
-      <a class="cart-buy-btn"><i class="fas fa-check"></i>바로 구매하기</a>
-    </div>
-  </div><!-- MODAL-PAYMENT -->
+  </div>
   `;
 }
 

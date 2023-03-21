@@ -1,13 +1,6 @@
 import { renderAllProduct } from './renderAllProducts.js';
-import { renderAlltransacs } from './renderAlltransacs.js';
-import { deleteItem } from './delete.js';
 import { renderAdminSummary } from './adminSummary.js';
-import { addItem } from './inputUtils.js';
-import { submitForm } from './submitUtil.js';
 import { viewAllProduct, viewAllTransactions, adminData } from './requests.js';
-import { transacSearch } from './transacSearch.js';
-import { keepLogin } from '../../js/requests.js';
-import { $ } from '../../util/store.js';
 import { router } from './route.js';
 
 (async () => {
@@ -26,6 +19,6 @@ import { router } from './route.js';
   }
 
   // router
-  window.onhashchange = router
+  window.onhashchange = router;
   router();
 })();

@@ -1,10 +1,10 @@
-import { root } from "./route"
+import { root } from './route';
 
 export function renderAlltransacsFrame() {
-  root.innerHTML = innerFrame
+  root.innerHTML = innerFrame;
 }
 
-const innerFrame = /*html*/`
+const innerFrame = /*html*/ `
       <p class="tabStyle"><span></span></p>
       <p class="tabStyle"><span></span></p>
       <p class="tabStyle"><span></span></p>
@@ -59,4 +59,4 @@ const innerFrame = /*html*/`
           </li>
         </ul>
       </div>
-`
+`;
