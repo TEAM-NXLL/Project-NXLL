@@ -81,6 +81,7 @@ export function cancelProduct() {
   const productDeleteBtn = $('.product-delete-btn');
   const productCheckBox = $('.product-checkbox', document, true);
   const cancelProductHandler = () => {
+    console.log('클릭됨');
     productCheckBox.forEach((el) => {
       const isChecked = el.checked;
       try {
